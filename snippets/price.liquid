@@ -4,6 +4,9 @@
 
   @param {product} product_resource - The product to render
   @param {boolean} [show_unit_price] - Whether to show the unit price
+  @param {boolean} [show_price_per_gram] - Replace the price with a price-per-gram range (product cards only)
+  @param {boolean} [show_unit_chip] - Whether to render the per-gram chip (product page / quick add)
+  @param {boolean} [show_save_chip] - Whether to render the discount chip (product page / quick add)
   @param {string} [type_preset] - The type preset to use for the price
   @param {boolean} [ref] - Ref attribute for querying element
   @param {boolean} [use_variant] - Whether to use the selected variant or the product resource
@@ -33,25 +36,41 @@
   assign price_min = product_resource.price_min
   assign price_max = product_resource.price_max
   assign available = target.available | default: false
-  assign money_price = price | money
-  assign money_compare_at_price = compare_at_price | money
-  assign money_price_min = price_min | money
-  assign money_price_max = price_max | money
+  assign money_price = price | money_without_trailing_zeros
+  assign money_compare_at_price = compare_at_price | money_without_trailing_zeros
+  assign money_price_min = price_min | money_without_trailing_zeros
+  assign money_price_max = price_max | money_without_trailing_zeros
 
   # Format price with or without currency code based on settings
   if settings.show_currency_code
-    assign money_price = price | money_with_currency
-    assign money_price_min = price_min | money_with_currency
-    assign money_price_max = price_max | money_with_currency
-    assign money_compare_at_price = compare_at_price | money_with_currency
+    assign money_price = price | money_with_currency | replace: ',00', '' | replace: '.00', ''
+    assign money_price_min = price_min | money_with_currency | replace: ',00', '' | replace: '.00', ''
+    assign money_price_max = price_max | money_with_currency | replace: ',00', '' | replace: '.00', ''
+    assign money_compare_at_price = compare_at_price | money_with_currency | replace: ',00', '' | replace: '.00', ''
   endif
 
   if target == product_resource and product_resource.price_varies
     assign money_price = 'content.price_from_html' | t: price: money_price
+
+    # "Fra X kr" is a range across variants: product.price is the cheapest
+    # variant, while product.compare_at_price can come from a DIFFERENT variant.
+    # The two are not comparable, which produced "Fra 12,00 kr 120,00 kr" (90%).
+    # Clear compare-at so the card reads as a plain range like the others, with
+    # no sale colour and no strikethrough. The real discount is shown by the
+    # sale badge, which computes from the selected/first variant.
+    # Single-price products, and products where every variant costs the same,
+    # are unaffected: price_varies is false there and the sale display remains.
+    assign compare_at_price = 0
+    assign money_compare_at_price = null
   endif
 
   assign ref = ref | default: 'priceContainer', allow_false: true
 -%}
+
+{%- if show_price_per_gram -%}
+  {%- capture price_per_gram -%}{% render 'price-per-gram', product: product_resource %}{%- endcapture -%}
+  {%- assign price_per_gram = price_per_gram | strip -%}
+{%- endif -%}
 
 <div
   {% if ref != blank %}
@@ -66,39 +85,51 @@
     {%- if target.price_varies == false and target.compare_at_price_varies %} price--no-compare{% endif -%}
   "
 >
-  <div class="price__regular">
-    {%- if product_resource.quantity_price_breaks_configured? -%}
-      <span class="visually-hidden">{{ 'content.price_regular' | t }}&nbsp;</span>
-      <span class="price">{{- 'content.price_range' | t: minimum: money_price_min, maximum: money_price_max -}}</span>
-      {% if compare_at_price %}
-        {% unless product_resource.price_varies == false and product_resource.compare_at_price_varies %}
-          <span class="visually-hidden">{{ 'content.price_regular' | t }}&nbsp;</span>
-          <span class="compare-at-price">{{- money_compare_at_price -}}</span>
-        {% endunless %}
-      {% endif %}
-    {%- else -%}
-      <span class="visually-hidden">{{ 'content.price_regular' | t }}&nbsp;</span>
-      <span class="price">{{- money_price -}}</span>
-    {%- endif -%}
-  </div>
+  {%- if price_per_gram != blank -%}
+    {{ price_per_gram }}
+  {%- else -%}
+    <div class="price__regular">
+      {%- if product_resource.quantity_price_breaks_configured? -%}
+        <span class="visually-hidden">{{ 'content.price_regular' | t }}&nbsp;</span>
+        <span class="price">{{- 'content.price_range' | t: minimum: money_price_min, maximum: money_price_max -}}</span>
+        {% if compare_at_price > 0 %}
+          {% unless product_resource.price_varies == false and product_resource.compare_at_price_varies %}
+            <span class="visually-hidden">{{ 'content.price_regular' | t }}&nbsp;</span>
+            <span class="compare-at-price">{{- money_compare_at_price -}}</span>
+          {% endunless %}
+        {% endif %}
+      {%- else -%}
+        <span class="visually-hidden">{{ 'content.price_regular' | t }}&nbsp;</span>
+        <span class="price">{{- money_price -}}</span>
+      {%- endif -%}
+    </div>
 
-  <div class="price__sale">
-    <span class="visually-hidden">{{ 'content.price_sale' | t }}&nbsp;</span>
-    <span class="price price--sale">{{- money_price -}}</span>
-    {%- unless target.price_varies == false and target.compare_at_price_varies %}
-      <span class="visually-hidden">{{ 'content.price_regular' | t }}&nbsp;</span>
-      <span class="compare-at-price">{{- money_compare_at_price -}}</span>
-    {%- endunless -%}
-  </div>
+    <div class="price__sale">
+      <span class="visually-hidden">{{ 'content.price_sale' | t }}&nbsp;</span>
+      <span class="price price--sale">{{- money_price -}}</span>
+      {%- unless target.price_varies == false and target.compare_at_price_varies %}
+        <span class="visually-hidden">{{ 'content.price_regular' | t }}&nbsp;</span>
+        <span class="compare-at-price">{{- money_compare_at_price -}}</span>
+      {%- endunless -%}
+    </div>
+  {%- endif -%}
 
   {%- if selected_variant.unit_price and show_unit_price %}
     {%- liquid
       if settings.show_currency_code
-        assign unit_price = selected_variant.unit_price | money_with_currency
+        assign unit_price = selected_variant.unit_price | money_with_currency | replace: ',00', '' | replace: '.00', ''
       else
-        assign unit_price = selected_variant.unit_price | money
+        assign unit_price = selected_variant.unit_price | money_without_trailing_zeros
       endif
     -%}
     {% render 'unit-price', price: unit_price, measurement: selected_variant.unit_price_measurement %}
+  {%- endif -%}
+
+  {%- if show_unit_chip or show_save_chip -%}
+    {% render 'price-chips',
+      product: product_resource,
+      show_unit_chip: show_unit_chip,
+      show_save_chip: show_save_chip
+    %}
   {%- endif -%}
 </div>

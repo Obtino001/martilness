@@ -4,6 +4,19 @@ dialog {
   --dialog-backdrop-duration: 0.7s;
   --dialog-drawer-offset-horizontal: 0rem;
   --dialog-drawer-offset-vertical: 0rem;
+  /* Target height for drawers that float clear of the viewport edges: the desktop
+     side drawers (cart, search, quick view, menu) and the mobile quick-view sheet.
+     Change this ONE value to resize them all together.
+     Side drawers gap top AND bottom, so their offset is half the leftover space;
+     the mobile bottom sheet only gaps at the top, so it takes the whole leftover.
+
+     svh not dvh: dvh is the viewport AT THIS INSTANT, so a drawer opened while the
+     mobile browser toolbar was hidden gets measured against the tall viewport, and
+     the toolbar then covers its bottom strip when it slides back in - which is where
+     the checkout button sits. svh is the viewport with the toolbars showing, so the
+     drawer fits the worst case and can never be covered. Desktop is unaffected:
+     with no retracting chrome, svh and dvh are the same number. */
+  --dialog-drawer-height: 98svh;
   --bottom-dialog-radius: min(2rem, var(--dialog-radius, 0)) min(2rem, var(--dialog-radius, 0)) 0 0;
   contain: layout;
   margin: auto;
@@ -26,7 +39,7 @@ dialog.dialog-closing::backdrop {
 @media (min-width: 1200px) {
   dialog {
     --dialog-drawer-offset-horizontal: 3rem;
-    --dialog-drawer-offset-vertical: 3.2rem;
+    --dialog-drawer-offset-vertical: calc((100svh - var(--dialog-drawer-height)) / 2);
     --slide-in-left-from: calc(100% + var(--dialog-drawer-offset-horizontal));
     --slide-out-left-to: calc(100% + var(--dialog-drawer-offset-horizontal));
     --slide-out-right-to: calc(-100% - var(--dialog-drawer-offset-horizontal));
@@ -60,8 +73,20 @@ dialog.dialog-closing::backdrop {
   max-width: var(--dialog-max-width, 50rem);
 }
 .dialog--drawer-left, .dialog--drawer-right {
-  height: calc(100dvh - var(--dialog-drawer-offset-vertical) * 2);
-  max-height: calc(100dvh - var(--dialog-drawer-offset-vertical) * 2);
+  height: calc(100svh - var(--dialog-drawer-offset-vertical) * 2);
+  max-height: calc(100svh - var(--dialog-drawer-offset-vertical) * 2);
+}
+/* Mobil: dvh i stedet for svh. Under 1200px er offset-vertical 0, så cart- og
+   menu-drawer ender på præcis 100svh — altså viewporten SOM OM browserens toolbar
+   var fremme. Med toolbaren fremme passer det, men når iOS trækker den væk bliver
+   den synlige viewport ~50px højere mens svh står stille, og der bliver en død
+   stribe i bunden af drawer'en. dvh følger toolbaren, så drawer'en fylder i begge
+   tilstande. Desktop rører vi ikke: der er svh og dvh alligevel samme tal. */
+@media (max-width: 1199.98px) {
+  .dialog--drawer-left, .dialog--drawer-right {
+    height: 100dvh;
+    max-height: 100dvh;
+  }
 }
 @media (min-width: 1200px) {
   .dialog--drawer-left, .dialog--drawer-right {
@@ -115,11 +140,15 @@ dialog.dialog-closing::backdrop {
 }
 @media (max-width: 767.98px) {
   .dialog--drawer-mobile-bottom {
-    --dialog-drawer-offset-vertical: 4rem;
+    --dialog-drawer-offset-vertical: calc(100svh - var(--dialog-drawer-height));
     inset-block: auto 0;
     margin: 0;
-    max-height: calc(100dvh - var(--dialog-drawer-offset-vertical));
-    height: auto;
+    max-height: calc(100svh - var(--dialog-drawer-offset-vertical));
+    /* Was height: auto, which sized the sheet to its content and left Quick View
+       looking cramped on phones. Pinned to the shared target so it matches the
+       cart and the desktop drawers. .quick-add__content is flex-1 + v-scrollable,
+       so the extra room becomes scrollable area rather than dead space. */
+    height: var(--dialog-drawer-height);
     /* Begin: reset styles from modal */
     width: 100%;
     max-width: 100%;

@@ -2,17 +2,15 @@
   assign first_product_id = cart.items.first.product_id
   assign limit = section.settings.cart_recommendations_limit
 %}
+{%- comment -%} part: 'recommendations' = kun anbefalinger, 'totals' = kun totaler, blank = begge {%- endcomment -%}
+{%- unless part == 'totals' -%}
 {% if section.settings.enable_cart_recommendations %}
   {% liquid
-    # If manual products are selected, mark as using manual products to skip API fetch
-    assign manual_products = section.settings.cart_product_recommendations
-    if manual_products != blank
-      assign use_manual_products = 'true'
-      assign performed_state = 'true'
-    else
-      assign use_manual_products = 'false'
-      assign performed_state = recommendations.performed
-    endif
+    # Tving Shopifys dynamiske anbefalinger (intent: related — de konverterings-
+    # optimerede ML-anbefalinger). Vi ignorerer en evt. manuel produktliste,
+    # så JS altid henter fra Product Recommendations API'et.
+    assign use_manual_products = 'false'
+    assign performed_state = recommendations.performed
   %}
   <product-recommendations
     class="cart-drawer__recommendation overflow-hidden block"
@@ -27,15 +25,11 @@
   >
     {% liquid
       assign has_recommendations = false
-      assign products = section.settings.cart_product_recommendations
-      assign is_manual_products = false
+      assign products = null
+      assign product_count = 0
 
-      # If manual products are selected, use them directly
-      if products != blank
-        assign is_manual_products = true
-        assign product_count = products.count
-      elsif recommendations.performed and recommendations.products_count > 0
-        # Otherwise use API recommendations if available
+      # Kun dynamiske Shopify-anbefalinger (ingen manuel/statisk liste)
+      if recommendations.performed and recommendations.products_count > 0
         assign products = recommendations.products
         assign product_count = recommendations.products_count
       endif
@@ -44,7 +38,7 @@
         assign has_recommendations = true
       endif
     %}
-    {% if is_manual_products or recommendations.performed %}
+    {% if recommendations.performed %}
       {% capture list_items %}
         {% for product in products, limit: limit %}
           <div class="cart-drawer__recommendation-product swiper-slide">
@@ -55,7 +49,8 @@
               show_type: section.settings.show_type,
               show_vendor: section.settings.show_vendor,
               show_swatch: section.settings.show_swatches,
-              product_title_line_limit: section.settings.product_title_line_limit
+              product_title_line_limit: section.settings.product_title_line_limit,
+              show_badges: false
             %}      
           </div>
         {% endfor %}
@@ -95,7 +90,7 @@
         }
       </script>
       <div class="cart-drawer__recommendation-heading flex items-center justify-between">
-        <span class="h5">{{ section.settings.cart_recommendations_title }}</span>
+        <span class="h6">{{ section.settings.cart_recommendations_title }}</span>
         {% render 'carousel-controls', ref: 'controls', type: 'group', pagination: false, counter: false %}
       </div>
       <div class="cart-drawer__recommendation-products swiper" ref="container">
@@ -106,4 +101,7 @@
     </carousel-slider>
   </product-recommendations>
 {% endif %}
-{% render 'cart-summary', section: section, context: 'drawer' %}
+{%- endunless -%}
+{%- unless part == 'recommendations' -%}
+{% render 'cart-summary-custom', section: section, context: 'drawer' %}
+{%- endunless -%}

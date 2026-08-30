@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin language editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "categories": {
     "banners": "Banners",
@@ -435,7 +426,9 @@
     "card_settings": "Card settings",
     "limit_height": "Limit height",
     "content_row_gap": "Content row gap",
-    "desktop_filter_layout": "Desktop filter layout"
+    "desktop_filter_layout": "Desktop filter layout",
+    "smooth_scroll": "Smooth scrolling",
+    "show_review_stars": "Show review stars"
   },
   "names": {
     "404": "404 page",
@@ -835,7 +828,8 @@
     "collection_banner_condition": "If neither the collection metafield nor the feature image is set, this image will be displayed.",
     "quick_view": "Quick view",
     "sticky_add_to_cart": "Sticky add to cart",
-    "progress_bar": "Progress bar"
+    "progress_bar": "Progress bar",
+    "product_card_reviews": "Product card reviews"
   },
   "info": {
     "enable_gift_wrap_per_product": "When disabled, customers add one gift wrapping fee for the whole cart. When enabled, they can choose gift wrapping per product line in the cart (each line gets its own fee).",
@@ -899,7 +893,8 @@
     "radio_options": "Each option is separated by a comma (e.g: Option 1, Option 2, Option 3).",
     "default_image": "If neither the collection metafield nor the feature image is set, this image will be displayed.",
     "limit_height": "Max height as a percentage of the viewport height.",
-    "desktop_filter_layout": "Drawer is the default mobile layout."
+    "desktop_filter_layout": "Drawer is the default mobile layout.",
+    "smooth_scroll": "Native scrolling is fastest and is what most shoppers expect. Subtle adds a light easing on desktop only — Safari and mobile always use native scrolling."
   },
   "options": {
     "shaded": "Shaded",
@@ -1158,7 +1153,8 @@
     "dot": "Dot",
     "line": "Line",
     "narrow": "Narrow",
-    "wide": "Wide"
+    "wide": "Wide",
+    "subtle": "Subtle"
   },
   "html_defaults": {
     "share_information_about_your": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"

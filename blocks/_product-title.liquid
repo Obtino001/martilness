@@ -12,7 +12,7 @@
     {%- assign title_fallback = 'placeholders.product_title' | t -%}
     {% render 'text', fallback_text: title_fallback, block: block %}
   {%- else -%}
-    {%- assign title_fallback = product_resource.title -%}
+    {%- capture title_fallback -%}{% render 'product-title-split', title: product_resource.title %}{%- endcapture -%}
     {% render 'text', fallback_text: title_fallback, block: block, animation_type: 'none' %}
   {%- endif -%}
 </product-title>

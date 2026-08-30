@@ -11,7 +11,14 @@
   style="{% render 'spacing-style', settings: block.settings %}"
   {{ block.shopify_attributes }}
 >
-  {% render 'price', use_variant: true, show_unit_price: true, product_resource: product_resource, type_preset: block_settings.type_preset %}
+  {% render 'price',
+    use_variant: true,
+    show_unit_price: true,
+    show_unit_chip: block_settings.show_unit_chip,
+    show_save_chip: block_settings.show_save_chip,
+    product_resource: product_resource,
+    type_preset: block_settings.type_preset
+  %}
 
   {% if block_settings.show_tax_info %}
     <div class="tax-note text-body-sm color-subtext">
@@ -66,6 +73,22 @@
       "type": "checkbox",
       "id": "show_tax_info",
       "label": "t:settings.show_tax_info"
+    },
+    {
+      "type": "header",
+      "content": "Price chips"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_unit_chip",
+      "label": "Show price per gram",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_save_chip",
+      "label": "Show discount percentage",
+      "default": true
     },
     {
       "type": "header",

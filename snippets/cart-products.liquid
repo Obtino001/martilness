@@ -137,6 +137,27 @@
                     %}
                   </div>
                 {% endif %}
+                {%- comment -%}
+                  Grøn "Du sparer (x)" — ligger INDE i .cart-items__price-item, så den
+                  følger prisens vis/skjul pr. kolonne (kun ét sted, under pris + førpris).
+                  Styling i cart-modules.css (farve = fragt-barens grøn, højrestillet).
+                {%- endcomment -%}
+                {%- liquid
+                  assign ref_unit = item.original_price
+                  if item.variant.compare_at_price > item.original_price
+                    assign ref_unit = item.variant.compare_at_price
+                  endif
+                  assign unit_savings = ref_unit | minus: item.final_price
+                -%}
+                {%- if unit_savings > 0 -%}
+                  <div class="cart-items__savings text-body-sm">
+                    {%- if settings.show_currency_code -%}
+                      Du sparer ({{ unit_savings | money_with_currency }})
+                    {%- else -%}
+                      Du sparer ({{ unit_savings | money }})
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
               </div>
             {% endcapture %}
             {% capture cart_price_total %}

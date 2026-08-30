@@ -37,6 +37,10 @@
             "font_size_mobile": 15,
             "line_height": "normal",
             "text_color": "text",
+            "width": "fit-content",
+            "text_alignment": "left",
+            "width_mobile": "fit-content",
+            "text_alignment_mobile": "left",
             "padding-block-start": 0,
             "padding-block-end": 0,
             "mobile-padding-scale": 80,
@@ -54,6 +58,10 @@
             "font_size_mobile": 15,
             "line_height": "normal",
             "text_color": "subtext",
+            "width": "fit-content",
+            "text_alignment": "left",
+            "width_mobile": "fit-content",
+            "text_alignment_mobile": "left",
             "padding-block-start": 16,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -71,6 +79,7 @@
       ],
       "settings": {
         "container": "fixed",
+        "container_custom_width": 880,
         "use_color_scheme_in_container": false,
         "color_scheme": "",
         "border": "none",
@@ -109,7 +118,7 @@
               "name": "Custom field",
               "settings": {
                 "field_type": "text",
-                "heading": "Phone Number",
+                "heading": "Telefon",
                 "placeholder": "",
                 "required": false,
                 "full_width": false,
@@ -124,7 +133,7 @@
               "name": "Custom field",
               "settings": {
                 "field_type": "text",
-                "heading": "Order Number",
+                "heading": "Ordre ID",
                 "placeholder": "",
                 "required": false,
                 "full_width": false,
@@ -138,13 +147,13 @@
               "type": "_custom-field",
               "settings": {
                 "field_type": "select",
-                "heading": "Country",
+                "heading": "Hvad drejer det sig om?",
                 "placeholder": "",
                 "required": false,
                 "full_width": true,
                 "checkbox_checked_value": "Yes",
                 "checkbox_uncheck_value": "No",
-                "select_options": "Austria,Viet Nam,Japan"
+                "select_options": "Spørgsmål om produkt,Min ordrer,Returnering,Levering,Samarbejde, Andet"
               },
               "blocks": {}
             }
@@ -161,6 +170,7 @@
           "settings": {
             "thickness": 1,
             "width_percent": 100,
+            "disable_on_desktop": false,
             "disable_on_mobile": false,
             "device": "mobile",
             "padding-block-start": 0,
@@ -192,6 +202,10 @@
             "border_width": 1,
             "border_opacity": 100,
             "border_radius": 0,
+            "enable_swipe_on_mobile": false,
+            "swipe_custom_width_column": false,
+            "swipe_column_width": 76,
+            "columns_mobile": 2,
             "column_gap_mobile": 12,
             "row_gap_mobile": 20,
             "device": "desktop",
@@ -227,6 +241,10 @@
                 "border_width": 1,
                 "border_opacity": 100,
                 "border_radius": 0,
+                "enable_swipe_on_mobile": false,
+                "swipe_custom_width_column": false,
+                "swipe_column_width": 76,
+                "columns_mobile": 2,
                 "column_gap_mobile": 12,
                 "row_gap_mobile": 12,
                 "device": "mobile",
@@ -257,6 +275,7 @@
                     "line_height": "normal",
                     "text_color": "text",
                     "text_color_gradient": "",
+                    "disable_line_break_mobile": false,
                     "width": "fit-content",
                     "text_alignment": "left",
                     "width_mobile": "fit-content",
@@ -275,7 +294,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Our location, phone number & business hours—right at your fingertips.</p>",
+                    "text": "<p>Adresse, telefon og åbningstider – alt det praktiske.</p>",
                     "highlight_style": "none",
                     "highlight_font_style": "italic",
                     "highlight_shape_color": "",
@@ -288,6 +307,7 @@
                     "line_height": "normal",
                     "text_color": "subtext",
                     "text_color_gradient": "",
+                    "disable_line_break_mobile": false,
                     "width": "fit-content",
                     "text_alignment": "left",
                     "width_mobile": "fit-content",
@@ -308,33 +328,6 @@
                 "text_WjdEzb"
               ]
             },
-            "icon_box_BEMkqB": {
-              "type": "icon-box",
-              "name": "t:names.icon_box_card",
-              "settings": {
-                "direction": "horizontal",
-                "text_align": "left",
-                "icon": "map-pin",
-                "icon_spacing": 12,
-                "icon_size": "custom-size",
-                "icon_width": 32,
-                "icon_width_mobile": 32,
-                "heading": "Support",
-                "heading_preset": "h5",
-                "text": "<p><span style=\"text-decoration:underline\">pebble@mystore.com</span></p>",
-                "text_color": "subtext",
-                "link": "",
-                "content_row_gap": 4,
-                "style": "standard",
-                "inherit_color_scheme": true,
-                "color_scheme": "",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 10,
-                "border_radius": 10
-              },
-              "blocks": {}
-            },
             "icon_box_xh6q86": {
               "type": "icon-box",
               "name": "t:names.icon_box_card",
@@ -346,11 +339,40 @@
                 "icon_size": "custom-size",
                 "icon_width": 28,
                 "icon_width_mobile": 28,
-                "heading": "Call Us",
+                "heading": "Kontakt os",
                 "heading_preset": "h5",
-                "text": "<p>+1 888-234-1234 (tool-free)</p>",
+                "text": "<p>info@martilness.dk<br/>+45 2779 6900</p>",
                 "text_color": "subtext",
                 "link": "",
+                "show_link_icon": true,
+                "content_row_gap": 4,
+                "style": "standard",
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 10,
+                "border_radius": 10
+              },
+              "blocks": {}
+            },
+            "icon_box_BEMkqB": {
+              "type": "icon-box",
+              "name": "t:names.icon_box_card",
+              "settings": {
+                "direction": "horizontal",
+                "text_align": "left",
+                "icon": "map-pin",
+                "icon_spacing": 12,
+                "icon_size": "custom-size",
+                "icon_width": 32,
+                "icon_width_mobile": 32,
+                "heading": "Adresse",
+                "heading_preset": "h5",
+                "text": "<p>Baunebakkevej 12, 2.th, 2650 Hvidovre</p>",
+                "text_color": "subtext",
+                "link": "",
+                "show_link_icon": true,
                 "content_row_gap": 4,
                 "style": "standard",
                 "inherit_color_scheme": true,
@@ -373,11 +395,12 @@
                 "icon_size": "custom-size",
                 "icon_width": 28,
                 "icon_width_mobile": 28,
-                "heading": "Working Hour",
+                "heading": "Åbningstider",
                 "heading_preset": "h5",
-                "text": "<p>Mon – Fri, 7:30 AM – 4:00 PM PT<br/>Sat, 8:00 AM – 1:00 PM PT<br/>Sun, Closed</p>",
+                "text": "<p>Man–Fre: 11–18<br/>Lør: 12–16<br/>Søn: 12–16</p>",
                 "text_color": "subtext",
                 "link": "",
+                "show_link_icon": true,
                 "content_row_gap": 4,
                 "style": "standard",
                 "inherit_color_scheme": true,
@@ -392,8 +415,8 @@
           },
           "block_order": [
             "group_cQUErA",
-            "icon_box_BEMkqB",
             "icon_box_xh6q86",
+            "icon_box_BEMkqB",
             "icon_box_Bkx7De"
           ]
         }
@@ -439,7 +462,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<p>Find A Store</p>",
+            "text": "<p>Find vores butik</p>",
             "highlight_style": "none",
             "highlight_font_style": "italic",
             "highlight_shape_color": "",
@@ -452,6 +475,7 @@
             "line_height": "normal",
             "text_color": "text",
             "text_color_gradient": "",
+            "disable_line_break_mobile": false,
             "width": "fit-content",
             "text_alignment": "left",
             "width_mobile": "fit-content",
@@ -470,6 +494,7 @@
       "block_order": [
         "text_NazPFL"
       ],
+      "disabled": true,
       "name": "t:names.custom_section",
       "settings": {
         "container": "page-width",
@@ -520,7 +545,7 @@
                 "toggle_overlay": false,
                 "overlay_color": "#00000026",
                 "image_ratio": "adapt",
-                "image_ratio_mobile": "adapt",
+                "image_ratio_mobile": "1/1",
                 "border": "none",
                 "border_width": 1,
                 "border_opacity": 100,
@@ -533,7 +558,7 @@
               "name": "t:names.heading",
               "static": true,
               "settings": {
-                "text": "<p>New York</p>",
+                "text": "<p>Herning</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
                 "highlight_shape_color": "",
@@ -557,7 +582,7 @@
               "type": "_simple-text",
               "static": true,
               "settings": {
-                "text": "<p>123 Orchard Ave, Manhattan, NY 10002 </p><p>+1 (212) 555-0148 </p><p>Mon–Sat: 10am–8pm</p>",
+                "text": "<p>Baunebakkevej 12, 2.th, 2650 Hvidovre</p><p>+45 2779 6900 </p><p>Man–Fre: 11–18<br/>Lør: 12–16<br/>Søn: 12–16</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
                 "highlight_shape_color": "",
@@ -581,293 +606,8 @@
               "type": "button",
               "static": true,
               "settings": {
-                "label": "Get Directions",
-                "link": "",
-                "style": "plain",
-                "size": "medium",
-                "icon": "caret-right",
-                "icon_only": false,
-                "icon_style": "default",
-                "mobile_full_width": false,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
-        },
-        "store_locator_abL63V": {
-          "type": "store-locator",
-          "settings": {
-            "style": "card",
-            "color_scheme": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 20
-          },
-          "blocks": {
-            "image": {
-              "type": "_image-card-media",
-              "static": true,
-              "settings": {
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "image_ratio": "adapt",
-                "image_ratio_mobile": "adapt",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 10
-              },
-              "blocks": {}
-            },
-            "heading": {
-              "type": "_simple-text",
-              "name": "t:names.heading",
-              "static": true,
-              "settings": {
-                "text": "<p>Los Angeles</p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "normal",
-                "text_color": "text",
-                "padding-block-start": 0,
-                "padding-block-end": 16,
-                "mobile-padding-scale": 75,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            },
-            "text": {
-              "type": "_simple-text",
-              "static": true,
-              "settings": {
-                "text": "<p>742 Sunset Blvd, Los Angeles, CA 90028 </p><p>+1 (310) 555-0193 </p><p>Mon–Sat: 10am–8pm</p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "loose",
-                "text_color": "subtext",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "mobile-padding-scale": 80,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            },
-            "button": {
-              "type": "button",
-              "static": true,
-              "settings": {
-                "label": "Get Directions",
-                "link": "",
-                "style": "plain",
-                "size": "medium",
-                "icon": "caret-right",
-                "icon_only": false,
-                "icon_style": "default",
-                "mobile_full_width": false,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
-        },
-        "store_locator_4TKfGz": {
-          "type": "store-locator",
-          "settings": {
-            "style": "card",
-            "color_scheme": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 20
-          },
-          "blocks": {
-            "image": {
-              "type": "_image-card-media",
-              "static": true,
-              "settings": {
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "image_ratio": "adapt",
-                "image_ratio_mobile": "adapt",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 10
-              },
-              "blocks": {}
-            },
-            "heading": {
-              "type": "_simple-text",
-              "name": "t:names.heading",
-              "static": true,
-              "settings": {
-                "text": "<p>Palo Alto</p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "normal",
-                "text_color": "text",
-                "padding-block-start": 0,
-                "padding-block-end": 16,
-                "mobile-padding-scale": 75,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            },
-            "text": {
-              "type": "_simple-text",
-              "static": true,
-              "settings": {
-                "text": "<p>385 University Ave, Palo Alto, CA 94301 </p><p>+1 (650) 555-0124 </p><p>Mon–Sat: 10am–8pm</p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "loose",
-                "text_color": "subtext",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "mobile-padding-scale": 80,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            },
-            "button": {
-              "type": "button",
-              "static": true,
-              "settings": {
-                "label": "Get Directions",
-                "link": "",
-                "style": "plain",
-                "size": "medium",
-                "icon": "caret-right",
-                "icon_only": false,
-                "icon_style": "default",
-                "mobile_full_width": false,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
-        },
-        "store_locator_YVUknJ": {
-          "type": "store-locator",
-          "settings": {
-            "style": "card",
-            "color_scheme": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 20
-          },
-          "blocks": {
-            "image": {
-              "type": "_image-card-media",
-              "static": true,
-              "settings": {
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "image_ratio": "adapt",
-                "image_ratio_mobile": "adapt",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 10
-              },
-              "blocks": {}
-            },
-            "heading": {
-              "type": "_simple-text",
-              "name": "t:names.heading",
-              "static": true,
-              "settings": {
-                "text": "<p>Chicago</p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "normal",
-                "text_color": "text",
-                "padding-block-start": 0,
-                "padding-block-end": 16,
-                "mobile-padding-scale": 75,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            },
-            "text": {
-              "type": "_simple-text",
-              "static": true,
-              "settings": {
-                "text": "<p>211 W Monroe St, Chicago, IL 60606 </p><p>+1 (312) 555-0177 </p><p>Mon–Sat: 10am–8pm</p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "loose",
-                "text_color": "subtext",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "mobile-padding-scale": 80,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            },
-            "button": {
-              "type": "button",
-              "static": true,
-              "settings": {
-                "label": "Get Directions",
-                "link": "",
+                "label": "Find vej",
+                "link": "https://maps.app.goo.gl/NyZdXZq6WY6rwVtK7",
                 "style": "plain",
                 "size": "medium",
                 "icon": "caret-right",
@@ -884,11 +624,9 @@
         }
       },
       "block_order": [
-        "store_locator_WJAAjk",
-        "store_locator_abL63V",
-        "store_locator_4TKfGz",
-        "store_locator_YVUknJ"
+        "store_locator_WJAAjk"
       ],
+      "disabled": true,
       "name": "t:names.store_locator",
       "settings": {
         "container": "fixed",
@@ -897,6 +635,8 @@
         "column_gap": 10,
         "row_gap": 30,
         "enable_swipe_on_mobile": true,
+        "swipe_custom_width_column": false,
+        "swipe_column_width": 76,
         "columns_mobile": "1",
         "column_gap_mobile": 8,
         "row_gap_mobile": 24,

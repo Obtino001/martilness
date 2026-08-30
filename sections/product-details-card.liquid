@@ -1,0 +1,202 @@
+<div class="pd-section-wrapper" id="pd-card-{{ section.id }}">
+  <div class="pd-card">
+    <div class="pd-header">
+      <div class="pd-title-group">
+        <svg class="pd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="7" y="5" width="10" height="14" rx="2"></rect>
+          <path d="M9 5v-1a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <h2 class="pd-title">{{ section.settings.main_heading }}</h2>
+      </div>
+      <button class="pd-close-btn" aria-label="Close" onclick="document.getElementById('pd-card-{{ section.id }}').style.display='none'">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="pd-content-grid">
+      {% for block in section.blocks %}
+        <div class="pd-block" {{ block.shopify_attributes }}>
+          <h3 class="pd-block-heading">{{ block.settings.block_heading }}</h3>
+          <div class="pd-list">
+            {{ block.settings.block_content }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .pd-section-wrapper {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .pd-card {
+    background-color: #1a1a1a;
+    border-radius: 16px;
+    padding: 30px 40px 40px;
+    max-width: 800px;
+    width: 100%;
+    color: #ffffff;
+    font-family: inherit;
+  }
+
+  .pd-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .pd-title-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .pd-icon {
+    width: 24px;
+    height: 24px;
+    color: #ffffff;
+  }
+
+  .pd-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: #ffffff;
+  }
+
+  .pd-close-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    color: #ffffff;
+    opacity: 0.7;
+  }
+
+  .pd-close-btn:hover {
+    opacity: 1;
+  }
+
+  .pd-close-btn svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+  }
+
+  .pd-content-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .pd-block-heading {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 12px;
+    color: #ffffff;
+  }
+
+  .pd-list {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .pd-list ul {
+    margin: 0;
+    padding-left: 18px;
+  }
+
+  .pd-list li {
+    margin-bottom: 6px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .pd-content-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .pd-card {
+      padding: 20px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Product Details Card",
+  "tag": "section",
+  "class": "section-product-details-card",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Main Heading",
+      "default": "Detaljer om produktet"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "details_group",
+      "name": "Details List",
+      "settings": [
+        {
+          "type": "text",
+          "id": "block_heading",
+          "label": "List Heading",
+          "default": "Funktioner"
+        },
+        {
+          "type": "richtext",
+          "id": "block_content",
+          "label": "List Content",
+          "default": "<ul><li>Cylinderformet</li><li>330 liter kapacitet</li><li>Sort farve</li><li>Oppusteligt design</li></ul>",
+          "info": "Use bullet points in the editor to create the list."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Details Card",
+      "blocks": [
+        {
+          "type": "details_group",
+          "settings": {
+            "block_heading": "Funktioner",
+            "block_content": "<ul><li>Cylinderformet</li><li>330 liter kapacitet</li><li>Sort farve</li><li>Oppusteligt design</li></ul>"
+          }
+        },
+        {
+          "type": "details_group",
+          "settings": {
+            "block_heading": "Dimensioner",
+            "block_content": "<ul><li>75 cm diameter</li><li>75 cm højde</li><li>Velegnet til højder op til 2,10m</li></ul>"
+          }
+        },
+        {
+          "type": "details_group",
+          "settings": {
+            "block_heading": "Konstruktion",
+            "block_content": "<ul><li>Nylon udvendigt materiale</li><li>UV-resistent materiale</li><li>Skumisolering</li><li>None-rip polyester</li></ul>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

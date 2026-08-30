@@ -1,0 +1,124 @@
+{%- liquid
+  assign accent = section.settings.accent_color | default: '#09412d'
+  assign title = section.settings.custom_title | default: page.title
+  assign subtitle = section.settings.subtitle
+-%}
+
+<div
+  id="section-{{ section.id }}"
+  class="mt-page-hero"
+  style="
+    --mt-page-hero-accent: {{ accent }};
+    --mt-page-hero-pad-top: {{ section.settings.padding_top }}px;
+    --mt-page-hero-pad-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="mt-page-hero__inner page-width">
+    {% if title != blank %}
+      <h1 class="mt-page-hero__title">{{ title }}</h1>
+    {% endif %}
+    {% if subtitle != blank %}
+      <p class="mt-page-hero__subtitle">{{ subtitle }}</p>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+  #section-{{ section.id }}.mt-page-hero {
+    background:
+      linear-gradient(
+        165deg,
+        color-mix(in srgb, var(--mt-page-hero-accent) 88%, #fff) 0%,
+        var(--mt-page-hero-accent) 45%,
+        #06281c 100%
+      );
+    color: #fff;
+    padding: var(--mt-page-hero-pad-top) var(--page-padding, 1.6rem) var(--mt-page-hero-pad-bottom);
+    border-bottom: 1px solid rgb(9 65 45 / 25%);
+  }
+
+  #section-{{ section.id }} .mt-page-hero__inner {
+    max-width: var(--page-width, 1500px);
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  #section-{{ section.id }} .mt-page-hero__title {
+    margin: 0;
+    font-family: var(--font-heading--family, inherit);
+    font-size: clamp(2.8rem, 4vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: #fff;
+  }
+
+  #section-{{ section.id }} .mt-page-hero__subtitle {
+    margin: 1.2rem 0 0;
+    max-width: 54rem;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    color: rgb(255 255 255 / 82%);
+  }
+
+  @media screen and (max-width: 749px) {
+    #section-{{ section.id }} .mt-page-hero__title {
+      font-size: clamp(2.4rem, 7vw, 3.2rem);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Martilness page hero",
+  "tag": "section",
+  "class": "section-mt-page-hero",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "custom_title",
+      "label": "Custom title",
+      "info": "Leave blank to use the page title."
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Background green",
+      "default": "#09412d"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 20,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 20,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Martilness page hero"
+    }
+  ]
+}
+{% endschema %}

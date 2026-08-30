@@ -6,9 +6,9 @@
 
   case block.type
     when 'banner'
-      assign banners = block.settings.image_1 | append: ',' | append: block.settings.image_2 | append: ',' | append: block.settings.image_3 | append: ',' | append: block.settings.image_4
+      assign banners = block.settings.image_1 | append: ',' | append: block.settings.image_2 | append: ',' | append: block.settings.image_3 | append: ',' | append: block.settings.image_4 | append: ',' | append: block.settings.image_5 | append: ',' | append: block.settings.image_6
 
-      unless banners == ',,,'
+      unless banners == ',,,,,'
         assign has_banners = true
         assign mega_menu_css_class = 'mega-menu--rich'
       endunless
@@ -213,14 +213,14 @@
                   assign columns_mobile = block.settings.columns_mobile | times: 1
                 -%}
                 {% capture inline_style %}
-                  {% render 'layout-panel-style', type: 'grid', columns_mobile: columns_mobile, columns_xxl: columns_desktop %}
+                  {% render 'layout-panel-style', type: 'grid', columns_mobile: columns_mobile, columns_lg: columns_desktop, columns_xxl: columns_desktop %}
                   {% render 'gap-style', column_gap: 30, column_gap_mobile: 12, row_gap: 30, row_gap_mobile: 12 %}
                 {% endcapture %}
                 <div
                   class="layout-panel-grid gap-style"
                   style="{{ inline_style }}"
                 >
-                  {%- for i in (1..4) -%}
+                  {%- for i in (1..6) -%}
                     {%- liquid
                       assign image = 'image_' | append: i
                       assign image_mobile = 'image_mobile_' | append: i

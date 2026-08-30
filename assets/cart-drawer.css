@@ -15,12 +15,34 @@
   flex-direction: column;
   flex-grow: 1;
   overflow-y: auto;
+  background: #ffffff;
 }
 
 .cart-drawer__header {
   min-height: 6rem;
   padding: var(--padding-block, 1rem) var(--padding-inline, 1.6rem);
   border-bottom: 0.1rem solid rgb(var(--color-border)/var(--color-border-alpha));
+  background: #ffffff;
+}
+
+/* Leverings-bar — theme green */
+.cart-drawer__delivery-bar {
+  --delivery-bar-bg: #09412d;
+  padding: 1rem var(--padding-inline, 1.6rem);
+  background: var(--delivery-bar-bg);
+  color: #ffffff;
+  font-weight: 600;
+  line-height: 1.2;
+  border-bottom: 0.1rem solid rgb(9 65 45 / 20%);
+}
+.cart-drawer__delivery-bar .icon {
+  color: #ffffff;
+  flex-shrink: 0;
+}
+@media (min-width: 750px) {
+  .cart-drawer__delivery-bar {
+    padding-inline: 2.4rem;
+  }
 }
 
 .cart-drawer__items {
@@ -37,16 +59,30 @@
   margin-top: auto;
 }
 .cart-drawer__summary.inherit-color-scheme {
+  background-color: #fcf7ef;
+}
+/* Anbefalinger flyttet ind i vare-scroll-området (efter varerne).
+   VIGTIGT: slot'en må ALDRIG display:none'es på [data-has-recommendations=false],
+   for det er også loading-tilstanden — og komponenten loader via en
+   IntersectionObserver, der kræver at elementet er i layout. Baggrunden ligger
+   derfor på .cart-drawer__recommendation-wrapper, som temaet selv skjuler når
+   tom via sin egen [data-has-recommendations=false]-regel. Så: ingen deadlock,
+   intet tomt bånd — og looket er som i det oprindelige tema. */
+.cart-drawer__recommendation-slot .cart-drawer__recommendation-wrapper {
+  margin-top: var(--padding-block, 2rem);
+  border-radius: min(1rem, var(--cart-thumbnail-border-radius));
+}
+.cart-drawer__recommendation-slot {
+  background-color: #ffffff;
+}
+.cart-drawer__recommendation-slot.inherit-color-scheme .cart-drawer__recommendation-wrapper {
   background-color: rgb(var(--color-background-secondary));
 }
-.cart-drawer__summary.inherit-color-scheme .cart-drawer__recommendation-products .product-card--horizontal {
-  background-color: rgb(var(--color-background));
+.cart-drawer__recommendation-slot.inherit-color-scheme .cart-drawer__recommendation-products .product-card--horizontal {
+  background-color: #ffffff;
 }
-.cart-drawer__summary:not(.inherit-color-scheme) .cart-drawer__recommendation-products .product-card--horizontal {
+.cart-drawer__recommendation-slot:not(.inherit-color-scheme) .cart-drawer__recommendation-products .product-card--horizontal {
   background-color: rgb(var(--color-background-secondary));
-}
-.cart-drawer__summary:has([data-has-recommendations=false]) {
-  background: none;
 }
 
 .cart-drawer-summary__inner {
@@ -65,6 +101,14 @@
 
 .cart-drawer__free-shipping-goal {
   padding: var(--padding-block, 2rem) var(--padding-inline, 1.6rem) var(--padding-bottom, 0);
+  padding-top: 0.8rem; /* mindre luft mellem delivery-bar og fragt-tekst */
+}
+/* Fragt-baren ligger nu i vare-scrollen (øverst). Items giver selv vandret padding
+   og topluft, så dobbelt-padding nulstilles her; kun bundluft ned til varerne. */
+.cart-drawer__items > .cart-drawer__free-shipping-goal {
+  padding-inline: 0;
+  padding-block: 0 1.6rem;
+  margin-block-start: -1rem;
 }
 
 .cart-drawer__recommendation-wrapper {
@@ -84,6 +128,34 @@
 }
 .cart-drawer__recommendation-product {
   flex: 0 0 var(--cart-recommendation-product-width, 88%);
+}
+/* Mindre produkt-titel i anbefalingerne */
+.cart-drawer__recommendation-products .product-card__title {
+  font-size: calc(var(--font-pcard-title--size) * 0.88);
+}
+/* Pris på én linje i anbefalinger — KUN når varen faktisk er på tilbud
+   (.price--on-sale). Ellers ville sale-blokken, der er display:none som standard,
+   blive vist på varer uden rabat og vise en forkert compare-at.
+   Let reduceret størrelse så sale-pris + før-pris får plads ved siden af hinanden. */
+.cart-drawer__recommendation-products .price--on-sale .price__sale {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  font-size: 0.88em;
+}
+/* Kurv-knappen tages ud af flow (absolut, kortets øverste højre hjørne). Så
+   fylder indholdet automatisk fuld bredde (content har flex-grow), og prisen kan
+   gå i fuld bredde UNDER knappen. Positioneres ift. .product-card, der allerede
+   er position:relative + container — så content-wrap er uændret og kortets
+   klik-link over indholdet bevares. Kun titlen får plads reserveret til knappen. */
+.cart-drawer__recommendation-products .product-card__action {
+  position: absolute;
+  inset-block-start: 0.8rem;
+  inset-inline-end: 1.6rem;
+}
+.cart-drawer__recommendation-products .product-card__title {
+  padding-inline-end: 5.4rem;
 }
 .cart-drawer__recommendation-products .product-card--horizontal {
   padding: 0.8rem 1.6rem 0.8rem 0.8rem;
@@ -151,4 +223,14 @@
   .cart-drawer__recommendation-product {
     --cart-recommendation-product-width: 72%;
   }
+}
+
+/* Antals-vælger hvid i kurv-varerne (matcher det hvide vareområde) */
+.cart-drawer__items .quantity-selector .quantity-input {
+  background-color: #ffffff;
+}
+
+/* Fjern cream-cirklen bag luk-X'et i kurven */
+.cart-drawer__close.dialog__close::before {
+  display: none;
 }

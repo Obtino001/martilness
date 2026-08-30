@@ -1,0 +1,137 @@
+{%- liquid
+  assign block_settings = block.settings
+  assign product = closest.product
+  assign variant = product.selected_or_first_available_variant
+
+  assign weekday = 'now' | date: '%w' | plus: 0
+  assign hour = 'now' | date: '%H' | plus: 0
+  assign cutoff = block_settings.cutoff_hour
+
+  if weekday == 0 or weekday == 6
+    assign ship_text = block_settings.text_monday
+  elsif weekday == 5
+    if hour < cutoff
+      assign ship_text = block_settings.text_today
+    else
+      assign ship_text = block_settings.text_monday
+    endif
+  else
+    if hour < cutoff
+      assign ship_text = block_settings.text_today
+    else
+      assign ship_text = block_settings.text_tomorrow
+    endif
+  endif
+-%}
+
+<shipping-date
+  class="shipping-date spacing-style{% if block_settings.type_preset != blank %} {{ block_settings.type_preset }}{% endif %}"
+  style="{% render 'spacing-style', settings: block_settings %}"
+  data-product-id="{{ product.id }}"
+  {{ block.shopify_attributes }}
+>
+  {%- if variant.available -%}
+    <span class="shipping-date__status notification--success">
+      <span
+        class="shipping-date__dot{% if settings.animations_enabled %} shipping-date__dot--pulse{% endif %}"
+        aria-hidden="true"
+      ></span>
+      <span class="shipping-date__text" role="status">
+        <strong>{{ block_settings.label }}</strong>
+        {{ ship_text }}
+      </span>
+    </span>
+  {%- endif -%}
+</shipping-date>
+
+{% schema %}
+{
+  "name": "Afsendes",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "Afsendes:"
+    },
+    {
+      "type": "range",
+      "id": "cutoff_hour",
+      "label": "Cutoff (hour)",
+      "min": 0,
+      "max": 23,
+      "step": 1,
+      "default": 17
+    },
+    {
+      "type": "text",
+      "id": "text_today",
+      "label": "Before cutoff",
+      "default": "i dag"
+    },
+    {
+      "type": "text",
+      "id": "text_tomorrow",
+      "label": "After cutoff",
+      "default": "i morgen"
+    },
+    {
+      "type": "text",
+      "id": "text_monday",
+      "label": "Weekend / after Friday cutoff",
+      "default": "mandag"
+    },
+    {
+      "type": "header",
+      "content": "t:content.typography"
+    },
+    {
+      "type": "select",
+      "id": "type_preset",
+      "label": "t:settings.preset",
+      "options": [
+        { "value": "", "label": "t:options.default" },
+        { "value": "paragraph", "label": "t:options.paragraph" },
+        { "value": "h6", "label": "t:options.h6" },
+        { "value": "h5", "label": "t:options.h5" }
+      ],
+      "default": ""
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "t:settings.left",
+      "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "t:settings.right",
+      "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Afsendes",
+      "category": "t:categories.product"
+    }
+  ]
+}
+{% endschema %}

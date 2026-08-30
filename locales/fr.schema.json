@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin language editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "categories": {
     "banners": "Bannières",
@@ -435,7 +426,8 @@
     "card_settings": "Paramètres de la carte",
     "limit_height": "Limiter la hauteur",
     "content_row_gap": "Espacement entre les lignes de contenu",
-    "desktop_filter_layout": "Disposition du filtre sur bureau"
+    "desktop_filter_layout": "Disposition du filtre sur bureau",
+    "smooth_scroll": "D\u00e9filement fluide"
   },
   "names": {
     "404": "Page 404",
@@ -899,7 +891,8 @@
     "radio_options": "Chaque option est séparée par une virgule (ex : Option 1, Option 2, Option 3).",
     "default_image": "Si ni le métachamp de collection ni l'image caractéristique ne sont définis, cette image sera affichée.",
     "limit_height": "Hauteur maximale en pourcentage de la hauteur du viewport.",
-    "desktop_filter_layout": "Le tiroir est la disposition mobile par défaut."
+    "desktop_filter_layout": "Le tiroir est la disposition mobile par défaut.",
+    "smooth_scroll": "Le d\u00e9filement natif est le plus rapide et celui qu'attendent la plupart des clients. Subtil ajoute un l\u00e9ger lissage sur ordinateur uniquement \u2014 Safari et mobile utilisent toujours le d\u00e9filement natif."
   },
   "options": {
     "shaded": "Ombragé",
@@ -1158,7 +1151,8 @@
     "dot": "Point",
     "line": "Ligne",
     "narrow": "Étroit",
-    "wide": "Large"
+    "wide": "Large",
+    "subtle": "Subtil"
   },
   "html_defaults": {
     "share_information_about_your": "<p>Partagez des informations sur votre marque avec vos clients. Décrivez un produit, faites des annonces ou accueillez des clients dans votre boutique.</p>"

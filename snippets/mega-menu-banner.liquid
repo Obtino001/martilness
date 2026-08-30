@@ -1,30 +1,14 @@
-{%- doc -%}
-  Renders a mega menu banner.
-
-  @param {string} banner_design - Accepts: 1 (Button bottom), 2 (Top badge), 3 (Content below image)
-  @param {image} image - The image to show on desktop
-  @param {image} image_mobile - The image to show on mobile
-  @param {number} image_overlay_opacity - Controls overlay alpha. Accepts: 1 => 100
-  @param {object} [color_scheme] - Color scheme, leave blank to inherit color scheme from parent
-  @param {string} [heading] - Heading text to display
-  @param {string} [heading_preset] - Type preset for heading
-  @param {string} [heading_font_size] - Custom font size for heading
-  @param {string} [heading_font_size_mobile] - Custom font size for heading on mobile
-  @param {string} [subheading] - Subheading text to display
-  @param {string} [badge] - Badge text to display
-  @param {string} [button_label] - Button label
-  @param {string} [button_link] - Button link
-  @param {string} [button_style] - Button style
-  @param {string} [button_size] - Button size
-  @param {string} [button_icon] - Button icon
-  @param {string} [button_icon_style] - Button icon style
-{%- enddoc -%}
+{%- comment -%} Mega menu promotional banner card {%- endcomment -%}
+{%- liquid
+  assign banner_alt = heading | default: shop.name
+  assign banner_button_label = button_label | default: heading
+-%}
 {%- capture image_html -%}
   {% render 'responsive-image',
     mode: 'js',
     image: image,
     image_mobile: image_mobile,
-    default_alt: shop.name,
+    default_alt: banner_alt
   %}
 {%- endcapture -%}
 
@@ -49,7 +33,7 @@
     font_size_mobile: heading_font_size_mobile,
     font_family: 'var(--font-heading--family)',
     line_height: 'normal'
-  %}  
+  %}
 {%- endcapture -%}
 
 {%- case banner_design -%}
@@ -112,15 +96,24 @@
       border_radius: 20
     %}
   {%- when '3' -%}
+    {%- capture image_html -%}
+      {% render 'responsive-image',
+        mode: 'js',
+        image: image,
+        image_mobile: image_mobile,
+        image_ratio: '3/4',
+        default_alt: banner_alt
+      %}
+    {%- endcapture -%}
     {%- capture button_html -%}
       {% render 'button',
-        label: button_label,
+        label: banner_button_label,
         link: button_link,
         style: button_style,
         size: button_size,
         icon: button_icon,
         icon_style: button_icon_style,
-        icon_only: true,
+        icon_only: true
       %}
     {%- endcapture -%}
     {% render 'image-card',

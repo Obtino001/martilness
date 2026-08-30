@@ -126,6 +126,27 @@
         "label": "t:settings.enable_animations",
         "default": true,
         "info": "t:info.animations_enabled"
+      },
+      {
+        "type": "select",
+        "id": "smooth_scroll",
+        "label": "t:settings.smooth_scroll",
+        "info": "t:info.smooth_scroll",
+        "options": [
+          {
+            "value": "off",
+            "label": "t:options.none"
+          },
+          {
+            "value": "subtle",
+            "label": "t:options.subtle"
+          },
+          {
+            "value": "smooth",
+            "label": "t:options.standard"
+          }
+        ],
+        "default": "subtle"
       }
     ]
   },
@@ -1247,6 +1268,55 @@
         "id": "pcard_show_type",
         "label": "t:settings.show_product_type",
         "default": false
+      },
+      {
+        "type": "header",
+        "content": "t:content.product_card_reviews"
+      },
+      {
+        "type": "paragraph",
+        "content": "t:content.app_required_for_ratings"
+      },
+      {
+        "type": "checkbox",
+        "id": "pcard_show_rating",
+        "label": "t:settings.show_review_stars",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "pcard_rating_style",
+        "label": "t:settings.style",
+        "options": [
+          {
+            "value": "outline",
+            "label": "t:options.outline"
+          },
+          {
+            "value": "shaded",
+            "label": "t:options.shaded"
+          },
+          {
+            "value": "single",
+            "label": "t:options.single"
+          }
+        ],
+        "default": "shaded",
+        "visible_if": "{{ settings.pcard_show_rating }}"
+      },
+      {
+        "type": "checkbox",
+        "id": "pcard_rating_show_count",
+        "label": "t:settings.review_count",
+        "default": true,
+        "visible_if": "{{ settings.pcard_show_rating }}"
+      },
+      {
+        "type": "color",
+        "id": "pcard_rating_color",
+        "label": "t:settings.color",
+        "default": "#000000",
+        "visible_if": "{{ settings.pcard_show_rating }}"
       },
       {
         "type": "header",

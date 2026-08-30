@@ -15,8 +15,9 @@
     assign placeholder_text = 'content.search_input_placeholder_long' | t
   endif
 
-  assign form_id = 'PredictiveSearch-' | append: section.id
-  assign search_results_id = 'PredictiveSearchResults-' | append: section.id
+  assign unique_id = unique_id | default: section.id
+  assign form_id = 'PredictiveSearch-' | append: unique_id
+  assign search_results_id = 'PredictiveSearchResults-' | append: unique_id
 -%}
 
 {%- capture media_sizes -%}
@@ -27,6 +28,7 @@
   class="search__form search__form--{{ form_style }}{% if settings.search_predictive_enabled %} search__form--predictive{% endif %} dir-rtl flex flex-col w-full"
   data-empty-recommendations="{{ is_empty_recommendations }}"
   data-results-limit="{{ settings.search_number_results_to_show }}"
+  data-results-id="{{ search_results_id }}"
   data-context="{{ context }}"
 >
   <div class="search__header flex dir-ltr">
@@ -42,7 +44,7 @@
         <input
           ref="searchInput"
           on:focus="/onFocus"
-          id="SearchInput-{{ section.id }}"
+          id="SearchInput-{{ unique_id }}"
           class="search__input form-control w-full"
           type="search"
           name="q"
@@ -64,7 +66,7 @@
             spellcheck="false"
           {% endif %}
         >
-        <label class="visually-hidden" for="SearchInput-{{ section.id }}">
+        <label class="visually-hidden" for="SearchInput-{{ unique_id }}">
           {{- 'content.search_input_label' | t -}}
         </label>
         <button

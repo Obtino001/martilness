@@ -144,13 +144,14 @@
               </button>
             </div>
             <div class="cart-drawer__content">
-              {% if settings.show_free_shipping_goal and settings.free_shipping_goal_amount != blank %}
-                <div class="cart-drawer__free-shipping-goal">
-                  {% render 'free-shipping-goal', section: section %}
-                </div>
-              {% endif %}
-              <div class="cart-drawer__items v-scrollable">
-                {% render 'cart-products', context: 'drawer', section: section %}
+              {%- comment -%}
+                Leverings-bar (bestil før cutoff → modtag i morgen).
+                Første barn af cart-drawer__content, som selv er uden padding,
+                så baren går kant-til-kant. Tekst kan rettes her.
+              {%- endcomment -%}
+              <div class="cart-drawer__delivery-bar flex items-center justify-center gap-2 text-center">
+                <span class="cart-drawer__delivery-bar-text">Bestil inden kl. 17:00 – modtag i morgen</span>
+                {% render 'icon', icon: 'check', size: 'medium' %}
               </div>
               {%- capture wrapper_class -%}
                 {%- if section.settings.cart_recommendations_inherit_color_scheme -%}
@@ -159,8 +160,26 @@
                   color-{{ section.settings.cart_recommendations_color_scheme }}
                 {%- endif -%}
               {%- endcapture -%}
+              {%- comment -%}
+                Varer + anbefalinger ligger i SAMME scroll-vindue, så anbefalingerne
+                flyder efter varerne (man scroller ned til dem) i stedet for at være
+                et fast bånd. Totalerne bliver stående fast nedenunder.
+              {%- endcomment -%}
+              <div class="cart-drawer__items v-scrollable">
+                {% if settings.show_free_shipping_goal and settings.free_shipping_goal_amount != blank %}
+                  <div class="cart-drawer__free-shipping-goal">
+                    {% render 'free-shipping-goal', section: section %}
+                  </div>
+                {% endif %}
+                {% render 'cart-products', context: 'drawer', section: section %}
+                {%- if section.settings.enable_cart_recommendations -%}
+                  <div class="cart-drawer__recommendation-slot {{ wrapper_class }}">
+                    {% render 'cart-drawer-summary', section: section, part: 'recommendations' %}
+                  </div>
+                {%- endif -%}
+              </div>
               <div class="cart-drawer__summary {{ wrapper_class }}">
-                {% render 'cart-drawer-summary', section: section %}
+                {% render 'cart-drawer-summary', section: section, part: 'totals' %}
               </div>
             </div>
           {%- endif -%}

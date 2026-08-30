@@ -1,0 +1,597 @@
+{%- liquid
+  assign rating = section.settings.rating | default: '4.8'
+  assign rating_suffix = section.settings.rating_suffix | default: '4,8 på Trustpilot'
+  assign title = section.settings.title
+  assign subtitle = section.settings.subtitle
+  assign container = section.settings.container | default: 'fixed'
+
+  assign use_picker_images = false
+  if section.settings.image_desktop != blank or section.settings.image_mobile != blank
+    assign use_picker_images = true
+  endif
+
+  assign hero_desktop = section.settings.image_desktop_url
+  assign hero_mobile = section.settings.image_mobile_url
+  if section.settings.image_desktop != blank
+    assign hero_desktop_img = section.settings.image_desktop
+  endif
+  if section.settings.image_mobile != blank
+    assign hero_mobile_img = section.settings.image_mobile
+  elsif section.settings.image_desktop != blank
+    assign hero_mobile_img = section.settings.image_desktop
+  endif
+
+  assign hero_desktop_widths = '900,1200,1600,2000,2600' | split: ','
+  assign hero_mobile_widths = '480,640,780,960,1170' | split: ','
+
+  assign btn1_label = section.settings.btn1_label
+  assign btn2_label = section.settings.btn2_label
+  assign btn3_label = section.settings.btn3_label
+  assign btn1_link = section.settings.btn1_link
+  assign btn2_link = section.settings.btn2_link
+  assign btn3_link = section.settings.btn3_link
+
+  assign hero_modifier = 'fr-hero--fixed'
+  if container == 'full'
+    assign hero_modifier = 'fr-hero--full'
+  endif
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} .fr-hero-wrap {
+    padding-block: 1.2rem;
+    padding-inline: var(--page-padding, 1.6rem);
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .fr-hero {
+    --fr-cream: 251 246 236;
+    --fr-radius: 2.4rem;
+    --fr-accent: #1f4d3a;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    isolation: isolate;
+    margin: 0 auto;
+    min-height: 52rem;
+    border: 0;
+    border-radius: var(--fr-radius);
+    box-shadow: none;
+    outline: none;
+    color: rgb(var(--color-foreground));
+    width: 100%;
+    max-width: var(--page-width, 1700px);
+  }
+
+  /* Full-bleed image: edge-to-edge, no card radius */
+  #shopify-section-{{ section.id }} .fr-hero--full {
+    --fr-radius: 0;
+    border-radius: 0;
+    min-height: 62rem;
+    max-width: none;
+  }
+
+  #shopify-section-{{ section.id }} .fr-hero-wrap--full {
+    padding-block: 0;
+    padding-inline: 0;
+  }
+
+  #shopify-section-{{ section.id }} .fr-hero--full .fr-hero__inner {
+    padding-inline: var(--page-padding);
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .fr-hero__bg { position: absolute; inset: 0; z-index: 0; }
+  #shopify-section-{{ section.id }} .fr-hero__bg img {
+    display: block;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+  }
+
+  #shopify-section-{{ section.id }} .fr-hero__scrim {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      rgb(var(--fr-cream) / 0.88) 0%,
+      rgb(var(--fr-cream) / 0.62) 45%,
+      rgb(var(--fr-cream) / 0.28) 78%,
+      rgb(var(--fr-cream) / 0.16) 100%
+    );
+  }
+
+  #shopify-section-{{ section.id }} .fr-hero__inner {
+    position: relative; z-index: 2;
+    width: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; text-align: center;
+    gap: 1.8rem;
+    padding: 4.8rem 2rem 3.6rem;
+  }
+  #shopify-section-{{ section.id }} .fr-hero__inner motion-component { display: block; width: 100%; }
+
+  #shopify-section-{{ section.id }} .fr-hero__rating {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    padding: 0.55rem 1.2rem;
+    border-radius: 99px;
+    background: rgb(255 255 255 / 0.92);
+    border: 0;
+    box-shadow: 0 0.4rem 1.6rem rgb(0 0 0 / 6%);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  }
+  #shopify-section-{{ section.id }} .fr-hero__stars { display: inline-flex; gap: 0.25rem; }
+  #shopify-section-{{ section.id }} .fr-hero__star {
+    width: 1.4rem; height: 1.4rem; border-radius: 0.25rem;
+    background: #00b67a;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  #shopify-section-{{ section.id }} .fr-hero__star svg { width: 1rem; height: 1rem; fill: #fff; display: block; }
+  #shopify-section-{{ section.id }} .fr-hero__rating-text {
+    font-family: var(--font-body--family);
+    font-size: 1.2rem; font-weight: 600;
+    color: rgb(var(--color-foreground)); white-space: nowrap;
+  }
+
+  #shopify-section-{{ section.id }} .fr-hero__title {
+    margin: 0 auto;
+    font-family: var(--font-heading--family);
+    font-weight: var(--font-heading--weight);
+    font-size: clamp(2.8rem, 8vw, 3.6rem);
+    line-height: 1.12;
+    letter-spacing: var(--font-heading--letter-spacing, -0.01em);
+    max-width: 16ch;
+    text-wrap: balance;
+  }
+  #shopify-section-{{ section.id }} .fr-hero__sub {
+    margin: 0 auto;
+    font-family: var(--font-body--family);
+    font-size: 1.45rem;
+    line-height: 1.5;
+    color: rgb(var(--color-foreground) / 0.72);
+    max-width: 34ch;
+    text-wrap: pretty;
+  }
+
+  #shopify-section-{{ section.id }} .fr-hero__ctas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    width: 100%;
+    max-width: 36rem;
+    margin-inline: auto;
+  }
+  #shopify-section-{{ section.id }} .fr-hero__ctas > * { min-width: 0; }
+  #shopify-section-{{ section.id }} .fr-hero__ctas > .btn,
+  #shopify-section-{{ section.id }} .fr-hero__ctas > a.btn {
+    width: 100%;
+    border: 0 !important;
+    box-shadow: none !important;
+    outline: none;
+  }
+  #shopify-section-{{ section.id }} .fr-hero__ctas > .btn::before,
+  #shopify-section-{{ section.id }} .fr-hero__ctas > a.btn::before {
+    display: none !important;
+  }
+  #shopify-section-{{ section.id }} .fr-hero__ctas > *:first-child { grid-column: 1 / -1; }
+
+  /* Primary CTA — solid, no border chrome */
+  #shopify-section-{{ section.id }} .fr-hero__ctas > .btn--primary,
+  #shopify-section-{{ section.id }} .fr-hero__ctas > a.btn--primary {
+    background: var(--fr-accent);
+    color: #fff;
+    border-radius: 1.2rem;
+  }
+
+  /* Secondary / outline → solid soft fill, no outline ring */
+  #shopify-section-{{ section.id }} .fr-hero__ctas > .btn--secondary,
+  #shopify-section-{{ section.id }} .fr-hero__ctas > .btn--outline,
+  #shopify-section-{{ section.id }} .fr-hero__ctas > a.btn--secondary,
+  #shopify-section-{{ section.id }} .fr-hero__ctas > a.btn--outline {
+    background: var(--fr-accent);
+    color: #fff;
+    border-radius: 1.2rem;
+  }
+  #shopify-section-{{ section.id }} .fr-hero__ctas > .btn--outline,
+  #shopify-section-{{ section.id }} .fr-hero__ctas > a.btn--outline {
+    background: rgb(255 255 255 / 0.88);
+    color: var(--fr-accent);
+  }
+
+  #shopify-section-{{ section.id }} .fr-hero__trust {
+    display: flex; gap: 0;
+    width: 100%; max-width: 42rem;
+    padding: 1.4rem 1.2rem;
+    border-radius: 1.2rem;
+    background: rgb(255 255 255 / 0.75);
+    border: 0;
+    box-shadow: 0 0.4rem 1.6rem rgb(0 0 0 / 6%);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  }
+  #shopify-section-{{ section.id }} .fr-hero__trust-item {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; gap: 0.6rem; text-align: center;
+    padding-inline: 0.8rem;
+  }
+  #shopify-section-{{ section.id }} .fr-hero__trust-item + .fr-hero__trust-item {
+    border-inline-start: 0.1rem solid rgb(var(--color-foreground) / 0.1);
+  }
+  #shopify-section-{{ section.id }} .fr-hero__trust-icon {
+    width: 2.2rem; height: 2.2rem; flex-shrink: 0;
+    border-radius: 50%; background: #48bb78; color: #fff;
+    display: inline-flex; align-items: center; justify-content: center;
+    --icon-stroke-width: 3;
+  }
+  #shopify-section-{{ section.id }} .fr-hero__trust-icon .icon,
+  #shopify-section-{{ section.id }} .fr-hero__trust-icon svg { width: 1.2rem; height: 1.2rem; }
+  #shopify-section-{{ section.id }} .fr-hero__trust-label {
+    font-family: var(--font-body--family);
+    font-size: 1.1rem; font-weight: 500; line-height: 1.3;
+    color: rgb(var(--color-foreground));
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .fr-hero-wrap {
+      padding-block: 1.6rem;
+    }
+    #shopify-section-{{ section.id }} .fr-hero {
+      min-height: 56rem;
+      border-radius: 2rem;
+    }
+    #shopify-section-{{ section.id }} .fr-hero__scrim {
+      background: linear-gradient(
+        to right,
+        rgb(var(--fr-cream) / 0.94) 0%,
+        rgb(var(--fr-cream) / 0.78) 34%,
+        rgb(var(--fr-cream) / 0.30) 64%,
+        rgb(var(--fr-cream) / 0) 100%
+      );
+    }
+    #shopify-section-{{ section.id }} .fr-hero__inner {
+      align-items: flex-start; text-align: left;
+      max-width: 66rem;
+      margin-inline: 0;
+      padding: 7.2rem 6.4rem;
+      gap: 2.8rem;
+    }
+    #shopify-section-{{ section.id }} .fr-hero__title,
+    #shopify-section-{{ section.id }} .fr-hero__sub {
+      margin-inline: 0;
+      font-size: var(--font-size--h1);
+      max-width: 15ch;
+    }
+    #shopify-section-{{ section.id }} .fr-hero__sub {
+      font-size: var(--font-size--paragraph);
+      max-width: 48ch;
+    }
+    #shopify-section-{{ section.id }} .fr-hero__ctas {
+      display: flex; flex-wrap: wrap;
+      justify-content: flex-start;
+      width: auto;
+      max-width: none;
+      margin-inline: 0;
+      gap: 1.2rem;
+    }
+    #shopify-section-{{ section.id }} .fr-hero__ctas > .btn,
+    #shopify-section-{{ section.id }} .fr-hero__ctas > a.btn { width: auto; }
+    #shopify-section-{{ section.id }} .fr-hero__ctas > *:first-child { grid-column: auto; }
+    #shopify-section-{{ section.id }} .fr-hero__trust { max-width: 44rem; }
+  }
+</style>
+
+{%- liquid
+  assign hero_sizes = '100vw'
+  if container == 'fixed'
+    assign hero_sizes = '(min-width: 750px) min(100vw - 2 * var(--page-padding, 0px), var(--page-width, 1700px)), 100vw'
+  endif
+-%}
+<div class="fr-hero-wrap fr-hero-wrap--{{ container }}  section-grid--{{ container }}">
+  <div class="fr-hero {{ hero_modifier }} color-{{ section.settings.color_scheme }}">
+    {% if use_picker_images or hero_desktop != blank or hero_mobile != blank %}
+      <div class="fr-hero__bg">
+        <picture>
+          {% if use_picker_images and hero_desktop_img != blank %}
+            <source
+              media="(min-width: 750px)"
+              sizes="{{ hero_sizes }}"
+              srcset="
+                {%- for w in hero_desktop_widths -%}
+                  {{ hero_desktop_img | image_url: width: w }} {{ w }}w{% unless forloop.last %}, {% endunless %}
+                {%- endfor -%}
+              "
+            >
+            <img
+              src="{{ hero_mobile_img | image_url: width: 780 }}"
+              srcset="
+                {%- for w in hero_mobile_widths -%}
+                  {{ hero_mobile_img | image_url: width: w }} {{ w }}w{% unless forloop.last %}, {% endunless %}
+                {%- endfor -%}
+              "
+              sizes="{{ hero_sizes }}"
+              alt="{{ title | escape }}"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              width="{{ hero_mobile_img.width }}"
+              height="{{ hero_mobile_img.height }}"
+            >
+          {% else %}
+            {% if hero_desktop != blank %}
+              <source
+                media="(min-width: 750px)"
+                sizes="{{ hero_sizes }}"
+                srcset="
+                  {%- for w in hero_desktop_widths -%}
+                    {{ hero_desktop }}&width={{ w }} {{ w }}w{% unless forloop.last %}, {% endunless %}
+                  {%- endfor -%}
+                "
+              >
+            {% endif %}
+            <img
+              src="{{ hero_mobile | default: hero_desktop }}&width=780"
+              {% if hero_mobile != blank %}
+                srcset="
+                  {%- for w in hero_mobile_widths -%}
+                    {{ hero_mobile }}&width={{ w }} {{ w }}w{% unless forloop.last %}, {% endunless %}
+                  {%- endfor -%}
+                "
+              {% endif %}
+              sizes="{{ hero_sizes }}"
+              alt="{{ title | escape }}"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            >
+          {% endif %}
+        </picture>
+      </div>
+    {% endif %}
+
+    <div class="fr-hero__scrim"></div>
+
+    <div class="fr-hero__inner">
+      {% if section.settings.show_rating %}
+        <motion-component data-motion="fade-up" data-motion-delay="0">
+          <div class="fr-hero__rating">
+            <span class="fr-hero__stars" aria-hidden="true">
+              {%- for i in (1..5) -%}
+                <span class="fr-hero__star">
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </span>
+              {%- endfor -%}
+            </span>
+            <span class="fr-hero__rating-text">{{ rating }}/5 · {{ rating_suffix }}</span>
+          </div>
+        </motion-component>
+      {% endif %}
+
+      {% if title != blank %}
+        <motion-component data-motion="fade-up" data-motion-delay="100">
+          <h1 class="fr-hero__title">{{ title }}</h1>
+        </motion-component>
+      {% endif %}
+
+      {% if subtitle != blank %}
+        <motion-component data-motion="fade-up" data-motion-delay="200">
+          <p class="fr-hero__sub">{{ subtitle }}</p>
+        </motion-component>
+      {% endif %}
+
+      {% if btn1_label != blank or btn2_label != blank or btn3_label != blank %}
+        <motion-component data-motion="fade-up" data-motion-delay="300">
+          <div class="fr-hero__ctas">
+            {% if btn1_label != blank %}
+              {% render 'button',
+                label: btn1_label,
+                link: btn1_link,
+                style: 'primary',
+                size: 'large',
+                icon: 'arrow-right',
+                icon_style: 'solid',
+                with_wrapper: false
+              %}
+            {% endif %}
+            {% if btn2_label != blank %}
+              {% render 'button',
+                label: btn2_label,
+                link: btn2_link,
+                style: 'secondary',
+                size: 'large',
+                with_wrapper: false
+              %}
+            {% endif %}
+            {% if btn3_label != blank %}
+              {% render 'button',
+                label: btn3_label,
+                link: btn3_link,
+                style: 'secondary',
+                size: 'large',
+                with_wrapper: false
+              %}
+            {% endif %}
+          </div>
+        </motion-component>
+      {% endif %}
+
+      {% comment %} {% if section.settings.trust_1 != blank or section.settings.trust_2 != blank or section.settings.trust_3 != blank %}
+        <motion-component data-motion="fade-up" data-motion-delay="400">
+          <div class="fr-hero__trust">
+            {% if section.settings.trust_1 != blank %}
+              <div class="fr-hero__trust-item">
+                <span class="fr-hero__trust-icon" aria-hidden="true">{% render 'icon', icon: 'check' %}</span>
+                <span class="fr-hero__trust-label">{{ section.settings.trust_1 }}</span>
+              </div>
+            {% endif %}
+            {% if section.settings.trust_2 != blank %}
+              <div class="fr-hero__trust-item">
+                <span class="fr-hero__trust-icon" aria-hidden="true">{% render 'icon', icon: 'check' %}</span>
+                <span class="fr-hero__trust-label">{{ section.settings.trust_2 }}</span>
+              </div>
+            {% endif %}
+            {% if section.settings.trust_3 != blank %}
+              <div class="fr-hero__trust-item">
+                <span class="fr-hero__trust-icon" aria-hidden="true">{% render 'icon', icon: 'check' %}</span>
+                <span class="fr-hero__trust-label">{{ section.settings.trust_3 }}</span>
+              </div>
+            {% endif %}
+          </div>
+        </motion-component>
+      {% endif %} {% endcomment %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Martilness Hero",
+  "tag": "section",
+  "class": "section-martilness-hero",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Show Trustpilot rating",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "rating",
+      "label": "Rating number",
+      "default": "4.8"
+    },
+    {
+      "type": "text",
+      "id": "rating_suffix",
+      "label": "Rating label",
+      "default": "4,8 på Trustpilot"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Alle har ret til fysisk og psykisk velvære"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Hurtig levering. Stort udvalg. Fra isbad til sauna — velvære derhjemme."
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "btn1_label",
+      "label": "Button 1 label",
+      "default": "Se vores produkter"
+    },
+    {
+      "type": "url",
+      "id": "btn1_link",
+      "label": "Button 1 link"
+    },
+    {
+      "type": "text",
+      "id": "btn2_label",
+      "label": "Button 2 label",
+      "default": "Shop isbad"
+    },
+    {
+      "type": "url",
+      "id": "btn2_link",
+      "label": "Button 2 link"
+    },
+    {
+      "type": "text",
+      "id": "btn3_label",
+      "label": "Button 3 label",
+      "default": "Shop sauna"
+    },
+    {
+      "type": "url",
+      "id": "btn3_link",
+      "label": "Button 3 link"
+    },
+    {
+      "type": "header",
+      "content": "Trust badges"
+    },
+    {
+      "type": "text",
+      "id": "trust_1",
+      "label": "Trust 1",
+      "default": "1-3 dages levering"
+    },
+    {
+      "type": "text",
+      "id": "trust_2",
+      "label": "Trust 2",
+      "default": "Altid gratis fragt"
+    },
+    {
+      "type": "text",
+      "id": "trust_3",
+      "label": "Trust 3",
+      "default": "30 dages tilfredsgaranti"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_desktop",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Mobile image"
+    },
+    {
+      "type": "text",
+      "id": "image_desktop_url",
+      "label": "Desktop image URL (fallback)",
+      "info": "Used if no desktop image is selected. Paste a Shopify Files CDN URL."
+    },
+    {
+      "type": "text",
+      "id": "image_mobile_url",
+      "label": "Mobile image URL (fallback)"
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Width",
+      "options": [
+        { "value": "fixed", "label": "Page width" },
+        { "value": "full", "label": "Full width" }
+      ],
+      "default": "fixed"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Martilness Hero"
+    }
+  ]
+}
+{% endschema %}

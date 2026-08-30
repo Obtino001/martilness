@@ -30,8 +30,13 @@
 
 .media-gallery__zoom-dialog-button {
   position: absolute;
-  inset-inline-end: 2rem;
-  inset-block-start: 2rem;
+  /* Match the badge inset on the opposite corner. The badges sit at inset 0 with
+     padding: var(--product-card-badges-padding, 1rem), so 2rem here put the zoom
+     button twice as far in and it landed on top of the % graphic baked into the
+     product photos. Referencing the same variable rather than hardcoding 1rem keeps
+     the two corners aligned if the badge inset is ever changed. */
+  inset-inline-end: var(--product-card-badges-padding, 1rem);
+  inset-block-start: var(--product-card-badges-padding, 1rem);
 }
 
 .dialog-size-chart {
@@ -153,13 +158,18 @@
 }
 
 .quick-add-dialog__inner .quick-add__content {
-  padding: 2.4rem 1.6rem 1.6rem;
+  /* Bottom was 1.6rem. The sticky buy button already carries its own
+     padding-block-start, so this only added dead space under the payment and
+     trust bar and pushed the shipping line under the button. Desktop keeps
+     2.4rem via the min-width: 768px override below. */
+  padding: 2.4rem 1.6rem 0.4rem;
   align-content: flex-start;
 }
 
 .quick-add__footer-link {
   border-top: 0.1rem solid rgb(var(--color-border)/var(--color-border-alpha));
-  padding: 1.2rem 1.6rem;
+  /* Was 1.2rem block. Trimmed to give the content column more room. */
+  padding: 0.8rem 1.6rem;
   font-family: var(--font-button--family);
   font-weight: var(--font-button--weight);
 }
@@ -170,5 +180,262 @@
   }
   .quick-add__footer-link {
     padding: 1.6rem 2.4rem;
+  }
+}
+.shipping-date__status {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.shipping-date__text {
+  color: #2b2b2b;
+}
+
+.shipping-date__dot {
+  position: relative;
+  display: block;
+  height: 0.55em;
+  width: 0.55em;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: currentcolor;
+}
+
+.shipping-date__dot--pulse::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: currentcolor;
+  animation: shipping-date-pulse 2s var(--animation-easing--smooth) infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes shipping-date-pulse {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(3.5); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shipping-date__dot--pulse::before {
+    animation: none;
+  }
+}
+/* Betalingsikoner + rating under købsknappen */
+.pr-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  width: 100%;
+  flex-wrap: nowrap;
+}
+.pr-bar__pay {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 0;
+}
+.pr-bar__pay svg {
+  width: 3.7rem;
+  height: 2.3rem;
+  display: block;
+}
+.pr-bar__rating {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.pr-bar__score {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1;
+}
+.pr-bar__stars {
+  display: flex;
+  gap: 0.3rem;
+}
+.pr-bar__star {
+  width: 1.8rem;
+  height: 1.8rem;
+  background: #48bb78;
+  border-radius: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pr-bar__star svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: #fff;
+  display: block;
+}
+@media (max-width: 749.98px) {
+  .pr-bar { gap: 0.8rem; }
+  .pr-bar__pay { gap: 0.5rem; }
+  .pr-bar__pay svg { width: 3.1rem; height: 2rem; }
+  .pr-bar__score { font-size: 1.3rem; }
+  .pr-bar__star { width: 1.7rem; height: 1.7rem; border-radius: 0.3rem; }
+  .pr-bar__star svg { width: 1.1rem; height: 1.1rem; }
+}
+/* === Price chips === */
+.product-price .price-container:has(.price-chips > :not([hidden])) {
+  flex-wrap: nowrap;
+}
+
+.price-chips {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  order: 1;
+}
+
+.price-chips:empty,
+.price-chips:not(:has(> :not([hidden]))) {
+  display: none;
+}
+
+.price-chips__chip {
+  border-radius: 0.8rem;
+  white-space: nowrap;
+  padding: 1rem 1.4rem;
+  font-size: 1.4rem;
+}
+
+.price-chips__chip[hidden] {
+  display: none;
+}
+
+.price-chips__chip--unit {
+  background: rgb(var(--color-foreground) / 0.06);
+  color: rgb(var(--color-foreground));
+}
+
+.price-chips__chip--unit:not([hidden]):has(+ .price-chips__chip--save:not([hidden])) {
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+
+.price-chips__chip--unit:not([hidden]) + .price-chips__chip--save:not([hidden]) {
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+}
+
+@media (max-width: 767.98px) {
+  .price-chips__chip {
+    font-size: 1.3rem;
+    padding: 0.8rem 1.1rem;
+  }
+}
+
+.product-price .price-container .price__sale .compare-at-price,
+.product-price .price-container .price__regular .compare-at-price {
+  font-size: calc(var(--font-size--h5) * 0.85);
+}
+
+/* Save chip — Martilness style: Du sparer: X kr (Y%) */
+.price-chips__chip.price-chips__chip--save {
+  background: #09412d !important;
+  color: #ffffff !important;
+  border-radius: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.product-price .price-container.price--on-sale .price--sale {
+  color: #09412d;
+}
+/* Hele pris+chips-området er flex og stakker ALDRIG — prisen kan krympe, chips bliver ved siden af */
+.product-price .price-container:has(.price-chips > :not([hidden])) {
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.product-price .price-container:has(.price-chips > :not([hidden])) .price__sale,
+.product-price .price-container:has(.price-chips > :not([hidden])) .price__regular {
+  min-width: 0;
+}
+/* Mobil: compare-at UNDER sale-prisen (stablet). KUN på tilbud (.price--on-sale) —
+   ellers skal price__sale forblive skjult, så ikke-tilbudsvarer ikke viser salgspris + compare. */
+@media (max-width: 767.98px) {
+  .product-price .price-container.price--on-sale:has(.price-chips > :not([hidden])) .price__sale {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.2;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Quick view on mobile — keep the buy button on screen.
+
+   The sheet is capped at 98svh (--dialog-drawer-height) and .quick-add__content
+   is the scrollport. _buy-buttons is the last block in that column, so on a 4:5
+   product image the Add to cart button fell below the fold — the one control the
+   drawer exists for.
+
+   Two independent fixes, because shrinking the media alone is not robust: a long
+   title, swatches wrapping to a second row, or a shorter phone would push the
+   button off again.
+
+     1. The gallery is narrower on phones and hard-capped in svh, so a portrait
+        image can't grow the stack regardless of its ratio.
+     2. The buy buttons stick to the bottom of the scrollport, so the button is
+        always reachable even when the content genuinely is longer than the sheet.
+
+   Desktop is untouched — there the drawer is right-side and tall enough.
+   --------------------------------------------------------------------------- */
+@media (max-width: 767.98px) {
+  .dialog--quick-add-drawer .media-gallery--quick-add .media-gallery__item {
+    /* Was 60%. Narrower slide = proportionally shorter image, and it reveals
+       more of the next slide, which reads as a clearer carousel affordance. */
+    flex-basis: 48%;
+  }
+}
+
+/* Width OR height. A landscape phone (844x390) is wider than 768px, so it takes
+   the desktop right-drawer path — but with 390px of height the buy button is
+   well below the fold. Keying the two rules that actually protect the button on
+   viewport height as well covers landscape, split-screen, and short laptop
+   windows, none of which the width query reaches. */
+@media (max-width: 767.98px), (max-height: 640px) {
+  .dialog--quick-add-drawer .media-gallery--quick-add .media-gallery__item .media {
+    /* Safety net for short viewports and very tall ratios. .media__image is
+       object-fit: cover, so this crops rather than distorts. */
+    max-height: 26svh;
+  }
+
+  .dialog--quick-add-drawer .quick-add__content .buy-buttons-block {
+    /* _buy-buttons renders a <span>; sticky needs a block box. */
+    display: block;
+    position: sticky;
+    bottom: 0;
+    z-index: var(--layer-flat);
+    margin-block-start: auto;
+    /* Clear space between the shipping line and the button. */
+    padding-block-start: 1.2rem;
+    background: rgb(var(--color-background));
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Quick view sheet height on mobile.
+
+   .dialog--drawer-mobile-bottom pins every mobile bottom sheet to
+   --dialog-drawer-height (98svh) so Quick View doesn't look cramped. That is
+   right for a product with variants, but a single-variant product has no
+   variant picker at all, so the content ends well short of the sheet and you
+   get a band of dead space between the shipping line and the buy button.
+
+   Letting the sheet hug its content fixes that, while max-height keeps the
+   original cap: tall products still fill the screen, scroll, and get the
+   sticky buy button. Scoped to the quick-add drawer so the size chart, pickup
+   availability, popups and lookbook sheets keep their current behaviour.
+   --------------------------------------------------------------------------- */
+@media (max-width: 767.98px) {
+  .dialog--quick-add-drawer.dialog--drawer-mobile-bottom {
+    height: auto;
   }
 }

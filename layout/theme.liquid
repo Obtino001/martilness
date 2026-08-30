@@ -15,6 +15,8 @@
   {% endif %}
 >
   <head>
+    <meta name="google-site-verification" content="BxkXFi0an8I2KRU6XcD2jepSn9bPILy8jFuKnlLTLRM" />
+
     {%- if settings.favicon != blank -%}
       <link
         rel="icon"
@@ -32,6 +34,8 @@
 
     {% # Load css for template %}
     {{ 'theme.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'custom.css' | asset_url | stylesheet_tag: preload: true }}
+
 
     {% render 'styles' %}
     {% render 'meta-tags' %}
@@ -72,5 +76,6 @@
     {%- if settings.enable_back_to_top_button -%}
       {% render 'back-to-top-button' %}
     {%- endif -%}
+    {% render 'martilness-color-swatches' %}
   </body>
 </html>

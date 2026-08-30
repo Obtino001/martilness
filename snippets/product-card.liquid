@@ -177,7 +177,7 @@
           <product-badge data-product-id="{{ product.id }}" class="product-card__badges">
             {% render 'product-badges',
               product: product,
-              use_variant: false,
+              use_variant: true,
               show_soldout_badge: settings.pcard_show_sold_out_badge,
               sale_badge_type: settings.pcard_sale_badge_type,
               show_sale_badge: settings.pcard_show_sale_badge,
@@ -219,6 +219,38 @@
     >
       <div class="product-card__content--wrapper flex flex-col text-{{ settings.pcard_content_alignment | replace: 'flex-start', "left" | replace: 'flex-end', 'right' }}">
         {% render 'product-card-metas', product: product, show_vendor: show_vendor, show_type: show_type %}
+
+        {%- comment -%}
+          Anmeldelsesstjerner over titlen. Bruger temaets egen
+          'product-review-stars'-snippet, så kortet og produktsiden altid
+          tegner de samme stjerner. Vises kun når produktet faktisk har
+          metafeltet reviews.rating (snippetten returnerer ellers intet).
+          Slås til/fra under Theme settings → Product cards → Product card reviews.
+        {%- endcomment -%}
+        {%- if settings.pcard_show_rating and product != blank -%}
+          {%- liquid
+            case settings.pcard_content_alignment
+              when 'center'
+                assign rating_alignment = 'center'
+              when 'flex-end'
+                assign rating_alignment = 'end'
+              else
+                assign rating_alignment = 'start'
+            endcase
+          -%}
+          <div class="product-card__rating">
+            {% render 'product-review-stars',
+              product: product,
+              alignment: rating_alignment,
+              alignment_mobile: rating_alignment,
+              stars_style: settings.pcard_rating_style,
+              show_number: settings.pcard_rating_show_count,
+              rating_color: settings.pcard_rating_color,
+              type_preset: 'paragraph'
+            %}
+          </div>
+        {%- endif -%}
+
         {%- if product != blank -%}
           <a
             class="product-card__title text-wrap reversed-link"
@@ -226,16 +258,17 @@
             ref="productTitleLink"
             aria-label="{{ product_title | escape }}"
           >
-            <span class="reversed-link__text">{{ product_title }}</span>
+            <span class="reversed-link__text">{% render 'product-title-split', title: product_title %}</span>
           </a>
         {%- else -%}
           <p class="product-card__title text-wrap">
-            <span>{{ product_title }}</span>
+            <span>{% render 'product-title-split', title: product_title %}</span>
           </p>
         {%- endif -%}
 
         <product-price class="product-card__price">
-          {% render 'price', show_unit_price: true, product_resource: product, use_variant: false %}
+          {% render 'price', show_unit_price: true, show_price_per_gram: true, product_resource: product, use_variant: false %}
+          
         </product-price>
 
         {%- if show_swatch -%}

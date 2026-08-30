@@ -1,0 +1,608 @@
+{%- comment -%}
+  Franklins — Analysecertifikater (COA), bygget på Pebbles egne konventioner.
+
+  Data ligger samlet i de fire capture-blokke herunder. Ét certifikat = én linje,
+  felterne adskilt af |, certifikaterne adskilt af ;;
+
+    Navn | Batch | Laboratorium | Stof-label | Stof-værdi | Δ9-THC | Billede-URL | PDF-URL
+
+  Tælleren ("8 certifikater") regnes ud fra antallet af linjer, så den kan ikke
+  komme ud af sync når der tilføjes eller fjernes et certifikat.
+
+  Mangler et billede endnu? Skriv "-" i billede-feltet — så renderes et neutralt
+  felt i stedet for et brudt billede. Feltet må ALDRIG stå helt tomt, fordi
+  Liquids split smider tomme strenge væk og forskyder alle de følgende felter.
+{%- endcomment -%}
+
+{%- capture certs_flower -%}
+Super Lemon Haze (CBD)|#2026-36|Lab. N.1962L|CBD|10,33%|0,02%|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/Superlemon_Haze2.jpg?v=1768348741|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/COA_SuperLemonHaze_NGI-003.pdf?v=1786279798;;
+White Widow (CBD)|#2024-3276|Lab. N.1962L|CBD|9,16%|0,02%|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/White_Widow.jpg?v=1786384621|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/COA_WhiteWidow_NGI-004.pdf?v=1786279798;;
+Tropical Mango (CBD)|NGI-047 MANGO|Centro Qualità Tessile|CBD|10%|0,06%|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/Tropical_Mango_CBD.jpg?v=1768348781|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/Tropical_mango.pdf?v=1758829621;;
+Purple Haze (CBD)|#2025-295|Lab. N.1962L|CBD|12%|0,17%|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/Purple_Haze_CBD_topskud.jpg?v=1768348700|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/PURPLE_HAZE_1.pdf?v=1758829622;;
+Pineapple Chunk (CBD)|#2026-868|Lab. N.1962L|CBD|10,51%|0,02%|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/Pineapple_Chunk_CBD2.jpg?v=1768348760|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/COA_PineappleChunk_NGI-042.pdf?v=1786279798;;
+Blueberry Crush (CBD)|#2025-770|Lab. N.1962L|CBD|10%|0,19%|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/Blueberry_skud.jpg?v=17683487972|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/Blueberry_crush.pdf?v=1758829622;;
+Lemon Gelato (CBD)|47501191|IFHA|CBD|4,20%|0,12%|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/Lemon_Gelato.jpg?v=1758830463|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/COA_MiniLemonGelato_Cannatonic_47501191.pdf?v=1786279793;;
+Runtz (CBD)|47501196|IFHA|CBD|3,67%|0,09%|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/Runtz.jpg?v=1758830463|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/Strawberry_Runtz_CoA.pdf?v=1783519910
+{%- endcapture -%}
+
+{%- capture certs_hash -%}
+Dark Marabou (CBD Hash)|#2026-921|Lab. N.1962L|CBD|49,53%|0,04%|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/Dark_Marabou.jpg?v=1758830463|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/COA_DarkMarabou_NGI-073.pdf?v=1786279797;;
+Caramel Fudge (CBD Hash)|#2026-692|Lab. N.1962L|CBD|69,41%|0,09%|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/Caramel_Fudge_CBD.jpg?v=1768348681|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/COA_CaramelFudge_NGI-072.pdf?v=1786279795;;
+Static (CBD Hash)|#2025-2423|Lab. N.1962L|CBD|39,16%|0,02%|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/Static2.jpg?v=1768348713|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/3X_filtered___STATIC_CBD.pdf?v=1786279796;;
+Bubble Hash (CBD Hash)|#2026-1135|Lab. N.1962L|CBD|48,64%|0,04%|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/CBD_BUBBLE.jpg?v=1786386793|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/COA_CBDBubbleHash_NGI-118.pdf?v=1786279798;;
+Nepaleser (CBD Hash)|#2026-498|Lab. N.1962L|CBD|78,26%|0,04%|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/Nepaleser.jpg?v=1786384622|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/COA_NepaleserCBD_NGI-037.pdf?v=1786279798
+{%- endcapture -%}
+
+{%- capture certs_oil -%}
+10% Broad Spectrum CBD Olie — RAW|1674-2420-10|Spectral Fingerprints|CBD|10,21%|ND|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/CBD_CERTIFICATE_IMAGES.jpg?v=1778582153|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/1674-2420-10_1.pdf?v=1783517330;;
+15% Broad Spectrum CBD Olie — RAW|1674-2420-15|Spectral Fingerprints|CBD|15,34%|ND|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/CBD_CERTIFICATE_IMAGES.jpg?v=1778582153|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/1674-2420-15_1.pdf?v=1783517330;;
+20% Broad Spectrum CBD Olie — RAW|1674-2420-20|Spectral Fingerprints|CBD|20,35%|ND|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/CBD_CERTIFICATE_IMAGES.jpg?v=1778582153|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/1674-2420-20_1.pdf?v=1783517330;;
+30% Broad Spectrum CBD Olie — RAW|1674-2420-30|Spectral Fingerprints|CBD|30,21%|ND|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/CBD_CERTIFICATE_IMAGES.jpg?v=1778582153|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/1674-2420-30_1.pdf?v=1783517330
+{%- endcapture -%}
+
+{%- capture certs_thca -%}
+Bubble Hash (THCA)|CT_BUBBH_129919|LabCore|THCA|50,14%|0,15%|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/Bubble_hash.jpg?v=1783519240|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/COA_BubbleHash_LabCore_CT-BUBBH-129919.pdf?v=1786279788;;
+La Mousse (THCA)|P1858 (2025-04-30)|Spectral Fingerprints|THCA|24,84%|0,17%|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/La_mousse.jpg?v=1783519240|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/COA_LaMousse_THCAInnovations_P1858.pdf?v=1786279787;;
+Bangkok Sativa (THCA)|V10797|Spectral Fingerprints|THCA|21,82%|0,15%|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/Bangkok_sativa.jpg?v=1783519239|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/COA_BangkokSativa_THCAInnovations_V10797.pdf?v=1786279788;;
+Platella (THCA)|CL_PIATELLATA_261278|LabCore|THCA|60,68%|0,17%|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/Piatella.jpg?v=1783519239|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/COA_Piatella_LabCore_CL-PIATELLATA-261278.pdf?v=1786279788;;
+Lys Marok (THCA)|CT_AFGHAN_129923|LabCore|THCA|30,14%|0,15%|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/Lys_marok.jpg?v=1783519240|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/COA_LysMarok_CannaTraders_CT-AFGHAN-129923.pdf?v=1786279788;;
+Charas (THCA)|V10565|Spectral Fingerprints|THCA|20,51%|0,20%|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/charas.jpg?v=1783519239|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/COA_Charas_THCAInnovations_V10565.pdf?v=1786279788;;
+OG Kush (THCA)|131600|LabCore|THCA|25,12%|0,17%|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/OG_Kush_7c8ac05f-c9f2-4b93-b8fe-4716e5dfd3bc.jpg?v=1783519238|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/COA_OGKush_CrystalKush_131600.pdf?v=1786279789;;
+Mørk Marok (THCA)|SIE_ML_181125|LabCore|THCA|31,16%|0,20%|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/Moerk_Marok.jpg?v=1783519239|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/COA_MorkMarok_THCAInnovations_SIE-ML-181125.pdf?v=1786279788;;
+Zkittlez (THCA)|SIE_ZF_130126|LabCore|THCA|17,38%|0,09%|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/Zkittles.jpg?v=1783519239|https://cdn.shopify.com/s/files/1/0942/8382/5500/files/COA_Zkittlez_THCAInnovations_SIE-ZF-130126.pdf?v=1786279789
+{%- endcapture -%}
+
+{%- liquid
+  assign group_titles = 'CBD Topskud,CBD Hash,CBD Olie,THCA' | split: ','
+  assign card_scheme = section.settings.card_color_scheme
+  assign heading_tag = 'h2'
+  if section.settings.use_h1
+    assign heading_tag = 'h1'
+  endif
+-%}
+
+<style>
+  #section-{{ section.id }} .fr-certs__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 5.6rem;
+  }
+
+  /* ---------- Intro ---------- */
+  #section-{{ section.id }} .fr-certs__intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.6rem;
+  }
+  #section-{{ section.id }} .fr-certs__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.6rem 1.4rem;
+    border-radius: 99px;
+    border: 0.1rem solid rgb(var(--color-border) / var(--color-border-alpha));
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: rgb(var(--color-foreground) / 0.7);
+  }
+  #section-{{ section.id }} .fr-certs__eyebrow::before {
+    content: "";
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: rgb(var(--color-foreground));
+  }
+  #section-{{ section.id }} .fr-certs__title {
+    margin: 0;
+    max-width: 18ch;
+    text-wrap: balance;
+  }
+  #section-{{ section.id }} .fr-certs__lead {
+    margin: 0;
+    max-width: 56ch;
+    color: rgb(var(--color-foreground) / 0.72);
+    text-wrap: pretty;
+  }
+
+  /* ---------- Group ---------- */
+  #section-{{ section.id }} .fr-certs__group {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+  }
+  #section-{{ section.id }} .fr-certs__group-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    padding-bottom: 1.6rem;
+    border-bottom: 0.1rem solid rgb(var(--color-border) / var(--color-border-alpha));
+  }
+  #section-{{ section.id }} .fr-certs__group-title {
+    margin: 0;
+  }
+  #section-{{ section.id }} .fr-certs__count {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: rgb(var(--color-foreground) / 0.6);
+    white-space: nowrap;
+  }
+
+  /* ---------- Grid ---------- */
+  #section-{{ section.id }} .fr-certs__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  @media screen and (min-width: 640px) {
+    #section-{{ section.id }} .fr-certs__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media screen and (min-width: 1024px) {
+    #section-{{ section.id }} .fr-certs__grid { grid-template-columns: repeat(3, 1fr); gap: 2.4rem; }
+  }
+
+  /* ---------- Card ---------- */
+  #section-{{ section.id }} .fr-certs__card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--product-card-media-radius, 1.2rem);
+    border: 0.1rem solid rgb(var(--color-border) / var(--color-border-alpha));
+    background-color: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+    transition: transform var(--animation-duration--medium, 0.3s) var(--animation-easing);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    #section-{{ section.id }} .fr-certs__card:hover { transform: translateY(-0.3rem); }
+    #section-{{ section.id }} .fr-certs__card:hover .fr-certs__media img { transform: scale(1.04); }
+  }
+  #section-{{ section.id }} .fr-certs__media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+  }
+  #section-{{ section.id }} .fr-certs__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--animation-duration--slow, 0.5s) var(--animation-easing);
+  }
+  /* Kort uden billede endnu — neutralt felt frem for brudt billede */
+  #section-{{ section.id }} .fr-certs__media--empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(var(--color-foreground) / 0.05);
+  }
+  #section-{{ section.id }} .fr-certs__media--empty span {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgb(var(--color-foreground) / 0.35);
+  }
+  #section-{{ section.id }} .fr-certs__badge {
+    position: absolute;
+    inset-block-start: 1.2rem;
+    inset-inline-start: 1.2rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: var(--badge-corner-radius, 99px);
+    background: rgb(var(--color-foreground));
+    color: rgb(var(--color-background));
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  #section-{{ section.id }} .fr-certs__body {
+    padding: 2rem 2rem 0;
+  }
+  #section-{{ section.id }} .fr-certs__name {
+    margin: 0 0 1.2rem;
+    text-wrap: balance;
+  }
+  #section-{{ section.id }} .fr-certs__row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.2rem;
+    padding: 1rem 0;
+    border-bottom: 0.1rem solid rgb(var(--color-border) / var(--color-border-alpha));
+    font-size: 1.3rem;
+  }
+  #section-{{ section.id }} .fr-certs__row:last-child { border-bottom: 0; }
+  #section-{{ section.id }} .fr-certs__label {
+    flex-shrink: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgb(var(--color-foreground) / 0.6);
+  }
+  #section-{{ section.id }} .fr-certs__value {
+    font-weight: 600;
+    text-align: end;
+  }
+  #section-{{ section.id }} .fr-certs__value--accent { font-size: 1.5rem; }
+  #section-{{ section.id }} .fr-certs__actions {
+    margin-top: auto;
+    padding: 1.6rem 2rem 2rem;
+  }
+  #section-{{ section.id }} .fr-certs__actions .btn { width: 100%; }
+
+  /* ---------- Info band ---------- */
+  #section-{{ section.id }} .fr-certs__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.4rem;
+    padding: 4.8rem 2.4rem;
+    border-radius: var(--product-card-media-radius, 1.2rem);
+    background-color: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+  }
+  #section-{{ section.id }} .fr-certs__info-label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgb(var(--color-foreground) / 0.7);
+  }
+  #section-{{ section.id }} .fr-certs__info-title { margin: 0; max-width: 22ch; text-wrap: balance; }
+  #section-{{ section.id }} .fr-certs__info p { margin: 0; max-width: 50ch; color: rgb(var(--color-foreground) / 0.8); }
+  @media screen and (min-width: 750px) {
+    #section-{{ section.id }} .fr-certs__info { padding: 5.6rem 3.2rem; }
+  }
+
+  /* ---------- CTA ---------- */
+  #section-{{ section.id }} .fr-certs__cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.6rem;
+  }
+  #section-{{ section.id }} .fr-certs__cta-title { margin: 0; max-width: 16ch; text-wrap: balance; }
+  #section-{{ section.id }} .fr-certs__cta p { margin: 0; max-width: 50ch; color: rgb(var(--color-foreground) / 0.72); }
+  #section-{{ section.id }} .fr-certs__cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-top: 0.8rem;
+  }
+</style>
+
+<div
+  id="section-{{ section.id }}"
+  class="section section--analysecertifikater spacing-style color-{{ section.settings.color_scheme }}"
+  style="{% render 'spacing-style', settings: section.settings %}"
+>
+  <div class="page-width">
+    <div class="fr-certs__inner">
+      {%- comment -%} Intro {%- endcomment -%}
+      <div class="fr-certs__intro">
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="fr-certs__eyebrow">{{ section.settings.eyebrow }}</span>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <{{ heading_tag }} class="fr-certs__title h1">{{ section.settings.heading }}</{{ heading_tag }}>
+        {%- endif -%}
+        {%- if section.settings.lead != blank -%}
+          <p class="fr-certs__lead">{{ section.settings.lead }}</p>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Grupper {%- endcomment -%}
+      {%- for group_title in group_titles -%}
+        {%- liquid
+          case forloop.index0
+            when 0
+              assign rows = certs_flower | strip | split: ';;'
+            when 1
+              assign rows = certs_hash | strip | split: ';;'
+            when 2
+              assign rows = certs_oil | strip | split: ';;'
+            when 3
+              assign rows = certs_thca | strip | split: ';;'
+          endcase
+        -%}
+
+        <section class="fr-certs__group">
+          <div class="fr-certs__group-head">
+            <h2 class="fr-certs__group-title h3">{{ group_title | strip }}</h2>
+            <span class="fr-certs__count">{{ rows.size }} certifikater</span>
+          </div>
+
+          <div class="fr-certs__grid">
+            {%- for row in rows -%}
+              {%- liquid
+                assign cert = row | strip | split: '|'
+                assign cert_name = cert[0] | strip
+                assign cert_batch = cert[1] | strip
+                assign cert_lab = cert[2] | strip
+                assign cert_key_label = cert[3] | strip
+                assign cert_key_value = cert[4] | strip
+                assign cert_thc = cert[5] | strip
+                assign cert_image = cert[6] | strip
+                assign cert_pdf = cert[7] | strip
+              -%}
+              <article class="fr-certs__card color-{{ card_scheme }}">
+                {%- if cert_image == '-' -%}
+                  <div class="fr-certs__media fr-certs__media--empty">
+                    <span>{{ cert_key_label }}</span>
+                    <span class="fr-certs__badge">COA</span>
+                  </div>
+                {%- else -%}
+                  <div class="fr-certs__media">
+                    {%- comment -%}
+                      Billederne ligger i Files, ikke som image_url-objekter, så CDN'et
+                      skaleres via &width= — samme mønster som i hero-sektionen.
+                    {%- endcomment -%}
+                    <img
+                      src="{{ cert_image }}&width=600"
+                      srcset="{{ cert_image }}&width=400 400w, {{ cert_image }}&width=600 600w, {{ cert_image }}&width=900 900w"
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      alt="{{ cert_name }} — analysecertifikat"
+                      loading="lazy"
+                      decoding="async"
+                    >
+                    <span class="fr-certs__badge">COA</span>
+                  </div>
+                {%- endif -%}
+
+                <div class="fr-certs__body">
+                  <h3 class="fr-certs__name h5">{{ cert_name }}</h3>
+
+                  <div class="fr-certs__row">
+                    <span class="fr-certs__label">Batch</span>
+                    <span class="fr-certs__value">{{ cert_batch }}</span>
+                  </div>
+                  <div class="fr-certs__row">
+                    <span class="fr-certs__label">Laboratorium</span>
+                    <span class="fr-certs__value">{{ cert_lab }}</span>
+                  </div>
+                  <div class="fr-certs__row">
+                    <span class="fr-certs__label">{{ cert_key_label }}</span>
+                    <span class="fr-certs__value fr-certs__value--accent">{{ cert_key_value }}</span>
+                  </div>
+                  <div class="fr-certs__row">
+                    <span class="fr-certs__label">Δ9-THC</span>
+                    <span class="fr-certs__value">{{ cert_thc }}</span>
+                  </div>
+                </div>
+
+                <div class="fr-certs__actions">
+                  {% render 'button',
+                    label: 'Se PDF',
+                    link: cert_pdf,
+                    style: 'primary',
+                    size: 'medium',
+                    icon: 'arrow-right',
+                    icon_style: 'solid',
+                    attributes: 'target="_blank" rel="noopener"',
+                    with_wrapper: false
+                  %}
+                </div>
+              </article>
+            {%- endfor -%}
+          </div>
+        </section>
+      {%- endfor -%}
+
+      {%- comment -%} Info-bånd {%- endcomment -%}
+      {%- if section.settings.info_title != blank -%}
+        <div class="fr-certs__info color-{{ section.settings.info_color_scheme }}">
+          {%- if section.settings.info_label != blank -%}
+            <span class="fr-certs__info-label">{{ section.settings.info_label }}</span>
+          {%- endif -%}
+          <h2 class="fr-certs__info-title h2">{{ section.settings.info_title }}</h2>
+          {%- if section.settings.info_text != blank -%}
+            <p>{{ section.settings.info_text }}</p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} CTA {%- endcomment -%}
+      {%- if section.settings.cta_title != blank -%}
+        <div class="fr-certs__cta">
+          <h2 class="fr-certs__cta-title h2">{{ section.settings.cta_title }}</h2>
+          {%- if section.settings.cta_text != blank -%}
+            <p>{{ section.settings.cta_text }}</p>
+          {%- endif -%}
+          <div class="fr-certs__cta-buttons">
+            {% render 'button',
+              label: section.settings.cta_primary_label,
+              link: section.settings.cta_primary_link,
+              style: 'primary',
+              size: 'large',
+              icon: 'arrow-right',
+              icon_style: 'solid',
+              with_wrapper: false
+            %}
+            {% render 'button',
+              label: section.settings.cta_secondary_label,
+              link: section.settings.cta_secondary_link,
+              style: 'secondary',
+              size: 'large',
+              with_wrapper: false
+            %}
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Analysecertifikater",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Intro"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Dokumentation"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Overskrift",
+      "default": "Analysecertifikater (COA)."
+    },
+    {
+      "type": "checkbox",
+      "id": "use_h1",
+      "label": "Brug som sidens H1",
+      "info": "Slå til når sektionen står øverst på en dedikeret certifikat-side.",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "lead",
+      "label": "Introtekst",
+      "default": "Alle vores produkter bliver lab-testet hos uafhængige laboratorier. Her finder du de gældende certifikater — så du ved præcis hvad der er i pakken."
+    },
+    {
+      "type": "header",
+      "content": "Info-bånd"
+    },
+    {
+      "type": "text",
+      "id": "info_label",
+      "label": "Label",
+      "default": "Hvad er en COA?"
+    },
+    {
+      "type": "text",
+      "id": "info_title",
+      "label": "Overskrift",
+      "default": "Hvert produkt får sit eget pas."
+    },
+    {
+      "type": "textarea",
+      "id": "info_text",
+      "label": "Tekst",
+      "default": "En COA — Certificate of Analysis — er en lab-rapport der viser præcis hvad der er i et produkt. Vores er udført af uafhængige tredjeparts-laboratorier og dækker både cannabinoider, tungmetaller og kontaminanter."
+    },
+    {
+      "type": "color_scheme",
+      "id": "info_color_scheme",
+      "label": "Farveskema for info-bånd",
+      "default": "scheme-3"
+    },
+    {
+      "type": "header",
+      "content": "Afsluttende CTA"
+    },
+    {
+      "type": "text",
+      "id": "cta_title",
+      "label": "Overskrift",
+      "default": "Mangler du noget?"
+    },
+    {
+      "type": "textarea",
+      "id": "cta_text",
+      "label": "Tekst",
+      "default": "Skriv til os hvis du har brug for et certifikat til en specifik batch — eller hvis du har spørgsmål til vores tests."
+    },
+    {
+      "type": "text",
+      "id": "cta_primary_label",
+      "label": "Primær knap — tekst",
+      "default": "Kontakt os"
+    },
+    {
+      "type": "url",
+      "id": "cta_primary_link",
+      "label": "Primær knap — link"
+    },
+    {
+      "type": "text",
+      "id": "cta_secondary_label",
+      "label": "Sekundær knap — tekst",
+      "default": "Se FAQ"
+    },
+    {
+      "type": "url",
+      "id": "cta_secondary_link",
+      "label": "Sekundær knap — link"
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "card_color_scheme",
+      "label": "Farveskema for kort",
+      "default": "scheme-2"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bund",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start-mobile",
+      "label": "Top (mobil)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end-mobile",
+      "label": "Bund (mobil)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Analysecertifikater"
+    }
+  ]
+}
+{% endschema %}

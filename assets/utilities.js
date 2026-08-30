@@ -264,12 +264,16 @@ export function formatMoney(value) {
  */
 export function formatCurrency(cents, format) {
   // Use Shopify's money formatting if available
+  let formatted;
   if (window.Shopify?.formatMoney) {
-    return window.Shopify.formatMoney(cents, format);
+    formatted = window.Shopify.formatMoney(cents, format);
+  } else {
+    // Fallback to our own implementation with current currency
+    formatted = formatShopifyMoney(cents, format);
   }
 
-  // Fallback to our own implementation with current currency
-  return formatShopifyMoney(cents, format);
+  // Drop trailing ,00 / .00 so whole-krone prices read cleaner (e.g. 9.999 kr)
+  return String(formatted).replace(/([.,])00(?=\D|$)/g, "");
 }
 
 /**
@@ -341,7 +345,7 @@ export function formatShopifyMoney(cents, format) {
       value = formatWithDelimiters(cents, 2);
   }
 
-  return formatString.replace(placeholderRegex, value);
+  return formatString.replace(placeholderRegex, value).replace(/([.,])00(?=\D|$)/g, "");
 }
 
 /**
@@ -500,6 +504,13 @@ export const mediaQueryMobile = matchMedia(mediaBreakpointMobile);
 export const mediaQueryTablet = matchMedia(mediaBreakpointTablet);
 export const mediaQueryDesktop = matchMedia(mediaBreakpointDesktop);
 export const mediaQueryLarge = matchMedia(mediaBreakpointLarge);
+
+/**
+ * OS-level reduced-motion preference. Declared here with the other media queries so it
+ * is evaluated once at module load rather than per call - isSmoothScrollEnabled() can be
+ * reached on every scroll event whenever Lenis is inactive.
+ */
+export const mediaQueryReducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
 
 /**
  * Check if the current breakpoint is mobile
@@ -1843,12 +1854,21 @@ export function getSafariVersion() {
  * @returns {boolean} True if smooth scroll should be enabled, false otherwise
  */
 export function isSmoothScrollEnabled() {
+  // Six scroll handlers in theme.js call getLenis() on EVERY scroll event while lenis is
+  // null, retrying in case it loaded late. Lenis is null on Safari and on mobile, so this
+  // function sits on the scroll hot path there for the life of the page. Everything below
+  // is therefore a cached read or a plain compare - no allocation per call.
+
   // Safari: native scrolling is smoother, Lenis causes forced layouts (~1.3M px²/frame)
   if (isSafari()) return false;
 
   // Mobile/tablet: Lenis only handles wheel events, touch scroll is always native
   // No benefit on touch-only devices, skip to save resources
   if (isMobileBreakpoint()) return false;
+
+  // Respect the OS-level reduced-motion preference. Hijacking the scroll is exactly the
+  // kind of motion that preference exists to opt out of.
+  if (mediaQueryReducedMotion.matches) return false;
 
   // Check theme setting (will be mapped to Shopify settings later)
   // Default to true if setting doesn't exist (backward compatible)
@@ -1886,12 +1906,22 @@ function initLenisGlobal() {
       }
 
       if (Lenis && !lenisInstance) {
+        // Lenis uses `duration` + `easing` whenever `duration` is set, and only falls back
+        // to `lerp` otherwise. The previous config passed BOTH, so lerp: 0.25 was dead code
+        // and every scroll ran the 0.6s eased glide. Dropping `duration` lets lerp govern.
+        //
+        // lerp is the per-frame catch-up factor - lower means a longer glide:
+        //   subtle -> 0.4, settles in ~3 frames (~50ms). Takes the edge off the wheel step
+        //             without adding perceptible input lag. CRO-safe default.
+        //   smooth -> 0.15, the heavier original feel, when it is wanted deliberately.
+        const intensity = window.FoxTheme?.settings?.smoothScrollIntensity ?? "subtle";
+        const lerp = intensity === "smooth" ? 0.15 : 0.4;
+
         lenisInstance = new Lenis({
           autoRaf: true,
           smoothWheel: true,
           wheelMultiplier: 1.0,
-          lerp: 0.25,
-          duration: 0.6,
+          lerp,
           prevent: (node) => !!node.closest(LENIS_PREVENT_SELECTOR),
         });
 

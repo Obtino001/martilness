@@ -1,0 +1,96 @@
+{%- doc -%}
+  Renders a product metafield as HTML.
+  Flat "Label: value" blobs are split into <ul><li> in Liquid (no JS).
+
+  @param {object} metafield
+  @param {boolean} [color_swatches]
+  @param {boolean} [format_list]
+{%- enddoc -%}
+{%- liquid
+  if format_list == nil
+    assign format_list = true
+  endif
+
+  capture mf_raw_html
+    case metafield.type
+      when 'multi_line_text_field'
+        echo metafield.value | newline_to_br
+      when 'single_line_text_field'
+        echo metafield.value
+      else
+        echo metafield | metafield_tag
+    endcase
+  endcapture
+
+  assign mf_plain = mf_raw_html | strip_html | replace: '&nbsp;', ' ' | strip
+  assign mf_down = mf_plain | downcase
+
+  # Only treat as a color list when the text really names LED colors
+  if color_swatches
+    assign color_swatches = false
+    if mf_down contains 'rød:' or mf_down contains 'blå:' or mf_down contains 'grøn:' or mf_down contains 'nærinfrarød'
+      assign color_swatches = true
+    endif
+  endif
+-%}
+{%- if metafield != blank -%}
+  {%- if metafield.type == 'multi_line_text_field' -%}
+    {%- assign mf_lines = metafield.value | strip | newline_to_br | split: '<br />' -%}
+    <div class="mt-pdp-tab rte{% if color_swatches %} mt-pdp-tab--swatches{% endif %}" data-mt-pdp-metafield data-mt-color-swatches>
+      {%- if mf_lines.size > 1 and format_list -%}
+        <ul class="mt-pdp-tab__list">
+          {%- for line in mf_lines -%}
+            {%- assign line_text = line | strip_html | strip -%}
+            {%- if line_text != blank -%}
+              <li>{{ line_text }}</li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- elsif mf_lines.size > 1 -%}
+        {%- for line in mf_lines -%}
+          {%- assign line_text = line | strip_html | strip -%}
+          {%- if line_text != blank -%}
+            {%- assign segments = line_text | split: ':' -%}
+            {%- assign label = segments[0] -%}
+            {%- assign label_length = label | size -%}
+            {%- if segments.size > 1 and label_length < 60 -%}
+              {%- assign rest = line_text | remove_first: label | remove_first: ':' | strip -%}
+              <p><strong>{{ label }}:</strong> {{ rest }}</p>
+            {%- else -%}
+              <p>{{ line_text }}</p>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        <div class="mt-pdp-tab__text">{{ metafield.value | newline_to_br }}</div>
+      {%- endif -%}
+    </div>
+  {%- elsif format_list and mf_plain contains ':' -%}
+    {%- assign work = mf_plain -%}
+    {%- assign labels = 'Nærinfrarødt lys|Nærinfrarød (NIR)|Nærinfrarød|Antal LED-lamper|Certificeringer|Tidsindstilling|Strømforbrug|Strømstyrke|Temperatur|Materiale|Betjening|Spænding|Størrelse|LED-lys|Vægt|ROHS|Orange|Lilla|Cyan|Grøn|Blå|Rød|Gul' | split: '|' -%}
+    {%- for label in labels -%}
+      {%- assign needle = label | append: ':' -%}
+      {%- assign marked = '|||' | append: needle -%}
+      {%- assign work = work | replace: needle, marked -%}
+    {%- endfor -%}
+    {%- assign parts = work | split: '|||' -%}
+    <div class="mt-pdp-tab rte{% if color_swatches %} mt-pdp-tab--swatches{% endif %}" data-mt-pdp-metafield data-mt-color-swatches>
+      {%- if parts.size > 2 -%}
+        <ul class="mt-pdp-tab__list">
+          {%- for part in parts -%}
+            {%- assign item = part | strip -%}
+            {%- if item != blank -%}
+              <li>{{ item }}</li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- else -%}
+        {{ mf_raw_html }}
+      {%- endif -%}
+    </div>
+  {%- else -%}
+    <div class="mt-pdp-tab rte{% if color_swatches %} mt-pdp-tab--swatches{% endif %}" data-mt-pdp-metafield data-mt-color-swatches>
+      {{ mf_raw_html }}
+    </div>
+  {%- endif -%}
+{%- endif -%}

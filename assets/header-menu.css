@@ -93,6 +93,80 @@
   width: 28rem;
   max-width: 30%;
 }
+/* Banner-kort: hold indhold inden for kortet, også ved 5-6 kolonner */
+.mega-menu__promotions .image-card__texts,
+.menu-drawer__mega .image-card__texts {
+  min-width: 0;
+}
+.mega-menu__promotions .image-card__heading,
+.menu-drawer__mega .image-card__heading {
+  overflow-wrap: break-word;
+}
+.mega-menu__promotions .image-card__button,
+.menu-drawer__mega .image-card__button {
+  flex-shrink: 0;
+}
+
+/* Keep Produkter mega-menu cards on one baseline */
+.mega-menu__promotions .layout-panel-grid,
+.menu-drawer__mega .layout-panel-grid {
+  align-items: stretch;
+}
+.mega-menu__promotions .image-card--content-outside,
+.menu-drawer__mega .image-card--content-outside {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-content: start;
+}
+.mega-menu__promotions .image-card--content-outside .image-card__media,
+.menu-drawer__mega .image-card--content-outside .image-card__media {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 1.6rem;
+}
+.mega-menu__promotions .image-card--content-outside .image-card__media [style*="--ratio"],
+.menu-drawer__mega .image-card--content-outside .image-card__media [style*="--ratio"] {
+  --ratio: 0.75;
+  --ratio-mobile: 0.75;
+  height: 100%;
+}
+.mega-menu__promotions .image-card--content-outside .image-card__media [style*="--ratio"]::before,
+.menu-drawer__mega .image-card--content-outside .image-card__media [style*="--ratio"]::before {
+  padding-block-start: 133.333% !important;
+}
+.mega-menu__promotions .image-card--content-outside .image-card__media img,
+.mega-menu__promotions .image-card--content-outside .image-card__media .media__image,
+.menu-drawer__mega .image-card--content-outside .image-card__media img,
+.menu-drawer__mega .image-card--content-outside .image-card__media .media__image {
+  object-fit: cover !important;
+  object-position: center;
+  width: 100% !important;
+  height: 100% !important;
+}
+.mega-menu__promotions .image-card--content-outside .image-card__content,
+.menu-drawer__mega .image-card--content-outside .image-card__content {
+  align-items: center !important;
+  min-height: 4.8rem;
+  width: 100%;
+}
+.mega-menu__promotions .image-card--content-outside .image-card__heading,
+.menu-drawer__mega .image-card--content-outside .image-card__heading {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  line-height: 1.25;
+  min-height: 2.5em;
+}
+.mega-menu__promotions .image-card--content-outside .image-card__button .btn,
+.menu-drawer__mega .image-card--content-outside .image-card__button .btn {
+  background-color: rgb(var(--color-button-background));
+  color: rgb(var(--color-button-text));
+  border-color: rgb(var(--color-button-background));
+}
+
 .mega-menu__column {
   padding-block: var(--dropdown-offset-top) var(--dropdown-offset-bottom);
   padding-inline: 3rem;

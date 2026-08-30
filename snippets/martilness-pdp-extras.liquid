@@ -1,0 +1,112 @@
+{%- doc -%}
+  Martilness PDP benefit checklist (green check USPs).
+  Source order:
+  1. metafield `custom.product_usps` (list.single_line_text_field)
+  2. metafield `custom.fordele` (text / pipe-separated)
+  3. handle-based defaults
+
+  @param {object} product
+{%- enddoc -%}
+
+{%- liquid
+  assign usps = product.metafields.custom.product_usps.value
+  assign use_usp_list = false
+  if usps != blank
+    assign use_usp_list = true
+  endif
+
+  assign benefits = ''
+  unless use_usp_list
+    assign benefits = product.metafields.custom.fordele.value | default: product.metafields.custom.fordele | default: ''
+    if benefits == blank
+      assign handle = product.handle | default: ''
+      assign ptype = product.type | downcase | default: ''
+      assign title_d = product.title | downcase | default: ''
+
+      if handle contains 'saunataeppe' or title_d contains 'saunatæppe' or title_d contains 'saunataeppe'
+        assign benefits = 'Wellness i dit eget hjem|Forbedrer muskelrestitution og lindrer ømhed og smerter|Reducerer stress og løfter humøret|Fremmer dybere søvn|Perfekt i kombination med isbad terapi|Giver sundere og renere hud'
+      elsif handle contains 'isbad' or title_d contains 'isbad' or ptype contains 'isbad'
+        assign benefits = 'Styrker både krop og sind|Reduceret muskelømhed og inflammation|Naturlig endorfin-boost|Perfekt i kombination med saunatæppe eller dampsauna|Nem opsætning derhjemme|Hurtig levering og gratis fragt'
+      elsif handle contains 'dampsauna' or title_d contains 'dampsauna'
+        assign benefits = 'Wellness i dit eget hjem|Forbedrer muskelrestitution og lindrer ømhed og smerter|Reducerer stress og løfter humøret|Fremmer dybere søvn|Perfekt i kombination med isbad terapi|Giver sundere og renere hud'
+      elsif handle contains 'maske' or handle contains 'led' or title_d contains 'led' or title_d contains 'maske'
+        assign benefits = 'Infrarød LED-terapi hjemme|Understøtter hudens restitution|Nem daglig rutine|Hurtig levering|Altid gratis fragt|30 dages tilfredshedsgaranti'
+      endif
+    endif
+  endunless
+-%}
+
+{%- if use_usp_list or benefits != blank -%}
+  <ul class="mt-pdp-benefits" role="list">
+    {%- if use_usp_list -%}
+      {%- for line in usps -%}
+        {%- assign clean = line | strip -%}
+        {%- if clean == blank -%}{%- continue -%}{%- endif -%}
+        <li class="mt-pdp-benefits__item">
+          <span class="mt-pdp-benefits__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" focusable="false">
+              <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="mt-pdp-benefits__text">{{ clean }}</span>
+        </li>
+      {%- endfor -%}
+    {%- else -%}
+      {%- assign benefit_lines = benefits | newline_to_br | split: '<br />' -%}
+      {%- if benefits contains '|' -%}
+        {%- assign benefit_lines = benefits | split: '|' -%}
+      {%- endif -%}
+      {%- for line in benefit_lines -%}
+        {%- assign clean = line | strip -%}
+        {%- if clean == blank -%}{%- continue -%}{%- endif -%}
+        <li class="mt-pdp-benefits__item">
+          <span class="mt-pdp-benefits__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" focusable="false">
+              <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="mt-pdp-benefits__text">{{ clean }}</span>
+        </li>
+      {%- endfor -%}
+    {%- endif -%}
+  </ul>
+{%- endif -%}
+
+<style>
+  .mt-pdp-benefits {
+    list-style: none;
+    margin: 0.8rem 0 1.6rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .mt-pdp-benefits__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: 1.45rem;
+    line-height: 1.4;
+    color: rgb(var(--color-foreground));
+  }
+
+  .mt-pdp-benefits__icon {
+    flex: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: #09412d;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.05rem;
+  }
+
+  .mt-pdp-benefits__icon svg {
+    width: 1.15rem;
+    height: 1.15rem;
+    display: block;
+  }
+</style>

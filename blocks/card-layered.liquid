@@ -34,14 +34,14 @@
         {% content_for 'block', type: '_simple-text', id: 'description' %}
       </div>
     </div>
-    <button
+    {% comment %} <button
       ref="cardLayeredButton"
       on:click="/onButtonClick"
       class="card-layered__button btn btn--primary btn--medium btn--icon-only no-js-hidden"
       aria-label="{{ 'accessibility.toggle_content' | t }}"
     >
       {% render 'icon', icon: 'plus', size: 'small' %}
-    </button>
+    </button> {% endcomment %}
   </div>
 </card-layered>
 

@@ -1,0 +1,23 @@
+{%- doc -%}
+  Splits a product title on the first vertical bar and renders the two halves
+  as separate lines, hiding the bar itself. Titles without a bar render unchanged.
+
+  @param {string} title - The title to render.
+
+  @example
+  {% render 'product-title-split', title: product_title %}
+{%- enddoc -%}
+
+{%- liquid
+  assign title_parts = title | split: '|'
+-%}
+
+{%- if title_parts.size > 1 -%}
+  {%- liquid
+    assign title_name = title_parts | first | strip
+    assign title_suffix = title | remove_first: title_parts.first | remove_first: '|' | strip
+  -%}
+  <span class="product-title__name">{{ title_name | escape }}</span><span class="product-title__suffix">{{ title_suffix | escape }}</span>
+{%- else -%}
+  {{- title -}}
+{%- endif -%}

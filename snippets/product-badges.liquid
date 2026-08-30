@@ -102,23 +102,10 @@
     -%}
     {%- if on_sale and show_sale_badge -%}
       {% liquid
-        assign sale_badge = ''
-        assign amount = 0
-
-        case sale_badge_type
-          when 'percentage'
-            if compare_at_price > price
-              assign amount = compare_at_price | minus: price | times: 100 | divided_by: compare_at_price | append: '%'
-            endif
-            assign sale_badge = 'products.product.save_price_html' | t: amount: amount
-          when 'fixed_amount'
-            if compare_at_price > price
-              assign amount = compare_at_price | minus: price | money
-            endif
-            assign sale_badge = 'products.product.save_price_html' | t: amount: amount
-          else
-            assign sale_badge = 'products.product.on_sale' | t
-        endcase
+        assign save_cents = compare_at_price | minus: price
+        assign save_amount_money = save_cents | money_without_trailing_zeros
+        assign save_percent = save_cents | times: 100.0 | divided_by: compare_at_price | round
+        assign sale_badge = 'products.product.save_price_html' | t: amount: save_amount_money
       %}
       <span class="badge badge--sale">{{ sale_badge }}</span>
     {%- endif -%}

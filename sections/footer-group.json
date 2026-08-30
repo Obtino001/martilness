@@ -7,4 +7,761 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{"type":"footer","name":"t:names.footer","sections":{"custom_section_4yLVt7":{"type":"custom-section","blocks":{"grid_ze4eTp":{"type":"grid","name":"t:names.grid","settings":{"vertical_alignment":"start","columns_xxl":4,"column_gap":75,"row_gap":30,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"inherit_color_scheme":true,"color_scheme":"","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"enable_swipe_on_mobile":true,"swipe_custom_width_column":false,"swipe_column_width":76,"columns_mobile":1,"column_gap_mobile":12,"row_gap_mobile":12,"device":"desktop","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0,"padding-block-start-mobile":0,"padding-block-end-mobile":0,"padding-inline-start-mobile":0,"padding-inline-end-mobile":0,"custom_columns":""},"blocks":{"icon_box_f9Ued3":{"type":"icon-box","name":"t:names.icon_box_standard","settings":{"direction":"vertical","text_align":"center","icon":"package","icon_spacing":12,"icon_size":"custom-size","icon_width":32,"icon_width_mobile":48,"heading":"Altid gratis fragt","heading_preset":"h6","text":"<p>Gratis fragt på alle ordrer – uanset størrelse.</p>","text_color":"subtext","link":"","show_link_icon":true,"content_row_gap":4,"style":"standard","inherit_color_scheme":true,"color_scheme":"","border":"solid","border_width":1,"border_opacity":10,"border_radius":10},"blocks":{}},"icon_box_DxbEHb":{"type":"icon-box","name":"t:names.icon_box_standard","settings":{"direction":"vertical","text_align":"center","icon":"arrow-up-left-down","icon_spacing":12,"icon_size":"custom-size","icon_width":32,"icon_width_mobile":48,"heading":"30 dages tilfredsgaranti","heading_preset":"h6","text":"<p>Fuld fortrydelsesret – også efter du har testet produktet.</p>","text_color":"subtext","link":"","show_link_icon":true,"content_row_gap":4,"style":"standard","inherit_color_scheme":true,"color_scheme":"","border":"solid","border_width":1,"border_opacity":10,"border_radius":10},"blocks":{}},"icon_box_36RmyU":{"type":"icon-box","name":"t:names.icon_box_standard","settings":{"direction":"vertical","text_align":"center","icon":"credit-card","icon_spacing":12,"icon_size":"custom-size","icon_width":32,"icon_width_mobile":48,"heading":"Sikker betaling","heading_preset":"h6","text":"<p>Visa, Mastercard og MobilePay med 3-D Secure.</p>","text_color":"subtext","link":"","show_link_icon":true,"content_row_gap":4,"style":"standard","inherit_color_scheme":true,"color_scheme":"","border":"solid","border_width":1,"border_opacity":10,"border_radius":10},"blocks":{}},"icon_box_hF6UhE":{"type":"icon-box","name":"t:names.icon_box_standard","settings":{"direction":"vertical","text_align":"center","icon":"chat-teardrop","icon_spacing":12,"icon_size":"custom-size","icon_width":32,"icon_width_mobile":48,"heading":"Dansk kundeservice","heading_preset":"h6","text":"<p>Man-fre 08.00-20.00 · svar inden 24 timer</p>","text_color":"subtext","link":"","show_link_icon":true,"content_row_gap":4,"style":"standard","inherit_color_scheme":true,"color_scheme":"","border":"solid","border_width":1,"border_opacity":10,"border_radius":10},"blocks":{}}},"block_order":["icon_box_f9Ued3","icon_box_DxbEHb","icon_box_36RmyU","icon_box_hF6UhE"]}},"block_order":["grid_ze4eTp"],"custom_css":[],"name":"t:names.custom_section","settings":{"container":"page-width","content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","horizontal_alignment_flex_direction_column":"flex-start","column_gap":12,"row_gap":12,"column_gap_mobile":12,"row_gap_mobile":12,"use_color_scheme_in_container":false,"color_scheme":"","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"device":"desktop","padding-block-start":60,"padding-block-end":60,"padding-inline-start":0,"padding-inline-end":0,"padding-block-start-mobile":32,"padding-block-end-mobile":32,"padding-inline-start-mobile":0,"padding-inline-end-mobile":0}},"footer":{"type":"footer","blocks":{"footer_column_logo":{"type":"_footer-column","name":"t:names.column","settings":{"width":100,"heading":"","heading_size":"h5","open_default":false,"enable_divider":false,"order":-2},"blocks":{"image_logo":{"type":"image","name":"t:names.image","settings":{"image":"shopify://shop_images/Logo-white.png","link":"/","image_ratio":"adapt","image_ratio_mobile":"adapt","width":"custom","custom_width":18,"width_mobile":"custom","custom_width_mobile":45,"rounded":false,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0,"mobile-padding-scale":80},"blocks":{}},"divider_logo":{"type":"divider","name":"t:names.divider","settings":{"thickness":1,"width_percent":100,"disable_on_desktop":false,"disable_on_mobile":false,"device":"desktop","padding-block-start":28,"padding-block-end":36,"padding-block-start-mobile":20,"padding-block-end-mobile":8},"blocks":{}}},"block_order":["image_logo","divider_logo"]},"footer_column_kontakt":{"type":"_footer-column","name":"t:names.column","settings":{"width":24,"heading":"Kontakt","heading_size":"h5","open_default":false,"enable_divider":true},"blocks":{"row_address":{"type":"group","name":"t:names.group","settings":{"content_direction":"row","vertical_on_mobile":false,"horizontal_alignment":"flex-start","vertical_alignment":"flex-start","horizontal_alignment_flex_direction_column":"flex-start","column_gap":10,"row_gap":4,"enable_sticky_desktop":false,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"inherit_color_scheme":true,"color_scheme":"","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"enable_swipe_on_mobile":false,"swipe_custom_width_column":false,"swipe_column_width":76,"columns_mobile":2,"column_gap_mobile":10,"row_gap_mobile":4,"device":"desktop","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0,"padding-block-start-mobile":0,"padding-block-end-mobile":0,"padding-inline-start-mobile":0,"padding-inline-end-mobile":0},"blocks":{"addr_icon":{"type":"icon","name":"t:names.icon","settings":{"icon":"storefront","icon_size":"custom-size","width":20,"width_mobile":20,"link":"","round_shape":false},"blocks":{}},"addr_text":{"type":"text","name":"t:names.text","settings":{"text":"<p>Baunebakkevej 12, 2.th<br/>2650 Hvidovre</p>","highlight_style":"none","highlight_font_style":"italic","highlight_shape_color":"","highlight_text_color":"","type_preset":"paragraph","font":"var(--font-body--family)","font_weight":"","font_size":15,"font_size_mobile":15,"line_height":"normal","text_color":"text","text_color_gradient":"","disable_line_break_mobile":false,"width":"fit-content","text_alignment":"left","width_mobile":"fit-content","text_alignment_mobile":"left","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0,"mobile-padding-scale":80,"animation_type":"none","animation_delay":250},"blocks":{}}},"block_order":["addr_icon","addr_text"]},"row_email":{"type":"group","name":"t:names.group","settings":{"content_direction":"row","vertical_on_mobile":false,"horizontal_alignment":"flex-start","vertical_alignment":"flex-start","horizontal_alignment_flex_direction_column":"flex-start","column_gap":10,"row_gap":4,"enable_sticky_desktop":false,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"inherit_color_scheme":true,"color_scheme":"","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"enable_swipe_on_mobile":false,"swipe_custom_width_column":false,"swipe_column_width":76,"columns_mobile":2,"column_gap_mobile":10,"row_gap_mobile":4,"device":"desktop","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0,"padding-block-start-mobile":0,"padding-block-end-mobile":0,"padding-inline-start-mobile":0,"padding-inline-end-mobile":0},"blocks":{"mail_icon":{"type":"icon","name":"t:names.icon","settings":{"icon":"email","icon_size":"custom-size","width":20,"width_mobile":20,"link":"","round_shape":false},"blocks":{}},"mail_text":{"type":"text","name":"t:names.text","settings":{"text":"<p><a href=\"mailto:info@martilness.dk\">info@martilness.dk</a></p>","highlight_style":"none","highlight_font_style":"italic","highlight_shape_color":"","highlight_text_color":"","type_preset":"paragraph","font":"var(--font-body--family)","font_weight":"","font_size":15,"font_size_mobile":15,"line_height":"normal","text_color":"text","text_color_gradient":"","disable_line_break_mobile":false,"width":"fit-content","text_alignment":"left","width_mobile":"fit-content","text_alignment_mobile":"left","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0,"mobile-padding-scale":80,"animation_type":"none","animation_delay":250},"blocks":{}}},"block_order":["mail_icon","mail_text"]},"row_phone":{"type":"group","name":"t:names.group","settings":{"content_direction":"row","vertical_on_mobile":false,"horizontal_alignment":"flex-start","vertical_alignment":"flex-start","horizontal_alignment_flex_direction_column":"flex-start","column_gap":10,"row_gap":4,"enable_sticky_desktop":false,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"inherit_color_scheme":true,"color_scheme":"","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"enable_swipe_on_mobile":false,"swipe_custom_width_column":false,"swipe_column_width":76,"columns_mobile":2,"column_gap_mobile":10,"row_gap_mobile":4,"device":"desktop","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0,"padding-block-start-mobile":0,"padding-block-end-mobile":0,"padding-inline-start-mobile":0,"padding-inline-end-mobile":0},"blocks":{"tel_icon":{"type":"icon","name":"t:names.icon","settings":{"icon":"phone","icon_size":"custom-size","width":20,"width_mobile":20,"link":"","round_shape":false},"blocks":{}},"tel_text":{"type":"text","name":"t:names.text","settings":{"text":"<p><a href=\"tel:+4527796900\">+45 2779 6900</a></p>","highlight_style":"none","highlight_font_style":"italic","highlight_shape_color":"","highlight_text_color":"","type_preset":"paragraph","font":"var(--font-body--family)","font_weight":"","font_size":15,"font_size_mobile":15,"line_height":"normal","text_color":"text","text_color_gradient":"","disable_line_break_mobile":false,"width":"fit-content","text_alignment":"left","width_mobile":"fit-content","text_alignment_mobile":"left","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0,"mobile-padding-scale":80,"animation_type":"none","animation_delay":250},"blocks":{}}},"block_order":["tel_icon","tel_text"]},"hours_heading":{"type":"text","name":"t:names.text","settings":{"text":"<p><strong>ÅBNINGSTIDER</strong></p>","highlight_style":"none","highlight_font_style":"italic","highlight_shape_color":"","highlight_text_color":"","type_preset":"paragraph","font":"var(--font-body--family)","font_weight":"","font_size":14,"font_size_mobile":14,"line_height":"normal","text_color":"text","text_color_gradient":"","disable_line_break_mobile":false,"width":"fill","text_alignment":"left","width_mobile":"fill","text_alignment_mobile":"left","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0,"mobile-padding-scale":80,"animation_type":"none","animation_delay":250},"blocks":{}},"hours_text":{"type":"text","name":"t:names.text","settings":{"text":"<p>Man–fre: 08.00–20.00<br/>Svar inden 24 timer</p>","highlight_style":"none","highlight_font_style":"italic","highlight_shape_color":"","highlight_text_color":"","type_preset":"paragraph","font":"var(--font-body--family)","font_weight":"","font_size":15,"font_size_mobile":15,"line_height":"normal","text_color":"subtext","text_color_gradient":"","disable_line_break_mobile":false,"width":"fill","text_alignment":"left","width_mobile":"fill","text_alignment_mobile":"left","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0,"mobile-padding-scale":80,"animation_type":"none","animation_delay":250},"blocks":{}}},"block_order":["row_address","row_email","row_phone","hours_heading","hours_text"]},"footer_column_6qKBdj":{"type":"_footer-column","name":"t:names.column","settings":{"width":17,"heading":"Kundeservice","heading_size":"h5","open_default":false,"enable_divider":true},"blocks":{"footer_menu_fLEPht":{"type":"_footer-menu","name":"t:names.menu","settings":{"menu":"footer"},"blocks":{}}},"block_order":["footer_menu_fLEPht"]},"footer_column_TggKmp":{"type":"_footer-column","name":"t:names.column","settings":{"width":17,"heading":"Kategorier","heading_size":"h5","open_default":false,"enable_divider":true},"blocks":{"footer_menu_bNUmwj":{"type":"_footer-menu","name":"t:names.menu","settings":{"menu":"footer-kategorier"},"blocks":{}}},"block_order":["footer_menu_bNUmwj"]},"footer_column_newsletter":{"type":"_footer-column","name":"t:names.column","settings":{"width":30,"heading":"Tilmeld dig & få tips og tilbud","heading_size":"h5","open_default":false,"enable_divider":true},"blocks":{"newsletter_tgRpYU":{"type":"newsletter","name":"t:names.newsletter","settings":{"text_align":"left","newsletter_term":"<p>Tips, guides og eksklusive tilbud. Vi skriver kun, når det er værd at læse – afmeld dig når som helst. Se vores <a href=\"/policies/privacy-policy\" title=\"Persondatapolitik\">persondatapolitik</a>.</p>","newsletter_term_text_color":"subtext","width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100},"blocks":{}}},"block_order":["newsletter_tgRpYU"]}},"block_order":["footer_column_logo","footer_column_kontakt","footer_column_6qKBdj","footer_column_TggKmp","footer_column_newsletter"],"settings":{"payment_heading":"Betalingsmuligheder","enable_payment_icons":true,"payment_icons":"dankort, visa, master, apple_pay, mobilepay","shipping_heading":"Fragtpartner","reviews_heading":"Anmeldelser","reviews_text":"","reviews_url":"","cvr":"35633146","show_powered_by":false,"menu":"","enable_follow_on_shop":true,"enable_social_media_icons":true,"enable_language_selector":true,"enable_country_selector":true,"color_scheme":"scheme-6","border":"none","border_width":1,"border_opacity":100,"border_radius":20,"device":"desktop","padding-block-start":64,"padding-block-start-mobile":40,"shipping_link":"","show_reviews":true}}},"order":["custom_section_4yLVt7","footer"]}
+{
+  "type": "footer",
+  "name": "t:names.footer",
+  "sections": {
+    "custom_section_4yLVt7": {
+      "type": "custom-section",
+      "blocks": {
+        "grid_ze4eTp": {
+          "type": "grid",
+          "name": "t:names.grid",
+          "settings": {
+            "vertical_alignment": "start",
+            "columns_xxl": 4,
+            "column_gap": 75,
+            "row_gap": 30,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "enable_swipe_on_mobile": false,
+            "swipe_custom_width_column": false,
+            "swipe_column_width": 76,
+            "columns_mobile": 2,
+            "column_gap_mobile": 12,
+            "row_gap_mobile": 12,
+            "device": "desktop",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "padding-block-start-mobile": 0,
+            "padding-block-end-mobile": 0,
+            "padding-inline-start-mobile": 0,
+            "padding-inline-end-mobile": 0,
+            "custom_columns": ""
+          },
+          "blocks": {
+            "icon_box_f9Ued3": {
+              "type": "icon-box",
+              "name": "t:names.icon_box_standard",
+              "settings": {
+                "direction": "vertical",
+                "text_align": "center",
+                "icon": "package",
+                "icon_spacing": 12,
+                "icon_size": "custom-size",
+                "icon_width": 32,
+                "icon_width_mobile": 48,
+                "heading": "1-3 dages levering",
+                "heading_preset": "h6",
+                "text": "<p>Bestil inden 17 og få leveret i morgen.</p>",
+                "text_color": "subtext",
+                "link": "",
+                "show_link_icon": true,
+                "content_row_gap": 4,
+                "style": "standard",
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "border": "solid",
+                "border_width": 1,
+                "border_opacity": 10,
+                "border_radius": 10
+              },
+              "blocks": {}
+            },
+            "icon_box_DxbEHb": {
+              "type": "icon-box",
+              "name": "t:names.icon_box_standard",
+              "settings": {
+                "direction": "vertical",
+                "text_align": "center",
+                "icon": "truck",
+                "icon_spacing": 12,
+                "icon_size": "custom-size",
+                "icon_width": 32,
+                "icon_width_mobile": 48,
+                "heading": "Altid gratis fragt",
+                "heading_preset": "h6",
+                "text": "<p>Gratis levering til din nærmeste pakkeshop.</p>",
+                "text_color": "subtext",
+                "link": "",
+                "show_link_icon": true,
+                "content_row_gap": 4,
+                "style": "standard",
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "border": "solid",
+                "border_width": 1,
+                "border_opacity": 10,
+                "border_radius": 10
+              },
+              "blocks": {}
+            },
+            "icon_box_36RmyU": {
+              "type": "icon-box",
+              "name": "t:names.icon_box_standard",
+              "settings": {
+                "direction": "vertical",
+                "text_align": "center",
+                "icon": "check",
+                "icon_spacing": 12,
+                "icon_size": "custom-size",
+                "icon_width": 32,
+                "icon_width_mobile": 48,
+                "heading": "30 dages tilfredsgaranti",
+                "heading_preset": "h6",
+                "text": "<p>Neutral emballage uden logo eller afsender.</p>",
+                "text_color": "subtext",
+                "link": "",
+                "show_link_icon": true,
+                "content_row_gap": 4,
+                "style": "standard",
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "border": "solid",
+                "border_width": 1,
+                "border_opacity": 10,
+                "border_radius": 10
+              },
+              "blocks": {}
+            },
+            "icon_box_hF6UhE": {
+              "type": "icon-box",
+              "name": "t:names.icon_box_standard",
+              "settings": {
+                "direction": "vertical",
+                "text_align": "center",
+                "icon": "storefront",
+                "icon_spacing": 12,
+                "icon_size": "custom-size",
+                "icon_width": 32,
+                "icon_width_mobile": 48,
+                "heading": "Dansk butik & webshop",
+                "heading_preset": "h6",
+                "text": "<p>Kig forbi vores butik i Hvidovre.</p>",
+                "text_color": "subtext",
+                "link": "",
+                "show_link_icon": true,
+                "content_row_gap": 4,
+                "style": "standard",
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "border": "solid",
+                "border_width": 1,
+                "border_opacity": 10,
+                "border_radius": 10
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "icon_box_f9Ued3",
+            "icon_box_DxbEHb",
+            "icon_box_36RmyU",
+            "icon_box_hF6UhE"
+          ]
+        }
+      },
+      "block_order": [
+        "grid_ze4eTp"
+      ],
+      "custom_css": [],
+      "name": "t:names.custom_section",
+      "settings": {
+        "container": "page-width",
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "column_gap": 12,
+        "row_gap": 12,
+        "column_gap_mobile": 12,
+        "row_gap_mobile": 12,
+        "use_color_scheme_in_container": false,
+        "color_scheme": "",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "device": "desktop",
+        "padding-block-start": 60,
+        "padding-block-end": 60,
+        "padding-inline-start": 0,
+        "padding-inline-end": 0,
+        "padding-block-start-mobile": 32,
+        "padding-block-end-mobile": 32,
+        "padding-inline-start-mobile": 0,
+        "padding-inline-end-mobile": 0
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "footer_column_gD6g8d": {
+          "type": "_footer-column",
+          "name": "t:names.column",
+          "settings": {
+            "width": 100,
+            "heading": "",
+            "heading_size": "h5",
+            "open_default": false,
+            "disable_collapse": false,
+            "enable_divider": false,
+            "order": -2
+          },
+          "blocks": {
+            "group_TWFXNq": {
+              "type": "group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "space-between",
+                "vertical_alignment": "flex-start",
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "column_gap": 12,
+                "row_gap": 12,
+                "enable_sticky_desktop": false,
+                "width": "custom",
+                "custom_width": 15,
+                "width_mobile": "custom",
+                "custom_width_mobile": 50,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "enable_swipe_on_mobile": false,
+                "swipe_custom_width_column": false,
+                "swipe_column_width": 76,
+                "columns_mobile": 2,
+                "column_gap_mobile": 12,
+                "row_gap_mobile": 20,
+                "device": "desktop",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "padding-block-start-mobile": 0,
+                "padding-block-end-mobile": 0,
+                "padding-inline-start-mobile": 0,
+                "padding-inline-end-mobile": 0
+              },
+              "blocks": {
+                "image_xkcN4M": {
+                  "type": "image",
+                  "name": "t:names.image",
+                  "settings": {
+                    "image": "shopify://shop_images/Logo-white.png",
+                    "link": "",
+                    "image_ratio": "adapt",
+                    "image_ratio_mobile": "adapt",
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "rounded": false,
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "mobile-padding-scale": 80
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "image_xkcN4M"
+              ]
+            },
+            "divider_VcU4hA": {
+              "type": "divider",
+              "name": "t:names.divider",
+              "settings": {
+                "thickness": 1,
+                "width_percent": 100,
+                "disable_on_desktop": false,
+                "disable_on_mobile": true,
+                "device": "desktop",
+                "padding-block-start": 40,
+                "padding-block-end": 40,
+                "padding-block-start-mobile": 24,
+                "padding-block-end-mobile": 24
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "group_TWFXNq",
+            "divider_VcU4hA"
+          ]
+        },
+        "footer_column_6qKBdj": {
+          "type": "_footer-column",
+          "name": "t:names.column",
+          "settings": {
+            "width": 17,
+            "heading": "Kontakt",
+            "heading_size": "h5",
+            "open_default": true,
+            "disable_collapse": false,
+            "enable_divider": true
+          },
+          "blocks": {
+            "grp_addr": {
+              "type": "group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": false,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "column_gap": 8,
+                "row_gap": 8,
+                "enable_sticky_desktop": false,
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "enable_swipe_on_mobile": false,
+                "swipe_custom_width_column": false,
+                "swipe_column_width": 76,
+                "columns_mobile": 2,
+                "column_gap_mobile": 12,
+                "row_gap_mobile": 12,
+                "device": "desktop",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "padding-block-start-mobile": 0,
+                "padding-block-end-mobile": 0,
+                "padding-inline-start-mobile": 0,
+                "padding-inline-end-mobile": 0
+              },
+              "blocks": {
+                "ic_addr": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "storefront",
+                    "icon_size": "custom-size",
+                    "width": 18,
+                    "width_mobile": 18,
+                    "link": "",
+                    "round_shape": false
+                  },
+                  "blocks": {}
+                },
+                "tx_addr": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Baunebakkevej 12, 2.th, 2650 Hvidovre</p>",
+                    "highlight_style": "none",
+                    "highlight_font_style": "italic",
+                    "highlight_shape_color": "",
+                    "highlight_text_color": "",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_weight": "",
+                    "font_size": 15,
+                    "font_size_mobile": 15,
+                    "line_height": "normal",
+                    "text_color": "text",
+                    "text_color_gradient": "",
+                    "disable_line_break_mobile": false,
+                    "width": "fit-content",
+                    "text_alignment": "left",
+                    "width_mobile": "fit-content",
+                    "text_alignment_mobile": "left",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "mobile-padding-scale": 80,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "ic_addr",
+                "tx_addr"
+              ]
+            },
+            "grp_mail": {
+              "type": "group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": false,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "column_gap": 8,
+                "row_gap": 8,
+                "enable_sticky_desktop": false,
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "enable_swipe_on_mobile": false,
+                "swipe_custom_width_column": false,
+                "swipe_column_width": 76,
+                "columns_mobile": 2,
+                "column_gap_mobile": 12,
+                "row_gap_mobile": 12,
+                "device": "desktop",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "padding-block-start-mobile": 0,
+                "padding-block-end-mobile": 0,
+                "padding-inline-start-mobile": 0,
+                "padding-inline-end-mobile": 0
+              },
+              "blocks": {
+                "ic_mail": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "email",
+                    "icon_size": "custom-size",
+                    "width": 18,
+                    "width_mobile": 18,
+                    "link": "",
+                    "round_shape": false
+                  },
+                  "blocks": {}
+                },
+                "tx_mail": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>info@martilness.dk</p>",
+                    "highlight_style": "none",
+                    "highlight_font_style": "italic",
+                    "highlight_shape_color": "",
+                    "highlight_text_color": "",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_weight": "",
+                    "font_size": 15,
+                    "font_size_mobile": 15,
+                    "line_height": "normal",
+                    "text_color": "text",
+                    "text_color_gradient": "",
+                    "disable_line_break_mobile": false,
+                    "width": "fit-content",
+                    "text_alignment": "left",
+                    "width_mobile": "fit-content",
+                    "text_alignment_mobile": "left",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "mobile-padding-scale": 80,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "ic_mail",
+                "tx_mail"
+              ]
+            },
+            "grp_tlf": {
+              "type": "group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": false,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "column_gap": 8,
+                "row_gap": 8,
+                "enable_sticky_desktop": false,
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "enable_swipe_on_mobile": false,
+                "swipe_custom_width_column": false,
+                "swipe_column_width": 76,
+                "columns_mobile": 2,
+                "column_gap_mobile": 12,
+                "row_gap_mobile": 12,
+                "device": "desktop",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "padding-block-start-mobile": 0,
+                "padding-block-end-mobile": 0,
+                "padding-inline-start-mobile": 0,
+                "padding-inline-end-mobile": 0
+              },
+              "blocks": {
+                "ic_tlf": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "phone",
+                    "icon_size": "custom-size",
+                    "width": 18,
+                    "width_mobile": 18,
+                    "link": "",
+                    "round_shape": false
+                  },
+                  "blocks": {}
+                },
+                "tx_tlf": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>2779 6900</p>",
+                    "highlight_style": "none",
+                    "highlight_font_style": "italic",
+                    "highlight_shape_color": "",
+                    "highlight_text_color": "",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_weight": "",
+                    "font_size": 15,
+                    "font_size_mobile": 15,
+                    "line_height": "normal",
+                    "text_color": "text",
+                    "text_color_gradient": "",
+                    "disable_line_break_mobile": false,
+                    "width": "fit-content",
+                    "text_alignment": "left",
+                    "width_mobile": "fit-content",
+                    "text_alignment_mobile": "left",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "mobile-padding-scale": 80,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "ic_tlf",
+                "tx_tlf"
+              ]
+            },
+            "tx_hours": {
+              "type": "text",
+              "settings": {
+                "text": "<p>ÅBNINGSTIDER<br/>Man–Fre: 11–18<br/>Lør: 12–16<br/>Søn: 12-16</p>",
+                "highlight_style": "none",
+                "highlight_font_style": "italic",
+                "highlight_shape_color": "",
+                "highlight_text_color": "",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_weight": "",
+                "font_size": 15,
+                "font_size_mobile": 15,
+                "line_height": "normal",
+                "text_color": "text",
+                "text_color_gradient": "",
+                "disable_line_break_mobile": false,
+                "width": "fit-content",
+                "text_alignment": "left",
+                "width_mobile": "fit-content",
+                "text_alignment_mobile": "left",
+                "padding-block-start": 12,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "mobile-padding-scale": 80,
+                "animation_type": "none",
+                "animation_delay": 250
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "grp_addr",
+            "grp_mail",
+            "grp_tlf",
+            "tx_hours"
+          ]
+        },
+        "footer_column_PGwbyx": {
+          "type": "_footer-column",
+          "name": "t:names.column",
+          "settings": {
+            "width": 17,
+            "heading": "Kundeservice",
+            "heading_size": "h5",
+            "open_default": false,
+            "disable_collapse": false,
+            "enable_divider": true
+          },
+          "blocks": {
+            "footer_menu_byMaBL": {
+              "type": "_footer-menu",
+              "name": "t:names.menu",
+              "settings": {
+                "menu": "footer"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "footer_menu_byMaBL"
+          ]
+        },
+        "footer_column_TggKmp": {
+          "type": "_footer-column",
+          "name": "t:names.column",
+          "settings": {
+            "width": 17,
+            "heading": "Kategorier",
+            "heading_size": "h5",
+            "open_default": false,
+            "disable_collapse": false,
+            "enable_divider": true
+          },
+          "blocks": {
+            "footer_menu_bNUmwj": {
+              "type": "_footer-menu",
+              "name": "t:names.menu",
+              "settings": {
+                "menu": "footer-kategorier"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "footer_menu_bNUmwj"
+          ]
+        },
+        "footer_column_B4ErBg": {
+          "type": "_footer-column",
+          "name": "t:names.column",
+          "settings": {
+            "width": 17,
+            "heading": "Information",
+            "heading_size": "h5",
+            "open_default": false,
+            "disable_collapse": false,
+            "enable_divider": true
+          },
+          "blocks": {
+            "footer_menu_3Wgeft": {
+              "type": "_footer-menu",
+              "name": "t:names.menu",
+              "settings": {
+                "menu": "footer"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "footer_menu_3Wgeft"
+          ]
+        },
+        "footer_column_y3GCHb": {
+          "type": "_footer-column",
+          "name": "t:names.column",
+          "settings": {
+            "width": 25,
+            "heading": "Tilmeld dig & få 10% ✌🏼",
+            "heading_size": "h5",
+            "open_default": true,
+            "disable_collapse": true,
+            "enable_divider": false
+          },
+          "blocks": {
+            "newsletter_w3Vn9D": {
+              "type": "newsletter",
+              "name": "t:names.newsletter",
+              "settings": {
+                "text_align": "left",
+                "newsletter_term": "<p>Vi skriver kun, når det er værd at læse. Afmeld dig når som helst</p>",
+                "newsletter_term_text_color": "text",
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "newsletter_w3Vn9D"
+          ]
+        }
+      },
+      "block_order": [
+        "footer_column_gD6g8d",
+        "footer_column_6qKBdj",
+        "footer_column_PGwbyx",
+        "footer_column_TggKmp",
+        "footer_column_B4ErBg",
+        "footer_column_y3GCHb"
+      ],
+      "settings": {
+        "menu": "",
+        "enable_follow_on_shop": true,
+        "enable_social_media_icons": false,
+        "enable_language_selector": true,
+        "enable_country_selector": true,
+        "enable_payment_icons": false,
+        "show_footer_bar": true,
+        "payment_label": "Betalingsmuligheder",
+        "shipping_label": "Fragtpartner",
+        "reviews_label": "Anmeldelser",
+        "color_scheme": "scheme-inverse",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 20,
+        "device": "desktop",
+        "padding-block-start": 48,
+        "padding-block-start-mobile": 40
+      }
+    }
+  },
+  "order": [
+    "custom_section_4yLVt7",
+    "footer"
+  ]
+}

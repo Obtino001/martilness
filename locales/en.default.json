@@ -371,7 +371,8 @@
       "sold_out": "Sold out",
       "unavailable": "Unavailable",
       "on_sale": "Sale",
-      "save_price_html": "Save <span data-sale-value>{{ amount }}</span>"
+      "save_price_html": "Save <span data-sale-value>{{ amount }}</span>",
+      "save_price_amount_percent_html": "Save <span data-sale-value>{{ amount }}</span>"
     }
   },
   "customer": {

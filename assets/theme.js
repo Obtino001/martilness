@@ -8703,3 +8703,16 @@ class ParallaxComponent extends HTMLElement {
   }
 }
 customElements.define("parallax-component", ParallaxComponent);
+{
+  const awayTitle = "🥺 Vi savner dig allerede...";
+  let realTitle = document.title;
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      if (document.title !== awayTitle) realTitle = document.title;
+      document.title = awayTitle;
+    } else {
+      document.title = realTitle;
+    }
+  });
+}

@@ -37,6 +37,10 @@
             "font_size_mobile": 15,
             "line_height": "normal",
             "text_color": "text",
+            "width": "fit-content",
+            "text_alignment": "left",
+            "width_mobile": "fit-content",
+            "text_alignment_mobile": "left",
             "padding-block-start": 0,
             "padding-block-end": 0,
             "mobile-padding-scale": 80,
@@ -54,6 +58,10 @@
             "font_size_mobile": 15,
             "line_height": "normal",
             "text_color": "subtext",
+            "width": "fit-content",
+            "text_alignment": "left",
+            "width_mobile": "fit-content",
+            "text_alignment_mobile": "left",
             "padding-block-start": 16,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -69,8 +77,10 @@
         "page_title",
         "page_content"
       ],
+      "disabled": true,
       "settings": {
         "container": "fixed",
+        "container_custom_width": 880,
         "use_color_scheme_in_container": false,
         "color_scheme": "",
         "border": "none",
@@ -88,416 +98,32 @@
         "padding-inline-end-mobile": 16
       }
     },
-    "store_locator_PXynpd": {
-      "type": "store-locator",
-      "blocks": {
-        "store_locator_HGcrzY": {
-          "type": "store-locator",
-          "settings": {
-            "style": "card",
-            "color_scheme": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 20
-          },
-          "blocks": {
-            "image": {
-              "type": "_image-card-media",
-              "static": true,
-              "settings": {
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "image_ratio": "adapt",
-                "image_ratio_mobile": "adapt",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 10
-              },
-              "blocks": {}
-            },
-            "heading": {
-              "type": "_simple-text",
-              "name": "t:names.heading",
-              "static": true,
-              "settings": {
-                "text": "<p>New York</p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "normal",
-                "text_color": "text",
-                "padding-block-start": 0,
-                "padding-block-end": 16,
-                "mobile-padding-scale": 75,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            },
-            "text": {
-              "type": "_simple-text",
-              "static": true,
-              "settings": {
-                "text": "<p>123 Orchard Ave, Manhattan, NY 10002 </p><p>+1 (212) 555-0148 </p><p>Mon–Sat: 10am–8pm</p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "loose",
-                "text_color": "subtext",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "mobile-padding-scale": 80,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            },
-            "button": {
-              "type": "button",
-              "static": true,
-              "settings": {
-                "label": "Get Directions",
-                "link": "",
-                "style": "plain",
-                "size": "medium",
-                "icon": "caret-right",
-                "icon_only": false,
-                "icon_style": "default",
-                "mobile_full_width": false,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
-        },
-        "store_locator_NpMUBt": {
-          "type": "store-locator",
-          "settings": {
-            "style": "card",
-            "color_scheme": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 20
-          },
-          "blocks": {
-            "image": {
-              "type": "_image-card-media",
-              "static": true,
-              "settings": {
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "image_ratio": "adapt",
-                "image_ratio_mobile": "adapt",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 10
-              },
-              "blocks": {}
-            },
-            "heading": {
-              "type": "_simple-text",
-              "name": "t:names.heading",
-              "static": true,
-              "settings": {
-                "text": "<p>Los Angeles</p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "normal",
-                "text_color": "text",
-                "padding-block-start": 0,
-                "padding-block-end": 16,
-                "mobile-padding-scale": 75,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            },
-            "text": {
-              "type": "_simple-text",
-              "static": true,
-              "settings": {
-                "text": "<p>742 Sunset Blvd, Los Angeles, CA 90028 </p><p>+1 (310) 555-0193</p><p>Mon–Sat: 10am–8pm</p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "loose",
-                "text_color": "subtext",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "mobile-padding-scale": 80,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            },
-            "button": {
-              "type": "button",
-              "static": true,
-              "settings": {
-                "label": "Get Directions",
-                "link": "",
-                "style": "plain",
-                "size": "medium",
-                "icon": "caret-right",
-                "icon_only": false,
-                "icon_style": "default",
-                "mobile_full_width": false,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
-        },
-        "store_locator_x6KkVD": {
-          "type": "store-locator",
-          "settings": {
-            "style": "card",
-            "color_scheme": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 20
-          },
-          "blocks": {
-            "image": {
-              "type": "_image-card-media",
-              "static": true,
-              "settings": {
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "image_ratio": "adapt",
-                "image_ratio_mobile": "adapt",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 10
-              },
-              "blocks": {}
-            },
-            "heading": {
-              "type": "_simple-text",
-              "name": "t:names.heading",
-              "static": true,
-              "settings": {
-                "text": "<p>Chicago</p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "normal",
-                "text_color": "text",
-                "padding-block-start": 0,
-                "padding-block-end": 16,
-                "mobile-padding-scale": 75,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            },
-            "text": {
-              "type": "_simple-text",
-              "static": true,
-              "settings": {
-                "text": "<p>211 W Monroe St, Chicago, IL 60606 </p><p>+1 (312) 555-0177 </p><p>Mon–Sat: 10am–8pm</p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "loose",
-                "text_color": "subtext",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "mobile-padding-scale": 80,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            },
-            "button": {
-              "type": "button",
-              "static": true,
-              "settings": {
-                "label": "Get Directions",
-                "link": "",
-                "style": "plain",
-                "size": "medium",
-                "icon": "caret-right",
-                "icon_only": false,
-                "icon_style": "default",
-                "mobile_full_width": false,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
-        },
-        "store_locator_p4n7HU": {
-          "type": "store-locator",
-          "settings": {
-            "style": "card",
-            "color_scheme": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 20
-          },
-          "blocks": {
-            "image": {
-              "type": "_image-card-media",
-              "static": true,
-              "settings": {
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "image_ratio": "adapt",
-                "image_ratio_mobile": "adapt",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 10
-              },
-              "blocks": {}
-            },
-            "heading": {
-              "type": "_simple-text",
-              "name": "t:names.heading",
-              "static": true,
-              "settings": {
-                "text": "<p>Palo Alto</p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "normal",
-                "text_color": "text",
-                "padding-block-start": 0,
-                "padding-block-end": 16,
-                "mobile-padding-scale": 75,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            },
-            "text": {
-              "type": "_simple-text",
-              "static": true,
-              "settings": {
-                "text": "<p>385 University Ave, Palo Alto, CA 94301 </p><p>+1 (650) 555-0124 </p><p>Mon–Sat: 10am–8pm</p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "loose",
-                "text_color": "subtext",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "mobile-padding-scale": 80,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            },
-            "button": {
-              "type": "button",
-              "static": true,
-              "settings": {
-                "label": "Get Directions",
-                "link": "",
-                "style": "plain",
-                "size": "medium",
-                "icon": "caret-right",
-                "icon_only": false,
-                "icon_style": "default",
-                "mobile_full_width": false,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
-        }
-      },
-      "block_order": [
-        "store_locator_HGcrzY",
-        "store_locator_NpMUBt",
-        "store_locator_x6KkVD",
-        "store_locator_p4n7HU"
-      ],
-      "name": "t:names.store_locator",
+    "custom_liquid_cKD8F3": {
+      "type": "custom-liquid",
+      "name": "t:names.custom_liquid",
       "settings": {
+        "custom_liquid": "{%- comment -%}\n  Martilness - Find vores butik. Indsaettes i en Custom Liquid-blok.\n  Anmeldelser redigeres i review_data nedenfor: en linje pr. anmeldelse,\n  felter adskilt af | og hver linje afsluttet med ~\n{%- endcomment -%}\n\n{%- assign fr_img = 'https://cdn.shopify.com/s/files/1/0942/8382/5500/files/Untitled_design_-_2026-05-05T201110.742.jpg?v=1778004687' -%}\n{%- assign fr_email = 'info@martilness.dk' -%}\n{%- assign fr_phone = '+45 2779 6900' -%}\n{%- assign fr_phone_href = fr_phone | remove: ' ' -%}\n\n{%- assign star = 'M7 0L8.77746 4.55353L13.6574 4.83688L9.87599 7.93447L11.1145 12.6631L7 10.024L2.8855 12.6631L4.12401 7.93447L0.342604 4.83688L5.22254 4.55353L7 0Z' -%}\n\n{%- capture icon_pin -%}<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\"><path fill=\"none\" d=\"M0 0h256v256H0z\"/><circle cx=\"128\" cy=\"104\" r=\"32\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"var(--icon-stroke-width, 2)\"/><path d=\"M208 104c0 72-80 128-80 128s-80-56-80-128a80 80 0 0 1 160 0\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"var(--icon-stroke-width, 2)\"/></svg>{%- endcapture -%}\n\n{%- capture opening_hours -%}\nMandag|11–18|1 ~ Tirsdag|11–18|2 ~ Onsdag|11–18|3 ~ Torsdag|11–18|4 ~ Fredag|11–18|5 ~ Lørdag|12–16|6 ~ Søndag|12–16|0\n{%- endcapture -%}\n\n{%- capture review_data -%}\nThomas Laugesen|3 anmeldelser|Maj 2025|Dejlige produkter og rigtig god service 👌 ~\nN. H.|4 anmeldelser|12. feb. 2025|Rigtig god forretning, med en super service. Går altid glad derfra, samt overraskelser til når man åbner for æsken derhjemme! ~\nTina From|4 anmeldelser|19. jan. 2025|Vi glæder os hver gang vi kommer i butikken. Altid venlige og god betjening, og de giver god tid til at svare på spørgsmål. Kan kun varmt anbefale ❤️ ~\nThue Bank|8 anmeldelser|13. jan. 2025|Svært at finde. But it's a hidden gem. Sød betjening og pen butik ~\nISOLATIONIST|Local Guide · 34 anmeldelser|2023|Man bliver mødt af imødekommende og venligt personale der straks tilbyder deres hjælp. Jeg fik god vejledning. Kan varmt anbefales! ~\nphillipvillefrance|Local Guide · 38 anmeldelser|2025|En yndig lille butik. Man ser og mærker straks deres passion for butikken. Venligt, imødekommende og kompetent personale 💪😁 ~\nI am Bonged|3 anmeldelser|2025|Der er det man forventer og hvad man skal bruge. Og altid super søde mennesker man møder — personalet er meget hjælpsomme og løsningsorienterede. ~\nkaren middelkamp|Local Guide · 105 anmeldelser|2022|Altid super hyggelig stemning og mange spændende varer til en fair pris. Altid imødekommende og venligt personale som altid har tid til en sludder.\n{%- endcapture -%}\n\n{%- assign hours_rows = opening_hours | split: '~' -%}\n{%- assign reviews = review_data | split: '~' -%}\n\n{%- comment -%}\n  Structured data (schema.org/Store) til Google.\n  Bygget ud fra de SAMME variabler som markup'et herunder, så åbningstider og\n  anmeldelser aldrig kan komme ud af sync med det brugeren ser. Ret i\n  opening_hours / review_data, så følger schemaet automatisk med.\n  | json escaper korrekt — det er derfor apostroffer og emoji ikke brækker JSON.\n{%- endcomment -%}\n{%- liquid\n  assign sd_day_names = 'Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday' | split: ','\n  assign sd_review_count = 0\n  for review in reviews\n    assign sd_r = review | strip\n    if sd_r != blank\n      assign sd_review_count = sd_review_count | plus: 1\n    endif\n  endfor\n-%}\n<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Store\",\n  \"name\": {{ shop.name | json }},\n  \"image\": {{ fr_img | json }},\n  \"url\": {{ canonical_url | json }},\n  \"address\": {\n    \"@type\": \"PostalAddress\",\n    \"streetAddress\": \"Baunebakkevej 12, 2.th\",\n    \"postalCode\": \"7400\",\n    \"addressLocality\": \"Herning\",\n    \"addressCountry\": \"DK\"\n  },\n  \"email\": {{ fr_email | json }},\n  \"telephone\": {{ fr_phone_href | json }},\n  \"openingHoursSpecification\": [\n    {%- assign sd_first = true -%}\n    {%- for row in hours_rows -%}\n      {%- assign f = row | strip | split: '|' -%}\n      {%- if f[0] == blank -%}{%- continue -%}{%- endif -%}\n      {%- assign sd_hours = f[1] | strip -%}\n      {%- unless sd_hours contains '–' -%}{%- continue -%}{%- endunless -%}\n      {%- assign sd_parts = sd_hours | split: '–' -%}\n      {%- assign sd_open = sd_parts[0] | strip | replace: '.', ':' -%}\n      {%- assign sd_close = sd_parts[1] | strip | replace: '.', ':' -%}\n      {%- unless sd_open contains ':' -%}{%- assign sd_open = sd_open | append: ':00' -%}{%- endunless -%}\n      {%- unless sd_close contains ':' -%}{%- assign sd_close = sd_close | append: ':00' -%}{%- endunless -%}\n      {%- comment -%}\n        Index skal beregnes til en variabel foerst. Liquid tillader ikke filtre\n        inde i [] — sd_day_names[f[2] | times: 1] er en syntaksfejl.\n      {%- endcomment -%}\n      {%- assign sd_day_index = f[2] | strip | times: 1 -%}\n      {%- assign sd_day_name = sd_day_names[sd_day_index] -%}\n      {%- unless sd_first %},{% endunless -%}\n      {%- assign sd_first = false -%}\n      { \"@type\": \"OpeningHoursSpecification\", \"dayOfWeek\": {{ sd_day_name | json }}, \"opens\": {{ sd_open | json }}, \"closes\": {{ sd_close | json }} }\n    {%- endfor -%}\n  ],\n  \"aggregateRating\": {\n    \"@type\": \"AggregateRating\",\n    \"ratingValue\": \"5.0\",\n    \"bestRating\": \"5\",\n    \"reviewCount\": \"{{ sd_review_count }}\"\n  },\n  \"review\": [\n    {%- assign sd_first_review = true -%}\n    {%- for review in reviews -%}\n      {%- assign r = review | strip | split: '|' -%}\n      {%- if r[0] == blank -%}{%- continue -%}{%- endif -%}\n      {%- unless sd_first_review %},{% endunless -%}\n      {%- assign sd_first_review = false -%}\n      {\n        \"@type\": \"Review\",\n        \"author\": { \"@type\": \"Person\", \"name\": {{ r[0] | strip | json }} },\n        \"reviewRating\": { \"@type\": \"Rating\", \"ratingValue\": \"5\", \"bestRating\": \"5\" },\n        \"reviewBody\": {{ r[3] | strip | json }}\n      }\n    {%- endfor -%}\n  ]\n}\n</script>\n\n<div class=\"store-visit\">\n  <div class=\"store-visit__intro text-center\">\n    <p class=\"store-visit__eyebrow text-subheading inline-flex items-center gap-2\">\n      <span class=\"icon icon--map-pin icon--small shrink-0\" aria-hidden=\"true\">{{ icon_pin }}</span>\n      Besøg os\n    </p>\n    <h2 class=\"h1 store-visit__heading\">Find vores butik i Hvidovre.</h2>\n    <div class=\"store-visit__lead color-subtext\">\n      <p>Kig forbi i Bredgade hvor vi pakker dine ordrer, snakker med folk der kigger ind, og altid har tid til en sludder. Vi glæder os til at se dig.</p>\n    </div>\n  </div>\n\n  <div class=\"store-visit__split\">\n    <div class=\"media store-visit__media\" style=\"--ratio: 0.8;\">\n      <img\n        class=\"media__image\"\n        src=\"{{ fr_img }}&width=800\"\n        srcset=\"{{ fr_img }}&width=400 400w, {{ fr_img }}&width=600 600w, {{ fr_img }}&width=800 800w, {{ fr_img }}&width=1200 1200w, {{ fr_img }}&width=1600 1600w\"\n        sizes=\"(min-width: 1024px) 46vw, 92vw\"\n        width=\"800\" height=\"1000\"\n        alt=\"Martilness butik, Baunebakkevej 12, 2.th i Hvidovre\"\n        loading=\"lazy\" decoding=\"async\">\n    </div>\n\n    <div class=\"store-visit__details\">\n      <p class=\"text-subheading color-subtext store-visit__details-eyebrow\">Den fysiske butik</p>\n      <h3 class=\"h2 store-visit__details-heading\">Baunebakkevej 12, 2.th.</h3>\n\n      <div class=\"store-visit__prose text-block\">\n        <p>Vi har en lille butik midt i Hvidovre, og det er derfra vi pakker hver eneste ordre. Det er også der vi tager imod folk der vil se produkterne i virkeligheden, eller bare har et spørgsmål.</p>\n        <p>Du behøver ikke en grund til at kigge forbi. Vi er sjældent travlt nok til ikke at tage en snak.</p>\n      </div>\n\n      <div class=\"store-visit__cards\">\n        <store-hours class=\"store-visit__card block\"\n          data-label-open=\"Åbent\" data-label-closed=\"Lukket\"\n          data-label-closes-at=\"lukker {time}\" data-label-opens-at=\"åbner {day}{time}\"\n          data-label-tomorrow=\"i morgen\">\n          <div class=\"store-visit__card-head flex items-center justify-between gap-3 flex-wrap\">\n            <p class=\"text-subheading color-subtext\">Åbningstider</p>\n            <span class=\"store-visit__status text-body-xs\" ref=\"status\" aria-live=\"polite\"></span>\n          </div>\n          <ul class=\"store-visit__hours list-unstyled\" role=\"list\">\n            {%- for row in hours_rows -%}\n              {%- assign f = row | strip | split: '|' -%}\n              {%- if f[0] == blank -%}{%- continue -%}{%- endif -%}\n              <li class=\"store-visit__hours-row flex justify-between gap-3 text-body-sm\" data-day=\"{{ f[2] | strip }}\" data-hours=\"{{ f[1] | strip }}\">\n                <span>{{ f[0] | strip }}</span>\n                <span class=\"store-visit__hours-value\">{{ f[1] | strip }}</span>\n              </li>\n            {%- endfor -%}\n          </ul>\n        </store-hours>\n\n        <div class=\"store-visit__card\">\n          <div class=\"store-visit__card-head\">\n            <p class=\"text-subheading color-subtext\">Kontakt</p>\n          </div>\n          <ul class=\"store-visit__contact list-unstyled\" role=\"list\">\n            <li class=\"store-visit__contact-row flex items-center gap-3 text-body-sm\">\n              <span class=\"icon icon--map-pin icon--small color-subtext shrink-0\" aria-hidden=\"true\">{{ icon_pin }}</span>\n              <span class=\"min-w-0\">Baunebakkevej 12, 2.th, 2650 Hvidovre</span>\n            </li>\n            <li class=\"store-visit__contact-row flex items-center gap-3 text-body-sm\">\n              <span class=\"icon icon--email icon--small color-subtext shrink-0\" aria-hidden=\"true\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\"><path fill=\"none\" d=\"M0 0h256v256H0z\"/><path d=\"M32 56h192v136a8 8 0 0 1-8 8H40a8 8 0 0 1-8-8z\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"var(--icon-stroke-width, 2)\"/><path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"var(--icon-stroke-width,2)\" d=\"m224 56-96 88-96-88\"/></svg></span>\n              <a class=\"store-visit__link min-w-0\" href=\"mailto:{{ fr_email }}\">{{ fr_email }}</a>\n            </li>\n            <li class=\"store-visit__contact-row flex items-center gap-3 text-body-sm\">\n              <span class=\"icon icon--phone icon--small color-subtext shrink-0\" aria-hidden=\"true\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\"><path fill=\"none\" d=\"M0 0h256v256H0z\"/><path d=\"M164.39 145.34a8 8 0 0 1 7.59-.69l47.16 21.13a8 8 0 0 1 4.8 8.3A48.33 48.33 0 0 1 176 216 136 136 0 0 1 40 80a48.33 48.33 0 0 1 41.92-47.94 8 8 0 0 1 8.3 4.8l21.13 47.2a8 8 0 0 1-.66 7.53L89.32 117a7.93 7.93 0 0 0-.54 7.81c8.27 16.93 25.77 34.22 42.75 42.41a7.92 7.92 0 0 0 7.83-.59Z\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"var(--icon-stroke-width, 2)\"/></svg></span>\n              <a class=\"store-visit__link min-w-0\" href=\"tel:{{ fr_phone_href }}\">{{ fr_phone }}</a>\n            </li>\n          </ul>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"store-visit__map-section\">\n    <div class=\"store-visit__map-head text-center\">\n      <p class=\"text-subheading color-subtext\">Sådan finder du os</p>\n      <h3 class=\"h2 store-visit__map-heading\">På kortet.</h3>\n      <div class=\"store-visit__map-text color-subtext\">\n        <p>Centralt i Hvidovre, få minutters gang fra både gågaden og banegården.</p>\n      </div>\n    </div>\n    <div class=\"store-visit__map\">\n      <iframe class=\"w-full h-full\"\n        src=\"https://www.google.com/maps?q=Bredgade+10B,+7400+Herning,+Denmark&output=embed\"\n        title=\"Kort der viser Martilness, Baunebakkevej 12, 2.th i Hvidovre\"\n        loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\" allowfullscreen></iframe>\n    </div>\n  </div>\n\n  <blockquote class=\"store-visit__quote color-scheme-inverse text-center\">\n    <div class=\"h3 store-visit__quote-text\">\n      <p>Vi har sjældent travlt nok til ikke at tage en snak. Bare kig forbi.</p>\n    </div>\n    <cite class=\"store-visit__quote-author text-subheading color-subtext\">Mathias &amp; Jonathan</cite>\n  </blockquote>\n\n  <div class=\"store-visit__reviews\">\n    <div class=\"store-visit__reviews-head text-center\">\n      <p class=\"text-subheading color-subtext\">Hvad folk siger</p>\n      <h3 class=\"h2 store-visit__reviews-heading\">Anmeldelser fra kunderne.</h3>\n      <p class=\"store-visit__score inline-flex items-center gap-3 text-body-sm\">\n        <span class=\"rating flex items-center\" style=\"--star-size: 1.4rem; --star-fill-color: var(--color-foreground);\">\n          {%- for i in (1..5) -%}<svg class=\"stars filled-star\" viewBox=\"0 0 14 13\" role=\"presentation\"><path d=\"{{ star }}\"/></svg>{%- endfor -%}\n        </span>\n        <span>5,0</span>\n        <span class=\"store-visit__score-divider\" aria-hidden=\"true\"></span>\n        <span>Google</span>\n      </p>\n    </div>\n\n    <carousel-slider class=\"store-visit__carousel carousel carousel--grid carousel--visible block\">\n      <script type=\"application/json\" ref=\"config\">\n        {\n          \"slidesPerView\": 1.15,\n          \"spaceBetween\": 16,\n          \"loop\": false,\n          \"breakpoints\": { \"750\": { \"slidesPerView\": 2 }, \"1024\": { \"slidesPerView\": 3 } },\n          \"mousewheel\": { \"enabled\": true, \"forceToAxis\": true, \"thresholdTime\": 300, \"thresholdDelta\": 10 },\n          \"pagination\": { \"type\": \"progressbar\" },\n          \"counter\": false\n        }\n      </script>\n\n      <div class=\"swiper\" ref=\"container\">\n        <div class=\"swiper-wrapper\">\n          {%- for review in reviews -%}\n            {%- assign r = review | strip | split: '|' -%}\n            {%- if r[0] == blank -%}{%- continue -%}{%- endif -%}\n            <div class=\"swiper-slide f-column\">\n              <article class=\"store-visit__review flex flex-col gap-4 h-full\">\n                <div class=\"flex items-center gap-3\">\n                  <span class=\"store-visit__avatar flex items-center justify-center shrink-0\" aria-hidden=\"true\">{{ r[0] | strip | slice: 0 | upcase }}</span>\n                  <span class=\"flex flex-col min-w-0\">\n                    <span class=\"store-visit__review-author h6\">{{ r[0] | strip }}</span>\n                    <span class=\"text-body-xs color-subtext\">{{ r[1] | strip }}</span>\n                  </span>\n                </div>\n                <div class=\"flex items-center gap-2\">\n                  <span class=\"rating flex items-center\" style=\"--star-size: 1.2rem; --star-fill-color: var(--color-foreground);\">\n                    {%- for i in (1..5) -%}<svg class=\"stars filled-star\" viewBox=\"0 0 14 13\" role=\"presentation\"><path d=\"{{ star }}\"/></svg>{%- endfor -%}\n                  </span>\n                  <span class=\"visually-hidden\">5 ud af 5 stjerner</span>\n                  <span class=\"text-body-xs color-subtext\">{{ r[2] | strip }}</span>\n                </div>\n                <p class=\"store-visit__review-text text-body-sm flex-grow\">{{ r[3] | strip }}</p>\n              </article>\n            </div>\n          {%- endfor -%}\n        </div>\n      </div>\n\n      <div class=\"carousel__controls carousel__controls--relative store-visit__carousel-controls\" ref=\"controls\">\n        <div ref=\"pagination\" class=\"swiper-pagination carousel__pagination carousel__pagination--progressbar\"></div>\n        <div class=\"carousel__controls-buttons carousel__controls-buttons--medium\">\n          <button ref=\"prev\" class=\"swiper-button-prev carousel__button carousel__button--prev btn btn--outline btn--icon-only\" aria-label=\"Forrige anmeldelse\">\n            <span class=\"icon icon--caret-left carousel__button-icon\" aria-hidden=\"true\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" class=\"rtl-flip-x\"><path fill=\"none\" d=\"M0 0H20V20H0V0z\"/><path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"var(--icon-stroke-width, 2)\" d=\"M12.5 16.25L6.25 10L12.5 3.75\"/></svg></span>\n          </button>\n          <button ref=\"next\" class=\"swiper-button-next carousel__button carousel__button--next btn btn--outline btn--icon-only\" aria-label=\"Næste anmeldelse\">\n            <span class=\"icon icon--caret-right carousel__button-icon\" aria-hidden=\"true\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" class=\"rtl-flip-x\"><path fill=\"none\" d=\"M0 0H20V20H0V0z\"/><path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"var(--icon-stroke-width, 2)\" d=\"M7.5 3.75L13.75 10L7.5 16.25\"/></svg></span>\n          </button>\n        </div>\n      </div>\n    </carousel-slider>\n  </div>\n\n  <div class=\"store-visit__cta text-center\">\n    <h3 class=\"h2 store-visit__cta-heading\">Klar når du er.</h3>\n    <div class=\"store-visit__cta-text color-subtext\">\n      <p>Kig forbi butikken eller bestil online — begge veje fører samme sted hen.</p>\n    </div>\n    <div class=\"store-visit__buttons\">\n      <a href=\"https://www.google.com/maps?daddr=Bredgade+10b,+7400+Herning\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn btn--primary btn--medium btn--icon\">\n        <span class=\"btn__text\">Få rutevejledning</span>\n        <span class=\"icon icon--arrow-right\" aria-hidden=\"true\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" fill=\"none\" class=\"rtl-flip-x\"><path d=\"M3.125 10H16.875\" stroke=\"currentColor\" stroke-width=\"var(--icon-stroke-width, 2)\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M11.25 4.375L16.875 10L11.25 15.625\" stroke=\"currentColor\" stroke-width=\"var(--icon-stroke-width, 2)\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span>\n      </a>\n      <a href=\"mailto:{{ fr_email }}\" class=\"btn btn--outline btn--medium\"><span class=\"btn__text\">Skriv til butikken</span></a>\n      <a href=\"https://www.google.com/search?q=Martilness+Bredgade+10B+Herning\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn btn--outline btn--medium\"><span class=\"btn__text\">Se anmeldelser</span></a>\n      <a href=\"{{ routes.all_products_collection_url }}\" class=\"btn btn--outline btn--medium\"><span class=\"btn__text\">Shop online</span></a>\n    </div>\n  </div>\n</div>\n\n<style>\n  .store-visit {\n    --sv-tile: rgb(var(--color-foreground) / 4%);\n    --sv-line: 0.1rem solid rgb(var(--color-border) / var(--color-border-alpha));\n    --sv-radius: var(--product-card-media-radius, 2rem);\n    display: grid;\n    row-gap: var(--spacing-10);\n  }\n\n  .store-visit__intro > * + * { margin-block-start: var(--spacing-4); }\n  .store-visit__eyebrow {\n    padding-block: var(--spacing-2);\n    padding-inline: var(--spacing-5);\n    border-radius: var(--badge-corner-radius, 0.6rem);\n    background: var(--sv-tile);\n  }\n  .store-visit__heading { max-width: 16ch; margin-inline: auto; }\n  .store-visit__lead { max-width: 56ch; margin-inline: auto; }\n  .store-visit__lead p:last-child { margin-block-end: 0; }\n\n  .store-visit__split { display: grid; gap: var(--spacing-8); align-items: center; }\n  .store-visit__media { border-radius: var(--sv-radius); }\n  .store-visit__details-eyebrow + .store-visit__details-heading { margin-block-start: var(--spacing-3); }\n  .store-visit__prose { margin-block-start: var(--spacing-5); }\n\n  .store-visit__cards { display: grid; gap: var(--spacing-3); margin-block-start: var(--spacing-7); }\n  .store-visit__card {\n    padding: var(--spacing-6);\n    border-radius: var(--sv-radius);\n    background: var(--sv-tile);\n  }\n  .store-visit__card-head { margin-block-end: var(--spacing-4); }\n\n  .store-visit__status {\n    display: inline-flex;\n    align-items: center;\n    gap: var(--spacing-2);\n    padding-block: var(--spacing-1);\n    padding-inline: var(--spacing-3);\n    border-radius: var(--badge-corner-radius, 0.6rem);\n    background: rgb(var(--color-background));\n    color: var(--color-foreground-secondary);\n    line-height: 1;\n    white-space: nowrap;\n  }\n  .store-visit__status:empty { display: none; }\n  .store-visit__status::before {\n    content: \"\";\n    inline-size: 0.7rem;\n    block-size: 0.7rem;\n    border-radius: 50%;\n    background: currentcolor;\n    flex: none;\n  }\n  .store-visit__status[data-state=\"open\"] { color: rgb(var(--color-notification-success)); }\n  .store-visit__status[data-state=\"open\"]::before { animation: sv-pulse 2.4s ease-out infinite; }\n\n  @keyframes sv-pulse {\n    0%   { box-shadow: 0 0 0 0 rgb(var(--color-notification-success) / 45%); }\n    70%  { box-shadow: 0 0 0 0.8rem rgb(var(--color-notification-success) / 0%); }\n    100% { box-shadow: 0 0 0 0 rgb(var(--color-notification-success) / 0%); }\n  }\n\n  .store-visit__hours-row {\n    padding-block: var(--spacing-2);\n    border-block-end: var(--sv-line);\n    color: var(--color-foreground-secondary);\n  }\n  .store-visit__hours-row:last-child { border-block-end: 0; padding-block-end: 0; }\n  .store-visit__hours-value { font-variant-numeric: tabular-nums; }\n  .store-visit__hours-row[data-today] { color: rgb(var(--color-foreground)); }\n\n  .store-visit__contact-row { padding-block: var(--spacing-3); border-block-end: var(--sv-line); }\n  .store-visit__contact-row:last-child { border-block-end: 0; padding-block-end: 0; }\n  .store-visit__link {\n    text-decoration-line: underline;\n    text-decoration-color: rgb(var(--color-foreground) / 40%);\n    transition: text-decoration-color var(--animation-duration--fast) var(--animation-easing);\n  }\n  .store-visit__link:hover { text-decoration-color: rgb(var(--color-foreground)); }\n\n  .store-visit__map-head { margin-block-end: var(--spacing-7); }\n  .store-visit__map-head > * + * { margin-block-start: var(--spacing-3); }\n  .store-visit__map-heading, .store-visit__map-text { max-width: 52ch; margin-inline: auto; }\n  .store-visit__map-text p:last-child { margin-block-end: 0; }\n  .store-visit__map { aspect-ratio: 16 / 9; border-radius: var(--sv-radius); overflow: hidden; }\n  .store-visit__map iframe { display: block; border: 0; }\n\n  .store-visit__quote {\n    margin: 0;\n    padding-block: var(--spacing-10);\n    padding-inline: var(--spacing-7);\n    border-radius: var(--sv-radius);\n  }\n  .store-visit__quote-text { max-width: 32ch; margin-inline: auto; }\n  .store-visit__quote-text p { margin: 0; }\n  .store-visit__quote-author { display: block; margin-block-start: var(--spacing-5); font-style: normal; }\n\n  .store-visit__reviews-head { margin-block-end: var(--spacing-8); }\n  .store-visit__reviews-head > * + * { margin-block-start: var(--spacing-3); }\n  .store-visit__score {\n    padding-block: var(--spacing-2);\n    padding-inline: var(--spacing-5);\n    border-radius: var(--badge-corner-radius, 0.6rem);\n    background: var(--sv-tile);\n  }\n  .store-visit__score-divider {\n    inline-size: 0.4rem;\n    block-size: 0.4rem;\n    border-radius: 50%;\n    background: currentcolor;\n    opacity: 0.35;\n  }\n\n  .store-visit__carousel .swiper-slide { height: auto; }\n  .store-visit__carousel .swiper:not(.swiper-initialized) { overflow-x: auto; scrollbar-width: none; }\n  .store-visit__carousel .swiper:not(.swiper-initialized)::-webkit-scrollbar { display: none; }\n  .store-visit__carousel .swiper:not(.swiper-initialized) .swiper-wrapper { gap: var(--spacing-4); }\n  .store-visit__carousel .swiper:not(.swiper-initialized) .swiper-slide { flex: 0 0 85%; }\n\n  .store-visit__review {\n    height: 100%;\n    padding: var(--spacing-6);\n    border-radius: var(--sv-radius);\n    background: var(--sv-tile);\n  }\n  .store-visit__avatar {\n    inline-size: 4rem;\n    block-size: 4rem;\n    border-radius: 50%;\n    background: rgb(var(--color-primary-button-background));\n    color: rgb(var(--color-primary-button-text));\n    font-family: var(--font-heading--family);\n  }\n  .store-visit__review-author { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n  .store-visit__review-text { margin: 0; color: var(--color-foreground-secondary); }\n  .store-visit__carousel-controls { margin-block-start: var(--spacing-6); }\n\n  .store-visit__cta-heading, .store-visit__cta-text { max-width: 48ch; margin-inline: auto; }\n  .store-visit__cta-text { margin-block-start: var(--spacing-3); }\n  .store-visit__cta-text p:last-child { margin-block-end: 0; }\n  .store-visit__buttons {\n    --button-width: 100%;\n    display: grid;\n    gap: var(--spacing-3);\n    margin-block-start: var(--spacing-7);\n  }\n\n  @media screen and (min-width: 750px) {\n    .store-visit__cards, .store-visit__buttons { grid-template-columns: repeat(2, minmax(0, 1fr)); }\n  }\n\n  @media screen and (min-width: 1024px) {\n    .store-visit { row-gap: var(--spacing-11); }\n    .store-visit__split { grid-template-columns: 1fr 1fr; gap: var(--spacing-10); }\n    .store-visit__buttons { grid-template-columns: repeat(4, minmax(0, 1fr)); }\n  }\n\n  @media (prefers-reduced-motion: reduce) {\n    .store-visit__status[data-state=\"open\"]::before { animation: none; }\n  }\n</style>\n\n<script>\n  if (!customElements.get('store-hours')) {\n    class StoreHours extends HTMLElement {\n      connectedCallback() {\n        this.status = this.querySelector('[ref=\"status\"]');\n        this.rows = Array.from(this.querySelectorAll('[data-day]'));\n        if (!this.status || !this.rows.length) return;\n        this.timezone = this.dataset.timezone || 'Europe/Copenhagen';\n        this.schedule = this.buildSchedule();\n        this.render();\n        this.timer = setInterval(() => this.render(), 60000);\n      }\n\n      disconnectedCallback() {\n        clearInterval(this.timer);\n      }\n\n      buildSchedule() {\n        const schedule = {};\n        this.rows.forEach((row) => {\n          const day = Number(row.getAttribute('data-day'));\n          const m = (row.getAttribute('data-hours') || '').match(\n            /(\\d{1,2})(?:[.:](\\d{2}))?\\s*[-–—]\\s*(\\d{1,2})(?:[.:](\\d{2}))?/\n          );\n          schedule[day] = m\n            ? {\n                open: Number(m[1]) * 60 + Number(m[2] || 0),\n                close: Number(m[3]) * 60 + Number(m[4] || 0),\n                openLabel: this.fmt(Number(m[1]), Number(m[2] || 0)),\n                closeLabel: this.fmt(Number(m[3]), Number(m[4] || 0)),\n              }\n            : null;\n        });\n        return schedule;\n      }\n\n      fmt(h, m) {\n        return m === 0 ? String(h) : h + '.' + String(m).padStart(2, '0');\n      }\n\n      now() {\n        const parts = new Intl.DateTimeFormat('en-GB', {\n          timeZone: this.timezone,\n          weekday: 'short',\n          hour: '2-digit',\n          minute: '2-digit',\n          hour12: false,\n        }).formatToParts(new Date());\n        const v = {};\n        parts.forEach((p) => { v[p.type] = p.value; });\n        const days = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };\n        return {\n          day: days[v.weekday],\n          minutes: parseInt(v.hour, 10) * 60 + parseInt(v.minute, 10),\n        };\n      }\n\n      nextOpening(day, minutes) {\n        for (let offset = 0; offset < 7; offset += 1) {\n          const candidate = (day + offset) % 7;\n          const entry = this.schedule[candidate];\n          if (!entry) continue;\n          if (offset === 0 && minutes >= entry.open) continue;\n          return { day: candidate, offset, entry };\n        }\n        return null;\n      }\n\n      dayName(day) {\n        const row = this.rows.find((i) => Number(i.getAttribute('data-day')) === day);\n        return row ? row.firstElementChild.textContent.trim().toLowerCase() : '';\n      }\n\n      render() {\n        const now = this.now();\n        const today = this.schedule[now.day];\n        this.rows.forEach((row) => {\n          row.toggleAttribute('data-today', Number(row.getAttribute('data-day')) === now.day);\n        });\n\n        const isOpen = Boolean(today) && now.minutes >= today.open && now.minutes < today.close;\n        let label;\n\n        if (isOpen) {\n          label = this.dataset.labelOpen + ' · ' + this.dataset.labelClosesAt.replace('{time}', today.closeLabel);\n        } else {\n          const next = this.nextOpening(now.day, now.minutes);\n          if (!next) {\n            label = this.dataset.labelClosed;\n          } else {\n            let when = '';\n            if (next.offset === 1) when = this.dataset.labelTomorrow + ' ';\n            if (next.offset > 1) when = this.dayName(next.day) + ' ';\n            const opens = this.dataset.labelOpensAt\n              .replace('{day}', when)\n              .replace('{time}', next.entry.openLabel);\n            label = this.dataset.labelClosed + ' · ' + opens;\n          }\n        }\n\n        this.status.textContent = label;\n        this.status.setAttribute('data-state', isOpen ? 'open' : 'closed');\n      }\n    }\n    customElements.define('store-hours', StoreHours);\n  }\n</script>",
         "container": "fixed",
-        "type": "grid",
-        "columns": 2,
-        "column_gap": 30,
-        "row_gap": 30,
-        "enable_swipe_on_mobile": false,
-        "columns_mobile": "1",
-        "column_gap_mobile": 8,
-        "row_gap_mobile": 24,
         "color_scheme": "",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "device": "desktop",
+        "padding-block-start": 50,
+        "padding-block-end": 50,
+        "padding-inline-start": 0,
+        "padding-inline-end": 0,
+        "padding-block-start-mobile": 48,
+        "padding-block-end-mobile": 48,
+        "padding-inline-start-mobile": 0,
+        "padding-inline-end-mobile": 0
       }
     }
   },
   "order": [
     "breadcrumbs",
     "main",
-    "store_locator_PXynpd"
+    "custom_liquid_cKD8F3"
   ]
 }

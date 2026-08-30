@@ -1,0 +1,218 @@
+{%- liquid
+  assign accent = section.settings.highlight_color | default: '#5a9e8f'
+  assign heading = section.settings.heading
+  assign text = section.settings.text
+-%}
+
+<div
+  id="section-{{ section.id }}"
+  class="mt-about-split"
+  style="
+    --mt-about-highlight: {{ accent }};
+    --mt-about-pad-top: {{ section.settings.padding_top }}px;
+    --mt-about-pad-bottom: {{ section.settings.padding_bottom }}px;
+    --mt-about-gap: {{ section.settings.image_gap }}px;
+    background-color: {{ section.settings.bg_color }};
+  "
+>
+  <div class="mt-about-split__intro page-width">
+    {% if heading != blank %}
+      <h2 class="mt-about-split__heading">{{ heading }}</h2>
+    {% endif %}
+    {% if text != blank %}
+      <div class="mt-about-split__text rte">{{ text }}</div>
+    {% endif %}
+  </div>
+
+  <div class="mt-about-split__media">
+    <div class="mt-about-split__img">
+      {% if section.settings.image_1 != blank %}
+        {%- assign alt_1 = section.settings.image_1.alt | default: heading -%}
+        {{
+          section.settings.image_1
+          | image_url: width: 1600
+          | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 50vw, 100vw', widths: '600, 900, 1200, 1600', alt: alt_1
+        }}
+      {% else %}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </div>
+    <div class="mt-about-split__img">
+      {% if section.settings.image_2 != blank %}
+        {%- assign alt_2 = section.settings.image_2.alt | default: heading -%}
+        {{
+          section.settings.image_2
+          | image_url: width: 1600
+          | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 50vw, 100vw', widths: '600, 900, 1200, 1600', alt: alt_2
+        }}
+      {% else %}
+        {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+  #section-{{ section.id }}.mt-about-split {
+    padding: var(--mt-about-pad-top) 0 var(--mt-about-pad-bottom);
+  }
+
+  #section-{{ section.id }} .mt-about-split__intro {
+    max-width: min(72rem, var(--page-width, 1500px));
+    margin: 0 auto;
+    padding-inline: var(--page-padding, 1.6rem);
+    text-align: center;
+  }
+
+  #section-{{ section.id }} .mt-about-split__heading {
+    margin: 0 0 1.6rem;
+    font-family: var(--font-heading--family, inherit);
+    font-size: clamp(2.8rem, 4vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: #111;
+  }
+
+  #section-{{ section.id }} .mt-about-split__text {
+    margin: 0 auto;
+    max-width: 68rem;
+    font-size: clamp(1.45rem, 1.6vw, 1.65rem);
+    line-height: 1.65;
+    color: #2a2a2a;
+  }
+
+  #section-{{ section.id }} .mt-about-split__text p {
+    margin: 0;
+  }
+
+  #section-{{ section.id }} .mt-about-split__text .mt-about-highlight,
+  #section-{{ section.id }} .mt-about-split__text em,
+  #section-{{ section.id }} .mt-about-split__text strong {
+    color: var(--mt-about-highlight);
+    font-style: normal;
+    font-weight: inherit;
+  }
+
+  #section-{{ section.id }} .mt-about-split__media {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--mt-about-gap);
+    margin-top: clamp(3.2rem, 5vw, 5.6rem);
+    width: 100%;
+  }
+
+  #section-{{ section.id }} .mt-about-split__img {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: #e8eeea;
+  }
+
+  #section-{{ section.id }} .mt-about-split__img img,
+  #section-{{ section.id }} .mt-about-split__img .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  @media screen and (max-width: 749px) {
+    #section-{{ section.id }} .mt-about-split__media {
+      grid-template-columns: 1fr;
+      gap: calc(var(--mt-about-gap) * 0.6);
+      margin-top: 2.8rem;
+    }
+
+    #section-{{ section.id }} .mt-about-split__img {
+      aspect-ratio: 5 / 4;
+    }
+
+    #section-{{ section.id }} .mt-about-split__heading {
+      font-size: clamp(2.4rem, 7vw, 3.2rem);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Om Martilness",
+  "tag": "section",
+  "class": "section-mt-about-split",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Om Martilness"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Vi brænder for at <em>hjælpe</em> dig med at tage hånd om både din fysiske og mentale sundhed. Hos os finder du produkter, der kan forvandle din daglige rutine til øjeblikke af <em>velvære</em> og selvforkælelse. Fra forfriskende isbade til beroligende saunaer — vores <em>udvalg</em> er skabt til at støtte dig i at genoprette energi, <em>reducere stress</em> og styrke dit velvære. Vi tror på, at små forandringer kan gøre en stor forskel, og vores produkter er udvalgt for at give dig de bedste redskaber til et liv i <em>balance</em> og harmoni.</p>",
+      "info": "Italic words become the soft green highlights."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Left image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Right image"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight color",
+      "default": "#5a9e8f"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "image_gap",
+      "label": "Gap between images",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Om Martilness"
+    }
+  ]
+}
+{% endschema %}

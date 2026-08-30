@@ -326,6 +326,12 @@
   }
 
   {% comment %} Lenis {% endcomment %}
+  {%- comment -%}
+    Lenis' own stylesheet. Only inlined when smooth scrolling is on. With the setting
+    off, Lenis is never imported and none of these classes ever reach <html>, so this
+    would be dead bytes in the critical path of every page.
+  {%- endcomment -%}
+  {%- if settings.smooth_scroll != 'off' -%}
   html.lenis,
   html.lenis body {
     height: auto;
@@ -350,4 +356,5 @@
     transition-duration: 1ms;
     transition-behavior: allow-discrete;
   }
+  {%- endif -%}
 </style>

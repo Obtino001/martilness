@@ -33,7 +33,7 @@
 
 {% if show_free_shipping_bar and settings.show_free_shipping_goal %}
   <free-shipping-goal
-    class="free-shipping-goal grid gap-2"
+    class="free-shipping-goal grid"
     data-skip-subtree-update="true"
     data-minimum-amount="{{ minimum_amount }}"
     data-is-single-currency="{{ is_single_currency }}"
@@ -68,14 +68,19 @@
         </span>
       </div>
     {%- endif -%}
-    <progress-bar
-      class="progress-bar"
-      percent="{{ progress_percent }}"
-      label="Free shipping progress"
-    >
-      <div class="progress-bar__container w-full overflow-hidden">
-        <div class="progress-bar__fill h-full"></div>
-      </div>
-    </progress-bar>
+    <div class="free-shipping-goal__track">
+      <progress-bar
+        class="progress-bar"
+        percent="{{ progress_percent }}"
+        label="Free shipping progress"
+      >
+        <div class="progress-bar__container w-full overflow-hidden">
+          <div class="progress-bar__fill h-full"></div>
+        </div>
+      </progress-bar>
+      <span class="free-shipping-goal__badge">
+        {% render 'icon', icon: 'truck', class: 'free-shipping-goal__icon' %}
+      </span>
+    </div>
   </free-shipping-goal>
 {% endif %}

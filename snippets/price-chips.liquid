@@ -1,0 +1,87 @@
+{%- doc -%}
+  Renderer kr/gram- og rabat-chips ved siden af produktprisen.
+
+  Gram kommer udelukkende fra variant-metafeltet `custom.grams`, og hele
+  udregningen + formateringen sker i ét sted: snippets/price-per-gram.liquid.
+  Denne snippet server-renderer en `variant_id -> "99,50 kr/gram"`-tabel i
+  data-unit-chips, som assets/price-chips.js slår op i ved variant-skift.
+
+  Vi sender FÆRDIGE strenge (ikke gram-tal) med, netop fordi Liquids
+  money-filtre ikke kan gengives 1:1 i JavaScript. På den måde kan tallet på
+  produktsiden aldrig komme til at afvige fra tallet på produktkortet.
+
+  @param {object} product - Produktet der vises chips for.
+  @param {boolean} [show_unit_chip] - Vis kr/gram-chippen.
+  @param {boolean} [show_save_chip] - Vis rabat-chippen.
+
+  @example
+  {% render 'price-chips', product: product, show_unit_chip: true, show_save_chip: true %}
+{%- enddoc -%}
+
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+
+  assign save_percent = 0
+  assign save_amount = 0
+  if variant.compare_at_price != nil and variant.compare_at_price > variant.price
+    assign save_amount = variant.compare_at_price | minus: variant.price
+    assign save_percent = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round
+  endif
+-%}
+
+{%- comment -%}
+  Nuværende variants kr/gram — samme snippet som produktkortet bruger.
+{%- endcomment -%}
+{%- capture current_per_gram -%}
+  {%- render 'price-per-gram', product: product, variant: variant, with_wrapper: false -%}
+{%- endcapture -%}
+{%- assign current_per_gram = current_per_gram | strip | replace: '&nbsp;', ' ' -%}
+
+{%- comment -%}
+  variant_id -> færdig kr/gram-streng. Varianter uden custom.grams udelades,
+  så JS skjuler chippen for dem.
+{%- endcomment -%}
+{%- capture unit_chips_json -%}
+  {
+  {%- assign has_entry = false -%}
+  {%- for v in product.variants -%}
+    {%- capture v_per_gram -%}
+      {%- render 'price-per-gram', product: product, variant: v, with_wrapper: false -%}
+    {%- endcapture -%}
+    {%- assign v_per_gram = v_per_gram | strip | replace: '&nbsp;', ' ' -%}
+    {%- if v_per_gram != blank -%}
+      {%- if has_entry %},{% endif -%}
+      "{{ v.id }}":{{ v_per_gram | json }}
+      {%- assign has_entry = true -%}
+    {%- endif -%}
+  {%- endfor -%}
+  }
+{%- endcapture -%}
+{%- assign unit_chips_json = unit_chips_json | strip_newlines | strip -%}
+
+<price-chips
+  class="price-chips"
+  data-product-id="{{ product.id }}"
+  data-unit-chips="{{ unit_chips_json | escape }}"
+>
+  {%- if show_unit_chip -%}
+    <span
+      class="badge price-chips__chip price-chips__chip--unit"
+      ref="unitChip"
+      {% if current_per_gram == blank %}hidden{% endif %}
+    >
+      {{- current_per_gram -}}
+    </span>
+  {%- endif -%}
+  {%- if show_save_chip -%}
+    <span
+      class="price-chips__chip price-chips__chip--save"
+      ref="saveChip"
+      {% if save_percent <= 0 %}hidden{% endif %}
+    >
+      {%- if save_percent > 0 -%}
+        Spar {{ save_amount | money_without_trailing_zeros }}
+      {%- endif -%}
+    </span>
+  {%- endif -%}
+</price-chips>

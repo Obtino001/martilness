@@ -1,0 +1,474 @@
+{%- liquid
+  assign heading = section.settings.heading | default: 'Vind produkter til en værdi af kr. 3398,-'
+  assign text = section.settings.text | default: 'Tilmeld dig vores nyhedsbrev og vær med i konkurrencen om en dampsauna kombineret med et isbad til en værdi af kr. 3398,-'
+  assign tab_label = section.settings.tab_label | default: 'Vind produkter til en værdi af kr. 3398,-'
+  assign button_label = section.settings.button_label | default: 'Ja tak - jeg vil gerne vinde :-)'
+  assign name_placeholder = section.settings.name_placeholder | default: 'Fornavn'
+  assign email_placeholder = section.settings.email_placeholder | default: 'Email'
+  assign form_id = 'MartilnessGiveaway-' | append: section.id
+  assign panel_bg = section.settings.panel_background | default: '#0a0a0a'
+  assign accent = section.settings.accent_color | default: '#2f6b3a'
+  assign open_by_default = section.settings.open_by_default
+-%}
+
+<div
+  id="section-{{ section.id }}"
+  class="mt-giveaway"
+  data-mt-giveaway
+  data-open-default="{{ open_by_default }}"
+  data-storage-key="mt-giveaway-{{ section.id }}"
+  style="
+    --mt-giveaway-panel: {{ panel_bg }};
+    --mt-giveaway-accent: {{ accent }};
+    --mt-giveaway-z: {{ section.settings.z_index | default: 40 }};
+  "
+>
+  <button
+    type="button"
+    class="mt-giveaway__tab"
+    data-mt-giveaway-open
+    aria-expanded="false"
+    aria-controls="mt-giveaway-panel-{{ section.id }}"
+  >
+    <span class="mt-giveaway__tab-label">{{ tab_label }}</span>
+  </button>
+
+  <div
+    id="mt-giveaway-panel-{{ section.id }}"
+    class="mt-giveaway__panel"
+    data-mt-giveaway-panel
+    hidden
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="mt-giveaway-heading-{{ section.id }}"
+  >
+    <div class="mt-giveaway__grid">
+      <div class="mt-giveaway__form-col">
+        <button
+          type="button"
+          class="mt-giveaway__close"
+          data-mt-giveaway-close
+          aria-label="{{ 'accessibility.close' | t | default: 'Luk' }}"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+        <div class="mt-giveaway__form-inner">
+          {% if heading != blank %}
+            <h2 id="mt-giveaway-heading-{{ section.id }}" class="mt-giveaway__heading">
+              {{ heading }}
+            </h2>
+          {% endif %}
+          {% if text != blank %}
+            <p class="mt-giveaway__text">{{ text }}</p>
+          {% endif %}
+
+          {%- form 'customer', id: form_id, class: 'mt-giveaway__form' -%}
+            <input type="hidden" name="contact[tags]" value="newsletter, giveaway">
+            <label class="visually-hidden" for="{{ form_id }}-name">{{ name_placeholder }}</label>
+            <input
+              id="{{ form_id }}-name"
+              class="mt-giveaway__input"
+              type="text"
+              name="contact[first_name]"
+              autocomplete="given-name"
+              placeholder="{{ name_placeholder }}"
+              required
+            >
+            <label class="visually-hidden" for="{{ form_id }}-email">{{ email_placeholder }}</label>
+            <input
+              id="{{ form_id }}-email"
+              class="mt-giveaway__input"
+              type="email"
+              name="contact[email]"
+              autocomplete="email"
+              autocapitalize="off"
+              autocorrect="off"
+              placeholder="{{ email_placeholder }}"
+              required
+              {% if form.errors %}
+                aria-invalid="true"
+              {% endif %}
+            >
+
+            {% if form.errors %}
+              <p class="mt-giveaway__message mt-giveaway__message--error" role="alert">
+                {{ form.errors.translated_fields.email | capitalize }}
+                {{ form.errors.messages.email }}
+              </p>
+            {% endif %}
+
+            {% if form.posted_successfully? %}
+              <p class="mt-giveaway__message mt-giveaway__message--success" role="status">
+                {{ section.settings.success_message | default: 'Tak! Du er nu med i konkurrencen.' }}
+              </p>
+            {% endif %}
+
+            <button type="submit" class="mt-giveaway__submit" name="commit">
+              {{ button_label }}
+            </button>
+          {%- endform -%}
+        </div>
+      </div>
+
+      <div class="mt-giveaway__media-col">
+        {% if section.settings.image != blank %}
+          {%- assign giveaway_image_alt = section.settings.image.alt | default: heading -%}
+          {{
+            section.settings.image
+            | image_url: width: 1600
+            | image_tag:
+              class: 'mt-giveaway__image',
+              loading: 'lazy',
+              widths: '400, 600, 800, 1200, 1600',
+              sizes: '(min-width: 768px) 50vw, 100vw',
+              alt: giveaway_image_alt
+          }}
+        {% else %}
+          <div class="mt-giveaway__image mt-giveaway__image--placeholder" aria-hidden="true"></div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  #section-{{ section.id }}.mt-giveaway {
+    position: relative;
+    z-index: var(--mt-giveaway-z);
+  }
+
+  #section-{{ section.id }} .mt-giveaway__tab {
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    z-index: calc(var(--mt-giveaway-z) + 1);
+    margin: 0;
+    padding: 0.85rem 1.6rem 1rem;
+    border: 0;
+    border-radius: 0.6rem 0.6rem 0 0;
+    background: var(--mt-giveaway-accent);
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.2;
+    cursor: pointer;
+    box-shadow: 0 -0.4rem 1.6rem rgb(0 0 0 / 18%);
+    max-width: min(92vw, 42rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  #section-{{ section.id }} .mt-giveaway__tab[hidden],
+  #section-{{ section.id }}.is-open .mt-giveaway__tab {
+    display: none;
+  }
+
+  #section-{{ section.id }} .mt-giveaway__panel {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: calc(var(--mt-giveaway-z) + 2);
+    width: 100%;
+    max-height: min(92vh, 64rem);
+    background: var(--mt-giveaway-panel);
+    box-shadow: 0 -1.2rem 3.2rem rgb(0 0 0 / 28%);
+    transform: translateY(100%);
+    transition: transform 0.35s ease;
+  }
+
+  #section-{{ section.id }}.is-open .mt-giveaway__panel {
+    transform: translateY(0);
+  }
+
+  #section-{{ section.id }} .mt-giveaway__panel[hidden] {
+    display: block !important;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  #section-{{ section.id }}.is-open .mt-giveaway__panel[hidden] {
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  #section-{{ section.id }} .mt-giveaway__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 0;
+    max-height: min(92vh, 64rem);
+  }
+
+  #section-{{ section.id }} .mt-giveaway__form-col {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3.2rem 2rem 2.4rem;
+    background: var(--mt-giveaway-panel);
+    color: #fff;
+    overflow: auto;
+  }
+
+  #section-{{ section.id }} .mt-giveaway__form-inner {
+    width: 100%;
+    max-width: 42rem;
+    text-align: center;
+  }
+
+  #section-{{ section.id }} .mt-giveaway__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    border: 0;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 12%);
+    color: #fff;
+    font-size: 2.2rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  #section-{{ section.id }} .mt-giveaway__heading {
+    margin: 0 0 1.2rem;
+    color: #fff;
+    font-size: clamp(2rem, 3.2vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+  }
+
+  #section-{{ section.id }} .mt-giveaway__text {
+    margin: 0 0 2rem;
+    color: rgb(255 255 255 / 88%);
+    font-size: 1.4rem;
+    line-height: 1.5;
+  }
+
+  #section-{{ section.id }} .mt-giveaway__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #section-{{ section.id }} .mt-giveaway__input {
+    width: 100%;
+    margin: 0;
+    padding: 1.35rem 1.4rem;
+    border: 0.1rem solid #111;
+    border-radius: 0.2rem;
+    background: #fff;
+    color: #111;
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  #section-{{ section.id }} .mt-giveaway__input::placeholder {
+    color: #555;
+  }
+
+  #section-{{ section.id }} .mt-giveaway__submit {
+    width: 100%;
+    margin: 0.4rem 0 0;
+    padding: 1.4rem 1.6rem;
+    border: 0;
+    border-radius: 0.2rem;
+    background: var(--mt-giveaway-accent);
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+    cursor: pointer;
+  }
+
+  #section-{{ section.id }} .mt-giveaway__message {
+    margin: 0;
+    font-size: 1.3rem;
+    line-height: 1.4;
+  }
+
+  #section-{{ section.id }} .mt-giveaway__message--error {
+    color: #ffb4b4;
+  }
+
+  #section-{{ section.id }} .mt-giveaway__message--success {
+    color: #b8f0c4;
+  }
+
+  #section-{{ section.id }} .mt-giveaway__media-col {
+    display: none;
+    min-height: 28rem;
+    background: #1a0a0a;
+    overflow: hidden;
+  }
+
+  #section-{{ section.id }} .mt-giveaway__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #section-{{ section.id }} .mt-giveaway__image--placeholder {
+    min-height: 36rem;
+    background:
+      radial-gradient(circle at 70% 40%, #c62828 0%, transparent 45%),
+      linear-gradient(135deg, #2b0a0a 0%, #7a1010 55%, #1a0505 100%);
+  }
+
+  @media (min-width: 768px) {
+    #section-{{ section.id }} .mt-giveaway__grid {
+      grid-template-columns: 1fr 1fr;
+      min-height: min(70vh, 56rem);
+    }
+
+    #section-{{ section.id }} .mt-giveaway__form-col {
+      padding: 4rem 4.5rem;
+    }
+
+    #section-{{ section.id }} .mt-giveaway__media-col {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const root = document.getElementById('section-{{ section.id }}');
+    if (!root || root.dataset.mtGiveawayBound === 'true') return;
+    root.dataset.mtGiveawayBound = 'true';
+
+    const panel = root.querySelector('[data-mt-giveaway-panel]');
+    const tab = root.querySelector('[data-mt-giveaway-open]');
+    const closeBtn = root.querySelector('[data-mt-giveaway-close]');
+    const storageKey = root.dataset.storageKey;
+    const openDefault = root.dataset.openDefault === 'true';
+
+    const setOpen = (open) => {
+      root.classList.toggle('is-open', open);
+      if (tab) {
+        tab.hidden = open;
+        tab.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+      if (panel) {
+        if (open) {
+          panel.removeAttribute('hidden');
+        } else {
+          panel.setAttribute('hidden', '');
+        }
+      }
+      try {
+        if (open) sessionStorage.removeItem(storageKey);
+        else sessionStorage.setItem(storageKey, 'closed');
+      } catch (e) {}
+    };
+
+    let startOpen = openDefault;
+    try {
+      if (sessionStorage.getItem(storageKey) === 'closed') startOpen = false;
+    } catch (e) {}
+
+    setOpen(startOpen);
+
+    tab?.addEventListener('click', () => setOpen(true));
+    closeBtn?.addEventListener('click', () => setOpen(false));
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && root.classList.contains('is-open')) setOpen(false);
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Martilness giveaway",
+  "tag": "section",
+  "class": "section-mt-giveaway",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "tab_label",
+      "label": "Tab label",
+      "default": "Vind produkter til en værdi af kr. 3398,-"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Vind produkter til en værdi af kr. 3398,-"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Tilmeld dig vores nyhedsbrev og vær med i konkurrencen om en dampsauna kombineret med et isbad til en værdi af kr. 3398,-"
+    },
+    {
+      "type": "text",
+      "id": "name_placeholder",
+      "label": "Name placeholder",
+      "default": "Fornavn"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Ja tak - jeg vil gerne vinde :-)"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Tak! Du er nu med i konkurrencen."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "color",
+      "id": "panel_background",
+      "label": "Form background",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent (button + tab)",
+      "default": "#2f6b3a"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_by_default",
+      "label": "Open panel by default",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "z_index",
+      "min": 10,
+      "max": 90,
+      "step": 1,
+      "label": "Z-index",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Martilness giveaway"
+    }
+  ]
+}
+{% endschema %}

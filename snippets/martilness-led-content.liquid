@@ -1,0 +1,59 @@
+{%- doc -%}
+  Shared LED maske lists for accordion + product details card.
+
+  @param {string} part - fordele | specs
+{%- enddoc -%}
+{%- case part -%}
+  {%- when 'fordele' -%}
+    <div class="mt-pdp-tab rte mt-pdp-tab--swatches">
+      <p><strong>Hvad hjælper de enkelte farver med?</strong></p>
+      <ul class="mt-pdp-tab__list mt-pdp-tab__list--colors">
+        <li class="mt-pdp-tab__swatch-row">
+          <span class="mt-color-dot mt-color-dot--rod" aria-hidden="true"></span>
+          <span><strong>Rød:</strong> Stimulerer kollagen og gør huden mere spændstig</span>
+        </li>
+        <li class="mt-pdp-tab__swatch-row">
+          <span class="mt-color-dot mt-color-dot--bla" aria-hidden="true"></span>
+          <span><strong>Blå:</strong> Reducerer akne, betændelse og urenheder</span>
+        </li>
+        <li class="mt-pdp-tab__swatch-row">
+          <span class="mt-color-dot mt-color-dot--gron" aria-hidden="true"></span>
+          <span><strong>Grøn:</strong> Beroliger huden og dæmper pigmentforandringer</span>
+        </li>
+        <li class="mt-pdp-tab__swatch-row">
+          <span class="mt-color-dot mt-color-dot--gul" aria-hidden="true"></span>
+          <span><strong>Gul:</strong> Lysner mørke pletter og forbedrer hudtonen</span>
+        </li>
+        <li class="mt-pdp-tab__swatch-row">
+          <span class="mt-color-dot mt-color-dot--lilla" aria-hidden="true"></span>
+          <span><strong>Lilla:</strong> Modvirker hævelser og stimulerer blodcirkulationen</span>
+        </li>
+        <li class="mt-pdp-tab__swatch-row">
+          <span class="mt-color-dot mt-color-dot--orange" aria-hidden="true"></span>
+          <span><strong>Orange:</strong> Understøtter lymfesystemet og reducerer hævelse</span>
+        </li>
+        <li class="mt-pdp-tab__swatch-row">
+          <span class="mt-color-dot mt-color-dot--cyan" aria-hidden="true"></span>
+          <span><strong>Cyan:</strong> Dæmper fedtet hud og mindsker hudorme</span>
+        </li>
+        <li class="mt-pdp-tab__swatch-row">
+          <span class="mt-color-dot mt-color-dot--nir" aria-hidden="true"></span>
+          <span><strong>Nærinfrarød (NIR):</strong> Trænger dybt ned i huden og understøtter cellefornyelse og blodcirkulation</span>
+        </li>
+      </ul>
+    </div>
+
+  {%- when 'specs' -%}
+    <div class="mt-pdp-tab rte">
+      <ul class="mt-pdp-tab__list">
+        <li>Antal LED-lamper: 124</li>
+        <li>LED-lys: 7 biologiske LED-farver</li>
+        <li>Nærinfrarødt lys: 810–850 nm</li>
+        <li>Spænding: 220V (medfølgende AC/DC-adapter: 5V, DC 1000mA)</li>
+        <li>Tidsindstilling: 10, 15, 20, 25 eller 30 minutter</li>
+        <li>Materiale: Blød og fleksibel silikone</li>
+        <li>Certificeringer: CE &amp; RoHS</li>
+        <li>Betjening: Fjernbetjening med forudindstillede programmer</li>
+      </ul>
+    </div>
+{%- endcase -%}

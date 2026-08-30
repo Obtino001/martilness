@@ -1,0 +1,619 @@
+{%- liquid
+  assign accent = section.settings.accent_color | default: '#09412d'
+  assign product_ref = product
+  if product_ref == blank and closest.product != blank
+    assign product_ref = closest.product
+  endif
+-%}
+
+<div
+  id="section-{{ section.id }}"
+  class="mt-product-details"
+  style="
+    --mt-pd-accent: {{ accent }};
+    --mt-pd-page-bg: {{ section.settings.page_bg_color }};
+    background-color: {{ section.settings.page_bg_color }};
+  "
+>
+  <div class="mt-product-details__container">
+    {%- comment -%} LEFT: product specs card {%- endcomment -%}
+    <aside class="mt-pd-card" id="pd-card-{{ section.id }}">
+      <div class="mt-pd-card__header">
+        <span class="mt-pd-card__badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
+            <rect x="9" y="3" width="6" height="4" rx="1"/>
+            <path d="M9 12h6M9 16h4"/>
+          </svg>
+        </span>
+        <h2 class="mt-pd-card__title">{{ section.settings.details_heading }}</h2>
+      </div>
+
+      <div class="mt-pd-card__grid">
+        {% for block in section.blocks %}
+          {% if block.type == 'details_list' %}
+            {%- liquid
+              assign mf_key = block.settings.metafield_key | strip
+              assign mf_field = blank
+              assign mf_probe_txt = ''
+              if mf_key != blank and product_ref != blank
+                assign mf_field = product_ref.metafields.custom[mf_key]
+                # Some stores name the key with a trailing "s" (tekniske_specifikationers)
+                if mf_field == blank
+                  assign mf_key_alt = mf_key | append: 's'
+                  assign mf_field = product_ref.metafields.custom[mf_key_alt]
+                endif
+                if mf_field == blank
+                  assign last_char = mf_key | slice: -1
+                  if last_char == 's'
+                    assign trimmed_len = mf_key | size | minus: 1
+                    assign mf_key_alt = mf_key | slice: 0, trimmed_len
+                    assign mf_field = product_ref.metafields.custom[mf_key_alt]
+                  endif
+                endif
+              endif
+              assign has_metafield = false
+              if mf_field != blank
+                capture mf_probe
+                  echo mf_field | metafield_tag
+                endcapture
+                assign mf_probe_txt = mf_probe | strip_html | strip
+                if mf_probe_txt != blank
+                  assign has_metafield = true
+                endif
+              endif
+
+              assign mf_probe_down = mf_probe_txt | downcase
+              assign use_led_content = false
+              if mf_key == 'tekniske_specifikationer' or mf_key == 'specs'
+                if mf_probe_down contains 'led-lamper' or mf_probe_down contains 'biologiske led' or mf_probe_down contains 'nærinfrarødt lys'
+                  assign use_led_content = true
+                endif
+              endif
+              if mf_key == 'sundhedsmaessige_fordele' or mf_key == 'fordele'
+                if mf_probe_down contains 'hvad hjælper de enkelte farver' or mf_probe_down contains 'nærinfrarød (nir)'
+                  assign use_led_content = true
+                endif
+              endif
+              # Fallback: IR-lys template + LED/maske product
+              if use_led_content == false and template.suffix == 'infrarodt-lys'
+                assign _pt = product_ref.title | default: '' | downcase
+                if _pt contains 'led' or _pt contains 'maske'
+                  if mf_key == 'tekniske_specifikationer' or mf_key == 'specs' or mf_key == 'sundhedsmaessige_fordele' or mf_key == 'fordele'
+                    assign use_led_content = true
+                  endif
+                endif
+              endif
+            -%}
+            <div class="mt-pd-block" {{ block.shopify_attributes }}>
+              {% if block.settings.block_heading != blank %}
+                <h3 class="mt-pd-block__heading">{{ block.settings.block_heading }}</h3>
+              {% endif %}
+              <div class="mt-pd-block__list">
+                {%- if use_led_content -%}
+                  {%- if mf_key == 'tekniske_specifikationer' or mf_key == 'specs' -%}
+                    <div class="mt-pdp-tab rte">
+                      <ul class="mt-pdp-tab__list">
+                        <li>Antal LED-lamper: 124</li>
+                        <li>LED-lys: 7 biologiske LED-farver</li>
+                        <li>Nærinfrarødt lys: 810–850 nm</li>
+                        <li>Spænding: 220V (medfølgende AC/DC-adapter: 5V, DC 1000mA)</li>
+                        <li>Tidsindstilling: 10, 15, 20, 25 eller 30 minutter</li>
+                        <li>Materiale: Blød og fleksibel silikone</li>
+                        <li>Certificeringer: CE &amp; RoHS</li>
+                        <li>Betjening: Fjernbetjening med forudindstillede programmer</li>
+                      </ul>
+                    </div>
+                  {%- else -%}
+                    <div class="mt-pdp-tab rte mt-pdp-tab--swatches">
+                      <p><strong>Hvad hjælper de enkelte farver med?</strong></p>
+                      <ul class="mt-pdp-tab__list mt-pdp-tab__list--colors">
+                        <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--rod" aria-hidden="true"></span><span><strong>Rød:</strong> Stimulerer kollagen og gør huden mere spændstig</span></li>
+                        <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--bla" aria-hidden="true"></span><span><strong>Blå:</strong> Reducerer akne, betændelse og urenheder</span></li>
+                        <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--gron" aria-hidden="true"></span><span><strong>Grøn:</strong> Beroliger huden og dæmper pigmentforandringer</span></li>
+                        <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--gul" aria-hidden="true"></span><span><strong>Gul:</strong> Lysner mørke pletter og forbedrer hudtonen</span></li>
+                        <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--lilla" aria-hidden="true"></span><span><strong>Lilla:</strong> Modvirker hævelser og stimulerer blodcirkulationen</span></li>
+                        <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--orange" aria-hidden="true"></span><span><strong>Orange:</strong> Understøtter lymfesystemet og reducerer hævelse</span></li>
+                        <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--cyan" aria-hidden="true"></span><span><strong>Cyan:</strong> Dæmper fedtet hud og mindsker hudorme</span></li>
+                        <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--nir" aria-hidden="true"></span><span><strong>Nærinfrarød (NIR):</strong> Trænger dybt ned i huden og understøtter cellefornyelse og blodcirkulation</span></li>
+                      </ul>
+                    </div>
+                  {%- endif -%}
+                {%- elsif has_metafield -%}
+                  {% liquid
+                    assign use_color_dots = false
+                    if mf_key == 'sundhedsmaessige_fordele' or mf_key == 'fordele'
+                      assign use_color_dots = true
+                    endif
+                  %}
+                  {% render 'martilness-metafield-html', metafield: mf_field, format_list: true, color_swatches: use_color_dots %}
+                {%- elsif block.settings.block_content != blank -%}
+                  <div class="mt-pdp-tab rte" data-mt-color-auto>
+                    {{ block.settings.block_content }}
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </aside>
+
+    {%- comment -%} RIGHT: shop by category {%- endcomment -%}
+    <div class="mt-wi-card">
+      {% if section.settings.includes_heading != blank %}
+        <h2 class="mt-wi-card__heading">{{ section.settings.includes_heading }}</h2>
+      {% endif %}
+
+      <div class="mt-wi-card__grid">
+        {% for block in section.blocks %}
+          {% if block.type == 'included_item' %}
+            {%- liquid
+              assign item_link = block.settings.link
+              assign item_tag = 'div'
+              if item_link != blank
+                assign item_tag = 'a'
+              endif
+            -%}
+            <{{ item_tag }}
+              class="mt-wi-item{% if item_link != blank %} mt-wi-item--link{% endif %}"
+              {% if item_link != blank %}href="{{ item_link }}"{% endif %}
+              {{ block.shopify_attributes }}
+            >
+              <div class="mt-wi-item__media">
+                {% if block.settings.image != blank %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 240, height: 240, crop: 'center'
+                    | image_tag: loading: 'lazy', alt: block.settings.title, widths: '120, 200, 240'
+                  }}
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+              </div>
+              {% if block.settings.title != blank %}
+                <p class="mt-wi-item__title">{{ block.settings.title }}</p>
+              {% endif %}
+            </{{ item_tag }}>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  #section-{{ section.id }}.mt-product-details {
+    padding: clamp(4rem, 6vw, 7rem) 2rem;
+    font-family: var(--font-body--family, inherit);
+  }
+
+  #section-{{ section.id }} .mt-product-details__container {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: clamp(2.4rem, 4vw, 4.8rem);
+    align-items: start;
+    max-width: 1480px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* —— Specs card (theme green) —— */
+  #section-{{ section.id }} .mt-pd-card {
+    background:
+      linear-gradient(165deg, color-mix(in srgb, var(--mt-pd-accent) 88%, #fff) 0%, var(--mt-pd-accent) 48%, #06281c 100%);
+    border-radius: 1.6rem;
+    padding: 2.8rem 3.2rem 3.2rem;
+    color: #fff;
+    box-shadow:
+      0 1.2rem 3.2rem rgb(9 65 45 / 18%),
+      inset 0 1px 0 rgb(255 255 255 / 12%);
+    border: 1px solid color-mix(in srgb, var(--mt-pd-accent) 70%, #000);
+  }
+
+  #section-{{ section.id }} .mt-pd-card__header {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 2.4rem;
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid rgb(255 255 255 / 18%);
+  }
+
+  #section-{{ section.id }} .mt-pd-card__badge {
+    flex: none;
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(255 255 255 / 14%);
+    color: #fff;
+  }
+
+  #section-{{ section.id }} .mt-pd-card__badge svg {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  #section-{{ section.id }} .mt-pd-card__title {
+    margin: 0;
+    font-size: clamp(1.8rem, 2vw, 2.2rem);
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    color: #fff;
+    font-family: var(--font-heading--family, inherit);
+    line-height: 1.25;
+  }
+
+  #section-{{ section.id }} .mt-pd-card__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.4rem 2.8rem;
+  }
+
+  #section-{{ section.id }} .mt-pd-block__heading {
+    margin: 0 0 1.2rem;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgb(255 255 255 / 72%);
+    font-family: var(--font-heading--family, inherit);
+  }
+
+  #section-{{ section.id }} .mt-pd-block__list,
+  #section-{{ section.id }} .mt-pd-block__list .mt-pdp-tab,
+  #section-{{ section.id }} .mt-pd-block__list .metafield-rich_text_field {
+    color: rgb(255 255 255 / 88%);
+    font-size: 1.4rem;
+    line-height: 1.55;
+  }
+
+  #section-{{ section.id }} .mt-pd-block__list ul,
+  #section-{{ section.id }} .mt-pd-block__list .mt-pdp-tab__list,
+  #section-{{ section.id }} .mt-pd-block__list .metafield-rich_text_field ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  #section-{{ section.id }} .mt-pd-block__list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin: 0;
+    color: rgb(255 255 255 / 88%);
+  }
+
+  #section-{{ section.id }} .mt-pd-block__list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: #7dcea0;
+    box-shadow: 0 0 0 3px rgb(125 206 160 / 22%);
+  }
+
+  #section-{{ section.id }} .mt-pd-block__list .mt-pdp-tab__swatch-row {
+    padding-left: 0;
+    color: rgb(255 255 255 / 88%);
+  }
+
+  #section-{{ section.id }} .mt-pd-block__list .mt-pdp-tab__swatch-row::before {
+    display: none;
+  }
+
+  #section-{{ section.id }} .mt-pd-block__list .mt-color-dot {
+    box-shadow: inset 0 0 0 0.1rem rgb(255 255 255 / 25%);
+  }
+
+  #section-{{ section.id }} .mt-pd-block__list p {
+    margin: 0 0 0.8rem;
+    color: rgb(255 255 255 / 88%);
+  }
+
+  #section-{{ section.id }} .mt-pd-block__list p:last-child {
+    margin-bottom: 0;
+  }
+
+  #section-{{ section.id }} .mt-pd-block__list :is(h2, h3, h4) {
+    margin: 0 0 0.9rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  #section-{{ section.id }} .mt-pd-block__list :is(ul, ol, p) + :is(h2, h3, h4),
+  #section-{{ section.id }} .mt-pd-block__list :is(h2, h3, h4):not(:first-child) {
+    margin-top: 2.2rem;
+  }
+
+  /* —— Category card —— */
+  #section-{{ section.id }} .mt-wi-card {
+    background: #f3f6f4;
+    border-radius: 1.6rem;
+    padding: clamp(2.8rem, 4vw, 4rem) clamp(2rem, 3vw, 3.6rem);
+    text-align: center;
+    border: 1px solid rgb(9 65 45 / 8%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media screen and (min-width: 990px) {
+    #section-{{ section.id }} .mt-wi-card {
+      position: sticky;
+      top: calc(var(--header-height, 0px) + 2.4rem);
+      align-self: start;
+      z-index: 2;
+    }
+  }
+
+  #section-{{ section.id }} .mt-wi-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--mt-pd-accent), #7dcea0);
+  }
+
+  #section-{{ section.id }} .mt-wi-card__heading {
+    margin: 0 0 2.8rem;
+    font-size: clamp(2.2rem, 2.6vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #111;
+    font-family: var(--font-heading--family, inherit);
+  }
+
+  #section-{{ section.id }} .mt-wi-card__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem 2.4rem;
+  }
+
+  #section-{{ section.id }} .mt-wi-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 9.5rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  #section-{{ section.id }} .mt-wi-item--link {
+    transition: transform 0.25s ease;
+  }
+
+  #section-{{ section.id }} .mt-wi-item--link:hover {
+    transform: translateY(-3px);
+  }
+
+  #section-{{ section.id }} .mt-wi-item__media {
+    width: 10.4rem;
+    height: 10.4rem;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1.1rem;
+    background: #fff;
+    border: 3px solid #fff;
+    box-shadow:
+      0 0 0 2px color-mix(in srgb, var(--mt-pd-accent) 35%, transparent),
+      0 0.8rem 1.8rem rgb(9 65 45 / 10%);
+  }
+
+  #section-{{ section.id }} .mt-wi-item--link:hover .mt-wi-item__media {
+    box-shadow:
+      0 0 0 2px var(--mt-pd-accent),
+      0 1rem 2rem rgb(9 65 45 / 16%);
+  }
+
+  #section-{{ section.id }} .mt-wi-item__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  #section-{{ section.id }} .mt-wi-item__media .placeholder-svg {
+    width: 50%;
+    height: 50%;
+    margin: 25%;
+    fill: #ccc;
+  }
+
+  #section-{{ section.id }} .mt-wi-item__title {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.3;
+  }
+
+  #section-{{ section.id }} .mt-wi-item--link:hover .mt-wi-item__title {
+    color: var(--mt-pd-accent);
+  }
+
+  @media screen and (max-width: 989px) {
+    #section-{{ section.id }} .mt-product-details__container {
+      grid-template-columns: 1fr;
+      gap: 3.2rem;
+    }
+
+    #section-{{ section.id }} .mt-pd-card,
+    #section-{{ section.id }} .mt-wi-card {
+      max-width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    #section-{{ section.id }} .mt-pd-card {
+      padding: 2.2rem 2rem 2.4rem;
+    }
+
+    #section-{{ section.id }} .mt-pd-card__grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    #section-{{ section.id }} .mt-wi-item {
+      width: 24%;
+    }
+
+    #section-{{ section.id }} .mt-wi-item__media {
+      width: 8.8rem;
+      height: 8.8rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Product Details",
+  "tag": "section",
+  "class": "section-details-includes",
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_bg_color",
+      "label": "Page background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Theme green (details card)",
+      "default": "#09412d"
+    },
+    {
+      "type": "header",
+      "content": "Left card"
+    },
+    {
+      "type": "text",
+      "id": "details_heading",
+      "label": "Details heading",
+      "default": "Detaljer om produktet"
+    },
+    {
+      "type": "header",
+      "content": "Right card"
+    },
+    {
+      "type": "text",
+      "id": "includes_heading",
+      "label": "Category heading",
+      "default": "Shop efter kategori"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_link",
+      "name": "Collection link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Collection name",
+          "default": "Isbad"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Collection link"
+        }
+      ]
+    },
+    {
+      "type": "details_list",
+      "name": "Details list",
+      "settings": [
+        {
+          "type": "text",
+          "id": "block_heading",
+          "label": "List heading",
+          "default": "Specifikationer"
+        },
+        {
+          "type": "select",
+          "id": "metafield_key",
+          "label": "Product metafield",
+          "info": "Uses the product metafield when set. Falls back to list content below.",
+          "options": [
+            { "value": "", "label": "None (use list content)" },
+            { "value": "tekniske_specifikationer", "label": "Tekniske specifikationer" },
+            { "value": "sundhedsmaessige_fordele", "label": "Sundhedsmæssige fordele" },
+            { "value": "hvad_er_inkluderet", "label": "Hvad er inkluderet" },
+            { "value": "fordele", "label": "Fordele" },
+            { "value": "product_usps", "label": "Product USPs" },
+            { "value": "tilfredshedsgaranti", "label": "Tilfredshedsgaranti" }
+          ],
+          "default": ""
+        },
+        {
+          "type": "richtext",
+          "id": "block_content",
+          "label": "Fallback list content",
+          "default": "<ul><li>Specifikation</li></ul>",
+          "info": "Shown only if the metafield is empty."
+        }
+      ]
+    },
+    {
+      "type": "included_item",
+      "name": "Category item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Saunatæppe"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Details",
+      "blocks": [
+        {
+          "type": "details_list",
+          "settings": {
+            "block_heading": "Specifikationer",
+            "metafield_key": "tekniske_specifikationer"
+          }
+        },
+        {
+          "type": "details_list",
+          "settings": {
+            "block_heading": "Fordele",
+            "metafield_key": "sundhedsmaessige_fordele"
+          }
+        },
+        {
+          "type": "included_item",
+          "settings": { "title": "Saunatæppe" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

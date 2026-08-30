@@ -61,7 +61,7 @@
       <span class="add-to-cart-text__content">{{- button_text -}}</span>
     </span>
     {% if mode == 'quick-add' %}
-      {% render 'icon', icon: 'cart', class: icon_extra_class %}
+      {% render 'icon', icon: 'basket', class: icon_extra_class %}
     {% endif %}
     {% if button_type == 'with_icon' %}
       <span class="add-to-cart-icon btn__icon{% if mode == 'quick-add' %} hidden md:flex{% endif %}">

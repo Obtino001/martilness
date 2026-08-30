@@ -1,0 +1,488 @@
+{%- liquid
+  assign layout = section.settings.layout | default: 'article'
+  assign accent = section.settings.accent_color | default: '#09412d'
+  assign show_title = section.settings.show_page_title
+  assign cta_label = section.settings.cta_label
+  assign cta_link = section.settings.cta_link
+-%}
+
+<div
+  id="section-{{ section.id }}"
+  class="mt-page-body mt-page-body--{{ layout }}"
+  style="
+    --mt-page-body-accent: {{ accent }};
+    --mt-page-body-pad-top: {{ section.settings.padding_top }}px;
+    --mt-page-body-pad-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="mt-page-body__wrap page-width">
+    <div class="mt-page-body__card">
+      {% if show_title and page.title != blank %}
+        <h2 class="mt-page-body__page-title">{{ page.title }}</h2>
+      {% endif %}
+
+      {% if page.content != blank %}
+        <div
+          class="mt-page-body__content rte"
+          data-mt-page-content
+          data-mt-layout="{{ layout }}"
+        >
+          {{ page.content }}
+        </div>
+        {% if layout == 'faq' %}
+          <div class="mt-page-body__faq" data-mt-page-faq hidden></div>
+        {% endif %}
+      {% else %}
+        <p class="mt-page-body__empty">Denne side har endnu intet indhold.</p>
+      {% endif %}
+
+      {% if cta_label != blank %}
+        <div class="mt-page-body__cta">
+          <a
+            class="mt-page-body__cta-btn"
+            href="{{ cta_link | default: '#' }}"
+          >
+            {{ cta_label }}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% if layout == 'faq' %}
+<script>
+  (() => {
+    const root = document.getElementById('section-{{ section.id }}');
+    if (!root) return;
+    const source = root.querySelector('[data-mt-page-content]');
+    const target = root.querySelector('[data-mt-page-faq]');
+    if (!source || !target || source.dataset.mtFaqBound === 'true') return;
+    source.dataset.mtFaqBound = 'true';
+
+    const nodes = Array.from(source.childNodes).filter((n) => {
+      if (n.nodeType === Node.TEXT_NODE) return n.textContent.trim().length > 0;
+      if (n.nodeType === Node.ELEMENT_NODE) {
+        const tag = n.tagName;
+        if (tag === 'SCRIPT' || tag === 'STYLE') return false;
+        return n.textContent.trim().length > 0;
+      }
+      return false;
+    });
+
+    function isQuestionEl(el) {
+      if (!el || el.nodeType !== Node.ELEMENT_NODE) return false;
+      const tag = el.tagName;
+      if (/^H[1-6]$/.test(tag)) return true;
+      if (tag === 'P' || tag === 'DIV') {
+        const html = el.innerHTML.trim();
+        const text = el.textContent.trim();
+        if (!text) return false;
+        const onlyStrong =
+          /^<(strong|b)(\s[^>]*)?>[\s\S]+<\/\1>$/i.test(html) ||
+          ((el.querySelector('strong,b') && el.querySelector('strong,b').textContent.trim() === text));
+        if (onlyStrong && text.endsWith('?')) return true;
+        if (text.endsWith('?') && text.length < 160 && !el.querySelector('a,ul,ol,img')) return true;
+      }
+      return false;
+    }
+
+    function questionText(el) {
+      return (el.textContent || '').trim();
+    }
+
+    function headingClass(el) {
+      const tag = (el.tagName || '').toLowerCase();
+      if (/^h[1-6]$/.test(tag)) return tag;
+      return '';
+    }
+
+    const items = [];
+    let current = null;
+
+    nodes.forEach((node) => {
+      if (isQuestionEl(node)) {
+        if (current) items.push(current);
+        current = {
+          q: questionText(node),
+          html: node.innerHTML,
+          heading: headingClass(node),
+          style: node.getAttribute('style') || '',
+          parts: []
+        };
+        return;
+      }
+      if (!current) {
+        // Leading intro content — keep as preamble in source
+        return;
+      }
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        current.parts.push(node.outerHTML);
+      } else {
+        current.parts.push('<p>' + node.textContent.trim() + '</p>');
+      }
+    });
+    if (current) items.push(current);
+
+    if (items.length < 2) {
+      // Not enough Q&A pairs — leave article layout
+      return;
+    }
+
+    // Preserve any intro nodes before first question
+    const intro = [];
+    for (const node of nodes) {
+      if (isQuestionEl(node)) break;
+      if (node.nodeType === Node.ELEMENT_NODE) intro.push(node.outerHTML);
+    }
+
+    const accordion = document.createElement('div');
+    accordion.className = 'mt-page-faq accordion accordion--standard';
+    accordion.setAttribute('data-single-open', 'true');
+
+    items.forEach((item, i) => {
+      const row = document.createElement('div');
+      row.className = 'mt-page-faq__row accordion__row';
+
+      const details = document.createElement('details');
+      details.className = 'mt-page-faq__details accordion__details';
+      if (i === 0) details.open = true;
+
+      const summary = document.createElement('summary');
+      summary.className = 'mt-page-faq__summary accordion__summary';
+      const qClass = 'mt-page-faq__q' + (item.heading ? ' ' + item.heading : '');
+      const qStyle = item.style
+        ? ' style="' + item.style.replace(/"/g, '&quot;') + '"'
+        : '';
+      summary.innerHTML =
+        '<span class="' +
+        qClass +
+        '"' +
+        qStyle +
+        '>' +
+        (item.html || item.q.replace(/</g, '&lt;')) +
+        '</span><span class="mt-page-faq__icon" aria-hidden="true"></span>';
+
+      const content = document.createElement('div');
+      content.className = 'mt-page-faq__answer accordion__content rte';
+      content.innerHTML = item.parts.join('') || '<p></p>';
+
+      details.appendChild(summary);
+      details.appendChild(content);
+      row.appendChild(details);
+      accordion.appendChild(row);
+    });
+
+    if (intro.length) {
+      const introWrap = document.createElement('div');
+      introWrap.className = 'mt-page-body__intro rte';
+      introWrap.innerHTML = intro.join('');
+      target.appendChild(introWrap);
+    }
+    target.appendChild(accordion);
+    target.hidden = false;
+    source.hidden = true;
+  })();
+</script>
+{% endif %}
+
+<style>
+  #section-{{ section.id }}.mt-page-body {
+    padding: var(--mt-page-body-pad-top) var(--page-padding, 1.6rem) var(--mt-page-body-pad-bottom);
+    background: #fff;
+  }
+
+  #section-{{ section.id }} .mt-page-body__wrap {
+    max-width: var(--page-width, 1500px);
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  #section-{{ section.id }} .mt-page-body__card {
+    background: #f3f6f4;
+    border: 1px solid rgb(9 65 45 / 8%);
+    border-radius: 1.6rem;
+    padding: clamp(2.4rem, 4vw, 4rem);
+    box-shadow: 0 0.8rem 2.4rem rgb(9 65 45 / 6%);
+  }
+
+  #section-{{ section.id }} .mt-page-body__page-title {
+    margin: 0 0 2rem;
+    font-family: var(--font-heading--family, inherit);
+    font-size: clamp(2.2rem, 3vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #111;
+  }
+
+  #section-{{ section.id }} .mt-page-body__content,
+  #section-{{ section.id }} .mt-page-body__intro,
+  #section-{{ section.id }} .mt-page-faq__answer {
+    line-height: 1.65;
+    color: rgb(0 0 0 / 82%);
+  }
+
+  #section-{{ section.id }} .mt-page-body__content > *:first-child,
+  #section-{{ section.id }} .mt-page-body__intro > *:first-child {
+    margin-top: 0;
+  }
+
+  #section-{{ section.id }} .mt-page-body__content > *:last-child,
+  #section-{{ section.id }} .mt-page-body__intro > *:last-child {
+    margin-bottom: 0;
+  }
+
+  #section-{{ section.id }} .mt-page-body__content h2,
+  #section-{{ section.id }} .mt-page-body__content h3,
+  #section-{{ section.id }} .mt-page-body__content strong {
+    color: #111;
+  }
+
+  /* Shopify wraps list items in <p>. Theme uses list-style-position: inside,
+     so the bullet sits on its own line above the paragraph. */
+  #section-{{ section.id }} .mt-page-body__content ul,
+  #section-{{ section.id }} .mt-page-body__content ol,
+  #section-{{ section.id }} .mt-page-body__intro ul,
+  #section-{{ section.id }} .mt-page-body__intro ol,
+  #section-{{ section.id }} .mt-page-faq__answer ul,
+  #section-{{ section.id }} .mt-page-faq__answer ol {
+    list-style-position: outside;
+    padding-inline-start: 1.6em;
+    margin-block: 0 1.2rem;
+  }
+
+  #section-{{ section.id }} .mt-page-body__content li,
+  #section-{{ section.id }} .mt-page-body__intro li,
+  #section-{{ section.id }} .mt-page-faq__answer li {
+    display: list-item;
+    margin: 0.45rem 0;
+  }
+
+  #section-{{ section.id }} .mt-page-body__content li > p,
+  #section-{{ section.id }} .mt-page-body__intro li > p,
+  #section-{{ section.id }} .mt-page-faq__answer li > p,
+  #section-{{ section.id }} .mt-page-body__content li > :is(h1, h2, h3, h4, h5, h6),
+  #section-{{ section.id }} .mt-page-body__intro li > :is(h1, h2, h3, h4, h5, h6),
+  #section-{{ section.id }} .mt-page-faq__answer li > :is(h1, h2, h3, h4, h5, h6) {
+    display: inline;
+    margin: 0;
+  }
+
+  #section-{{ section.id }} .mt-page-body__empty {
+    margin: 0;
+    color: rgb(0 0 0 / 55%);
+  }
+
+  /* FAQ accordion */
+  #section-{{ section.id }} .mt-page-body__intro {
+    margin-bottom: 2rem;
+  }
+
+  #section-{{ section.id }} .mt-page-faq {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  #section-{{ section.id }} .mt-page-faq__row {
+    border-bottom: none;
+  }
+
+  #section-{{ section.id }} .mt-page-faq__row:first-child {
+    border-top: none;
+  }
+
+  #section-{{ section.id }} .mt-page-faq__details {
+    margin: 0;
+  }
+
+  #section-{{ section.id }} .mt-page-faq__summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.6rem;
+    padding: 1.6rem 0;
+    cursor: pointer;
+    font-family: var(--font-heading--family, inherit);
+    font-size: inherit;
+    font-weight: 650;
+    line-height: 1.35;
+    color: #111;
+  }
+
+  #section-{{ section.id }} .mt-page-faq__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  #section-{{ section.id }} .mt-page-faq__q {
+    flex: 1;
+  }
+
+  #section-{{ section.id }} .mt-page-faq__q.h1 { font-size: var(--font-size--h1); }
+  #section-{{ section.id }} .mt-page-faq__q.h2 { font-size: var(--font-size--h2); }
+  #section-{{ section.id }} .mt-page-faq__q.h3 { font-size: var(--font-size--h3); }
+  #section-{{ section.id }} .mt-page-faq__q.h4 { font-size: var(--font-size--h4); }
+  #section-{{ section.id }} .mt-page-faq__q.h5 { font-size: var(--font-size--h5); }
+  #section-{{ section.id }} .mt-page-faq__q.h6 { font-size: var(--font-size--h6); }
+
+  #section-{{ section.id }} .mt-page-faq__icon {
+    flex: none;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    background: var(--mt-page-body-accent);
+    position: relative;
+  }
+
+  #section-{{ section.id }} .mt-page-faq__icon::before,
+  #section-{{ section.id }} .mt-page-faq__icon::after {
+    content: "";
+    position: absolute;
+    background: #fff;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #section-{{ section.id }} .mt-page-faq__icon::before {
+    width: 1rem;
+    height: 0.2rem;
+  }
+
+  #section-{{ section.id }} .mt-page-faq__icon::after {
+    width: 0.2rem;
+    height: 1rem;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  #section-{{ section.id }} .mt-page-faq__details[open] .mt-page-faq__icon::after {
+    opacity: 0;
+    transform: translate(-50%, -50%) scaleY(0);
+  }
+
+  #section-{{ section.id }} .mt-page-faq__answer {
+    padding: 0 0 1.8rem;
+  }
+
+  #section-{{ section.id }} .mt-page-faq__answer > *:first-child {
+    margin-top: 0;
+  }
+
+  #section-{{ section.id }} .mt-page-faq__answer > *:last-child {
+    margin-bottom: 0;
+  }
+
+  #section-{{ section.id }} .mt-page-body__cta {
+    margin-top: 2.8rem;
+    padding-top: 2.4rem;
+    border-top: 1px solid rgb(9 65 45 / 10%);
+  }
+
+  #section-{{ section.id }} .mt-page-body__cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 4.8rem;
+    padding: 0 2.2rem;
+    border-radius: 999px;
+    background: var(--mt-page-body-accent);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 650;
+    font-size: 1.5rem;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  #section-{{ section.id }} .mt-page-body__cta-btn:hover {
+    background: color-mix(in srgb, var(--mt-page-body-accent) 88%, #000);
+    transform: translateY(-1px);
+  }
+
+  @media screen and (max-width: 749px) {
+    #section-{{ section.id }} .mt-page-body__card {
+      padding: 2rem 1.6rem;
+      border-radius: 1.2rem;
+    }
+
+    #section-{{ section.id }} .mt-page-faq__summary {
+      padding: 1.4rem 0;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Martilness page body",
+  "tag": "section",
+  "class": "section-mt-page-body",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "article", "label": "Article" },
+        { "value": "faq", "label": "FAQ accordion" }
+      ],
+      "default": "article"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_page_title",
+      "label": "Show page title in body",
+      "default": false,
+      "info": "Usually off when using Martilness page hero."
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent green",
+      "default": "#09412d"
+    },
+    {
+      "type": "header",
+      "content": "CTA"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button label",
+      "default": "Kontakt os"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 20,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 20,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "Martilness page body"
+    }
+  ]
+}
+{% endschema %}

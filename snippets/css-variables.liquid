@@ -509,8 +509,8 @@
     --color-sale-badge-text: {{ settings.sale_badge_text.rgb }};
     --color-sold-out-badge-background: {{ settings.sold_out_badge_background.rgb }};
     --color-sold-out-badge-text: {{ settings.sold_out_badge_text.rgb }};
-    --color-cart-bubble-text: {{ settings.cart_bubble_text }};
-    --color-cart-bubble-background: {{ settings.cart_bubble_background }};
+    --color-cart-bubble-text: {{ settings.cart_bubble_text | default: '#ffffff' }};
+    --color-cart-bubble-background: {{ settings.cart_bubble_background | default: '#09412d' }};
     --badge-corner-radius: {{ settings.badge_corner_radius | divided_by: 10.0 }}rem;
 
     /* Hardcoded Color */

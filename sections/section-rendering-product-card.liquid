@@ -29,7 +29,7 @@
     <product-badge class="product-card__badges">
       {% render 'product-badges',
         product: product,
-        use_variant: false,
+        use_variant: true,
         show_soldout_badge: settings.pcard_show_sold_out_badge,
         sale_badge_type: settings.pcard_sale_badge_type,
         show_sale_badge: settings.pcard_show_sale_badge,
@@ -38,7 +38,7 @@
       %}
     </product-badge>
     <product-price>
-      {% render 'price', product_resource: product, show_unit_price: true, use_variant: false %}
+      {% render 'price', product_resource: product, show_unit_price: true, show_price_per_gram: true, use_variant: false %}
     </product-price>
   </a>
 </product-card>

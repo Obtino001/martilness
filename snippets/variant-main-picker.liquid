@@ -97,7 +97,14 @@
                 </button>
               {%- endif -%}
             </div>
-            {%- for product_option_value in product_option.values -%}
+            {%- comment -%}
+              Værdierne ligger i deres egen wrapper, så de kan holdes på én linje
+              på mobil uden at etiketten ovenfor bliver trukket med op på samme
+              række. Wrapperen arver flex + gap fra .variant-option--buttons, så
+              desktop ser uændret ud.
+            {%- endcomment -%}
+            <div class="variant-option__values">
+              {%- for product_option_value in product_option.values -%}
               <label
                 class="variant-option__button-label{% if variant_style == 'swatch' %} variant-option__button-label--has-swatch variant-option__button-label--{{ block_settings.swatch_shape }}{% endif %} focus-within--absolute"
                 {% if variant_style == 'swatch' %}
@@ -151,6 +158,7 @@
                 {% endunless %}
               </label>
             {%- endfor -%}
+            </div>
           </div>
         {%- elsif block_settings.variant_style == 'dropdowns' -%}
           <div class="variant-option variant-option--dropdowns">

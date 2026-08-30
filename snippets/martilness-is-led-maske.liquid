@@ -1,0 +1,36 @@
+{%- doc -%}
+  Prints "1" when product is an LED maske (for capture checks).
+
+  @param {object} product
+{%- enddoc -%}
+{%- liquid
+  assign _led = false
+  if product != blank
+    assign handle = product.handle | default: '' | downcase
+    assign title_d = product.title | default: '' | downcase
+    assign type_d = product.type | default: '' | downcase
+
+    if handle contains 'led-maske' or handle contains 'led-mask' or handle contains 'ledmaske' or handle contains 'led_maske'
+      assign _led = true
+    endif
+    if title_d contains 'led maske' or title_d contains 'led-maske' or title_d contains 'ledmaske' or title_d contains 'infrarød led' or title_d contains 'infrarod led'
+      assign _led = true
+    endif
+    if title_d contains 'led' and title_d contains 'maske'
+      assign _led = true
+    endif
+    if type_d contains 'led' and type_d contains 'maske'
+      assign _led = true
+    endif
+  endif
+-%}
+{%- unless _led or product == blank -%}
+  {%- capture _fordele_html -%}{{- product.metafields.custom.sundhedsmaessige_fordele | metafield_tag -}}{%- endcapture -%}
+  {%- capture _specs_html -%}{{- product.metafields.custom.tekniske_specifikationer | metafield_tag -}}{%- endcapture -%}
+  {%- assign _fordele_txt = _fordele_html | strip_html | downcase -%}
+  {%- assign _specs_txt = _specs_html | strip_html | downcase -%}
+  {%- if _fordele_txt contains 'hvad hjælper de enkelte farver' or _fordele_txt contains 'nærinfrarød (nir)' or _specs_txt contains 'antal led-lamper' or _specs_txt contains '7 biologiske led' -%}
+    {%- assign _led = true -%}
+  {%- endif -%}
+{%- endunless -%}
+{%- if _led -%}1{%- endif -%}

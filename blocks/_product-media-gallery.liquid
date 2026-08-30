@@ -180,6 +180,30 @@
       }
     </script>
     <div ref="container" class="swiper {{ container_class }}">
+      {%- if selected_product != blank -%}
+        <product-badge
+          class="media-gallery__badges"
+          data-product-id="{{ selected_product.id }}"
+        >
+          {%- comment -%}
+            show_sale_badge: false — rabatten vises IKKE længere på billedet.
+            Den mørkebrune "Spar X%"-chip ved siden af prisen (price-chips /
+            .price-chips__chip--save) er nu det ene sted rabatten står, på både
+            gram-produkter og produkter uden custom.grams.
+            NB: settings.pcard_show_sale_badge styrer stadig produktkortene
+            i kollektioner — kortene har ingen save-chip og skal beholde badgen.
+          {%- endcomment -%}
+          {% render 'product-badges',
+            product: selected_product,
+            use_variant: true,
+            show_soldout_badge: settings.pcard_show_sold_out_badge,
+            sale_badge_type: settings.pcard_sale_badge_type,
+            show_sale_badge: false,
+            show_custom_badges: settings.pcard_show_custom_badges,
+            badge_layout: settings.pcard_badge_layout
+          %}
+        </product-badge>
+      {%- endif -%}
       {% if has_grid_thumbs %}
         {%- capture thumbnail_sizes -%}calc(120px){%- endcapture -%}
         <div class="media-gallery__grid-thumbnails hidden md:block sticky-element">

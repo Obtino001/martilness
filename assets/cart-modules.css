@@ -1,6 +1,7 @@
 .free-shipping-goal {
-  color: rgb(var(--color-progress-bar));
+  color: rgb(var(--color-foreground));
   opacity: 1; /* Always visible */
+  gap: 0.2rem; /* stram afstand mellem fragt-tekst og bar */
 }
 
 /* Progress Bar Styles */
@@ -34,6 +35,56 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+}
+
+/* Fragt-bar: centreret tekst, ikon for enden, samme farve som tekst/checkout */
+.free-shipping-goal .progress-bar__fill {
+  background-color: rgb(var(--color-foreground));
+}
+.free-shipping-goal__congratulations,
+.free-shipping-goal__remaining {
+  text-align: center;
+}
+.free-shipping-goal__track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 2.4rem;
+}
+.free-shipping-goal__track .progress-bar {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+/* Cirkel bag truck-ikonet — absolut over barens højre ende, så baren løber ind
+   UNDER ikonet. Badgen kan vokse uden at ændre række-højden (min-height ovenfor). */
+.free-shipping-goal__badge {
+  position: absolute;
+  inset-inline-end: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  background: rgb(var(--color-foreground) / 0.08);
+  color: rgb(var(--color-foreground));
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+.free-shipping-goal__icon {
+  width: 1.7rem;
+  height: 1.7rem;
+}
+/* Achieved: cirklen fyldes og ikonet inverteres */
+.free-shipping-goal:has(.free-shipping-goal__congratulations:not(.hidden)) .free-shipping-goal__badge {
+  background: rgb(var(--color-foreground));
+  color: rgb(var(--color-background));
+}
+
+/* Mindre produkt-titel på kurv-linjerne */
+.cart-items__title {
+  font-size: calc(var(--font-pcard-title--size) * 0.88);
 }
 
 .cart-summary div:empty,
@@ -126,6 +177,18 @@ ul:empty {
 
 .cart-items__price .cart-items__price-item {
   justify-content: flex-end;
+}
+
+/* Grøn "Du sparer (x)" under prisen — samme grøn som fragt-baren */
+.cart-items__price-item .cart-items__savings {
+  flex-basis: 100%;
+  color: rgb(var(--color-progress-bar));
+  font-weight: 500;
+  margin-top: 0.2rem;
+}
+/* I pris-kolonnen (drawer) er priserne højrestillet — hold besparelsen på linje med dem */
+.cart-items__price .cart-items__price-item .cart-items__savings {
+  text-align: right;
 }
 
 .cart-items__remove-button {

@@ -3,10 +3,10 @@
 
   case block.type
     when 'banner'
-      assign banners = block.settings.image_1 | append: ',' | append: block.settings.image_2 | append: ',' | append: block.settings.image_3 | append: ',' | append: block.settings.image_4
+      assign banners = block.settings.image_1 | append: ',' | append: block.settings.image_2 | append: ',' | append: block.settings.image_3 | append: ',' | append: block.settings.image_4 | append: ',' | append: block.settings.image_5 | append: ',' | append: block.settings.image_6
       assign has_banners = false
 
-      unless banners == ',,,'
+      unless banners == ',,,,,'
         assign has_banners = true
       endunless
 
@@ -180,25 +180,23 @@
             {%- when 'with-banner' -%}
               {%- if block.settings.image != blank -%}
                 <div class="menu-drawer__mega">
-                  {% render 'mega-menu-banner',
-                    banner_design: block.settings.banner_design,
-                    color_scheme: block.settings.color_scheme,
-                    image: block.settings.image,
-                    image_mobile: block.settings.image_mobile,
-                    image_overlay_opacity: block.settings.image_overlay_opacity,
-                    heading: block.settings.heading,
-                    heading_preset: block.settings.heading_size,
-                    heading_font_size: block.settings.heading_font_size,
-                    heading_font_size_mobile: block.settings.heading_font_size_mobile,
-                    subheading: block.settings.subheading,
-                    badge: block.settings.badge,
-                    button_label: block.settings.button_label,
-                    button_link: block.settings.button_link,
-                    button_style: block.settings.button_style,
-                    button_size: block.settings.button_size,
-                    button_icon: block.settings.button_icon,
-                    button_icon_style: block.settings.button_icon_style
-                  %}
+                  <a
+                    class="mega-menu__banner-simple"
+                    href="{{ block.settings.button_link | default: '#' }}"
+                    style="display:block;border-radius:1.6rem;overflow:hidden;"
+                  >
+                    {{
+                      block.settings.image
+                      | image_url: width: 900
+                      | image_tag:
+                        loading: 'lazy',
+                        alt: block.settings.heading | default: shop.name,
+                        style: 'width:100%;height:auto;display:block;'
+                    }}
+                    {%- if block.settings.heading != blank -%}
+                      <span style="display:block;padding:1rem 1.2rem 0;font-weight:650;">{{ block.settings.heading }}</span>
+                    {%- endif -%}
+                  </a>
                 </div>
               {%- endif -%}
             {%- when 'with-products' -%}
@@ -273,7 +271,7 @@
                 class="layout-panel-grid gap-style"
                 style="{{ inline_style }}"
               >
-                {%- for i in (1..4) -%}
+                {%- for i in (1..6) -%}
                   {%- liquid
                     assign image = 'image_' | append: i
                     assign image_mobile = 'image_mobile_' | append: i
@@ -312,25 +310,25 @@
                     endif
                   -%}
                   <div class="f-column">
-                    {% render 'mega-menu-banner',
-                      banner_design: block.settings.banner_design,
-                      color_scheme: block.settings.color_scheme,
-                      image: image,
-                      image_mobile: image_mobile,
-                      image_overlay_opacity: image_overlay_opacity,
-                      heading: heading,
-                      heading_preset: heading_preset,
-                      heading_font_size: heading_font_size,
-                      heading_font_size_mobile: heading_font_size_mobile,
-                      subheading: subheading,
-                      badge: badge,
-                      button_label: button_label,
-                      button_link: button_link,
-                      button_style: button_style,
-                      button_size: button_size,
-                      button_icon: button_icon,
-                      button_icon_style: button_icon_style
-                    %}
+                    {%- if image != blank -%}
+                      <a
+                        class="mega-menu__banner-simple"
+                        href="{{ button_link | default: '#' }}"
+                        style="display:block;border-radius:1.6rem;overflow:hidden;"
+                      >
+                        {{
+                          image
+                          | image_url: width: 900
+                          | image_tag:
+                            loading: 'lazy',
+                            alt: heading | default: shop.name,
+                            style: 'width:100%;height:auto;display:block;'
+                        }}
+                        {%- if heading != blank -%}
+                          <span style="display:block;padding:1rem 1.2rem 0;font-weight:650;">{{ heading }}</span>
+                        {%- endif -%}
+                      </a>
+                    {%- endif -%}
                   </div>
                 {%- endfor -%}
               </div>
@@ -389,25 +387,25 @@
                     endif
                   -%}
                   <div class="f-column">
-                    {% render 'mega-menu-banner',
-                      banner_design: block.settings.banner_design,
-                      color_scheme: block.settings.color_scheme,
-                      image: image,
-                      image_mobile: image_mobile,
-                      image_overlay_opacity: image_overlay_opacity,
-                      heading: heading,
-                      heading_preset: heading_preset,
-                      heading_font_size: heading_font_size,
-                      heading_font_size_mobile: heading_font_size_mobile,
-                      subheading: subheading,
-                      badge: badge,
-                      button_label: button_label,
-                      button_link: button_link,
-                      button_style: button_style,
-                      button_size: button_size,
-                      button_icon: button_icon,
-                      button_icon_style: button_icon_style
-                    %}
+                    {%- if image != blank -%}
+                      <a
+                        class="mega-menu__banner-simple"
+                        href="{{ button_link | default: '#' }}"
+                        style="display:block;border-radius:1.6rem;overflow:hidden;"
+                      >
+                        {{
+                          image
+                          | image_url: width: 900
+                          | image_tag:
+                            loading: 'lazy',
+                            alt: heading | default: shop.name,
+                            style: 'width:100%;height:auto;display:block;'
+                        }}
+                        {%- if heading != blank -%}
+                          <span style="display:block;padding:1rem 1.2rem 0;font-weight:650;">{{ heading }}</span>
+                        {%- endif -%}
+                      </a>
+                    {%- endif -%}
                   </div>
                 {%- endfor -%}
               </div>

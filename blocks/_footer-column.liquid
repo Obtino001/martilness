@@ -4,7 +4,7 @@
   assign tag = 'div'
   assign is_collapsible = false
 
-  if block_title != blank
+  if block_title != blank and block.settings.disable_collapse != true
     assign wrapper_tag = 'accordion-component'
     assign tag = 'details'
     assign is_collapsible = true
@@ -38,7 +38,9 @@
         <span class="{{ block.settings.heading_size }}">
           {{ block_title }}
         </span>
-        {% render 'icon', icon: 'caret-down', class: 'flex accordion__summary-arrow icon--caret lg:hidden' %}
+        {% if is_collapsible %}
+          {% render 'icon', icon: 'caret-down', class: 'flex accordion__summary-arrow icon--caret lg:hidden' %}
+        {% endif %}
       </summary>
     {%- endif -%}
     <div
@@ -100,6 +102,12 @@
       "type": "checkbox",
       "id": "open_default",
       "label": "t:settings.open_by_default",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "disable_collapse",
+      "label": "Deaktivér sammenklap (altid åben på mobil)",
       "default": false
     },
     {

@@ -7,7 +7,30 @@
   if section.settings.container == 'page-width' and use_color_scheme_in_container == false
     assign use_padding_inline = false
   endif
+
+  assign show_section = true
+  assign gate_key = section.settings.require_metafield_key | strip
+  if gate_key != blank
+    assign show_section = false
+    assign gate_product = product
+    if gate_product == blank and closest.product != blank
+      assign gate_product = closest.product
+    endif
+    if gate_product != blank
+      assign gate_mf = gate_product.metafields.custom[gate_key]
+      if gate_mf != blank and gate_mf.value != blank
+        assign show_section = true
+      endif
+    endif
+  endif
 -%}
+{%- unless show_section -%}
+  <style>
+    #shopify-section-{{ section.id }} {
+      display: none !important;
+    }
+  </style>
+{%- else -%}
 {%- capture inline_style -%}
   {%- unless use_color_scheme_in_container -%}
   {% render 'border-style', settings: section.settings %}
@@ -41,6 +64,7 @@
     {% content_for 'blocks' %}
   </div>
 </div>
+{%- endunless -%}
 {% schema %}
 {
   "name": "t:names.custom_section",
@@ -59,6 +83,12 @@
     {
       "type": "paragraph",
       "content": "[Read How-to](https://go.foxecom.com/trvFKgq)"
+    },
+    {
+      "type": "text",
+      "id": "require_metafield_key",
+      "label": "Show only if product metafield has entries",
+      "info": "Custom namespace key, e.g. image_with_text. Leave blank to always show."
     },
     {
       "type": "header",

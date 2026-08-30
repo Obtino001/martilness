@@ -113,58 +113,75 @@
           if product.has_only_default_variant != true and product.options.size == 1
             assign has_single_option = true
           endif
+
+          # Titlen deles ved det foerste bar-tegn som paa produktkortene, saa
+          # titlen bliver to linjer i stedet for at ombryde midt i suffikset.
+          # Line-clamp saettes kun naar titlen IKKE deles, fordi de to spans
+          # hver isaer klampes til een linje i CSS - ellers ville vi have
+          # -webkit-box inde i -webkit-box.
+          assign title_has_split = false
+          if product.title contains '|'
+            assign title_has_split = true
+          endif
         -%}
         <div
           class="sticky-add-to-cart__content flex flex-col"
           data-singleton="{{ product.has_only_default_variant }}"
           data-single-option="{{ has_single_option }}"
         >
-          <h3 class="sticky-add-to-cart__title product-card__title text-limit-2-lines">{{ product.title | escape }}</h3>
+          <h3
+            class="sticky-add-to-cart__title product-card__title{% unless title_has_split %} text-limit-2-lines{% endunless %}"
+          >
+            {% render 'product-title-split', title: product.title %}
+          </h3>
+          {%- comment -%}
+            Prisen er pris pr. gram som interval (fra–til), præcis som på
+            produktkortene: 'price' med show_price_per_gram falder automatisk
+            tilbage til den almindelige pris for produkter uden custom.grams,
+            så rygegrej stadig viser en pris.
+
+            Den gamle "Fra 162,00 kr"-linje OG varianttitel-linjen er væk —
+            det gør baren én tekstlinje slimmere. Variantvalget sker nu via
+            "Vælg mængde"-knappen, der scroller op til variantvælgeren.
+          {%- endcomment -%}
           <product-price
             class="product-card__price"
             data-product-id="{{ product.id }}"
-            {% unless current_variant.available %}
-              style="display: none;"
-            {% endunless %}
           >
-            {% render 'price', show_unit_price: false, product_resource: product %}
+            {% render 'price',
+              show_unit_price: false,
+              show_price_per_gram: true,
+              product_resource: product,
+              use_variant: false
+            %}
           </product-price>
-          <div
-            class="sticky-add-to-cart__variant text-body-sm color-subtext"
-            {% if product.has_only_default_variant %}
-              style="display: none;"
-            {% endif %}
-          >
-            {% unless product.has_only_default_variant %}
-              {% if current_variant != blank %}
-                {% assign variant_title = current_variant.title | escape %}
-              {% endif %}
-              {{ variant_title }}
-            {% endunless %}
-          </div>
         </div>
       </div>
       <div class="sticky-add-to-cart__action">
+        {%- comment -%}
+          Rund knap med temaets pil-op-ikon. Samme opskrift som temaets egen
+          back-to-top-knap (snippets/back-to-top-button.liquid):
+          btn btn--primary btn--medium btn--icon-only + icon 'arrow-up'.
+          .btn--icon-only saetter selv --button-corner-radius: 50%, saa den er
+          rund uanset button_corner_radius-indstillingen, og 4.4rem bred.
+
+          Knappen laegger IKKE i kurven — den scroller op til variantvaelgeren,
+          saa kunden vaelger gram selv i stedet for at faa foerste variant
+          paatvunget. Add-to-cart-stien er derfor fjernet fra
+          sticky-add-to-cart.js; den kan hentes tilbage fra det oprindelige
+          theme-export hvis en Tilfoej-knap skal genindfoeres.
+
+          Ingen ref: intet JS laeser knappen. on:click er nok.
+          aria-label bruger den eksisterende streng actions.choose_options
+          ("Vaelg maengde"), saa der ikke skal tilfoejes nye locale-noegler.
+        {%- endcomment -%}
         <button
           type="button"
-          class="sticky-add-to-cart__button add-to-cart-button btn btn--primary btn--medium"
-          ref="addToCartButton"
-          on:click="/handleAddToCartClick"
-          data-add-to-cart-text="{{ 'products.product.add_to_cart_short' | t }}"
-          data-sold-out-text="{{ 'products.product.sold_out' | t }}"
-          data-unavailable-text="{{ 'products.product.unavailable' | t }}"
-          {% unless current_variant.available %}
-            disabled
-          {% endunless %}
+          class="sticky-add-to-cart__button btn btn--primary btn--medium btn--icon-only"
+          on:click="/scrollToVariantPicker"
+          aria-label="{{ 'actions.choose_options' | t }}"
         >
-          {%- liquid
-            assign add_to_cart_text = 'products.product.add_to_cart_short' | t
-            if current_variant.available == false
-              assign add_to_cart_text = 'products.product.sold_out' | t
-            endif
-          -%}
-          <span class="btn__text" ref="addToCartText">{{ add_to_cart_text }}</span>
-          {% render 'loading-spinner', class: 'add-to-cart-spinner hidden', attributes: 'ref="addToCartSpinner"' %}
+          {% render 'icon', icon: 'arrow-up' %}
         </button>
       </div>
     </div>

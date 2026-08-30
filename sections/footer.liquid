@@ -28,27 +28,8 @@
     assign enable_follow_on_shop = true
   endif
 
-  assign payment_types = shop.enabled_payment_types
-  if section.settings.payment_icons != blank
-    assign payment_types = section.settings.payment_icons | replace: ' ', '' | split: ','
-  endif
-  assign enable_payment_icons = false
-  if section.settings.enable_payment_icons and payment_types.size > 0
-    assign enable_payment_icons = true
-  endif
-
-  assign enable_shipping = false
-  if section.settings.shipping_logo != blank
-    assign enable_shipping = true
-  endif
-
-  assign enable_reviews = section.settings.show_reviews
-
-  assign enable_bar = false
-  if enable_payment_icons or enable_shipping or enable_reviews
-    assign enable_bar = true
-  endif
--%}
+  assign enable_payment_icons = section.settings.enable_payment_icons
+%}
 {%- capture inline_style -%}
   {% render 'spacing-style', settings: section.settings %}
 {%- endcapture -%}
@@ -67,68 +48,49 @@
     </div>
   </div>
   <div class="footer__bottom page-width">
-    {%- if enable_bar -%}
+    {%- if section.settings.show_footer_bar -%}
       <div class="footer__bar">
-        {%- if enable_payment_icons -%}
-          <div class="footer__bar-col">
-            {%- if section.settings.payment_heading != blank -%}
-              <span class="footer__bar-label h5">{{ section.settings.payment_heading }}</span>
-            {%- endif -%}
-            <div class="footer__bar-icons" aria-label="{{ 'content.payment_methods' | t }}">
-              {%- for type in payment_types -%}
-                {{ type | payment_type_svg_tag }}
-              {%- endfor -%}
-            </div>
+        <div class="footer__bar-col">
+          <span class="footer__bar-label h5">{{ section.settings.payment_label | default: 'Betalingsmuligheder' }}</span>
+          <div class="footer__bar-icons">
+            {%- assign footer_payment_methods = 'dankort,visa,master,apple_pay,mobilepay,viabill' | split: ',' -%}
+            {%- for method in footer_payment_methods -%}
+              {{ method | payment_type_svg_tag }}
+            {%- endfor -%}
           </div>
-        {%- endif -%}
-        {%- if enable_shipping -%}
-          <div class="footer__bar-col">
-            {%- if section.settings.shipping_heading != blank -%}
-              <span class="footer__bar-label h5">{{ section.settings.shipping_heading }}</span>
-            {%- endif -%}
-            {%- if section.settings.shipping_link != blank -%}
-              <a href="{{ section.settings.shipping_link }}" target="_blank" rel="noopener" class="inline-flex">
-            {%- endif -%}
-            {{
-              section.settings.shipping_logo
-              | image_url: width: 320
-              | image_tag: class: 'footer__bar-shipping', widths: '160, 320', alt: section.settings.shipping_heading, loading: 'lazy'
-            }}
-            {%- if section.settings.shipping_link != blank -%}
-              </a>
-            {%- endif -%}
+        </div>
+        <div class="footer__bar-col">
+          <span class="footer__bar-label h5">{{ section.settings.shipping_label | default: 'Fragtpartner' }}</span>
+          {%- if section.settings.shipping_image != blank -%}
+            <img
+              class="footer__bar-shipping"
+              src="{{ section.settings.shipping_image | image_url: width: 160 }}"
+              alt="{{ section.settings.shipping_label | default: 'Fragtpartner' }} — GLS"
+              loading="lazy"
+              width="{{ section.settings.shipping_image.width }}"
+              height="{{ section.settings.shipping_image.height }}"
+            >
+          {%- else -%}
+            <img
+              class="footer__bar-shipping"
+              src="{{ 'gls-logo.svg' | asset_url }}"
+              alt="GLS"
+              loading="lazy"
+              width="140"
+              height="49"
+            >
+          {%- endif -%}
+        </div>
+        <div class="footer__bar-col">
+          <span class="footer__bar-label h5">{{ section.settings.reviews_label | default: 'Anmeldelser' }}</span>
+          <div class="footer__bar-stars">
+            {%- for i in (1..5) -%}
+              <span class="footer__bar-star"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            {%- endfor -%}
           </div>
-        {%- endif -%}
-        {%- if enable_reviews -%}
-          <div class="footer__bar-col">
-            {%- if section.settings.reviews_heading != blank -%}
-              <span class="footer__bar-label h5">{{ section.settings.reviews_heading }}</span>
-            {%- endif -%}
-            {%- if section.settings.reviews_url != blank -%}
-              <a href="{{ section.settings.reviews_url }}" target="_blank" rel="noopener" class="footer__bar-reviews inline-flex flex-col items-center gap-2 text-decoration-none color-current">
-            {%- else -%}
-              <div class="footer__bar-reviews inline-flex flex-col items-center gap-2">
-            {%- endif -%}
-            <div class="footer__bar-stars" aria-label="{{ section.settings.reviews_text | escape }}">
-              {%- for i in (1..5) -%}
-                <span class="footer__bar-star">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5l2.9 6.2 6.8.8-5 4.7 1.3 6.8L12 17.7 6 21l1.3-6.8-5-4.7 6.8-.8z"/></svg>
-                </span>
-              {%- endfor -%}
-            </div>
-            {%- if section.settings.reviews_text != blank -%}
-              <span class="footer__bar-reviews-text text-body-sm">{{ section.settings.reviews_text }}</span>
-            {%- endif -%}
-            {%- if section.settings.reviews_url != blank -%}
-              </a>
-            {%- else -%}
-              </div>
-            {%- endif -%}
-          </div>
-        {%- endif -%}
+        </div>
       </div>
     {%- endif -%}
-
     {%- if section.settings.menu != blank -%}
       <div class="footer__bottom-row flex flex-wrap gap-5 md:gap-6 justify-between items-end">
         <ul class="footer__links list-unstyled flex flex-wrap gap-1 gap-x-3 md:gap-x-6">
@@ -142,16 +104,15 @@
     {%- endif -%}
     <div class="footer__bottom-row flex flex-wrap gap-5 md:gap-6 justify-between items-center">
       <div class="footer__copyright text-wrap">
-        &copy;
-        {{ 'now' | date: '%Y' }}
-        {{ shop.name | link_to: routes.root_url }}
-        {%- if section.settings.cvr != blank %} &middot; CVR {{ section.settings.cvr }}{% endif -%}
-        {%- if section.settings.show_powered_by %} &middot; {{ powered_by_link }}{% endif -%}
-      </div>
-      {%- if enable_country_selector or enable_language_selector or enable_social_media_icons or enable_follow_on_shop -%}
+  &copy; {{ 'now' | date: '%Y' }}
+  <a href="{{ routes.root_url }}">Martilness.dk</a>
+  &middot; CVR 45561488
+</div>
+      {%- if enable_social_media_icons or enable_country_selector or enable_language_selector or enable_payment_icons or enable_follow_on_shop -%}
         <div class="flex flex-wrap items-center justify-end gap-5 md:gap-6">
           {%- if enable_follow_on_shop -%}
             <div class="footer__follow-on-shop">
+              {% comment %} TODO: enable theme-check once `login_button` is accepted as valid filter {% endcomment %}
               {% # theme-check-disable %}
               {{ shop | login_button: action: 'follow' }}
               {% # theme-check-enable %}
@@ -166,6 +127,13 @@
               show_language: enable_language_selector
             -%}
           {%- endif -%}
+
+          {%- if enable_payment_icons -%}
+            <div class="footer__payment">
+              {%- render 'payment-icons' -%}
+            </div>
+          {%- endif -%}
+
           {%- if enable_social_media_icons -%}
             {% render 'social-icons', icon_type: 'solid' %}
           {%- endif -%}
@@ -174,159 +142,332 @@
     </div>
   </div>
 </footer>
+{% stylesheet %}
+/* ---- Footer bar: betaling / fragt / anmeldelser ---- */
+.footer__bar {
+  display: flex;
+  align-items: stretch;
+  gap: 2.4rem;
+  padding-block: 1.8rem;
+  border-block-start: 0.1rem solid rgb(var(--color-border) / var(--color-border-alpha));
+}
+.footer__bar-col {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  text-align: center;
+}
+.footer__bar-col:not(:last-child) {
+  border-inline-end: 0.1rem solid rgb(var(--color-border) / var(--color-border-alpha));
+}
+.footer__bar-label {
+  margin: 0;
+}
+.footer__bar-icons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+.footer__bar-icons svg {
+  display: block;
+  width: 3.8rem;
+  height: 2.4rem;
+}
+.footer__bar-shipping {
+  display: block;
+  width: 9rem;
+  max-width: 100%;
+  height: auto;
+}
+.footer__bar-stars {
+  display: flex;
+  gap: 0.3rem;
+}
+.footer__bar-star {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  background: #48bb78;
+  border-radius: 0.4rem;
+}
+.footer__bar-star svg {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  fill: #fff;
+}
 
-{% style %}
-  /* Dark-scheme fixes scoped to the footer: light secondary text, borders, inputs and icon buttons */
-  .footer.color-scheme-6 {
-    --color-foreground-secondary: rgba(255, 255, 255, 0.82);
-    --color-border: 255 255 255;
-    --color-border-alpha: 0.18;
-    --color-input-background: 255 255 255;
-    --color-input-text: 9 65 46;
-    --color-input-focus-background: 255 255 255;
-    --color-input-focus-text: 9 65 46;
-    --color-secondary-button-background: 255 255 255;
-    --color-secondary-button-text: 9 65 46;
-    --color-secondary-button-border: 255 255 255;
-  }
-  .footer .footer__top-block .reversed-link.color-subtext {
-    color: var(--color-foreground-secondary);
-  }
-  .footer .footer__top-block .reversed-link.color-subtext:hover {
-    color: rgb(var(--color-foreground));
-  }
-  .footer .text-block a {
-    color: inherit;
-  }
+/* ---- Email-felt: 8px afrundet kant ---- */
+.footer .newsletter-form__field,
+.footer .newsletter-form__input {
+  border-radius: 0.8rem;
+}
 
-  /* Trust bar (same structure as franklins.dk) */
+/* ---- Ikke-collapsible kolonne (nyhedsbrev): indhold synligt, header ikke klikbar ---- */
+.footer div.footer__details .accordion__content {
+  max-height: none;
+}
+.footer div.footer__details .accordion__summary {
+  pointer-events: none;
+}
+
+/* ---- Bund-omraade: strammere afstande ---- */
+.footer .footer__bottom {
+  padding-top: 1.6rem;
+}
+.footer .footer__bottom-row {
+  padding-block-end: 1.6rem;
+}
+
+@media (min-width: 1024px) {
+  /* Taettere kolonne-headers: fjern min-height-luft over menuerne */
+  .footer .footer__details .accordion__summary {
+    min-height: 0;
+    padding-block: 0 1.4rem;
+    align-items: flex-start;
+  }
+  /* Balanceret copyright-padding */
+  .footer .footer__bottom-row:last-child {
+    padding-block: 1.8rem 2.4rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  /* Bar stables som kolonnerne: venstrestillet, vandrette dividers */
   .footer__bar {
-    display: flex;
-    align-items: stretch;
-    gap: 2.4rem;
-    padding-block: 1.8rem;
-    border-block-start: 0.1rem solid rgb(var(--color-border) / var(--color-border-alpha));
+    flex-direction: column;
+    gap: 0;
+    padding-block: 0;
+    border-block-start: none;
   }
   .footer__bar-col {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 1rem;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
+    padding-block: 1.6rem;
   }
   .footer__bar-col:not(:last-child) {
-    border-inline-end: 0.1rem solid rgb(var(--color-border) / var(--color-border-alpha));
+    border-inline-end: none;
+    border-block-end: 0.1rem solid rgb(var(--color-border) / var(--color-border-alpha));
   }
-  .footer__bar-label {
-    margin: 0;
-  }
-  .footer__bar-icons {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-  }
-  .footer__bar-icons svg {
-    display: block;
-    width: 3.8rem;
-    height: 2.4rem;
-  }
-  .footer__bar-shipping {
-    width: 7rem;
-    height: auto;
-  }
+  .footer__bar-icons,
   .footer__bar-stars {
-    display: flex;
-    gap: 0.3rem;
+    justify-content: flex-start;
   }
-  .footer__bar-star {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.6rem;
-    height: 1.6rem;
-    background: #48bb78;
-    border-radius: 0.4rem;
+  /* Stram gab op til baren */
+  .footer .footer__bottom {
+    padding-top: 0;
   }
-  .footer__bar-star svg {
-    display: block;
-    width: 1rem;
-    height: 1rem;
-    fill: #fff;
+  .footer .footer__bar-col:first-child {
+    padding-block-start: 0.4rem;
   }
-  .footer__bar-reviews-text {
-    opacity: 0.85;
+  /* Copyright + social: venstrestillet, stablet, divider over */
+  .footer .footer__bottom-row:last-child {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.6rem;
+    text-align: left;
+    border-top: 0.1rem solid rgb(var(--color-border) / var(--color-border-alpha));
+    padding-top: 2rem;
   }
-  .footer__copyright a {
-    color: inherit;
+  .footer .footer__bottom-row:last-child > * {
+    width: auto;
   }
-  @media (max-width: 767.98px) {
-    .footer__bar {
-      flex-direction: column;
-      gap: 0;
-      padding-block: 0;
-      border-block-start: none;
-    }
-    .footer__bar-col {
-      align-items: flex-start;
-      text-align: left;
-      padding-block: 1.6rem;
-    }
-    .footer__bar-col:not(:last-child) {
-      border-inline-end: none;
-      border-block-end: 0.1rem solid rgb(var(--color-border) / var(--color-border-alpha));
-    }
-    .footer__bar-icons,
-    .footer__bar-stars {
-      justify-content: flex-start;
-    }
-    .footer__bar-reviews {
-      align-items: flex-start;
-    }
-    .footer .footer__bar-col:first-child {
-      padding-block-start: 0.4rem;
-    }
+  .footer .footer__bottom-row:last-child > div:last-child {
+    justify-content: flex-start;
   }
-{% endstyle %}
-
+}
+{% endstylesheet %}
 {% schema %}
 {
   "name": "t:names.footer",
   "settings": [
-    { "type": "paragraph", "content": "[Read How-to](https://go.foxecom.com/QV7hJTv)" },
-    { "type": "header", "content": "Trust bar" },
-    { "type": "text", "id": "payment_heading", "label": "Payment heading", "default": "Betalingsmuligheder" },
-    { "type": "checkbox", "id": "enable_payment_icons", "label": "t:settings.enable_payment_icons", "default": true },
-    { "type": "text", "id": "payment_icons", "label": "Payment icons", "info": "Comma-separated. Supported: dankort, visa, master, apple_pay, google_pay, mobilepay, viabill, anyday, klarna, paypal, american_express. Leave empty to show only the providers activated in Settings > Payments.", "default": "dankort, visa, master, apple_pay, mobilepay" },
-    { "type": "text", "id": "shipping_heading", "label": "Shipping heading", "default": "Fragtpartner" },
-    { "type": "image_picker", "id": "shipping_logo", "label": "Shipping partner logo", "info": "Cell is hidden until a logo is added." },
-    { "type": "url", "id": "shipping_link", "label": "Shipping partner link" },
-    { "type": "checkbox", "id": "show_reviews", "label": "Show reviews cell", "default": true },
-    { "type": "text", "id": "reviews_heading", "label": "Reviews heading", "default": "Anmeldelser" },
-    { "type": "text", "id": "reviews_text", "label": "Reviews text (optional)", "info": "Shown under the stars, e.g. '4,8 / 5 på Trustpilot'." },
-    { "type": "url", "id": "reviews_url", "label": "Reviews link" },
-    { "type": "header", "content": "Bottom bar" },
-    { "type": "text", "id": "cvr", "label": "CVR number", "default": "35633146" },
-    { "type": "checkbox", "id": "show_powered_by", "label": "Show 'Powered by Shopify'", "default": false },
-    { "type": "link_list", "id": "menu", "label": "t:settings.menu" },
-    { "type": "checkbox", "id": "enable_follow_on_shop", "label": "t:settings.enable_follow_on_shop", "info": "t:info.enable_follow_on_shop", "default": true },
-    { "type": "checkbox", "id": "enable_social_media_icons", "label": "t:settings.enable_social_media_icons", "default": true },
-    { "type": "checkbox", "id": "enable_language_selector", "label": "t:settings.enable_language_selector", "info": "t:info.enable_language_selector", "default": true },
-    { "type": "checkbox", "id": "enable_country_selector", "label": "t:settings.enable_country_selector", "info": "t:info.enable_country_selector", "default": true },
-    { "type": "header", "content": "t:content.appearance" },
-    { "type": "color_scheme", "id": "color_scheme", "label": "t:settings.color_scheme", "default": "scheme-1" },
-    { "type": "select", "id": "border", "label": "t:settings.borders", "options": [ { "value": "none", "label": "t:options.none" }, { "value": "solid", "label": "t:options.solid" } ], "default": "none" },
-    { "type": "range", "id": "border_width", "min": 0, "max": 10, "step": 0.5, "unit": "px", "label": "t:settings.border_width", "default": 1, "visible_if": "{{ section.settings.border != 'none' }}" },
-    { "type": "range", "id": "border_opacity", "min": 0, "max": 100, "step": 1, "unit": "%", "label": "t:settings.border_opacity", "default": 100, "visible_if": "{{ section.settings.border != 'none' }}" },
-    { "type": "range", "id": "border_radius", "label": "t:settings.border_radius", "min": 0, "max": 32, "step": 1, "unit": "px", "default": 0 },
-    { "type": "header", "content": "t:content.padding" },
-    { "type": "select", "id": "device", "label": "t:settings.devices", "options": [ { "value": "desktop", "label": "t:options.desktop" }, { "value": "mobile", "label": "t:options.mobile" } ], "default": "desktop" },
-    { "type": "range", "id": "padding-block-start", "label": "t:settings.top", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 80, "visible_if": "{{ section.settings.device == 'desktop' }}" },
-    { "type": "range", "id": "padding-block-start-mobile", "label": "t:settings.top", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 40, "visible_if": "{{ section.settings.device == 'mobile' }}" }
+    {
+      "type": "paragraph",
+      "content": "[Read How-to](https://go.foxecom.com/QV7hJTv)"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "t:settings.menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_follow_on_shop",
+      "label": "t:settings.enable_follow_on_shop",
+      "info": "t:info.enable_follow_on_shop",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_social_media_icons",
+      "label": "t:settings.enable_social_media_icons",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_language_selector",
+      "label": "t:settings.enable_language_selector",
+      "info": "t:info.enable_language_selector",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_country_selector",
+      "label": "t:settings.enable_country_selector",
+      "info": "t:info.enable_country_selector",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_payment_icons",
+      "label": "t:settings.enable_payment_icons",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Footer bar (betaling, fragt, anmeldelser)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_footer_bar",
+      "label": "Vis footer bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "payment_label",
+      "label": "Betalings-label",
+      "default": "Betalingsmuligheder"
+    },
+    {
+      "type": "text",
+      "id": "shipping_label",
+      "label": "Fragt-label",
+      "default": "Fragtpartner"
+    },
+    {
+      "type": "image_picker",
+      "id": "shipping_image",
+      "label": "Fragt-logo (fx GLS)"
+    },
+    {
+      "type": "text",
+      "id": "reviews_label",
+      "label": "Anmeldelser-label",
+      "default": "Anmeldelser"
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "border",
+      "label": "t:settings.borders",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:options.none"
+        },
+        {
+          "value": "solid",
+          "label": "t:options.solid"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "t:settings.border_width",
+      "default": 1,
+      "visible_if": "{{ section.settings.border != 'none' }}"
+    },
+    {
+      "type": "range",
+      "id": "border_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "t:settings.border_opacity",
+      "default": 100,
+      "visible_if": "{{ section.settings.border != 'none' }}"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "t:settings.border_radius",
+      "min": 0,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "select",
+      "id": "device",
+      "label": "t:settings.devices",
+      "options": [
+        {
+          "value": "desktop",
+          "label": "t:options.desktop"
+        },
+        {
+          "value": "mobile",
+          "label": "t:options.mobile"
+        }
+      ],
+      "default": "desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 80,
+      "visible_if": "{{ section.settings.device == 'desktop' }}"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start-mobile",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 40,
+      "visible_if": "{{ section.settings.device == 'mobile' }}"
+    }
   ],
-  "blocks": [ { "type": "_footer-column" } ]
+  "blocks": [
+    {
+      "type": "_footer-column"
+    }
+  ]
 }
 {% endschema %}

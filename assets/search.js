@@ -150,7 +150,7 @@ class PredictiveSearch extends Component {
   }
 
   renderSearchResults(responseText) {
-    const id = `PredictiveSearchResults-${getSectionId(this)}`;
+    const id = this.dataset.resultsId || `PredictiveSearchResults-${getSectionId(this)}`;
     const targetElement = document.getElementById(id);
 
     if (!targetElement) {

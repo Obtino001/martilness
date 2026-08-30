@@ -1,0 +1,116 @@
+{%- doc -%}
+  Eneste kilde til pris-pr-gram i temaet.
+
+  Gram kommer ALTID fra variant-metafeltet `custom.grams`. Der parses IKKE
+  varianttitler eller option-værdier længere — mangler metafeltet på en variant,
+  springes den variant bare over. Sæt metafeltet på alle vægt-varianter.
+
+  To tilstande:
+    - Med `variant`  -> pris pr. gram for netop den variant.
+    - Uden `variant` -> min–max interval på tværs af varianter. Varianter på lager
+      foretrækkes; er alt udsolgt, bruges alle varianter, så kortet stadig viser
+      kr/gram i stedet for at falde tilbage til almindelig pris.
+
+  Udskriver INTET hvis ingen variant har `custom.grams`, så kalderen kan falde
+  tilbage til den normale pris.
+
+  @param {object} product - Produktet der regnes på.
+  @param {object} [variant] - Vis kun denne variant i stedet for et interval.
+  @param {string} [class] - Ekstra klasser på wrapperen.
+  @param {boolean} [with_wrapper] - Pak outputtet i span.price-per-gram. Default true.
+
+  @example
+  {% render 'price-per-gram', product: product %}
+  @example
+  {% render 'price-per-gram', product: product, variant: product.selected_or_first_available_variant %}
+  @example {%- comment -%} rå streng, fx til et data-attribut {%- endcomment -%}
+  {% render 'price-per-gram', product: product, variant: v, with_wrapper: false %}
+{%- enddoc -%}
+
+{%- liquid
+  assign with_wrapper = with_wrapper | default: true, allow_false: true
+
+  assign min_per_gram = null
+  assign max_per_gram = null
+
+  if variant
+    comment
+      Enkelt variant: gram udelukkende fra custom.grams.
+    endcomment
+    assign grams = variant.metafields.custom.grams.value | plus: 0
+
+    if grams > 0
+      assign min_per_gram = variant.price | times: 1.0 | divided_by: grams | round
+      assign max_per_gram = min_per_gram
+    endif
+  else
+    comment
+      Interval: ét gennemløb, hvor vi samler både "kun på lager" og "alle".
+      Er der mindst én variant på lager med gram, bruges lager-tallene;
+      ellers falder vi tilbage til alle varianter, så et udsolgt produkt
+      stadig viser kr/gram frem for at skifte til almindelig pris.
+    endcomment
+    assign stocked_min = null
+    assign stocked_max = null
+    assign any_min = null
+    assign any_max = null
+
+    for v in product.variants
+      assign grams = v.metafields.custom.grams.value | plus: 0
+      if grams <= 0
+        continue
+      endif
+
+      assign per_gram = v.price | times: 1.0 | divided_by: grams | round
+
+      if any_min == null or per_gram < any_min
+        assign any_min = per_gram
+      endif
+      if any_max == null or per_gram > any_max
+        assign any_max = per_gram
+      endif
+
+      if v.available
+        if stocked_min == null or per_gram < stocked_min
+          assign stocked_min = per_gram
+        endif
+        if stocked_max == null or per_gram > stocked_max
+          assign stocked_max = per_gram
+        endif
+      endif
+    endfor
+
+    if stocked_min != null
+      assign min_per_gram = stocked_min
+      assign max_per_gram = stocked_max
+    else
+      assign min_per_gram = any_min
+      assign max_per_gram = any_max
+    endif
+  endif
+
+  if min_per_gram != null
+    if settings.show_currency_code
+      assign money_min_per_gram = min_per_gram | money_with_currency
+      assign money_max_per_gram = max_per_gram | money_with_currency
+    else
+      assign money_min_per_gram = min_per_gram | money_without_trailing_zeros
+      assign money_max_per_gram = max_per_gram | money_without_trailing_zeros
+    endif
+  endif
+-%}
+
+{%- if min_per_gram != null -%}
+  {%- capture per_gram_text -%}
+    {%- if min_per_gram == max_per_gram -%}
+      {{- money_min_per_gram }}/gram
+    {%- else -%}
+      {{- money_min_per_gram }} &ndash; {{ money_max_per_gram }}/gram
+    {%- endif -%}
+  {%- endcapture -%}
+  {%- if with_wrapper -%}
+    <span class="price price-per-gram{% if class %} {{ class }}{% endif %}">{{ per_gram_text | strip }}</span>
+  {%- else -%}
+    {{- per_gram_text | strip -}}
+  {%- endif -%}
+{%- endif -%}

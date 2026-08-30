@@ -4,7 +4,7 @@ import { morph } from "@theme/morph";
 import { getLenis } from "@theme/utilities";
 
 class StickyAddToCart extends Component {
-  requiredRefs = ["stickyBar", "addToCartButton", "addToCartSpinner", "addToCartText"];
+  requiredRefs = ["stickyBar"];
 
   #abortController = new AbortController();
   #buyButtonsIntersectionObserver = null;
@@ -21,9 +21,6 @@ class StickyAddToCart extends Component {
 
     target?.addEventListener(ThemeEvents.variantUpdate, this.#handleVariantUpdate, { signal });
     target?.addEventListener(ThemeEvents.variantSelected, this.#handleVariantSelected, { signal });
-
-    document.addEventListener(ThemeEvents.cartUpdate, this.#handleCartAddComplete, { signal });
-    document.addEventListener(ThemeEvents.cartError, this.#handleCartAddComplete, { signal });
   }
 
   disconnectedCallback() {
@@ -118,9 +115,6 @@ class StickyAddToCart extends Component {
       this.dataset.currentVariantId = variant.id;
     }
 
-    const isSoldOut = variant && !variant.available && variant.inventory_management === "shopify";
-    this.#updateButtonText(variant?.available, isSoldOut);
-
     if (variant == null) {
       this.#handleVariantUnavailable();
     }
@@ -132,39 +126,16 @@ class StickyAddToCart extends Component {
     this.dataset.currentVariantId = variantId;
   };
 
+  /**
+   * Called when the selected option combination maps to no variant at all.
+   *
+   * The bar no longer renders a variant-title line (the content stack is title +
+   * price-per-gram range), so there is nothing to write the option names into.
+   * The round button scrolls rather than adds, so there is no label or disabled
+   * state to update either — all that remains is clearing the tracked variant.
+   */
   #handleVariantUnavailable = () => {
     this.dataset.currentVariantId = "";
-    const variantTitleElement = this.querySelector(".sticky-add-to-cart__variant");
-    const productId = this.dataset.productId;
-    const variantPicker = document.querySelector(`variant-picker[data-product-id="${productId}"]`);
-    if (!variantTitleElement || !variantPicker) return;
-
-    // Check if variant picker uses input radio buttons or select dropdowns
-    // They don't exist simultaneously, so we only need to check one type
-    const hasInputs = variantPicker.querySelector("input[type='radio']") !== null;
-    let selectedOptions = "";
-
-    if (hasInputs) {
-      // Get selected values from input radio buttons
-      selectedOptions = Array.from(variantPicker.querySelectorAll("input:checked"))
-        .map((option) => option.value)
-        .filter((value) => value !== "")
-        .join(" / ");
-    } else {
-      // Get selected values from select dropdowns
-      selectedOptions = Array.from(variantPicker.querySelectorAll("select.variant-option__select"))
-        .map((select) => {
-          const selectedOption = select.options[select.selectedIndex];
-          return selectedOption ? selectedOption.value : "";
-        })
-        .filter((value) => value !== "")
-        .join(" / ");
-    }
-
-    if (!selectedOptions) return;
-    variantTitleElement.textContent = selectedOptions;
-
-    this.#updateButtonText(false);
   };
 
   /**
@@ -187,120 +158,40 @@ class StickyAddToCart extends Component {
     return headerPx + gapPx;
   }
 
-  /**
-   * @param {HTMLFormElement} form
-   * @returns {HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null}
-   */
-  #getFirstInvalidControl(form) {
-    for (const el of form.elements) {
-      if (
-        !(el instanceof HTMLInputElement) &&
-        !(el instanceof HTMLSelectElement) &&
-        !(el instanceof HTMLTextAreaElement)
-      ) {
-        continue;
-      }
-      if (!el.willValidate || el.disabled) continue;
-      if (!el.checkValidity()) return el;
-    }
-    return null;
-  }
+  scrollToVariantPicker = () => {
+    const productId = this.dataset.productId;
+    const picker =
+      (productId && document.querySelector(`variant-picker[data-product-id="${productId}"]`)) ||
+      document.querySelector("variant-picker");
 
-  /**
-   * Browser `requestSubmit` scrolls the invalid field into view while Lenis smooth-scroll is active,
-   * which fights native scroll and can jump the page (e.g. toward top) and dismiss the constraint UI.
-   * We scroll via Lenis after `focus({ preventScroll: true })`, then call `reportValidity` only after
-   * that scroll finishes (`onComplete` when `immediate: false`, or `scrollend` without Lenis).
-   *
-   * @param {HTMLFormElement} form
-   * @param {HTMLButtonElement | undefined} fallbackSubmitter
-   */
-  #reportInvalidFormConstraints(form, fallbackSubmitter) {
-    const invalidEl = this.#getFirstInvalidControl(form);
-    if (!invalidEl) {
-      if (fallbackSubmitter?.type === "submit") {
-        form.requestSubmit(fallbackSubmitter);
-      } else {
-        form.requestSubmit();
-      }
-      return;
-    }
+    // Enkelt-variant-produkter har maaske ingen variantvaelger; scroll da til
+    // koebsomraadet i stedet, saa knappen aldrig er en blind vej.
+    const target = picker?.querySelector(".variant-picker__form") ?? picker ?? this.#getProductForm();
+    if (!target) return;
 
-    const clearancePx = this.#getConstraintScrollClearancePx();
-
-    invalidEl.focus({ preventScroll: true });
-
-    const showBubble = () => {
-      requestAnimationFrame(() => {
-        invalidEl.reportValidity();
-      });
-    };
+    // Ekstra luft ud over header-clearance, saa vaelgeren ikke lander klistret op
+    // under headeren men med titel og pris synlige over sig. Samme mønster som
+    // gapPx i #getConstraintScrollClearancePx — juster dette ene tal for at
+    // scrolle laengere op eller ned.
+    const extraGapPx = 90;
+    const clearancePx = this.#getConstraintScrollClearancePx() + extraGapPx;
 
     const lenis = getLenis();
     if (lenis) {
-      lenis.scrollTo(invalidEl, {
-        offset: -clearancePx,
-        immediate: false,
-        onComplete: showBubble,
-      });
+      // Explicit duration here on purpose. The global Lenis config is lerp-driven and
+      // deliberately snappy so wheel scrolling feels native; but a JUMP across the page
+      // still wants a visible travel time, otherwise the picker just teleports in and
+      // the shopper loses their place. Wheel = fast, jump = legible.
+      lenis.scrollTo(target, { offset: -clearancePx, duration: 0.6, immediate: false });
       return;
     }
 
-    const rect = invalidEl.getBoundingClientRect();
-    const targetTop = rect.top + window.scrollY - clearancePx;
-    window.scrollTo({ top: Math.max(0, targetTop), behavior: "smooth" });
-
-    let settled = false;
-    const finishAfterScroll = () => {
-      if (settled) return;
-      settled = true;
-      if (fallbackTimer !== 0) {
-        window.clearTimeout(fallbackTimer);
-      }
-      showBubble();
-    };
-
-    let fallbackTimer = 0;
-    if ("onscrollend" in window) {
-      window.addEventListener("scrollend", finishAfterScroll, { once: true, passive: true });
-      fallbackTimer = window.setTimeout(finishAfterScroll, 1200);
-    } else {
-      fallbackTimer = window.setTimeout(finishAfterScroll, 450);
-    }
-  }
-
-  handleAddToCartClick = () => {
-    const productForm = this.#getProductForm();
-    const form = productForm?.querySelector("form");
-    const targetButton = productForm?.querySelector('[ref="addToCartButton"]');
-    const submitter =
-      targetButton instanceof HTMLButtonElement && targetButton.type === "submit" ? targetButton : undefined;
-
-    if (form && !form.checkValidity()) {
-      this.#reportInvalidFormConstraints(form, submitter);
-      return;
-    }
-
-    if (!targetButton) return;
-    this.#addLoading();
-    targetButton.click();
-  };
-
-  #handleCartAddComplete = () => {
-    this.#removeLoading();
-  };
-
-  #updateButtonText = (isAvailable, isSoldOut = false) => {
-    const { addToCartText, addToCartButton } = this.refs;
-    if (!addToCartText) return;
-
-    if (isAvailable) {
-      addToCartText.textContent = addToCartButton.dataset.addToCartText;
-    } else if (isSoldOut) {
-      addToCartText.textContent = addToCartButton.dataset.soldOutText;
-    } else {
-      addToCartText.textContent = addToCartButton.dataset.unavailableText;
-    }
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const rect = target.getBoundingClientRect();
+    window.scrollTo({
+      top: Math.max(0, rect.top + window.scrollY - clearancePx),
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
   };
 
   #getProductForm() {
@@ -336,15 +227,6 @@ class StickyAddToCart extends Component {
     stickyBar.dataset.sticky = "false";
   }
 
-  #addLoading() {
-    this.refs.addToCartButton.classList.add("btn--loading");
-    this.refs.addToCartSpinner.classList.remove("hidden");
-  }
-
-  #removeLoading() {
-    this.refs.addToCartButton.classList.remove("btn--loading");
-    this.refs.addToCartSpinner.classList.add("hidden");
-  }
 }
 
 if (!customElements.get("sticky-add-to-cart")) {

@@ -82,6 +82,33 @@
             can_add_to_cart: can_add_to_cart,
             add_to_cart_text: add_to_cart_text
           %}
+
+          {%- comment -%}
+            Betalingsikoner + rating under købsknappen. Styling ligger i
+            assets/section-product-information.css (.pr-bar*).
+            Vil du have baren under BÅDE ATC og Shop Pay/dynamisk checkout,
+            så flyt denne .pr-bar-blok ned efter '_accelerated-checkout' nedenfor.
+          {%- endcomment -%}
+          <div class="pr-bar">
+            <div class="pr-bar__pay">
+              {{ 'dankort' | payment_type_svg_tag }}
+              {{ 'mobilepay' | payment_type_svg_tag }}
+              {{ 'visa' | payment_type_svg_tag }}
+              {{ 'master' | payment_type_svg_tag }}
+              {{ 'viabill' | payment_type_svg_tag }}
+            </div>
+            <div class="pr-bar__rating">
+              <span class="pr-bar__score">4.8/5</span>
+              <div class="pr-bar__stars">
+                {%- for i in (1..5) -%}
+                  <span class="pr-bar__star">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  </span>
+                {%- endfor -%}
+              </div>
+            </div>
+          </div>
+
           {% content_for 'block',
             type: '_accelerated-checkout',
             id: 'accelerated-checkout',

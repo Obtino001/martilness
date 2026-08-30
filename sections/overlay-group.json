@@ -14,16 +14,21 @@
     "cart-drawer": {
       "type": "cart-drawer",
       "settings": {
-        "summary_color_scheme": "scheme-inverse",
+        "summary_color_scheme": "scheme-1",
         "summary_show_seperator_line": false,
         "enable_cart_recommendations": true,
-        "cart_recommendations_title": "Complete The Look",
+        "cart_product_recommendations": [],
+        "cart_recommendations_inherit_color_scheme": true,
+        "cart_recommendations_color_scheme": "",
+        "cart_recommendations_title": "Mangler du lige det sidste?",
         "cart_recommendations_limit": 4,
-        "product_title_line_limit": "none",
+        "product_title_line_limit": "2-lines",
         "show_swatches": false,
         "show_vendor": false,
         "show_type": false,
-        "show_quick_add": true
+        "show_quick_add": true,
+        "cart_addons_inherit_color_scheme": true,
+        "cart_addons_color_scheme": ""
       }
     },
     "search-drawer": {
@@ -33,9 +38,24 @@
     "quick-add-drawer": {
       "type": "quick-add-drawer",
       "blocks": {
+        "quick_add_media_aaFDTj": {
+          "type": "_quick-add-media",
+          "name": "t:names.product_media",
+          "settings": {
+            "media_aspect_ratio": "auto",
+            "media_radius": 20,
+            "video_autoplay": false,
+            "hide_variants": false,
+            "padding-block-start": 0,
+            "padding-block-end": 16,
+            "mobile-padding-scale": 80
+          },
+          "blocks": {}
+        },
         "product_badges_i9RtEF": {
           "type": "_product-badges",
           "name": "t:names.product_badges",
+          "disabled": true,
           "settings": {
             "show_custom_badges": true,
             "show_sold_out_badge": true,
@@ -52,11 +72,12 @@
           "type": "_product-title",
           "name": "t:names.product_title",
           "settings": {
-            "type_preset": "h3",
-            "html_tag": "h1",
+            "type_preset": "custom",
+            "html_tag": "h3",
             "font": "var(--font-heading--family)",
-            "font_size": 15,
-            "font_size_mobile": 15,
+            "font_weight": "",
+            "font_size": 20,
+            "font_size_mobile": 20,
             "line_height": "normal",
             "text_color": "text",
             "padding-block-start": 0,
@@ -72,25 +93,13 @@
           "settings": {
             "show_installments": false,
             "show_tax_info": false,
+            "show_unit_chip": true,
+            "show_save_chip": true,
             "type_preset": "h5",
-            "padding-block-start": 0,
-            "padding-block-end": 12,
+            "padding-block-start": 8,
+            "padding-block-end": 8,
             "padding-inline-start": 0,
             "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "quick_add_media_aaFDTj": {
-          "type": "_quick-add-media",
-          "name": "t:names.product_media",
-          "settings": {
-            "media_aspect_ratio": "auto",
-            "media_radius": 20,
-            "video_autoplay": false,
-            "hide_variants": false,
-            "padding-block-start": 0,
-            "padding-block-end": 16,
-            "mobile-padding-scale": 80
           },
           "blocks": {}
         },
@@ -104,6 +113,7 @@
             "swatch_shape": "square",
             "swatch_width": 52,
             "swatch_height": 24,
+            "buttons_radius": 10,
             "size_chart_title": "Size Guide",
             "size_chart_page": "product-size-chart",
             "padding-block-start": 0,
@@ -113,14 +123,18 @@
           },
           "blocks": {}
         },
-        "product_inventory_kNhGiY": {
-          "type": "_product-inventory",
-          "name": "t:names.product_inventory",
+        "shipping_date_ayh6zT": {
+          "type": "_shipping-date",
+          "name": "Afsendes",
           "settings": {
-            "inventory_threshold": 10,
-            "show_inventory_quantity": true,
+            "label": "Afsendes:",
+            "cutoff_hour": 17,
+            "text_today": "i dag",
+            "text_tomorrow": "i morgen",
+            "text_monday": "mandag",
+            "type_preset": "",
             "padding-block-start": 0,
-            "padding-block-end": 16,
+            "padding-block-end": 2,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
@@ -130,7 +144,7 @@
           "type": "_buy-buttons",
           "name": "t:names.buy_buttons",
           "settings": {
-            "gift_card_form": true,
+            "gift_card_form": false,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -153,6 +167,7 @@
             },
             "accelerated-checkout": {
               "type": "_accelerated-checkout",
+              "disabled": true,
               "static": true,
               "settings": {},
               "blocks": {}
@@ -162,192 +177,34 @@
         }
       },
       "block_order": [
+        "quick_add_media_aaFDTj",
         "product_badges_i9RtEF",
         "product_title_PQ88wz",
         "product_price_NG4dBt",
-        "quick_add_media_aaFDTj",
         "variant_picker_keyXB6",
-        "product_inventory_kNhGiY",
+        "shipping_date_ayh6zT",
         "buy_buttons_zVdFdm"
       ],
       "settings": {
         "row_gap": 4
       }
     },
-    "popup": {
-      "type": "popup",
-      "blocks": {
-        "image_xxKzhH": {
-          "type": "image",
-          "name": "t:names.image",
-          "settings": {
-            "link": "",
-            "image_ratio": "adapt",
-            "image_ratio_mobile": "adapt",
-            "width": "custom",
-            "custom_width": 40,
-            "width_mobile": "custom",
-            "custom_width_mobile": 38,
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0,
-            "mobile-padding-scale": 80
-          },
-          "blocks": {}
-        },
-        "spacer_7hm8Vc": {
-          "type": "_spacer",
-          "settings": {
-            "gap": 24,
-            "gap_mobile": 20
-          },
-          "blocks": {}
-        },
-        "text_aLEBHW": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Unlock 10% OFF your order</p>",
-            "highlight_style": "none",
-            "highlight_font_style": "italic",
-            "highlight_shape_color": "",
-            "highlight_text_color": "",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": 15,
-            "font_size_mobile": 15,
-            "line_height": "normal",
-            "text_color": "text",
-            "width": "fit-content",
-            "text_alignment": "left",
-            "width_mobile": "fit-content",
-            "text_alignment_mobile": "left",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0,
-            "mobile-padding-scale": 80,
-            "animation_type": "none",
-            "animation_delay": 250
-          },
-          "blocks": {}
-        },
-        "spacer_dGrBVD": {
-          "type": "_spacer",
-          "settings": {
-            "gap": 16,
-            "gap_mobile": 12
-          },
-          "blocks": {}
-        },
-        "text_fBDwwU": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Sexy and sustainable goodies? Sign me up</p>",
-            "highlight_style": "none",
-            "highlight_font_style": "italic",
-            "highlight_shape_color": "",
-            "highlight_text_color": "",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": 15,
-            "font_size_mobile": 15,
-            "line_height": "normal",
-            "text_color": "subtext",
-            "width": "fit-content",
-            "text_alignment": "left",
-            "width_mobile": "fit-content",
-            "text_alignment_mobile": "left",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0,
-            "mobile-padding-scale": 80,
-            "animation_type": "none",
-            "animation_delay": 250
-          },
-          "blocks": {}
-        },
-        "spacer_e8DeKA": {
-          "type": "_spacer",
-          "settings": {
-            "gap": 24,
-            "gap_mobile": 20
-          },
-          "blocks": {}
-        },
-        "popup_newsletter_Bzq9PB": {
-          "type": "_popup-newsletter",
-          "settings": {
-            "button_label": "Get 10% OFF"
-          },
-          "blocks": {}
-        },
-        "spacer_eefBEM": {
-          "type": "_spacer",
-          "settings": {
-            "gap": 16,
-            "gap_mobile": 12
-          },
-          "blocks": {}
-        },
-        "text_JcmAqC": {
-          "type": "text",
-          "settings": {
-            "text": "<p><a href=\"#\" title=\"#\">I’ll pay full price</a></p>",
-            "highlight_style": "none",
-            "highlight_font_style": "italic",
-            "highlight_shape_color": "",
-            "highlight_text_color": "",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": 15,
-            "font_size_mobile": 15,
-            "line_height": "normal",
-            "text_color": "subtext",
-            "width": "fit-content",
-            "text_alignment": "left",
-            "width_mobile": "fit-content",
-            "text_alignment_mobile": "left",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0,
-            "mobile-padding-scale": 80,
-            "animation_type": "none",
-            "animation_delay": 250
-          },
-          "blocks": {}
-        },
-        "popup-image": {
-          "type": "_popup-image",
-          "static": true,
-          "settings": {},
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "image_xxKzhH",
-        "spacer_7hm8Vc",
-        "text_aLEBHW",
-        "spacer_dGrBVD",
-        "text_fBDwwU",
-        "spacer_e8DeKA",
-        "popup_newsletter_Bzq9PB",
-        "spacer_eefBEM",
-        "text_JcmAqC"
-      ],
-      "name": "t:names.popup",
+    "martilness_giveaway_GGkM7c": {
+      "type": "martilness-giveaway",
+      "name": "Martilness giveaway",
       "settings": {
-        "enable": true,
-        "show_for_homepage_only": true,
-        "show_for_visitors_only": true,
-        "trigger_open": "delay",
-        "repeat_open": "every_day"
+        "tab_label": "Vind produkter til en værdi af kr. 3398,-",
+        "heading": "Vind produkter til en værdi af kr. 3398,-",
+        "text": "Tilmeld dig vores nyhedsbrev og vær med i konkurrencen om en dampsauna kombineret med et isbad til en værdi af kr. 3398,-",
+        "name_placeholder": "Fornavn",
+        "email_placeholder": "Email",
+        "button_label": "Ja tak - jeg vil gerne vinde :-)",
+        "success_message": "Tak! Du er nu med i konkurrencen.",
+        "image": "shopify://shop_images/DSC00435-Edit-scaled.jpg",
+        "panel_background": "#09412D",
+        "accent_color": "#09412D",
+        "open_by_default": false,
+        "z_index": 40
       }
     }
   },
@@ -355,6 +212,6 @@
     "cart-drawer",
     "search-drawer",
     "quick-add-drawer",
-    "popup"
+    "martilness_giveaway_GGkM7c"
   ]
 }

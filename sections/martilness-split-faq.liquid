@@ -1,0 +1,359 @@
+{%- liquid
+  assign heading = section.settings.title | default: 'Spørgsmål & svar'
+  assign button_label = section.settings.button_text
+  assign button_link = section.settings.button_link
+  assign image_position = section.settings.image_position | default: 'left'
+  assign image_radius = section.settings.image_radius | default: 20
+
+  assign show_section = true
+  assign gate_key = section.settings.require_metafield_key | default: 'faqs' | strip
+  if gate_key != blank
+    assign show_section = false
+    assign gate_product = product
+    if gate_product == blank and closest.product != blank
+      assign gate_product = closest.product
+    endif
+    if gate_product != blank
+      assign gate_mf = gate_product.metafields.custom[gate_key]
+      if gate_mf != blank and gate_mf.value != blank
+        assign show_section = true
+      endif
+    endif
+  endif
+-%}
+{%- unless show_section -%}
+  <style>
+    #shopify-section-{{ section.id }} {
+      display: none !important;
+    }
+  </style>
+{%- else -%}
+<div
+  id="section-{{ section.id }}"
+  class="mt-split-faq color-{{ section.settings.color_scheme }}{% if image_position == 'right' %} mt-split-faq--image-right{% endif %}"
+  style="
+    --mt-split-faq-pad-top: {{ section.settings.padding_top }}px;
+    --mt-split-faq-pad-bottom: {{ section.settings.padding_bottom }}px;
+    --mt-split-faq-radius: {{ image_radius }}px;
+  "
+>
+  <div class="mt-split-faq__shell">
+    <div class="mt-split-faq__grid">
+      <div class="mt-split-faq__media">
+        {% if section.settings.image != blank %}
+          {%- assign split_faq_alt = section.settings.image.alt | default: heading -%}
+          {{
+            section.settings.image
+            | image_url: width: 1600
+            | image_tag:
+              class: 'mt-split-faq__img',
+              loading: 'lazy',
+              widths: '400, 600, 800, 1200, 1600',
+              sizes: '(min-width: 990px) min(50vw, 750px), 100vw',
+              alt: split_faq_alt
+          }}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'mt-split-faq__img mt-split-faq__img--placeholder' }}
+        {% endif %}
+      </div>
+
+      <div class="mt-split-faq__content">
+        <div class="mt-split-faq__inner">
+          {% if heading != blank %}
+            <h2 class="mt-split-faq__title h2">{{ heading | newline_to_br }}</h2>
+          {% endif %}
+
+          {% if section.blocks.size > 0 %}
+            <accordion-component
+              class="mt-split-faq__accordion accordion accordion--standard accordion--arrow-plus"
+              data-single-open="true"
+              data-section-id="{{ section.id }}"
+            >
+              {% for block in section.blocks %}
+                <div class="accordion__row" {{ block.shopify_attributes }}>
+                  <details ref="item[]" class="accordion__details">
+                    <summary
+                      ref="summary[]"
+                      class="accordion__summary flex"
+                      on:click="/onSummaryClick"
+                    >
+                      <span class="accordion__summary-text">{{ block.settings.question }}</span>
+                      {% render 'icon', icon: 'plus', class: 'flex shrink-0 accordion__summary-arrow' %}
+                    </summary>
+                    <div ref="content[]" class="accordion__content">
+                      <div class="accordion__inner rte">
+                        {{ block.settings.answer }}
+                      </div>
+                    </div>
+                  </details>
+                </div>
+              {% endfor %}
+            </accordion-component>
+          {% endif %}
+
+          {% if button_label != blank %}
+            <div class="mt-split-faq__actions">
+              <a
+                href="{{ button_link | default: '#' }}"
+                class="btn btn--primary"
+              >
+                <span class="btn__text">{{ button_label }}</span>
+              </a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  #section-{{ section.id }}.mt-split-faq {
+    padding-block: var(--mt-split-faq-pad-top) var(--mt-split-faq-pad-bottom);
+    padding-inline: var(--page-padding, 1.6rem);
+    background: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+  }
+
+  #section-{{ section.id }} .mt-split-faq__shell {
+    max-width: var(--page-width, 1500px);
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  #section-{{ section.id }} .mt-split-faq__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    gap: 2.4rem;
+    align-items: start;
+  }
+
+  #section-{{ section.id }} .mt-split-faq__media {
+    position: relative;
+    height: 28rem;
+    overflow: hidden;
+    background: rgb(var(--color-foreground) / 0.06);
+    border-radius: var(--mt-split-faq-radius, 20px);
+  }
+
+  #section-{{ section.id }} .mt-split-faq__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--mt-split-faq-radius, 20px);
+  }
+
+  #section-{{ section.id }} .mt-split-faq__img--placeholder {
+    opacity: 0.35;
+  }
+
+  #section-{{ section.id }} .mt-split-faq__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2.4rem 0;
+  }
+
+  #section-{{ section.id }} .mt-split-faq__inner {
+    width: 100%;
+    max-width: 52rem;
+  }
+
+  #section-{{ section.id }} .mt-split-faq__title {
+    margin: 0 0 2.4rem;
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  #section-{{ section.id }} .mt-split-faq__accordion {
+    width: 100%;
+  }
+
+  #section-{{ section.id }} .mt-split-faq__accordion .accordion__summary-text {
+    font-family: var(--font-heading--family);
+    font-weight: var(--font-heading--weight);
+  }
+
+  #section-{{ section.id }} .mt-split-faq__actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 3.2rem;
+  }
+
+  @media (min-width: 990px) {
+    #section-{{ section.id }} .mt-split-faq__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    #section-{{ section.id }}.mt-split-faq--image-right .mt-split-faq__media {
+      order: 2;
+    }
+
+    #section-{{ section.id }}.mt-split-faq--image-right .mt-split-faq__content {
+      order: 1;
+    }
+
+    #section-{{ section.id }} .mt-split-faq__media {
+      position: sticky;
+      top: calc(var(--header-height, 0px) + 2.4rem);
+      height: min(72vh, 64rem);
+      align-self: start;
+    }
+
+    #section-{{ section.id }} .mt-split-faq__img {
+      height: 100%;
+    }
+
+    #section-{{ section.id }} .mt-split-faq__content {
+      padding: 0 2rem;
+    }
+  }
+</style>
+{%- endunless -%}
+
+{% schema %}
+{
+  "name": "Image with FAQs",
+  "tag": "section",
+  "class": "section-mt-split-faq",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "require_metafield_key",
+      "label": "Show only if product metafield has entries",
+      "default": "faqs",
+      "info": "Custom namespace key, e.g. faqs. Leave blank to always show."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Image corner radius",
+      "default": 20
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Heading",
+      "default": "Spørgsmål & svar"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Se alle spørgsmål og svar"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-2"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Hvorfor skal jeg købe et saunatæppe?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Et saunatæppe er en fantastisk investering for dig, der ønsker at kombinere velvære, sundhed og afslapning i din daglige rutine.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with FAQs",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Hvorfor skal jeg købe et saunatæppe?",
+            "answer": "<p>Et saunatæppe er en fantastisk investering for dig, der ønsker at kombinere velvære, sundhed og afslapning i din daglige rutine.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Hvordan virker et infrarødt saunatæppe?",
+            "answer": "<p>Det fungerer ved at udnytte infrarøde stråler til at opvarme kroppen indefra og skabe en sauna-lignende effekt.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Hvordan bruges saunatæppet?",
+            "answer": "<p>Du tænder det, indstiller tid og temperatur og ligger dig ned i det. Husk at drikke vand før og efter brug.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Hvor længe kan jeg ligge i saunatæppet?",
+            "answer": "<p>Den anbefalede brugstid er 30–60 minutter ad gangen.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

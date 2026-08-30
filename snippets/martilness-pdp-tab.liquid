@@ -1,0 +1,344 @@
+{%- doc -%}
+  Martilness PDP accordion tab body.
+  Uses product description / metafields when set; otherwise handle-based defaults from martilness.dk.
+
+  @param {object} product
+  @param {string} tab - beskrivelse | zoner | fordele | specs | inkluderet | garanti
+{%- enddoc -%}
+
+{%- liquid
+  assign handle = product.handle | default: ''
+  assign title_d = product.title | downcase | default: ''
+  assign type_d = product.type | downcase | default: ''
+
+  assign is_dampsauna = false
+  if handle contains 'dampsauna' or title_d contains 'dampsauna'
+    assign is_dampsauna = true
+  endif
+
+  assign is_saunataeppe = false
+  if handle contains 'saunataeppe' or handle contains 'saunatæppe' or title_d contains 'saunatæppe' or title_d contains 'saunataeppe' or type_d contains 'saunatæppe' or type_d contains 'saunataeppe'
+    assign is_saunataeppe = true
+  endif
+-%}
+{%- capture is_led_flag -%}{% render 'martilness-is-led-maske', product: product %}{%- endcapture -%}
+{%- assign is_led_maske = false -%}
+{%- if is_led_flag contains '1' -%}
+  {%- assign is_led_maske = true -%}
+{%- endif -%}
+
+{%- capture tab_body -%}
+{%- case tab -%}
+  {%- when 'beskrivelse' -%}
+    {%- if product.description != blank -%}
+      <div class="mt-pdp-tab rte">{{ product.description }}</div>
+    {%- elsif is_saunataeppe -%}
+      <div class="mt-pdp-tab rte">
+        <p><strong>Fysisk og psykisk velvære</strong><br>
+        Et saunatæppe er et fremragende redskab til at fremme både fysisk og psykisk velvære. Det fungerer som en infrarød sauna, hvor kroppen opvarmes direkte, hvilket giver en række sundhedsmæssige fordele uden at kræve et stort sauna-rum. Saunatæpper opvarmer kroppen indefra og stimulerer en dyb svedproces, som både renser og afgifter. Denne intense varme hjælper med at øge blodcirkulationen, hvilket forbedrer kroppens evne til at levere næringsstoffer og ilt til musklerne og samtidig fremmer hurtigere restitution efter fysisk aktivitet.</p>
+        <p><strong>En ren wellness-oplevelse</strong><br>
+        Et saunatæppe er ikke bare et effektivt redskab til stressreduktion, men også en luksuriøs wellness-oplevelse – især i den kolde og mørke tid, hvor vi kan have ekstra behov for varme og komfort. Specielt her i vintermånederne, hvor kulden kan virke hård, er et saunatæppe en behagelig og opvarmende oplevelse, der hjælper kroppen med at slappe af og genfinde energien. Mange oplever, at det også kan lette vintertræthed og give en fornyet følelse af velvære. Derudover kan det at skabe en hyggelig, varm rutine med saunatæppet give mental opladning og følelsen af selvforkælelse, som er så vigtig i årets mørke tid.</p>
+        <p><strong>Virkelig gavnligt for folk med gigt, ledsmerter, inflammation og andre kroniske tilstande</strong><br>
+        Et saunatæppe kan være gavnligt for personer med gigt, ledsmerter og visse andre kroniske tilstande, da infrarød varme kan hjælpe med at lindre smerter og fremme helingsprocesser i kroppen.</p>
+        <p>For folk med gigt eller ledsmerter kan saunatæppets infrarøde varme trænge dybt ind i muskler og led og reducere smerter og stivhed. Varmen får blodkarrene til at udvide sig, hvilket øger blodgennemstrømningen til det berørte område. Dette kan hjælpe med at lindre inflammation og reducere ubehag.</p>
+        <p>Den infrarøde varme øger blodgennemstrømningen, hvilket betyder, at ilt og næringsstoffer transporteres mere effektivt til muskler, led og væv. Forbedret cirkulation kan reducere inflammatoriske processer og støtte heling, hvilket især er nyttigt for dem med kroniske smerter og gigt.</p>
+        <p><strong>Afslappende oplevelse der reducerer stress og i stedet skaber en indre ro – såvel i krop som mentalt</strong><br>
+        På det mentale plan skaber varmen en afslappende oplevelse, som reducerer stress og fremmer frigivelsen af lykkehormoner som endorfiner og serotonin. Dette kan føre til en følelse af indre ro og en reduktion af muskelspændinger og angst. Saunatæppet er ideelt til dem, der ønsker at slappe af, finde mere mentalt overflskud og forbedre søvnen.</p>
+        <p><strong>Virkelig god effekt i kombination med isbad</strong><br>
+        Ved at kombinere saunatæppe med isbadning får du det bedste fra begge verdener: dyb varme og afslapning efterfulgt af den forfriskende kølighed fra isbadet, der vækker kroppen og booster energi og humør. Kombinationen er perfekt til dem, der søger en holistisk wellness-oplevelse, der både er beroligende og oplivende.</p>
+      </div>
+    {%- elsif is_dampsauna -%}
+      <div class="mt-pdp-tab rte">
+        <p><strong>Fysisk og psykisk velvære</strong><br>
+        Dampsauna er en fantastisk måde at forbedre både fysisk og psykisk velvære på. Når kroppen udsættes for den varme, fugtige luft i en dampsauna, sker der en række gavnlige reaktioner. Den øgede blodcirkulation fra varmen hjælper med at levere ilt og næringsstoffer mere effektivt til muskler og organer, hvilket lindrer muskelspændinger, reducerer smerter og fremmer restitution. Varmen får kroppen til at svede intenst, hvilket hjælper med at rense huden og udskille toksiner, hvilket både er godt for kroppens balance og for hudens udseende.</p>
+        <p><strong>Stressreducerende og udløser lykkehormoner</strong><br>
+        På det mentale plan har dampsauna en afslappende og stressreducerende effekt. Under sauna-sessionen frigiver kroppen endorfiner, som er kroppens naturlige “lykkehormoner”, og som bidrager til en følelse af ro og velvære. Varmen og roen giver en naturlig pause fra hverdagens stress, og mange oplever, at en dampsauna-session kan give bedre søvn og mere mental klarhed.</p>
+        <p><strong>Perfekt kombination med isbadning</strong><br>
+        En populær praksis er at kombinere dampsauna med isbadning, da de to former for kulde- og varmeterapi har en synergistisk effekt på krop og sind. Ved at gå fra dampens intense varme til det kolde isbad, bliver kroppen udsat for en kontrastfyldt stimulering, der øger blodcirkulationen yderligere og styrker immunforsvaret. Den skarpe kulde fra isbadet kan føles forfriskende og opkvikkende og har vist sig at booste energiniveauet samt hjælpe med at lindre inflammation i kroppen.</p>
+      </div>
+    {%- endif -%}
+
+  {%- when 'zoner' -%}
+    {%- assign mf_field = product.metafields.custom.antal_zoner -%}
+    {%- if mf_field != blank and mf_field.value != blank -%}
+      {% render 'martilness-metafield-html', metafield: mf_field %}
+    {%- else -%}
+      <div class="mt-pdp-tab rte">
+        <p>Vores saunatæppe har 1-zone.</p>
+        <p>Et tæppe med 1-zone er billigere end tæpper med flere zoner. Spørgsmålet er derfor om man har brug for flere zoner.</p>
+        <p><strong>Hvad er forskellen på 1, 2 og 3 zoner og hvad har du brug for?</strong><br>
+        Antallet af zoner i et saunatæppe betyder at du kan opvarme forskellige områder i tæppet individuelt. Dvs. du kan sætte høj varme på et specifikt område (f.eks. benene) og så have lav, eller ingen varme på overkroppen. Typisk har saunatæpper 1, 2 eller 3 zoner:</p>
+        <ul>
+          <li>Et tæppe med 1-zone, varmer hele tæppet op med den samme temperatur.</li>
+          <li>Et tæppe med 2-zoner, kan du f.eks. have varme på ben men ikke på mave og bryst, eller omvendt.</li>
+          <li>Et tæppe med 3-zoner, kan du fordele varmen på hhv. ben, mave og bryst.</li>
+        </ul>
+        <p>Bemærk, at nogle tæpper er zonerne også inddelt i over og underkrop (altså den del af tæppet du ligger på, og den del du har over dig).</p>
+        <p><strong>Har det nogen betydning for dit slutresultat, hvor mange zoner der er?</strong><br>
+        Nej, det har det ikke. For nogle er én zone tilstrækkeligt, da de ønsker samme temperatur over hele kroppen. For andre kan det være rart at have mere varme ved fødderne end ved overkroppen e.l.</p>
+      </div>
+    {%- endif -%}
+
+  {%- when 'fordele' -%}
+    {%- if is_led_maske -%}
+      <div class="mt-pdp-tab rte mt-pdp-tab--swatches">
+        <p><strong>Hvad hjælper de enkelte farver med?</strong></p>
+        <ul class="mt-pdp-tab__list mt-pdp-tab__list--colors">
+          <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--rod" aria-hidden="true"></span><span><strong>Rød:</strong> Stimulerer kollagen og gør huden mere spændstig</span></li>
+          <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--bla" aria-hidden="true"></span><span><strong>Blå:</strong> Reducerer akne, betændelse og urenheder</span></li>
+          <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--gron" aria-hidden="true"></span><span><strong>Grøn:</strong> Beroliger huden og dæmper pigmentforandringer</span></li>
+          <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--gul" aria-hidden="true"></span><span><strong>Gul:</strong> Lysner mørke pletter og forbedrer hudtonen</span></li>
+          <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--lilla" aria-hidden="true"></span><span><strong>Lilla:</strong> Modvirker hævelser og stimulerer blodcirkulationen</span></li>
+          <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--orange" aria-hidden="true"></span><span><strong>Orange:</strong> Understøtter lymfesystemet og reducerer hævelse</span></li>
+          <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--cyan" aria-hidden="true"></span><span><strong>Cyan:</strong> Dæmper fedtet hud og mindsker hudorme</span></li>
+          <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--nir" aria-hidden="true"></span><span><strong>Nærinfrarød (NIR):</strong> Trænger dybt ned i huden og understøtter cellefornyelse og blodcirkulation</span></li>
+        </ul>
+      </div>
+    {%- else -%}
+      {%- assign mf_field = product.metafields.custom.sundhedsmaessige_fordele -%}
+      {%- capture mf_check -%}{{ mf_field | metafield_tag }}{%- endcapture -%}
+      {%- assign mf_txt = mf_check | strip_html | strip -%}
+      {%- assign mf_down = mf_txt | downcase -%}
+      {%- if mf_down contains 'hvad hjælper de enkelte farver' or mf_down contains 'nærinfrarød (nir)' -%}
+        <div class="mt-pdp-tab rte mt-pdp-tab--swatches">
+          <p><strong>Hvad hjælper de enkelte farver med?</strong></p>
+          <ul class="mt-pdp-tab__list mt-pdp-tab__list--colors">
+            <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--rod" aria-hidden="true"></span><span><strong>Rød:</strong> Stimulerer kollagen og gør huden mere spændstig</span></li>
+            <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--bla" aria-hidden="true"></span><span><strong>Blå:</strong> Reducerer akne, betændelse og urenheder</span></li>
+            <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--gron" aria-hidden="true"></span><span><strong>Grøn:</strong> Beroliger huden og dæmper pigmentforandringer</span></li>
+            <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--gul" aria-hidden="true"></span><span><strong>Gul:</strong> Lysner mørke pletter og forbedrer hudtonen</span></li>
+            <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--lilla" aria-hidden="true"></span><span><strong>Lilla:</strong> Modvirker hævelser og stimulerer blodcirkulationen</span></li>
+            <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--orange" aria-hidden="true"></span><span><strong>Orange:</strong> Understøtter lymfesystemet og reducerer hævelse</span></li>
+            <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--cyan" aria-hidden="true"></span><span><strong>Cyan:</strong> Dæmper fedtet hud og mindsker hudorme</span></li>
+            <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--nir" aria-hidden="true"></span><span><strong>Nærinfrarød (NIR):</strong> Trænger dybt ned i huden og understøtter cellefornyelse og blodcirkulation</span></li>
+          </ul>
+        </div>
+      {%- elsif mf_txt != blank -%}
+        {% render 'martilness-metafield-html', metafield: mf_field, color_swatches: true, format_list: false %}
+      {%- elsif is_saunataeppe -%}
+        <div class="mt-pdp-tab rte">
+          <p>Udover saunatæppet giver en fantastisk varm wellness følelse, giver tæppet også følgende sundhedsmæssige fordele:</p>
+          <p><strong>Afslapning og stressreduktion:</strong> Hjælper med at reducere stress og fremmer dyb afslapning ved at lindre muskelspændinger.</p>
+          <p><strong>Forbedret blodcirkulation:</strong> Øger blodgennemstrømningen, hvilket leverer ilt og næringsstoffer til væv og organer, der understøtter helbred og energi.</p>
+          <p><strong>Smertelindring:</strong> Reducerer muskel- og ledsmerter samt kroniske smerter ved at varme dybt ind i vævet og lindre direkte på smertepunkter.</p>
+          <p><strong>Afgiftning:</strong> Stimulerer svedproduktionen, hvilket hjælper med at udskille toksiner og affaldsstoffer fra kroppen for at fremme en sund balance.</p>
+          <p><strong>Støtte til immunforsvaret:</strong> Regelmæssig brug kan styrke immunforsvaret ved at øge kroppens kernetemperatur, hvilket kan hjælpe kroppen med at bekæmpe infektioner.</p>
+          <p><strong>Forbedret hudpleje:</strong> Åbner porerne og renser huden dybt, hvilket kan give en klarere og mere strålende hudtone og stimulerer kollagenproduktionen for at modvirke rynker.</p>
+          <p><strong>Vægttab:</strong> Øger kalorieforbrændingen ved at hæve kroppens kernetemperatur, hvilket kan bidrage til vægttab over tid.</p>
+          <p><strong>Støtte til muskelrestitution:</strong> Hjælper med at lindre ømme muskler efter træning og fremmer hurtigere restitution.</p>
+          <p><strong>Fremmer bedre søvn:</strong> Den beroligende varme kan hjælpe med at forbedre søvnkvaliteten, især hvis tæppet bruges inden sengetid.</p>
+          <p><strong>Øget stofskifte:</strong> Kan stimulere stofskiftet og hjælpe kroppen med at forbrænde kalorier mere effektivt.</p>
+        </div>
+      {%- elsif is_dampsauna -%}
+        <div class="mt-pdp-tab rte">
+          <p>Dampsaunaer har en række sundhedsmæssige fordele, som mange bruger for både fysisk og mental velvære. Her er nogle af de mest almindelige fordele:</p>
+          <p><strong>Forbedret cirkulation:</strong> Varmen i en dampsauna får blodkarrene til at udvide sig, hvilket øger blodgennemstrømningen. Dette kan hjælpe med at levere ilt og næringsstoffer mere effektivt rundt i kroppen.</p>
+          <p><strong>Afgiftning:</strong> Når du sveder, udskiller kroppen toksiner gennem huden. Dampens fugtige varme kan hjælpe med at åbne porerne og fremme en dybere afgiftning gennem sved.</p>
+          <p><strong>Muskelafslapning og lindring af ømhed:</strong> Dampsaunaens varme afslapper muskler og lindrer spændinger, hvilket kan være gavnligt for dem med muskelømhed eller ledproblemer som gigt. Varme hjælper også med at løsne stive led og fremme fleksibilitet.</p>
+          <p><strong>Bedre åndedrætsfunktion:</strong> Den fugtige varme i en dampsauna kan hjælpe med at åbne luftvejene og lindre symptomer på forkølelse, bihulebetændelse og astma. Den varme, fugtige luft kan løsne slim og rense næsepassagerne.</p>
+          <p><strong>Støtter hudpleje:</strong> Varme og fugt hjælper med at rense huden i dybden og kan forbedre hudens udseende ved at åbne porerne, fjerne døde hudceller og øge blodgennemstrømningen. Dette kan resultere i en sundere og mere strålende hud.</p>
+          <p><strong>Reduceret stress og bedre søvn:</strong> En session i dampsaunaen kan virke afslappende og reducere stress ved at sænke kroppens stresshormoner. Dette kan føre til en følelse af ro og forbedret søvnkvalitet.</p>
+          <p><strong>Forbedret immunforsvar:</strong> Varmen i dampsaunaen kan stimulere produktionen af hvide blodlegemer, hvilket kan styrke immunforsvaret og hjælpe kroppen med at bekæmpe infektioner.</p>
+          <p><strong>Hjælp til vægttab:</strong> Selvom vægttab fra en dampsauna primært er relateret til vandtab gennem sved, kan regelmæssige sessioner indirekte støtte en aktiv livsstil og dermed vægtkontrol, da forbrændingen af kalorier øges en smule under brugen.</p>
+          <p>Husk at drikke rigeligt med vand før og efter brug af en dampsauna, da man mister en del væske gennem sved.</p>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+  {%- when 'specs' -%}
+    {%- if is_led_maske -%}
+      <div class="mt-pdp-tab rte">
+        <ul class="mt-pdp-tab__list">
+          <li>Antal LED-lamper: 124</li>
+          <li>LED-lys: 7 biologiske LED-farver</li>
+          <li>Nærinfrarødt lys: 810–850 nm</li>
+          <li>Spænding: 220V (medfølgende AC/DC-adapter: 5V, DC 1000mA)</li>
+          <li>Tidsindstilling: 10, 15, 20, 25 eller 30 minutter</li>
+          <li>Materiale: Blød og fleksibel silikone</li>
+          <li>Certificeringer: CE &amp; RoHS</li>
+          <li>Betjening: Fjernbetjening med forudindstillede programmer</li>
+        </ul>
+      </div>
+    {%- else -%}
+      {%- assign mf_field = product.metafields.custom.tekniske_specifikationer -%}
+      {%- if mf_field == blank -%}
+        {%- assign mf_field = product.metafields.custom.tekniske_specifikationers -%}
+      {%- endif -%}
+      {%- capture mf_check -%}{{ mf_field | metafield_tag }}{%- endcapture -%}
+      {%- assign mf_txt = mf_check | strip_html | strip -%}
+      {%- assign mf_down = mf_txt | downcase -%}
+      {%- if mf_down contains 'led-lamper' or mf_down contains 'biologiske led' -%}
+        <div class="mt-pdp-tab rte">
+          <ul class="mt-pdp-tab__list">
+            <li>Antal LED-lamper: 124</li>
+            <li>LED-lys: 7 biologiske LED-farver</li>
+            <li>Nærinfrarødt lys: 810–850 nm</li>
+            <li>Spænding: 220V (medfølgende AC/DC-adapter: 5V, DC 1000mA)</li>
+            <li>Tidsindstilling: 10, 15, 20, 25 eller 30 minutter</li>
+            <li>Materiale: Blød og fleksibel silikone</li>
+            <li>Certificeringer: CE &amp; RoHS</li>
+            <li>Betjening: Fjernbetjening med forudindstillede programmer</li>
+          </ul>
+        </div>
+      {%- elsif mf_txt != blank -%}
+        {% render 'martilness-metafield-html', metafield: mf_field, format_list: true %}
+      {%- elsif is_saunataeppe -%}
+        <div class="mt-pdp-tab rte">
+          <ul class="mt-pdp-tab__list">
+            <li>Størrelse: 80 cm x 190 cm</li>
+            <li>Tidsindstilling: 20–60 minutter</li>
+            <li>Temperatur 30–80 grader</li>
+            <li>Vægt: 6,5 kg</li>
+            <li>Strømstyrke: 550W</li>
+            <li>Spænding: 220V</li>
+            <li>ROHS og CE certificeret</li>
+            <li>Strømforbrug: Alt efter din el aftale koster det mellem kr. 1,10 og 1,93 i timen at bruge tæppet.</li>
+          </ul>
+        </div>
+      {%- elsif is_dampsauna -%}
+        <div class="mt-pdp-tab rte">
+          <ul class="mt-pdp-tab__list">
+            <li>9 varmeindstillinger</li>
+            <li>Maksimal temperatur 60 °C</li>
+            <li>Tidsindstilling fra 20–120 min.</li>
+            <li>Damp generator (3 liter)</li>
+            <li>Form: Femkant/Pentagon</li>
+            <li>Størrelse: 90+90+53+53+53 cm og 185 cm. i højden.</li>
+            <li>Benyttes indendørs (kan også placeres udendørs hvis det placeres, specielt dampgeneratoren, under halvtag e.l., så det undgår regn og blæst).</li>
+          </ul>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+  {%- when 'inkluderet' -%}
+    {%- if is_led_maske -%}
+      <div class="mt-pdp-tab rte">
+        <ul class="mt-pdp-tab__list">
+          <li>Infrarød LED-maske</li>
+          <li>Fjernbetjening</li>
+          <li>AC/DC-adapter (220V)</li>
+          <li>Dansk manual</li>
+        </ul>
+      </div>
+    {%- else -%}
+      {%- assign mf_field = product.metafields.custom.hvad_er_inkluderet -%}
+      {%- if mf_field == blank -%}
+        {%- assign mf_field = product.metafields.custom.hvad_er_inkluderets -%}
+      {%- endif -%}
+      {%- if mf_field != blank -%}
+        {% render 'martilness-metafield-html', metafield: mf_field, format_list: true %}
+      {%- elsif is_saunataeppe -%}
+        <div class="mt-pdp-tab rte">
+          <ul class="mt-pdp-tab__list">
+            <li>Saunatæppe</li>
+            <li>Fiber håndklæde til at ligge på</li>
+            <li>Controller til at regulere varme og tid</li>
+            <li>Dansk manual</li>
+            <li>Elegant og robust stofpose, der gør det nemt at folde sammen og praktisk at opbevare eller transportere.</li>
+          </ul>
+        </div>
+      {%- elsif is_dampsauna -%}
+        <div class="mt-pdp-tab rte">
+          <ul class="mt-pdp-tab__list">
+            <li>Damp Sauna</li>
+            <li>Damp Generator</li>
+            <li>Fjernbetjening til at styre varmen</li>
+            <li>Sammenklappelig stol</li>
+          </ul>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+  {%- when 'garanti' -%}
+    {%- assign mf_field = product.metafields.custom.tilfredshedsgaranti -%}
+    {%- if mf_field != blank and mf_field.value != blank -%}
+      {% render 'martilness-metafield-html', metafield: mf_field %}
+    {%- elsif is_saunataeppe -%}
+      <div class="mt-pdp-tab rte">
+        <p>Vi tror så meget på kvaliteten og effekten af vores infrarøde saunatæppe, at vi tilbyder dig en eksklusiv 30-dages prøveperiode! Tag tæppet i brug derhjemme og mærk selv de mange fordele. Hvis du mod forventning ikke er tilfreds, kan du nemt returnere det og få dine penge tilbage.</p>
+        <p>Dette tilbud er vores måde at vise, hvor meget vi tror på, at dette produkt vil gøre en positiv forskel for dig!</p>
+        <p><a href="/pages/handelsbetingelser">Læs mere om fortrydelsesret i vores handelsbetingelser</a></p>
+      </div>
+    {%- else -%}
+      <div class="mt-pdp-tab rte">
+        <p>Vi tror så meget på kvaliteten og effekten af vores produkter, at vi tilbyder dig en eksklusiv 30-dages prøveperiode! Tag produktet i brug derhjemme og mærk selv de mange fordele. Hvis du mod forventning ikke er tilfreds, kan du nemt returnere det og få dine penge tilbage.</p>
+        <p>Dette tilbud er vores måde at vise, hvor meget vi tror på, at dette produkt vil gøre en positiv forskel for dig!</p>
+        <p><a href="/pages/handelsbetingelser">Læs mere om fortrydelsesret i vores handelsbetingelser</a></p>
+      </div>
+    {%- endif -%}
+{%- endcase -%}
+{%- endcapture -%}
+
+{%- assign tab_body_text = tab_body | strip_html | strip -%}
+
+{%- if tab_body_text != blank -%}
+  {{ tab_body }}
+{%- else -%}
+  {%- comment -%} No content for this tab: collapse the whole accordion row. {%- endcomment -%}
+  <span class="mt-pdp-tab-empty" hidden></span>
+  <style>
+    details:has(.mt-pdp-tab-empty) {
+      display: none !important;
+    }
+  </style>
+  <script>
+    (() => {
+      const marker = document.currentScript.parentElement.querySelector('.mt-pdp-tab-empty')
+        || document.currentScript.previousElementSibling;
+      const row = marker && marker.closest('details');
+      if (row && !(window.Shopify && window.Shopify.designMode)) {
+        row.style.display = 'none';
+      }
+    })();
+  </script>
+{%- endif -%}
+
+<style>
+  .mt-pdp-tab { width: 100%; max-width: 100%; }
+  .mt-pdp-tab p { margin: 0 0 1.2rem; }
+  .mt-pdp-tab p:last-child { margin-bottom: 0; }
+  .mt-pdp-tab ul,
+  .mt-pdp-tab .mt-pdp-tab__list,
+  .mt-pdp-tab .metafield-rich_text_field ul {
+    display: block;
+    margin: 0;
+    padding-left: 1.6rem;
+    list-style: disc;
+    list-style-position: outside;
+  }
+  .mt-pdp-tab li {
+    display: list-item;
+    margin: 0.55rem 0;
+  }
+  .mt-pdp-tab .metafield-rich_text_field { margin: 0; }
+  .mt-pdp-tab .metafield-rich_text_field > *:last-child { margin-bottom: 0; }
+
+  .mt-pdp-tab--swatches .metafield-rich_text_field ul,
+  .mt-pdp-tab--swatches .mt-pdp-tab__list,
+  .mt-pdp-tab__list--colors {
+    list-style: none;
+    padding-left: 0;
+  }
+  .mt-pdp-tab__swatch-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    list-style: none;
+  }
+  .mt-color-dot {
+    flex: 0 0 auto;
+    width: 1.15rem;
+    height: 1.15rem;
+    margin-top: 0.3rem;
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 0.1rem rgb(0 0 0 / 8%);
+  }
+  .mt-color-dot--rod { background: #e53935; }
+  .mt-color-dot--bla { background: #42a5f5; }
+  .mt-color-dot--gron { background: #43a047; }
+  .mt-color-dot--gul { background: #fdd835; }
+  .mt-color-dot--lilla { background: #8e24aa; }
+  .mt-color-dot--orange { background: #fb8c00; }
+  .mt-color-dot--cyan { background: #26c6da; border-radius: 0.2rem; }
+  .mt-color-dot--nir { background: #111; }
+</style>

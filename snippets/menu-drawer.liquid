@@ -47,12 +47,28 @@
         {% render 'icon', icon: 'close', size: 'large' %}
       </button>
     </div>
+    {%- if section.settings.enable_search_form -%}
+      {%- liquid
+        assign search_color_scheme = section.settings.color_scheme
+        unless settings.dialog_color_scheme_inherit
+          assign search_color_scheme = settings.dialog_color_scheme
+        endunless
+      -%}
+      <div class="menu-drawer__search header__search shrink-0 relative">
+        {%- render 'predictive-search',
+          context: 'header',
+          unique_id: 'MenuDrawer',
+          color_scheme: search_color_scheme,
+          form_style: section.settings.search_form_style
+        -%}
+      </div>
+    {%- endif -%}
     <div class="dialog__content flex-grow flex flex-col gap-6 overflow-x-clip relative">
       <div
         class="menu-drawer__menus v-scrollable flex flex-col w-full h-full"
         data-parent
       >
-        <ul class="menu-drawer__menu list-unstyled flex-grow">
+        <ul class="menu-drawer__menu list-unstyled">
           {%- for link in menu_mobile.links -%}
             <li class="menu-drawer__item">
               {%- liquid
@@ -71,41 +87,106 @@
               {%- else -%}
                 <a
                   href="{{ link.url }}"
-                  class="menu-drawer__item-link menu-drawer__item-link-heading h3 flex items-center justify-between focus-visible--inset"
+                  class="menu-drawer__item-link menu-drawer__item-link-heading flex items-center justify-between gap-4 focus-visible--inset"
                 >
-                  {{- link.title | escape -}}
+                  <span class="h3">{{- link.title | escape -}}</span>
+                  {%- render 'icon',
+                    icon: 'caret-right',
+                    size: 'extra-medium',
+                    class: 'menu-drawer__item-arrow shrink-0',
+                    attributes: 'aria-hidden="true"'
+                  -%}
                 </a>
               {%- endif -%}
             </li>
           {%- endfor -%}
         </ul>
+
+        {%- comment -%} Ugens bestseller (produkt vælges i header-indstillinger) {%- endcomment -%}
+        {%- assign bs = section.settings.menu_drawer_bestseller_product -%}
+        {%- if section.settings.menu_drawer_show_bestseller and bs != blank -%}
+          <div class="menu-drawer__feature flex flex-col gap-3">
+            {%- if section.settings.menu_drawer_bestseller_heading != blank -%}
+              <span class="menu-drawer__feature-heading h5">{{ section.settings.menu_drawer_bestseller_heading }}</span>
+            {%- endif -%}
+            <a href="{{ bs.url }}" class="menu-drawer__bestseller flex items-center gap-4 color-current text-decoration-none focus-visible--inset">
+              <span class="menu-drawer__bestseller-media shrink-0">
+                {%- if bs.featured_image != blank -%}
+                  {%- assign bs_alt = bs.title | escape -%}
+                  {{
+                    bs.featured_image
+                    | image_url: width: 252
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '84, 168, 252',
+                      sizes: '84px',
+                      alt: bs_alt,
+                      class: 'menu-drawer__bestseller-img'
+                  }}
+                {%- endif -%}
+              </span>
+              <span class="menu-drawer__bestseller-info flex flex-col min-w-0">
+                <span class="menu-drawer__bestseller-title h6">{{ bs.title | escape }}</span>
+                {%- if section.settings.menu_drawer_bestseller_subtitle != blank -%}
+                  <span class="menu-drawer__bestseller-subtitle color-subtext">{{ section.settings.menu_drawer_bestseller_subtitle }}</span>
+                {%- endif -%}
+                <span class="menu-drawer__bestseller-price">
+                  {%- comment -%}
+                    Pris pr. gram via den fælles snippet, så gram altid kommer fra
+                    variant-metafeltet custom.grams (samme tal som produktkort og
+                    produktside). Har ingen variant metafeltet, falder vi tilbage
+                    til produktets almindelige pris.
+                  {%- endcomment -%}
+                  {%- capture bs_per_gram -%}
+                    {%- render 'price-per-gram', product: bs, with_wrapper: false -%}
+                  {%- endcapture -%}
+                  {%- assign bs_per_gram = bs_per_gram | strip -%}
+                  {%- if bs_per_gram != blank -%}
+                    {{ bs_per_gram }}
+                  {%- else -%}
+                    {%- if bs.price_varies -%}Fra {% endif -%}{{ bs.price | money }}
+                  {%- endif -%}
+                </span>
+              </span>
+            </a>
+          </div>
+        {%- endif -%}
+
+        <a
+          href="/pages/find-vores-butik-1"
+          class="menu-drawer__store-link flex items-center justify-center gap-2 color-current text-decoration-none focus-visible--inset"
+        >
+          {%- render 'icon', icon: 'map-pin', size: 'medium', class: 'shrink-0' -%}
+          <span>Find vej til butikken</span>
+        </a>
       </div>
-      <div class="menu-drawer__footer flex justify-center flex-col gap-y-6">
-        <div class="flex flex-col gap-3 items-center">
-          {%- if shop.customer_accounts_enabled -%}
-            <shopify-account menu="{{ section.settings.customer_account_menu }}" class="block w-full">
-              {%- if customer -%}
-                <div class="account-button__fallback" aria-label="{{ 'accessibility.account' | t }}"></div>
-              {%- else -%}
-                <div
-                  slot="signed-out-avatar"
-                  aria-hidden="true"
-                  aria-label="{{ 'accessibility.log_in' | t }}"
-                  class="account-button btn btn--primary w-full"
-                >
-                  <span class="btn__text">
-                    {%- liquid
-                      if customer
-                        echo 'content.account_title' | t
-                      else
-                        echo 'actions.account_action' | t
-                      endif
-                    -%}
-                  </span>
-                </div>
-              {%- endif -%}
-            </shopify-account>
-          {%- endif -%}
+      <div class="menu-drawer__footer flex items-center justify-between gap-4">
+        {%- if shop.customer_accounts_enabled -%}
+          <shopify-account menu="{{ section.settings.customer_account_menu }}" class="menu-drawer__account">
+            {%- if customer -%}
+              <div class="account-button__fallback" aria-label="{{ 'accessibility.account' | t }}"></div>
+            {%- else -%}
+              <div
+                slot="signed-out-avatar"
+                aria-hidden="true"
+                aria-label="{{ 'accessibility.log_in' | t }}"
+                class="menu-drawer__account-link flex items-center gap-2"
+              >
+                {%- render 'icon', icon: 'account', size: 'large', class: 'shrink-0' -%}
+                <span>
+                  {%- liquid
+                    if customer
+                      echo 'content.account_title' | t
+                    else
+                      echo 'actions.account_action' | t
+                    endif
+                  -%}
+                </span>
+              </div>
+            {%- endif -%}
+          </shopify-account>
+        {%- endif -%}
+        <div class="menu-drawer__footer-end flex items-center gap-4">
           {%- if section.settings.enable_language_selector or section.settings.enable_country_selector -%}
             {%- render 'dropdown-localization',
               block_id: section.id,

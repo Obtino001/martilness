@@ -201,7 +201,15 @@
 
 body {
   margin: 0;
-  min-height: 100dvh;
+  /* svh, not dvh. This exists for the sticky-footer effect on short pages, but dvh
+     is dynamic: its value changes as the mobile browser toolbar slides in and out,
+     and because <body> is the flex container for the whole document, every frame of
+     that animation triggered a full-document layout pass - on every page, for every
+     mobile visitor, not just when a drawer is open.
+     svh is static. On a page short enough for min-height to matter the page does not
+     scroll, so the toolbar never retracts and svh IS the real viewport - same result,
+     no relayout. On desktop svh and dvh are identical. */
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
 }
@@ -790,7 +798,7 @@ a {
 }
 .rte a {
   position: relative;
-  display: inline-block;
+  display: inline;
   color: currentcolor;
   text-decoration-color: currentcolor;
 }
@@ -1159,8 +1167,8 @@ button[data-shopify-xr] {
   white-space: nowrap;
   font-size: 1.4rem;
   font-weight: var(--font-body--weight);
-  color: var(--color-cart-bubble-text);
-  background-color: var(--color-cart-bubble-background);
+  color: var(--color-cart-bubble-text, #ffffff);
+  background-color: var(--color-cart-bubble-background, #09412d);
   border-radius: 50%;
 }
 .cart-count--small-medium {
@@ -2172,7 +2180,7 @@ button:disabled,
 }
 
 .price--sale {
-  color: rgb(var(--color-sale-price));
+  color: #09412d;
 }
 
 .price,
@@ -2231,8 +2239,8 @@ button:disabled,
   color: rgb(var(--color-popular-badge-text));
 }
 .badge--sale {
-  background: rgb(var(--color-sale-badge-background));
-  color: rgb(var(--color-sale-badge-text));
+  background: #09412d;
+  color: #ffffff;
 }
 .badge--sold-out {
   background: rgb(var(--color-sold-out-badge-background));
@@ -2775,6 +2783,19 @@ button:disabled,
 .product-card__content--wrapper product-swatches, .product-card__content product-swatches {
   padding-block-start: 0.4rem;
 }
+.product-card__rating {
+  display: flex;
+  width: 100%;
+}
+.product-card__rating .rating-wrapper {
+  gap: 0.4rem;
+}
+.product-card__rating .stars {
+  height: var(--product-card-star-size, calc(var(--font-pcard-title--size) * 0.7));
+}
+.product-card__rating .rating-count {
+  font-size: calc(var(--font-size--paragraph) * 0.85);
+}
 .product-card__metas {
   display: flex;
   flex-wrap: wrap;
@@ -3197,7 +3218,7 @@ shopify-visual-preview-block-list .product-card {
 }
 
 .variant-option__label {
-  margin-block-end: 1.2rem;
+  margin-block-end: 0.1rem;
   text-transform: capitalize;
 }
 .variant-option--buttons {
@@ -3255,7 +3276,7 @@ shopify-visual-preview-block-list .product-card {
   opacity: var(--swatch-disabled-opacity, 0.322);
 }
 .variant-option__button-label:has(:checked) {
-  background-color: rgb(var(--color-foreground));
+  background-color: #2B2B2B;
   color: rgb(var(--color-background));
 }
 .variant-option__button-label:has(:checked) .strikethrough-variant {
@@ -3263,7 +3284,7 @@ shopify-visual-preview-block-list .product-card {
 }
 @media (hover: hover) {
   .variant-option__button-label:hover {
-    background-color: rgb(var(--color-foreground));
+    background-color: #2B2B2B;
     color: rgb(var(--color-background));
   }
   .variant-option__button-label:hover .strikethrough-variant {
@@ -3339,6 +3360,64 @@ shopify-visual-preview-block-list .product-card {
 .variant-option__select {
   --input-height: 4.4rem;
   text-transform: capitalize;
+}
+
+/* ---------------------------------------------------------------------------
+   Variant option values (snippets/variant-main-picker.liquid).
+
+   The pills sit in their own wrapper so they can be laid out independently of
+   the "Mængde: 2 G" label, which is a sibling flex item in the same fieldset.
+   These rules reproduce what the pills inherited from .variant-option--buttons
+   before the wrapper existed, so desktop is byte-for-byte unchanged.
+   --------------------------------------------------------------------------- */
+.variant-option__values {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--swatch-gap, 0.5rem);
+  width: 100%;
+}
+
+@media (max-width: 767.98px) {
+  /* Text pills only. An option whose values carry swatches renders as
+     .variant-option--swatches with fixed-size --has-swatch labels: those cannot
+     divide the width, and nowrap would push them past the container, which has
+     overflow-x: hidden — clipped and unreachable. variant_style is derived per
+     option (variant-main-picker.liquid), so a single product can have one of
+     each and both must behave. Swatch options keep wrapping, as before. */
+  .variant-option:not(.variant-option--swatches) .variant-option__values {
+    flex-wrap: nowrap;
+  }
+
+  /* Equal shares of the available width: flex-basis 0 plus min-width 0 means the
+     row is always exactly as wide as its container, whatever the option count.
+     No wrapping, no horizontal scrolling — the pills simply divide the space. */
+  .variant-option:not(.variant-option--swatches) .variant-option__values .variant-option__button-label {
+    flex: 1 1 0;
+    min-width: 0;
+    padding-inline: 0.4rem;
+    justify-content: center;
+  }
+
+  /* Last-resort guard for option names far longer than a phone can divide up.
+     With six gram options there is comfortable room; this only ever engages on
+     something like eight long text variants, where a trimmed label still beats
+     a broken layout. */
+  .variant-option:not(.variant-option--swatches) .variant-option__values .variant-option__button-label__text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* Very narrow phones (320px, iPhone SE 1st gen). Six pills divide to ~44px each
+   there, which leaves "100 G" about 4px short at the body size. One step down on
+   the label only — the pill geometry is unchanged, since flex-basis 0 means the
+   width comes from the container, not the text. */
+@media (max-width: 359.98px) {
+  .variant-option:not(.variant-option--swatches) .variant-option__values .variant-option__button-label {
+    font-size: 1.3rem;
+  }
 }
 
 .swatch {
@@ -7940,6 +8019,7 @@ body:not(.header-pinned) .header-scrolled .header[is=sticky-header] {
 .header__logo {
   grid-area: logo;
   max-width: max-content;
+  justify-self: center;
 }
 .header__logo--image {
   max-width: var(--logo-width-mobile);
@@ -7980,6 +8060,10 @@ body:not(.header-pinned) .header-scrolled .header[is=sticky-header] {
 }
 .header__icons--left {
   grid-area: icons-left;
+  justify-self: start;
+}
+.header__icons--right {
+  justify-self: end;
 }
 .header__buttons {
   margin-inline: -1rem;
@@ -8227,7 +8311,7 @@ shopify-account::part(signed-out-avatar) {
 @media (max-width: 767.98px) {
   .header--with-dividers {
     --header-icon-size: 6rem;
-    --header-grid-template: "icons-left logo icons" / auto auto 1fr;
+    --header-grid-template: "icons-left logo icons" / 1fr auto 1fr;
   }
   .header--with-dividers .header__background-inner::before {
     opacity: 1;
@@ -11159,4 +11243,16 @@ body:not(:has(.header[is=sticky-header])) .section--scrolling-layers {
   .scrolling-layer-item__icon {
     padding: 1rem;
   }
+}
+.product-title__name,
+.product-title__suffix {
+  display: block;
+}
+
+.product-title__suffix {
+  font-size: 0.9em;
+  margin-top: 0.1em;
+}
+.product-card__price .price {
+  font-size: 1.6rem;
 }

@@ -30,8 +30,13 @@
 
 .media-gallery__zoom-dialog-button {
   position: absolute;
-  inset-inline-end: 2rem;
-  inset-block-start: 2rem;
+  /* Match the badge inset on the opposite corner. The badges sit at inset 0 with
+     padding: var(--product-card-badges-padding, 1rem), so 2rem here put the zoom
+     button twice as far in and it landed on top of the % graphic baked into the
+     product photos. Referencing the same variable rather than hardcoding 1rem keeps
+     the two corners aligned if the badge inset is ever changed. */
+  inset-inline-end: var(--product-card-badges-padding, 1rem);
+  inset-block-start: var(--product-card-badges-padding, 1rem);
 }
 
 .dialog-size-chart {
@@ -246,6 +251,30 @@
 }
 .sticky-add-to-cart__content {
   gap: 0.4rem;
+  /* Skal kunne krympe under sit min-content, ellers ville nowrap-linjen nedenfor
+     presse hele baren vandret ud i stedet for at blive forkortet. Flex-items har
+     min-width: auto som default. */
+  min-width: 0;
+}
+/* Titlen deles ved | som på produktkortene. Hver halvdel klampes til én linje,
+   så titlen ALTID er præcis to linjer og baren ikke kan vokse på lange navne.
+   Samme egenskaber som temaets egen [class*=text-limit-] + .text-limit-1-line. */
+.sticky-add-to-cart__title .product-title__name,
+.sticky-add-to-cart__title .product-title__suffix {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+/* Pris pr. gram-intervallet må aldrig ombryde: "54 kr – 81 kr/gram" er ~117px
+   og indholdskolonnen er ~120px på en 320px-skærm. Uden nowrap blev baren
+   2.2rem højere netop dér. Forkortes i stedet. */
+.sticky-add-to-cart__content .price-per-gram {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .product-information--main {
@@ -488,5 +517,208 @@
   }
   .media-gallery__carousel:hover .carousel__controls--absolute .carousel__button--next {
     --navigation-offset-left: calc(-3rem * var(--flip-x-factor));
+  }
+}
+.media-gallery__badges {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  padding: var(--product-card-badges-padding, 1rem);
+  z-index: 2;
+  /* Badges er ren dekoration. Uden dette æder overlayet klik i billedets
+     øverste venstre hjørne, så zoom (PhotoSwipe) ikke kan åbnes derfra. */
+  pointer-events: none;
+}
+/* Er der ingen badges tilbage (fx tilbudsprodukt uden CBD/THCA-tag, nu hvor
+   rabatten kun vises som chip ved prisen), fjernes den tomme kasse helt.
+   Temaets egen regel .product-badges:has(.product-badges--empty) rammer aldrig,
+   fordi klassen sidder på SAMME element — ikke på et child. */
+.media-gallery__badges:has(> .product-badges--empty) {
+  display: none;
+}
+.shipping-date__status {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.shipping-date__text {
+  color: #2b2b2b;
+}
+
+.shipping-date__dot {
+  position: relative;
+  display: block;
+  height: 0.55em;
+  width: 0.55em;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: currentcolor;
+}
+
+.shipping-date__dot--pulse::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: currentcolor;
+  animation: shipping-date-pulse 2s var(--animation-easing--smooth) infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes shipping-date-pulse {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(3.5); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shipping-date__dot--pulse::before {
+    animation: none;
+  }
+}
+/* Betalingsikoner + rating under købsknappen */
+.pr-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  width: 100%;
+  flex-wrap: nowrap;
+}
+.pr-bar__pay {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 0;
+}
+.pr-bar__pay svg {
+  width: 3.7rem;
+  height: 2.3rem;
+  display: block;
+}
+.pr-bar__rating {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.pr-bar__score {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1;
+}
+.pr-bar__stars {
+  display: flex;
+  gap: 0.3rem;
+}
+.pr-bar__star {
+  width: 1.8rem;
+  height: 1.8rem;
+  background: #48bb78;
+  border-radius: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pr-bar__star svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: #fff;
+  display: block;
+}
+@media (max-width: 749.98px) {
+  .pr-bar { gap: 0.8rem; }
+  .pr-bar__pay { gap: 0.5rem; }
+  .pr-bar__pay svg { width: 3.1rem; height: 2rem; }
+  .pr-bar__score { font-size: 1.3rem; }
+  .pr-bar__star { width: 1.7rem; height: 1.7rem; border-radius: 0.3rem; }
+  .pr-bar__star svg { width: 1.1rem; height: 1.1rem; }
+}
+/* === Price chips === */
+.product-price .price-container:has(.price-chips > :not([hidden])) {
+  flex-wrap: nowrap;
+}
+
+.price-chips {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  order: 1;
+}
+
+.price-chips:empty,
+.price-chips:not(:has(> :not([hidden]))) {
+  display: none;
+}
+
+.price-chips__chip {
+  border-radius: 0.8rem;
+  white-space: nowrap;
+  padding: 1rem 1.4rem;
+  font-size: 1.4rem;
+}
+
+.price-chips__chip[hidden] {
+  display: none;
+}
+
+.price-chips__chip--unit {
+  background: rgb(var(--color-foreground) / 0.06);
+  color: rgb(var(--color-foreground));
+}
+
+.price-chips__chip--unit:not([hidden]):has(+ .price-chips__chip--save:not([hidden])) {
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+
+.price-chips__chip--unit:not([hidden]) + .price-chips__chip--save:not([hidden]) {
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+}
+
+@media (max-width: 767.98px) {
+  .price-chips__chip {
+    font-size: 1.3rem;
+    padding: 0.8rem 1.1rem;
+  }
+}
+
+.product-price .price-container .price__sale .compare-at-price,
+.product-price .price-container .price__regular .compare-at-price {
+  font-size: calc(var(--font-size--h5) * 0.85);
+}
+
+/* Save chip — theme green + white */
+.price-chips__chip.price-chips__chip--save {
+  background: #09412d !important;
+  color: #ffffff !important;
+  border-radius: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* Sale price — theme green */
+.product-price .price-container.price--on-sale .price--sale {
+  color: #09412d;
+}
+/* Hele pris+chips-området er flex og stakker ALDRIG — prisen kan krympe, chips bliver ved siden af */
+.product-price .price-container:has(.price-chips > :not([hidden])) {
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.product-price .price-container:has(.price-chips > :not([hidden])) .price__sale,
+.product-price .price-container:has(.price-chips > :not([hidden])) .price__regular {
+  min-width: 0;
+}
+/* Mobil: compare-at UNDER sale-prisen (stablet). KUN på tilbud (.price--on-sale) —
+   ellers skal price__sale forblive skjult, så ikke-tilbudsvarer ikke viser salgspris + compare. */
+@media (max-width: 767.98px) {
+  .product-price .price-container.price--on-sale:has(.price-chips > :not([hidden])) .price__sale {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.2;
   }
 }
