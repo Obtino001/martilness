@@ -326,7 +326,7 @@
           "name": "t:names.collection_item",
           "settings": {
             "image_ratio": "1/1",
-            "title": "T-Shirts",
+            "title": "T-shirts",
             "width": 170,
             "width_mobile": 150,
             "inherit_color_scheme": true,
@@ -343,7 +343,7 @@
           "name": "t:names.collection_item",
           "settings": {
             "image_ratio": "1/1",
-            "title": "Sweaters",
+            "title": "Sweatre",
             "width": 170,
             "width_mobile": 150,
             "inherit_color_scheme": true,
@@ -360,7 +360,7 @@
           "name": "t:names.collection_item",
           "settings": {
             "image_ratio": "1/1",
-            "title": "Outerwear",
+            "title": "Overtøj",
             "width": 170,
             "width_mobile": 150,
             "inherit_color_scheme": true,
@@ -377,7 +377,7 @@
           "name": "t:names.collection_item",
           "settings": {
             "image_ratio": "1/1",
-            "title": "Pants",
+            "title": "Bukser",
             "width": 170,
             "width_mobile": 150,
             "inherit_color_scheme": true,
@@ -394,7 +394,7 @@
           "name": "t:names.collection_item",
           "settings": {
             "image_ratio": "1/1",
-            "title": "Sets",
+            "title": "Sæt",
             "width": 170,
             "width_mobile": 150,
             "inherit_color_scheme": true,
@@ -411,7 +411,7 @@
           "name": "t:names.collection_item",
           "settings": {
             "image_ratio": "1/1",
-            "title": "Accessories",
+            "title": "Tilbehør",
             "width": 170,
             "width_mobile": 150,
             "inherit_color_scheme": true,
@@ -428,7 +428,7 @@
           "name": "t:names.collection_item",
           "settings": {
             "image_ratio": "1/1",
-            "title": "Shirts",
+            "title": "Skjorter",
             "width": 170,
             "width_mobile": 150,
             "inherit_color_scheme": true,
@@ -445,7 +445,7 @@
           "name": "t:names.collection_item",
           "settings": {
             "image_ratio": "1/1",
-            "title": "Shoes",
+            "title": "Sko",
             "width": 170,
             "width_mobile": 150,
             "inherit_color_scheme": true,
@@ -462,7 +462,7 @@
           "name": "t:names.collection_item",
           "settings": {
             "image_ratio": "1/1",
-            "title": "Sandals",
+            "title": "Sandaler",
             "width": 170,
             "width_mobile": 150,
             "inherit_color_scheme": true,
@@ -479,7 +479,7 @@
           "name": "t:names.collection_item",
           "settings": {
             "image_ratio": "1/1",
-            "title": "Dresses",
+            "title": "Kjoler",
             "width": 170,
             "width_mobile": 150,
             "inherit_color_scheme": true,
@@ -879,7 +879,7 @@
                   "type": "button",
                   "static": true,
                   "settings": {
-                    "label": "Shop now",
+                    "label": "Shop nu",
                     "style": "primary",
                     "size": "large",
                     "icon": "none",
@@ -1012,7 +1012,7 @@
                   "type": "button",
                   "static": true,
                   "settings": {
-                    "label": "Shop now",
+                    "label": "Shop nu",
                     "style": "primary",
                     "size": "large",
                     "icon": "none",
@@ -1145,7 +1145,7 @@
                   "type": "button",
                   "static": true,
                   "settings": {
-                    "label": "Shop now",
+                    "label": "Shop nu",
                     "style": "primary",
                     "size": "large",
                     "icon": "none",
@@ -1371,7 +1371,7 @@
               "type": "button",
               "name": "t:names.button",
               "settings": {
-                "label": "Shop now",
+                "label": "Shop nu",
                 "style": "secondary",
                 "size": "large",
                 "icon": "caret-right",

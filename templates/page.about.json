@@ -606,7 +606,7 @@
               "type": "button",
               "name": "t:names.button",
               "settings": {
-                "label": "Shop Now",
+                "label": "Shop nu",
                 "link": "",
                 "style": "primary",
                 "size": "large",

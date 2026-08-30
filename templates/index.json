@@ -508,7 +508,7 @@
                   "type": "button",
                   "static": true,
                   "settings": {
-                    "label": "Shop Now",
+                    "label": "Shop nu",
                     "link": "",
                     "style": "primary",
                     "size": "large",
@@ -649,7 +649,7 @@
                   "type": "button",
                   "static": true,
                   "settings": {
-                    "label": "Shop now",
+                    "label": "Shop nu",
                     "link": "",
                     "style": "primary",
                     "size": "large",
@@ -790,7 +790,7 @@
                   "type": "button",
                   "static": true,
                   "settings": {
-                    "label": "Shop now",
+                    "label": "Shop nu",
                     "link": "",
                     "style": "primary",
                     "size": "large",
@@ -932,7 +932,7 @@
                   "type": "button",
                   "static": true,
                   "settings": {
-                    "label": "Shop now",
+                    "label": "Shop nu",
                     "link": "shopify://collections/infrarodt-lys",
                     "style": "primary",
                     "size": "large",
