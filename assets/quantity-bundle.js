@@ -326,7 +326,7 @@ class QuantityBundle extends HTMLElement {
 
   async #addToCart() {
     const cta = this.querySelector("[data-cta]");
-    if (!cta || cta.classList.contains("is-loading")) return;
+    if (!cta || cta.classList.contains("btn--loading")) return;
     if (!this.variantId) return;
 
     const items = [{ id: Number(this.variantId), quantity: this.#qty() }];
@@ -340,7 +340,8 @@ class QuantityBundle extends HTMLElement {
       });
     }
 
-    cta.classList.add("is-loading");
+    cta.classList.add("btn--loading");
+    cta.querySelector(".loading-spinner")?.classList.remove("hidden");
     const errorEl = this.querySelector("[data-error]");
     if (errorEl) {
       errorEl.textContent = "";
@@ -392,7 +393,8 @@ class QuantityBundle extends HTMLElement {
         errorEl.classList.remove("hidden");
       }
     } finally {
-      cta.classList.remove("is-loading");
+      cta.classList.remove("btn--loading");
+      cta.querySelector(".loading-spinner")?.classList.add("hidden");
     }
   }
 }

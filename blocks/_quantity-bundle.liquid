@@ -25,7 +25,7 @@
   <quantity-bundle
     id="qty-bundle-{{ block.id }}"
     class="qty-bundle spacing-style"
-    style="--qty-accent: {{ block.settings.accent_color | default: '#09412d' }}; {% render 'spacing-style', settings: block.settings %}"
+    style="{% if block.settings.accent_color != blank %}--qty-accent: {{ block.settings.accent_color }};{% endif %} {% render 'spacing-style', settings: block.settings %}"
     data-product-id="{{ product.id }}"
     data-variant-id="{{ variant.id }}"
     data-unit="{{ unit }}"
@@ -43,7 +43,7 @@
     {{ block.shopify_attributes }}
   >
     {%- if block.settings.eyebrow != blank -%}
-      <p class="qty-bundle__eyebrow">{{ block.settings.eyebrow | escape }}</p>
+      <p class="qty-bundle__eyebrow color-subtext">{{ block.settings.eyebrow | escape }}</p>
     {%- endif -%}
 
     <div class="qty-bundle__tiers" role="radiogroup" aria-label="{{ block.settings.eyebrow | default: product.title | escape }}">
@@ -89,7 +89,7 @@
           data-flex="{% if is_flex %}true{% else %}false{% endif %}"
         >
           {%- if is_popular -%}
-            <span class="qty-bundle__badge">{{ block.settings.popular_badge | escape }}</span>
+            <span class="qty-bundle__badge badge badge--popular">{{ block.settings.popular_badge | escape }}</span>
           {%- endif -%}
           <input
             type="radio"
@@ -112,19 +112,34 @@
               <span class="qty-bundle__sub">{{ subtitle | escape }}</span>
             {%- endif -%}
             {%- if is_flex -%}
-              <span class="qty-bundle__step">
-                <button type="button" data-step="-" aria-label="{{ 'accessibility.decrease_quantity' | t }}" disabled>−</button>
-                <span class="qty-bundle__q" data-q="">{{ qty }}</span>
-                <button type="button" data-step="+" aria-label="{{ 'accessibility.increase_quantity' | t }}">+</button>
+              <span class="qty-bundle__step quantity-selector relative inline-flex min-w-0" data-context="cart-items">
+                <button
+                  type="button"
+                  class="quantity-minus quantity-button button-unstyled absolute flex items-center justify-center text-center cursor-pointer"
+                  data-step="-"
+                  aria-label="{{ 'accessibility.decrease_quantity' | t }}"
+                  disabled
+                >
+                  {% render 'icon', icon: 'minus', size: 'extra-small' %}
+                </button>
+                <span class="quantity-input w-full text-center min-w-0 qty-bundle__q" data-q="">{{ qty }}</span>
+                <button
+                  type="button"
+                  class="quantity-plus quantity-button button-unstyled absolute flex items-center justify-center text-center cursor-pointer"
+                  data-step="+"
+                  aria-label="{{ 'accessibility.increase_quantity' | t }}"
+                >
+                  {% render 'icon', icon: 'plus', size: 'extra-small' %}
+                </button>
               </span>
             {%- endif -%}
           </span>
           <span class="qty-bundle__pricing">
-            <span class="qty-bundle__pill" data-pill="">
+            <span class="qty-bundle__pill badge badge--sale" data-pill="">
               {%- if pct > 0 -%}{{ block.settings.pill_prefix }} {{ pct }}%{%- endif -%}
             </span>
-            <span class="qty-bundle__price" data-price-out="">{{ now | money }}</span>
-            <span class="qty-bundle__comp" data-comp="">
+            <span class="qty-bundle__price price" data-price-out="">{{ now | money }}</span>
+            <span class="qty-bundle__comp compare-at-price" data-comp="">
               {%- if compare > now -%}{{ compare | money }}{%- endif -%}
             </span>
           </span>
@@ -175,11 +190,25 @@
         <div class="qty-bundle__exp">
           <div class="qty-bundle__expin">
             <div class="qty-bundle__cnt">
-              <span class="qty-bundle__cnt-l">{{ block.settings.addon_qty_label }}</span>
-              <span class="qty-bundle__step">
-                <button type="button" data-cs="-" aria-label="{{ 'accessibility.decrease_quantity' | t }}">−</button>
-                <span class="qty-bundle__q" data-ccount>0</span>
-                <button type="button" data-cs="+" aria-label="{{ 'accessibility.increase_quantity' | t }}">+</button>
+              <span class="qty-bundle__cnt-l color-subtext">{{ block.settings.addon_qty_label }}</span>
+              <span class="qty-bundle__step quantity-selector relative inline-flex min-w-0" data-context="cart-items">
+                <button
+                  type="button"
+                  class="quantity-minus quantity-button button-unstyled absolute flex items-center justify-center text-center cursor-pointer"
+                  data-cs="-"
+                  aria-label="{{ 'accessibility.decrease_quantity' | t }}"
+                >
+                  {% render 'icon', icon: 'minus', size: 'extra-small' %}
+                </button>
+                <span class="quantity-input w-full text-center min-w-0 qty-bundle__q" data-ccount>0</span>
+                <button
+                  type="button"
+                  class="quantity-plus quantity-button button-unstyled absolute flex items-center justify-center text-center cursor-pointer"
+                  data-cs="+"
+                  aria-label="{{ 'accessibility.increase_quantity' | t }}"
+                >
+                  {% render 'icon', icon: 'plus', size: 'extra-small' %}
+                </button>
               </span>
             </div>
             <div data-rows></div>
@@ -205,10 +234,10 @@
 
     <div class="qty-bundle__div"></div>
     <div class="qty-bundle__total">
-      <span class="qty-bundle__total-l">{{ block.settings.total_label | escape }}</span>
+      <span class="qty-bundle__total-l color-subtext">{{ block.settings.total_label | escape }}</span>
       <span class="qty-bundle__total-r">
-        <span class="qty-bundle__total-comp" data-total-compare></span>
-        <span class="qty-bundle__total-now" data-total></span>
+        <span class="qty-bundle__total-comp compare-at-price" data-total-compare></span>
+        <span class="qty-bundle__total-now price" data-total></span>
       </span>
     </div>
     {%- if block.settings.show_save -%}
@@ -229,14 +258,43 @@
       </div>
     {%- endif -%}
 
-    <button type="button" class="qty-bundle__cta" data-cta>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
-        <path d="M3 6h18M16 10a4 4 0 0 1-8 0" stroke-linecap="round"></path>
-      </svg>
-      <span>{{ block.settings.cta_label | escape }}</span>
-    </button>
-    <p class="qty-bundle__error alert alert--error text-body-sm hidden" data-error></p>
+    {%- liquid
+      assign cta_label = block.settings.cta_label
+      if cta_label == blank
+        assign cta_label = 'actions.add_to_cart' | t
+      endif
+    -%}
+    <div class="qty-bundle__cta-wrap">
+      <button type="button" class="btn btn--primary w-full add-to-cart-button btn--icon-solid" data-cta>
+        <span class="btn__text add-to-cart-text">
+          <span class="add-to-cart-text__content">{{ cta_label | escape }}</span>
+        </span>
+        <span class="add-to-cart-icon btn__icon">
+          <span class="btn__icon-text">{{ cta_label | escape }}</span>
+          <span class="btn__icon-icon">{% render 'icon', icon: 'cart' %}</span>
+        </span>
+        {% render 'loading-spinner', class: 'add-to-cart-spinner hidden' %}
+      </button>
+    </div>
+    <div class="pr-bar qty-bundle__pr-bar">
+      <div class="pr-bar__pay">
+        {%- assign buy_payment_methods = 'dankort,visa,master,apple_pay,mobilepay,google_pay,viabill' | split: ',' -%}
+        {%- for method in buy_payment_methods -%}
+          {%- render 'martilness-payment-icon', type: method -%}
+        {%- endfor -%}
+      </div>
+      <div class="pr-bar__rating">
+        <span class="pr-bar__score">4.8/5</span>
+        <div class="pr-bar__stars">
+          {%- for i in (1..5) -%}
+            <span class="pr-bar__star">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </span>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+    <p class="qty-bundle__error product-form-text__error alert alert--error text-body-sm hidden" data-error></p>
 
     {%- if block.settings.show_reassure -%}
       <div class="qty-bundle__reassure">
@@ -288,6 +346,7 @@
       "type": "color",
       "id": "accent_color",
       "label": "Accent",
+      "info": "Tom = temaets primære knapfarve",
       "default": "#09412d"
     },
     {
@@ -310,6 +369,7 @@
       "type": "text",
       "id": "cta_label",
       "label": "Knaptekst",
+      "info": "Tom = temaets 'Læg i kurv'",
       "default": "Tilføj til kurv"
     },
     {
