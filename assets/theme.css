@@ -6351,6 +6351,13 @@ body:has(.sticky-add-to-cart__wrapper[data-sticky=true]) .back-to-top {
 .search-open .header-section .fixed-overlay {
   cursor: zoom-out;
 }
+.search-open .header,
+.search-open .header__top,
+.search-open .header__icons,
+.search-open .header__buttons,
+.search-open .header__search {
+  overflow: visible !important;
+}
 .search-open .header__search .search__content {
   opacity: 1;
   visibility: visible;
@@ -6452,6 +6459,9 @@ body:has(.sticky-add-to-cart__wrapper[data-sticky=true]) .back-to-top {
 .search__content .swipe-mobile {
   --swipe-container-width: var(--dialog-max-width, 500px);
 }
+.header__search .search__content .swipe-mobile {
+  --swipe-container-width: min(100vw, var(--page-width, 140rem));
+}
 
 .header__search .predictive-search-open .search__input {
   box-shadow: inset 0 0 0 var(--input-border-width) rgb(var(--color-foreground));
@@ -6477,22 +6487,29 @@ body:has(.sticky-add-to-cart__wrapper[data-sticky=true]) .back-to-top {
   visibility: hidden;
 }
 .header__search .search__content {
-  position: absolute;
-  top: 100%;
-  width: 55.4rem;
-  max-width: 90vw;
-  max-height: 75vh;
+  position: fixed;
+  top: var(--search-panel-top, var(--header-height, 8rem));
+  left: 0;
+  right: 0;
+  width: 100vw;
+  max-width: 100vw;
+  max-height: calc(100vh - var(--search-panel-top, var(--header-height, 8rem)));
   opacity: 0;
   visibility: hidden;
-  box-shadow: inset 0 1px 0 0 rgb(var(--color-border)/var(--color-border-alpha)), inset -1px 0 0 0 rgb(var(--color-border)/var(--color-border-alpha));
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
+  z-index: 40;
+  background-color: rgb(var(--color-background) / var(--color-background-alpha, 1));
+  box-shadow: inset 0 1px 0 0 rgb(var(--color-border)/var(--color-border-alpha));
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   /* Transition opacity immediately, visibility delayed to allow opacity animation */
   transition: opacity var(--animation-duration--medium) var(--animation-easing), visibility var(--animation-duration--medium) var(--animation-easing);
   will-change: opacity;
 }
 .header__search .search__content-inner {
-  padding: 3rem;
+  width: 100%;
+  max-width: var(--page-width, 140rem);
+  margin-inline: auto;
+  padding: 3rem 2.4rem;
   visibility: hidden;
   opacity: 0;
   transform: translateY(1.5rem);

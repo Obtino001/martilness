@@ -53,9 +53,9 @@
         <div class="footer__bar-col">
           <span class="footer__bar-label h5">{{ section.settings.payment_label | default: 'Betalingsmuligheder' }}</span>
           <div class="footer__bar-icons">
-            {%- assign footer_payment_methods = 'dankort,visa,master,apple_pay,mobilepay,viabill' | split: ',' -%}
+            {%- assign footer_payment_methods = 'dankort,visa,master,apple_pay,mobilepay,google_pay,viabill' | split: ',' -%}
             {%- for method in footer_payment_methods -%}
-              {{ method | payment_type_svg_tag }}
+              {%- render 'martilness-payment-icon', type: method -%}
             {%- endfor -%}
           </div>
         </div>
@@ -106,7 +106,7 @@
       <div class="footer__copyright text-wrap">
   &copy; {{ 'now' | date: '%Y' }}
   <a href="{{ routes.root_url }}">Martilness.dk</a>
-  &middot; CVR 45561488
+  &middot; CVR 35633146
 </div>
       {%- if enable_social_media_icons or enable_country_selector or enable_language_selector or enable_payment_icons or enable_follow_on_shop -%}
         <div class="flex flex-wrap items-center justify-end gap-5 md:gap-6">

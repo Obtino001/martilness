@@ -42,6 +42,35 @@
     >
   </div>
   {% assign phone_field_index = phone_field_index | plus: 1 %}
+{%- elsif block.settings.field_type == 'email' -%}
+  <div
+    class="form-field form-field--email{% if block.settings.full_width %} form-field--full{% endif %}"
+    {{ block.shopify_attributes }}
+  >
+    {%- if block.settings.heading != blank -%}
+      <label
+        class="form-label"
+        for="ContactForm-email-{{ block.id }}"
+      >
+        {{- block.settings.heading -}}
+        <span aria-hidden="true">*</span>
+      </label>
+    {%- endif -%}
+    <input
+      autocomplete="email"
+      type="email"
+      id="ContactForm-email-{{ block.id }}"
+      class="form-control w-full"
+      name="contact[email]"
+      spellcheck="false"
+      autocapitalize="off"
+      value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+      required
+      {% if block.settings.placeholder != blank %}
+        placeholder="{{ block.settings.placeholder }}"
+      {% endif %}
+    >
+  </div>
 {%- elsif block.settings.field_type == 'text' -%}
   <div
     class="form-field form-field--{{ block.settings.field_type }}{% if block.settings.full_width %} form-field--full{% endif %}"
@@ -177,6 +206,33 @@
       {%- endif -%}
     </div>
   </div>
+{%- elsif block.settings.field_type == 'file' -%}
+  <div
+    class="form-field form-field--file{% if block.settings.full_width %} form-field--full{% endif %}"
+    {{ block.shopify_attributes }}
+  >
+    {%- if block.settings.heading != blank -%}
+      <label
+        class="form-label"
+        for="ContactForm-{{ block.settings.field_type }}-{{ block.id }}"
+      >
+        {{- block.settings.heading -}}
+        {% if block.settings.required %}
+          <span aria-hidden="true">*</span>
+        {% endif %}
+      </label>
+    {%- endif -%}
+    <input
+      type="file"
+      id="ContactForm-{{ block.settings.field_type }}-{{ block.id }}"
+      class="form-control w-full"
+      name="contact[{{- field_name -}}]"
+      accept="image/*"
+      {% if block.settings.required %}
+        required
+      {% endif %}
+    >
+  </div>
 {%- elsif block.settings.field_type == 'radio' -%}
   {% assign options = block.settings.select_options | split: ',' %}
   <div
@@ -240,6 +296,10 @@
           "label": "t:options.text"
         },
         {
+          "value": "email",
+          "label": "Email"
+        },
+        {
           "value": "textarea",
           "label": "t:options.textarea"
         },
@@ -258,6 +318,10 @@
         {
           "value": "radio",
           "label": "t:options.radio"
+        },
+        {
+          "value": "file",
+          "label": "File"
         }
       ]
     },
@@ -270,7 +334,7 @@
       "type": "text",
       "id": "placeholder",
       "label": "t:settings.placeholder",
-      "visible_if": "{{ block.settings.field_type == 'text' or block.settings.field_type == 'textarea' or block.settings.field_type == 'phone' }}"
+      "visible_if": "{{ block.settings.field_type == 'text' or block.settings.field_type == 'textarea' or block.settings.field_type == 'phone' or block.settings.field_type == 'email' }}"
     },
     {
       "type": "checkbox",

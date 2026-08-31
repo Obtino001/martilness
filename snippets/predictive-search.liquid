@@ -1,5 +1,8 @@
 {%- liquid
   assign columns_xxl = 3
+  if context == 'header'
+    assign columns_xxl = 5
+  endif
   assign columns_mobile = 2
   assign column_gap = 10
   assign column_gap_mobile = 8
@@ -21,7 +24,7 @@
 -%}
 
 {%- capture media_sizes -%}
-  {%- capture container_width -%}{% if context == 'drawer' %}(min(100vw, 500px) - 32px){% else %}(min(100vw, 554px) - 60px){% endif %}{%- endcapture -%}
+  {%- capture container_width -%}{% if context == 'drawer' %}(min(100vw, 500px) - 32px){% elsif context == 'header' %}(min(100vw, 1400px) - 80px){% else %}(min(100vw, 554px) - 60px){% endif %}{%- endcapture -%}
   (min-width: 768px) calc({{ container_width }} / {{ columns_xxl }}), calc(min(500px, 100vw) * 0.38)
 {%- endcapture -%}
 <predictive-search
@@ -243,7 +246,7 @@
               {%- if predictive_search.resources.products.size > 0 -%}
                 {%- liquid
                   assign is_carousel = false
-                  if predictive_search.resources.products.size > 3
+                  if predictive_search.resources.products.size > columns_xxl
                     assign is_carousel = true
                   endif
                 -%}

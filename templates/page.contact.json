@@ -49,9 +49,42 @@
           },
           "blocks": {}
         },
+        "page_intro": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>Hvis du har spørgsmål, store som små, eller har brug for mere information om vores produkter, tøv endelig ikke med at kontakte os. Vores team står klar til at hjælpe dig, så du får den bedste oplevelse og de svar, du søger.</p><p>Vi glæder os til at høre fra dig!</p>",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_shape_color": "",
+            "highlight_text_color": "",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_weight": "",
+            "font_size": 15,
+            "font_size_mobile": 15,
+            "line_height": "normal",
+            "text_color": "subtext",
+            "text_color_gradient": "",
+            "disable_line_break_mobile": false,
+            "width": "fit-content",
+            "text_alignment": "left",
+            "width_mobile": "fit-content",
+            "text_alignment_mobile": "left",
+            "padding-block-start": 16,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "mobile-padding-scale": 75,
+            "animation_type": "fade-up",
+            "animation_delay": 100
+          },
+          "blocks": {}
+        },
         "page_content": {
           "type": "_page-content",
           "name": "t:names.page_content",
+          "disabled": true,
           "settings": {
             "type_preset": "rte",
             "font_size": 15,
@@ -75,6 +108,7 @@
       },
       "block_order": [
         "page_title",
+        "page_intro",
         "page_content"
       ],
       "settings": {
@@ -369,7 +403,7 @@
                 "icon_width_mobile": 32,
                 "heading": "Adresse",
                 "heading_preset": "h5",
-                "text": "<p>Baunebakkevej 12, 2.th, 2650 Hvidovre</p>",
+                "text": "<p>Baunebakkevej 12, 2.th<br/>2650 Hvidovre<br/>CVR: 35633146</p>",
                 "text_color": "subtext",
                 "link": "",
                 "show_link_icon": true,
@@ -397,7 +431,7 @@
                 "icon_width_mobile": 28,
                 "heading": "Åbningstider",
                 "heading_preset": "h5",
-                "text": "<p>Man–Fre: 11–18<br/>Lør: 12–16<br/>Søn: 12–16</p>",
+                "text": "<p>Mandag–fredag: 08.00–20.00<br/>Weekend: E-mails besvares hurtigst muligt</p>",
                 "text_color": "subtext",
                 "link": "",
                 "show_link_icon": true,
@@ -428,6 +462,7 @@
       ],
       "name": "t:names.contact_form",
       "settings": {
+        "require_metafield_key": "",
         "container": "page-width",
         "content_direction": "row",
         "vertical_on_mobile": true,
@@ -451,75 +486,6 @@
         "padding-inline-end": 0,
         "padding-block-start-mobile": 0,
         "padding-block-end-mobile": 0,
-        "padding-inline-start-mobile": 0,
-        "padding-inline-end-mobile": 0
-      }
-    },
-    "custom_section_4ARCm4": {
-      "type": "custom-section",
-      "blocks": {
-        "text_NazPFL": {
-          "type": "text",
-          "name": "t:names.heading",
-          "settings": {
-            "text": "<p>Find vores butik</p>",
-            "highlight_style": "none",
-            "highlight_font_style": "italic",
-            "highlight_shape_color": "",
-            "highlight_text_color": "",
-            "type_preset": "h1",
-            "font": "var(--font-body--family)",
-            "font_weight": "",
-            "font_size": 15,
-            "font_size_mobile": 15,
-            "line_height": "normal",
-            "text_color": "text",
-            "text_color_gradient": "",
-            "disable_line_break_mobile": false,
-            "width": "fit-content",
-            "text_alignment": "left",
-            "width_mobile": "fit-content",
-            "text_alignment_mobile": "left",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0,
-            "mobile-padding-scale": 80,
-            "animation_type": "fade-up",
-            "animation_delay": 50
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_NazPFL"
-      ],
-      "disabled": true,
-      "name": "t:names.custom_section",
-      "settings": {
-        "container": "page-width",
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "column_gap": 12,
-        "row_gap": 12,
-        "column_gap_mobile": 12,
-        "row_gap_mobile": 12,
-        "use_color_scheme_in_container": false,
-        "color_scheme": "",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "device": "mobile",
-        "padding-block-start": 100,
-        "padding-block-end": 40,
-        "padding-inline-start": 0,
-        "padding-inline-end": 0,
-        "padding-block-start-mobile": 48,
-        "padding-block-end-mobile": 24,
         "padding-inline-start-mobile": 0,
         "padding-inline-end-mobile": 0
       }
@@ -650,7 +616,6 @@
     "breadcrumbs",
     "main",
     "custom_section_tUbpGU",
-    "custom_section_4ARCm4",
     "store_locator_BQJBp9"
   ]
 }

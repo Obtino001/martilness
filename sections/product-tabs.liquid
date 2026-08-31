@@ -141,7 +141,7 @@
       </noscript>
       {%- capture tab_panel_content -%}
         {% if type == 'carousel' %}
-          <carousel-slider class="featured-collection featured-collection--carousel carousel carousel--visible carousel--grid block">
+          <carousel-slider class="featured-collection featured-collection--carousel carousel carousel--visible carousel--grid carousel--side-nav block">
             <script type="application/json" ref="config">
               {
                 "slidesPerView": {{ columns_xxl }},
@@ -150,7 +150,7 @@
                 "autoplay": false,
                 "counter": false,
                 "loopAddBlankSlides": false,
-                "pagination": { "type": "progressbar" },
+                "pagination": false,
                 "mousewheel": {
                   "enabled": true,
                   "forceToAxis": true,
@@ -185,8 +185,11 @@
             </div>
             {% render 'carousel-controls',
               ref: 'controls',
-              type: 'relative',
+              type: 'absolute',
+              pagination: false,
               counter: false,
+              navigation: true,
+              navigation_inside: true,
               class: 'hidden md:flex'
             %}
           </carousel-slider>
@@ -260,6 +263,20 @@
     </tabs-component>
   </div>
 </div>
+{% stylesheet %}
+  .carousel--side-nav .carousel__controls--absolute .carousel__button {
+    opacity: 1 !important;
+  }
+  .carousel--side-nav .carousel__controls--absolute .carousel__button.swiper-button-disabled {
+    opacity: 0.45 !important;
+  }
+  .carousel--side-nav .carousel__controls--absolute.carousel__controls--inside .carousel__button--prev {
+    --navigation-offset-left: 1rem;
+  }
+  .carousel--side-nav .carousel__controls--absolute.carousel__controls--inside .carousel__button--next {
+    --navigation-offset-left: -1rem;
+  }
+{% endstylesheet %}
 {% schema %}
 {
   "name": "t:names.product_tab",

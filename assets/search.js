@@ -213,6 +213,7 @@ class PredictiveSearch extends Component {
       if (shouldOpen) {
         // Opening: cancel any pending close animation and add class
         this.#cancelCloseAnimation();
+        this.#pinFullWidthPanel();
         document.body.classList.add(this.states.SEARCH_OPEN);
         document.addEventListener("click", this.clickOutsideHandler);
         document.addEventListener("keydown", this.escKeyPressHandler);
@@ -227,6 +228,22 @@ class PredictiveSearch extends Component {
     if (!shouldOpen && this.isEmptyRecommendations) {
       this.refs.searchContent?.classList.add("hidden");
     }
+  }
+
+  #pinFullWidthPanel() {
+    const header = this.header || document.querySelector("header");
+    const content = this.refs.searchContent;
+    if (!header || !content) return;
+
+    const bottom = Math.round(header.getBoundingClientRect().bottom);
+    document.documentElement.style.setProperty("--search-panel-top", `${bottom}px`);
+    content.style.position = "fixed";
+    content.style.left = "0";
+    content.style.right = "0";
+    content.style.width = "100vw";
+    content.style.maxWidth = "100vw";
+    content.style.top = `${bottom}px`;
+    content.style.maxHeight = `calc(100vh - ${bottom}px)`;
   }
 
   #getContentInner() {

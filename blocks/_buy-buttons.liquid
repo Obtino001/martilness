@@ -91,11 +91,10 @@
           {%- endcomment -%}
           <div class="pr-bar">
             <div class="pr-bar__pay">
-              {{ 'dankort' | payment_type_svg_tag }}
-              {{ 'mobilepay' | payment_type_svg_tag }}
-              {{ 'visa' | payment_type_svg_tag }}
-              {{ 'master' | payment_type_svg_tag }}
-              {{ 'viabill' | payment_type_svg_tag }}
+              {%- assign buy_payment_methods = 'dankort,visa,master,apple_pay,mobilepay,google_pay,viabill' | split: ',' -%}
+              {%- for method in buy_payment_methods -%}
+                {%- render 'martilness-payment-icon', type: method -%}
+              {%- endfor -%}
             </div>
             <div class="pr-bar__rating">
               <span class="pr-bar__score">4.8/5</span>

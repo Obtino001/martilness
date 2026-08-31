@@ -607,7 +607,7 @@
               "name": "t:names.button",
               "settings": {
                 "label": "Shop nu",
-                "link": "",
+                "link": "/collections/all",
                 "style": "primary",
                 "size": "large",
                 "icon": "caret-right",

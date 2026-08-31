@@ -1,7 +1,7 @@
 {%- liquid
   assign layout = section.settings.layout | default: 'article'
   assign accent = section.settings.accent_color | default: '#09412d'
-  assign show_title = section.settings.show_page_title
+  assign show_title = false
   assign cta_label = section.settings.cta_label
   assign cta_link = section.settings.cta_link
 -%}
@@ -26,6 +26,7 @@
           class="mt-page-body__content rte"
           data-mt-page-content
           data-mt-layout="{{ layout }}"
+          data-mt-page-title="{{ page.title | escape }}"
         >
           {{ page.content }}
         </div>
@@ -50,14 +51,35 @@
   </div>
 </div>
 
-{% if layout == 'faq' %}
 <script>
   (() => {
     const root = document.getElementById('section-{{ section.id }}');
     if (!root) return;
     const source = root.querySelector('[data-mt-page-content]');
+    if (!source || source.dataset.mtTitleBound === 'true') return;
+    source.dataset.mtTitleBound = 'true';
+
+    const pageTitle = source.getAttribute('data-mt-page-title') || {{ page.title | json }};
+    const norm = (value) => (value || '').replace(/\s+/g, ' ').replace(/[–—]/g, '-').trim().toLowerCase();
+    const titleNorm = norm(pageTitle);
+
+    function isDuplicateTitle(el) {
+      if (!el || el.nodeType !== Node.ELEMENT_NODE || !titleNorm) return false;
+      const tag = el.tagName;
+      if (!/^(H[1-6]|P|DIV)$/.test(tag)) return false;
+      return norm(el.textContent) === titleNorm;
+    }
+
+    function isEmptyLead(el) {
+      return el && el.nodeType === Node.ELEMENT_NODE && !el.textContent.trim();
+    }
+
+    while (source.firstElementChild && (isEmptyLead(source.firstElementChild) || isDuplicateTitle(source.firstElementChild))) {
+      source.firstElementChild.remove();
+    }
+
     const target = root.querySelector('[data-mt-page-faq]');
-    if (!source || !target || source.dataset.mtFaqBound === 'true') return;
+    if (!target || source.dataset.mtLayout !== 'faq' || source.dataset.mtFaqBound === 'true') return;
     source.dataset.mtFaqBound = 'true';
 
     const nodes = Array.from(source.childNodes).filter((n) => {
@@ -72,6 +94,7 @@
 
     function isQuestionEl(el) {
       if (!el || el.nodeType !== Node.ELEMENT_NODE) return false;
+      if (isDuplicateTitle(el)) return false;
       const tag = el.tagName;
       if (/^H[1-6]$/.test(tag)) return true;
       if (tag === 'P' || tag === 'DIV') {
@@ -184,7 +207,6 @@
     source.hidden = true;
   })();
 </script>
-{% endif %}
 
 <style>
   #section-{{ section.id }}.mt-page-body {
@@ -376,7 +398,7 @@
   #section-{{ section.id }} .mt-page-body__cta {
     margin-top: 2.8rem;
     padding-top: 2.4rem;
-    border-top: 1px solid rgb(9 65 45 / 10%);
+    {% comment %} border-top: 1px solid rgb(9 65 45 / 10%);/ {% endcomment %}
   }
 
   #section-{{ section.id }} .mt-page-body__cta-btn {
@@ -435,7 +457,7 @@
       "id": "show_page_title",
       "label": "Show page title in body",
       "default": false,
-      "info": "Usually off when using Martilness page hero."
+      "info": "Always off. Page title only shows in the green hero."
     },
     {
       "type": "color",

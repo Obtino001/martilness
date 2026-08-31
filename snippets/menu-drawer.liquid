@@ -63,9 +63,20 @@
         -%}
       </div>
     {%- endif -%}
+    {%- liquid
+      assign drawer_collections_block = blank
+      for block in blocks
+        if block.type == 'banner'
+          if block.settings.image_1 != blank or block.settings.image_2 != blank or block.settings.image_3 != blank
+            assign drawer_collections_block = block
+            break
+          endif
+        endif
+      endfor
+    -%}
     <div class="dialog__content flex-grow flex flex-col gap-6 overflow-x-clip relative">
       <div
-        class="menu-drawer__menus v-scrollable flex flex-col w-full h-full"
+        class="menu-drawer__menus v-scrollable flex flex-col w-full flex-grow min-h-0"
         data-parent
       >
         <ul class="menu-drawer__menu list-unstyled">
@@ -152,13 +163,7 @@
           </div>
         {%- endif -%}
 
-        <a
-          href="/pages/find-vores-butik-1"
-          class="menu-drawer__store-link flex items-center justify-center gap-2 color-current text-decoration-none focus-visible--inset"
-        >
-          {%- render 'icon', icon: 'map-pin', size: 'medium', class: 'shrink-0' -%}
-          <span>Find vej til butikken</span>
-        </a>
+
       </div>
       <div class="menu-drawer__footer flex items-center justify-between gap-4">
         {%- if shop.customer_accounts_enabled -%}
@@ -200,6 +205,64 @@
           {%- endif -%}
         </div>
       </div>
+      {%- if drawer_collections_block != blank -%}
+        <div class="menu-drawer__collections" aria-label="{{ 'content.collections' | t }}">
+          <div class="menu-drawer__collections-track">
+            {%- for i in (1..6) -%}
+              {%- liquid
+                assign image_key = 'image_' | append: i
+                assign heading_key = 'heading_' | append: i
+                assign label_key = 'button_label_' | append: i
+                assign link_key = 'button_link_' | append: i
+
+                assign card_image = drawer_collections_block.settings[image_key]
+                assign card_heading = drawer_collections_block.settings[heading_key]
+                assign card_label = drawer_collections_block.settings[label_key]
+                assign card_link = drawer_collections_block.settings[link_key]
+
+                if card_image == blank
+                  continue
+                endif
+                if card_heading == blank
+                  assign card_heading = card_label
+                endif
+                assign card_alt = card_heading
+                if card_alt == blank
+                  assign card_alt = shop.name
+                endif
+              -%}
+              {%- capture image_html -%}
+                {% render 'responsive-image',
+                  mode: 'js',
+                  image: card_image,
+                  image_ratio: '3/4',
+                  default_alt: card_alt,
+                  sizes: '220px'
+                %}
+              {%- endcapture -%}
+              {%- capture overlay_html -%}
+                {% render 'overlay', overlay_color: 'rgb(0 0 0 / 0.2)' %}
+              {%- endcapture -%}
+              {%- capture heading_html -%}
+                <span>{{ card_heading | escape }}</span>
+              {%- endcapture -%}
+              {% render 'image-card',
+                mode: 'static',
+                card_link: card_link,
+                image: image_html,
+                overlay: overlay_html,
+                heading: heading_html,
+                edge_gap: 'sm',
+                content_direction: 'column',
+                v_alignment: 'flex-end',
+                h_alignment: 'flex-start',
+                border_radius: 16,
+                classes: 'menu-drawer__collection'
+              %}
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
     </div>
   </dialog>
 </dialog-component>

@@ -16,12 +16,15 @@
 
   assign control_type = section.settings.control_type
   assign navigation_type = 'relative'
-  assign pagination = true
+  assign pagination = false
   assign counter = false
   if section.settings.control_type == 'float'
     assign navigation_type = 'absolute'
     assign pagination = false
   endif
+
+  assign controls_align = section.settings.control_alignment | default: 'end'
+  assign controls_class = 'flex justify-' | append: controls_align
 
   assign swipe_mobile_classes = ''
   assign swipe_mobile_inner_classes = ''
@@ -89,7 +92,7 @@
             "selector": ".media"
           },
           "counter": {{ counter }},
-          "pagination": {% unless control_type == 'none' %}{ "type": "progressbar" }{% else %}false{% endunless %}
+          "pagination": false
         }
       </script>
       <div class="{% if section.settings.overflow_content == 'edge-shadows' %} edge__shadows z-0{% endif %}">
@@ -108,10 +111,10 @@
         {% render 'carousel-controls',
           ref: 'controls',
           type: navigation_type,
-          navigation_inside: true,
-          pagination: pagination,
-          counter: counter,
-          class: 'hidden md:flex'
+          navigation_inside: false,
+          pagination: false,
+          counter: false,
+          class: controls_class
         %}
       {%- endif -%}
     </flex-carousel>
@@ -356,7 +359,7 @@
         }
       ],
       "default": "end",
-      "visible_if": "{{ section.settings.control_type == 'default' }}"
+      "visible_if": "{{ section.settings.control_type == 'standard' }}"
     },
     {
       "type": "header",

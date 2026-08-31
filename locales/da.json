@@ -114,8 +114,8 @@
       "name": "Navn",
       "email": "E-mail",
       "phone": "Telefon",
-      "your_message": "Din besked",
-      "send_message": "Send besked",
+      "your_message": "Meddelelse",
+      "send_message": "Indsend besked",
       "post_success": "Tak fordi du kontaktede os. Vi vender tilbage til dig hurtigst muligt.",
       "error_heading": "Ret venligst følgende:"
     },

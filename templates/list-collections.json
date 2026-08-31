@@ -343,7 +343,7 @@
           "name": "t:names.collection_item",
           "settings": {
             "image_ratio": "1/1",
-            "title": "Sweatre",
+            "title": "Sweatere",
             "width": 170,
             "width_mobile": 150,
             "inherit_color_scheme": true,
@@ -360,7 +360,7 @@
           "name": "t:names.collection_item",
           "settings": {
             "image_ratio": "1/1",
-            "title": "Overtøj",
+            "title": "Ydertøj",
             "width": 170,
             "width_mobile": 150,
             "inherit_color_scheme": true,
@@ -411,7 +411,7 @@
           "name": "t:names.collection_item",
           "settings": {
             "image_ratio": "1/1",
-            "title": "Tilbehør",
+            "title": "Accessories",
             "width": 170,
             "width_mobile": 150,
             "inherit_color_scheme": true,

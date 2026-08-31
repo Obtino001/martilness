@@ -830,6 +830,40 @@
                 "usp_item_5"
               ]
             },
+            "product_recommendations_CQcChJ": {
+              "type": "_product-recommendations",
+              "name": "t:names.product_recommendations",
+              "settings": {
+                "recommendations_type": "related",
+                "heading": "Andre købte også...",
+                "heading_preset": "h5",
+                "layout": "list",
+                "columns_xxl": 1,
+                "products_per_page": 1,
+                "product_count": 4,
+                "column_gap": 10,
+                "row_gap": 10,
+                "show_vendor": false,
+                "show_type": false,
+                "show_badges": false,
+                "show_swatches": false,
+                "show_quick_view": true,
+                "show_quick_add": true,
+                "pcard_image_ratio": "1/1",
+                "enable_swipe_on_mobile": true,
+                "swipe_custom_width_column": false,
+                "swipe_column_width": 76,
+                "columns_mobile": "2",
+                "column_gap_mobile": 8,
+                "row_gap_mobile": 8,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "mobile-padding-scale": 80
+              },
+              "blocks": {}
+            },
             "custom_liquid_6UVzQf": {
               "type": "custom-liquid",
               "name": "t:names.custom_liquid",
@@ -1022,40 +1056,6 @@
                 "pdp_tab_inkluderet",
                 "pdp_tab_garanti"
               ]
-            },
-            "product_recommendations_CQcChJ": {
-              "type": "_product-recommendations",
-              "name": "t:names.product_recommendations",
-              "settings": {
-                "recommendations_type": "related",
-                "heading": "Andre købte også...",
-                "heading_preset": "h5",
-                "layout": "grid",
-                "columns_xxl": 3,
-                "products_per_page": 2,
-                "product_count": 4,
-                "column_gap": 10,
-                "row_gap": 10,
-                "show_vendor": false,
-                "show_type": false,
-                "show_badges": false,
-                "show_swatches": false,
-                "show_quick_view": true,
-                "show_quick_add": true,
-                "pcard_image_ratio": "1/1",
-                "enable_swipe_on_mobile": true,
-                "swipe_custom_width_column": false,
-                "swipe_column_width": 76,
-                "columns_mobile": "2",
-                "column_gap_mobile": 8,
-                "row_gap_mobile": 8,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0,
-                "mobile-padding-scale": 80
-              },
-              "blocks": {}
             }
           },
           "block_order": [
@@ -1067,9 +1067,9 @@
             "shipping_date_8NUgUx",
             "buy_buttons_rhMNwM",
             "usp_marquee_inline",
+            "product_recommendations_CQcChJ",
             "custom_liquid_6UVzQf",
-            "accordion_U9n4kg",
-            "product_recommendations_CQcChJ"
+            "accordion_U9n4kg"
           ]
         }
       },
@@ -1204,6 +1204,205 @@
         "accent_color": "#09412d",
         "details_heading": "Detaljer om produktet",
         "includes_heading": "Shop efter kategori"
+      }
+    },
+        "flex_carousel_videos": {
+      "type": "flex-carousel",
+      "blocks": {
+        "video_card_1": {
+          "type": "video-card",
+          "settings": {
+            "video": "shopify://files/videos/e7245f278ade4c8ba71d2eb6c1a3d2a0.HD-1080p-7.2Mbps-89498511.mp4",
+            "cover_image": "shopify://shop_images/e7245f278ade4c8ba71d2eb6c1a3d2a0.thumbnail.0000000000_600x_957e3f71-e7e6-4058-93de-623dde4286c5.webp",
+            "video_ratio": "3/4",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "color_scheme": "scheme-1",
+            "border_radius": 20
+          },
+          "blocks": {
+            "video-card-info": {
+              "type": "_video-card-info",
+              "static": true,
+              "settings": {
+                "avatar_hidden_mobile": true,
+                "title": "",
+                "name_preset": "h4",
+                "bio": "",
+                "bio_text_color": "subtext"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": []
+        },
+        "video_card_gqmMJr": {
+          "type": "video-card",
+          "settings": {
+            "video": "shopify://files/videos/e7245f278ade4c8ba71d2eb6c1a3d2a0.HD-1080p-7.2Mbps-89498511.mp4",
+            "cover_image": "shopify://shop_images/e7245f278ade4c8ba71d2eb6c1a3d2a0.thumbnail.0000000000_600x_957e3f71-e7e6-4058-93de-623dde4286c5.webp",
+            "video_ratio": "3/4",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "color_scheme": "scheme-1",
+            "border_radius": 20
+          },
+          "blocks": {
+            "video-card-info": {
+              "type": "_video-card-info",
+              "static": true,
+              "settings": {
+                "avatar_hidden_mobile": true,
+                "title": "",
+                "name_preset": "h4",
+                "bio": "",
+                "bio_text_color": "subtext"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": []
+        },
+        "video_card_MNEVpH": {
+          "type": "video-card",
+          "settings": {
+            "video": "shopify://files/videos/e7245f278ade4c8ba71d2eb6c1a3d2a0.HD-1080p-7.2Mbps-89498511.mp4",
+            "cover_image": "shopify://shop_images/e7245f278ade4c8ba71d2eb6c1a3d2a0.thumbnail.0000000000_600x_957e3f71-e7e6-4058-93de-623dde4286c5.webp",
+            "video_ratio": "3/4",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "color_scheme": "scheme-1",
+            "border_radius": 20
+          },
+          "blocks": {
+            "video-card-info": {
+              "type": "_video-card-info",
+              "static": true,
+              "settings": {
+                "avatar_hidden_mobile": true,
+                "title": "",
+                "name_preset": "h4",
+                "bio": "",
+                "bio_text_color": "subtext"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": []
+        },
+        "video_card_C4C9Qb": {
+          "type": "video-card",
+          "settings": {
+            "video": "shopify://files/videos/e7245f278ade4c8ba71d2eb6c1a3d2a0.HD-1080p-7.2Mbps-89498511.mp4",
+            "cover_image": "shopify://shop_images/e7245f278ade4c8ba71d2eb6c1a3d2a0.thumbnail.0000000000_600x_957e3f71-e7e6-4058-93de-623dde4286c5.webp",
+            "video_ratio": "3/4",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "color_scheme": "scheme-1",
+            "border_radius": 20
+          },
+          "blocks": {
+            "video-card-info": {
+              "type": "_video-card-info",
+              "static": true,
+              "settings": {
+                "avatar_hidden_mobile": true,
+                "title": "",
+                "name_preset": "h4",
+                "bio": "",
+                "bio_text_color": "subtext"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": []
+        },
+        "section-header-vertical": {
+          "type": "_section-header-vertical",
+          "static": true,
+          "settings": {
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "device": "desktop",
+            "padding-block-end": 32,
+            "padding-block-end-mobile": 20
+          },
+          "blocks": {
+            "heading": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<p>Elsket af 20.000+ danskere</p>",
+                "highlight_style": "none",
+                "highlight_font_style": "italic",
+                "highlight_shape_color": "",
+                "highlight_text_color": "",
+                "type_preset": "h2",
+                "font": "var(--font-heading--family)",
+                "font_weight": "",
+                "font_size": 15,
+                "font_size_mobile": 15,
+                "line_height": "normal",
+                "text_color": "text",
+                "text_color_gradient": "",
+                "disable_line_break_mobile": false,
+                "width": "fit-content",
+                "text_alignment": "left",
+                "width_mobile": "fit-content",
+                "text_alignment_mobile": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "mobile-padding-scale": 100,
+                "animation_type": "none",
+                "animation_delay": 250
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "heading"
+          ]
+        }
+      },
+      "block_order": [
+        "video_card_1",
+        "video_card_gqmMJr",
+        "video_card_MNEVpH",
+        "video_card_C4C9Qb"
+      ],
+      "name": "t:names.flex_carousel_video_cards",
+      "settings": {
+        "container": "page-width",
+        "overflow_content": "visible",
+        "slides_per_view": "columns",
+        "columns": 4,
+        "column_gap": 12,
+        "enable_swipe_on_mobile": true,
+        "swipe_custom_width_column": false,
+        "swipe_column_width": 76,
+        "columns_mobile": "2",
+        "column_gap_mobile": 8,
+        "color_scheme": "scheme-1",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "control_type": "standard",
+        "control_alignment": "center",
+        "device": "desktop",
+        "padding-block-start": 48,
+        "padding-block-end": 48,
+        "padding-block-start-mobile": 32,
+        "padding-block-end-mobile": 32
       }
     },
     "iwt_how_it_works": {
@@ -1687,7 +1886,7 @@
         "marquee_speed": 40,
         "pause_on_hover": true,
         "link_label": "Se flere anmeldelser her →",
-        "link_url": "https://dk.trustpilot.com",
+        "link_url": "https://dk.trustpilot.com/review/martilness.dk",
         "color_scheme": "scheme-1",
         "padding_top": 64,
         "padding_bottom": 64
@@ -1982,7 +2181,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>Nu kan det ikke længere kun mærkes – det kan ses. Det grå og matte udtryk er væk. Huden stråler af sundhed, gløden er tilbage, og spejlbilledet viser den udhvilede, stærke version af dig selv.</p><p><strong>95% Oplevede en markant forbedring i udseende og generel livskvalitet.</strong></p><p><em>*Baseret på interne data og brugerfeedback fra getmozion.dk's testgrupper.</em></p>",
+                "text": "<p>Nu kan det ikke længere kun mærkes – det kan ses. Det grå og matte udtryk er væk. Huden stråler af sundhed, gløden er tilbage, og spejlbilledet viser den udhvilede, stærke version af dig selv.</p><p><strong>95% Oplevede en markant forbedring i udseende og generel livskvalitet.</strong></p><p><em>*Baseret på interne data og brugerfeedback fra Martilness.</em></p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
                 "highlight_shape_color": "",
@@ -2187,12 +2386,12 @@
       "name": "Image with FAQs",
       "settings": {
         "require_metafield_key": "faqs",
-        "image": "shopify://shop_images/DSC09476.jpg",
+        "image": "{{ product.metafields.custom.faq_with_image.value }}",
         "image_position": "left",
         "image_radius": 20,
         "title": "Spørgsmål & svar",
         "button_text": "Se alle spørgsmål og svar",
-        "button_link": "",
+        "button_link": "shopify://pages/faq-generelt",
         "color_scheme": "scheme-1",
         "padding_top": 0,
         "padding_bottom": 0
@@ -3623,6 +3822,7 @@
     "breadcrumbs_zq9zwK",
     "main",
     "whats_included_Kp7mR2",
+        "flex_carousel_videos",
     "iwt_how_it_works",
     "iwt_health_benefits",
     "trustpilot_reviews_pdp",
