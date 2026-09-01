@@ -798,6 +798,40 @@
                 "usp_item_5"
               ]
             },
+            "product_recommendations_CQcChJ": {
+              "type": "_product-recommendations",
+              "name": "t:names.product_recommendations",
+              "settings": {
+                "recommendations_type": "related",
+                "heading": "Andre købte også...",
+                "heading_preset": "h5",
+                "layout": "list",
+                "columns_xxl": 3,
+                "products_per_page": 1,
+                "product_count": 4,
+                "column_gap": 10,
+                "row_gap": 10,
+                "show_vendor": false,
+                "show_type": false,
+                "show_badges": false,
+                "show_swatches": false,
+                "show_quick_view": true,
+                "show_quick_add": true,
+                "pcard_image_ratio": "1/1",
+                "enable_swipe_on_mobile": true,
+                "swipe_custom_width_column": false,
+                "swipe_column_width": 76,
+                "columns_mobile": "2",
+                "column_gap_mobile": 8,
+                "row_gap_mobile": 8,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "mobile-padding-scale": 80
+              },
+              "blocks": {}
+            },
             "custom_liquid_6UVzQf": {
               "type": "custom-liquid",
               "name": "t:names.custom_liquid",
@@ -1020,40 +1054,6 @@
                 "pdp_tab_inkluderet",
                 "pdp_tab_garanti"
               ]
-            },
-            "product_recommendations_CQcChJ": {
-              "type": "_product-recommendations",
-              "name": "t:names.product_recommendations",
-              "settings": {
-                "recommendations_type": "related",
-                "heading": "Andre købte også...",
-                "heading_preset": "h5",
-                "layout": "list",
-                "columns_xxl": 3,
-                "products_per_page": 1,
-                "product_count": 4,
-                "column_gap": 10,
-                "row_gap": 10,
-                "show_vendor": false,
-                "show_type": false,
-                "show_badges": false,
-                "show_swatches": false,
-                "show_quick_view": true,
-                "show_quick_add": true,
-                "pcard_image_ratio": "1/1",
-                "enable_swipe_on_mobile": true,
-                "swipe_custom_width_column": false,
-                "swipe_column_width": 76,
-                "columns_mobile": "2",
-                "column_gap_mobile": 8,
-                "row_gap_mobile": 8,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0,
-                "mobile-padding-scale": 80
-              },
-              "blocks": {}
             }
           },
           "block_order": [
@@ -1064,9 +1064,9 @@
             "shipping_date_8NUgUx",
             "buy_buttons_rhMNwM",
             "usp_marquee_inline",
+            "product_recommendations_CQcChJ",
             "custom_liquid_6UVzQf",
-            "accordion_U9n4kg",
-            "product_recommendations_CQcChJ"
+            "accordion_U9n4kg"
           ]
         }
       },
@@ -1203,7 +1203,7 @@
         "includes_heading": "Shop efter kategori"
       }
     },
-        "flex_carousel_videos": {
+    "flex_carousel_videos": {
       "type": "flex-carousel",
       "blocks": {
         "video_card_1": {
@@ -3790,7 +3790,7 @@
     "breadcrumbs_zq9zwK",
     "main",
     "whats_included_Kp7mR2",
-        "flex_carousel_videos",
+    "flex_carousel_videos",
     "iwt_how_it_works",
     "iwt_health_benefits",
     "trustpilot_reviews_pdp",
