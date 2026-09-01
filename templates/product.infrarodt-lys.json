@@ -1092,41 +1092,6 @@
     "whats_included_Kp7mR2": {
       "type": "whats-included",
       "blocks": {
-        "collection_link_1": {
-          "type": "collection_link",
-          "settings": {
-            "title": "Isbad",
-            "link": "shopify://collections/isbad"
-          }
-        },
-        "collection_link_2": {
-          "type": "collection_link",
-          "settings": {
-            "title": "Dampsauna",
-            "link": "shopify://collections/dampsauna"
-          }
-        },
-        "collection_link_3": {
-          "type": "collection_link",
-          "settings": {
-            "title": "Isbad + Dampsauna",
-            "link": "shopify://collections/isbad-dampsauna"
-          }
-        },
-        "collection_link_4": {
-          "type": "collection_link",
-          "settings": {
-            "title": "Saunatæppe",
-            "link": "shopify://collections/saunataeppe"
-          }
-        },
-        "collection_link_5": {
-          "type": "collection_link",
-          "settings": {
-            "title": "Infrarødt lys",
-            "link": "https://martilness-q6kc1td2.myshopify.com/collections/infrarodt-lys"
-          }
-        },
         "included_item_A7HArJ": {
           "type": "included_item",
           "settings": {
@@ -1148,7 +1113,7 @@
           "settings": {
             "image": "shopify://shop_images/DSC06615.webp",
             "title": "Infrarød LED maske",
-            "link": "shopify://collections/infrarod-led-maske"
+            "link": "https://martilness-q6kc1td2.myshopify.com/collections/infrarodt-lys"
           }
         },
         "included_item_FrrDw4": {
@@ -1185,11 +1150,6 @@
         }
       },
       "block_order": [
-        "collection_link_1",
-        "collection_link_2",
-        "collection_link_3",
-        "collection_link_4",
-        "collection_link_5",
         "included_item_A7HArJ",
         "included_item_LPHdrX",
         "included_item_nTt7mR",
