@@ -1206,7 +1206,7 @@
         "includes_heading": "Shop efter kategori"
       }
     },
-        "flex_carousel_videos": {
+    "flex_carousel_videos": {
       "type": "flex-carousel",
       "blocks": {
         "video_card_1": {
@@ -3822,7 +3822,7 @@
     "breadcrumbs_zq9zwK",
     "main",
     "whats_included_Kp7mR2",
-        "flex_carousel_videos",
+    "flex_carousel_videos",
     "iwt_how_it_works",
     "iwt_health_benefits",
     "trustpilot_reviews_pdp",
