@@ -54,6 +54,13 @@
             "padding-block-end": 0
           },
           "blocks": {
+            "kaching_bundles_app_block_BYnJPE": {
+              "type": "shopify://apps/kaching-bundles/blocks/app-block/6c637362-a106-4a32-94ac-94dcfd68cdb8",
+              "settings": {
+                "product": "{{closest.product}}",
+                "manual_deal_block_id": ""
+              }
+            },
             "product_information_group_zx4NRb": {
               "type": "_product-information-group",
               "name": "t:names.group",
@@ -1059,6 +1066,7 @@
             }
           },
           "block_order": [
+            "kaching_bundles_app_block_BYnJPE",
             "product_information_group_zx4NRb",
             "text_dnHLTt",
             "custom_liquid_benefits",
