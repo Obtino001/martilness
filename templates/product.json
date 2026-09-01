@@ -54,6 +54,13 @@
             "padding-block-end": 0
           },
           "blocks": {
+            "kaching_bundles_app_block_BYnJPE": {
+              "type": "shopify://apps/kaching-bundles/blocks/app-block/6c637362-a106-4a32-94ac-94dcfd68cdb8",
+              "settings": {
+                "product": "{{closest.product}}",
+                "manual_deal_block_id": ""
+              }
+            },
             "product_information_group_zx4NRb": {
               "type": "_product-information-group",
               "name": "t:names.group",
@@ -536,13 +543,6 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
-            },
-            "kaching_bundles_app_block_BYnJPE": {
-              "type": "shopify://apps/kaching-bundles/blocks/app-block/6c637362-a106-4a32-94ac-94dcfd68cdb8",
-              "settings": {
-                "product": "{{closest.product}}",
-                "manual_deal_block_id": ""
-              }
             },
             "buy_buttons_rhMNwM": {
               "type": "_buy-buttons",
@@ -1066,13 +1066,13 @@
             }
           },
           "block_order": [
+            "kaching_bundles_app_block_BYnJPE",
             "product_information_group_zx4NRb",
             "text_dnHLTt",
             "custom_liquid_benefits",
             "variant_picker_NYNfW9",
             "group_ngeVTK",
             "shipping_date_8NUgUx",
-            "kaching_bundles_app_block_BYnJPE",
             "buy_buttons_rhMNwM",
             "usp_marquee_inline",
             "product_recommendations_CQcChJ",
@@ -1390,21 +1390,21 @@
       "name": "t:names.flex_carousel_video_cards",
       "settings": {
         "container": "page-width",
-        "overflow_content": "visible",
+        "overflow_content": "edge-shadows",
         "slides_per_view": "columns",
         "columns": 4,
         "column_gap": 12,
         "enable_swipe_on_mobile": true,
         "swipe_custom_width_column": false,
         "swipe_column_width": 76,
-        "columns_mobile": "2",
+        "columns_mobile": "1",
         "column_gap_mobile": 8,
         "color_scheme": "scheme-1",
         "border": "none",
         "border_width": 1,
         "border_opacity": 100,
         "border_radius": 0,
-        "control_type": "standard",
+        "control_type": "none",
         "control_alignment": "center",
         "device": "desktop",
         "padding-block-start": 48,
