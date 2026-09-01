@@ -520,6 +520,13 @@
                 "group_wXJd6h"
               ]
             },
+            "kaching_bundles_app_block_BYnJPE": {
+              "type": "shopify://apps/kaching-bundles/blocks/app-block/6c637362-a106-4a32-94ac-94dcfd68cdb8",
+              "settings": {
+                "product": "{{closest.product}}",
+                "manual_deal_block_id": ""
+              }
+            },
             "shipping_date_8NUgUx": {
               "type": "_shipping-date",
               "name": "Afsendes",
@@ -536,13 +543,6 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
-            },
-            "kaching_bundles_app_block_BYnJPE": {
-              "type": "shopify://apps/kaching-bundles/blocks/app-block/6c637362-a106-4a32-94ac-94dcfd68cdb8",
-              "settings": {
-                "product": "{{closest.product}}",
-                "manual_deal_block_id": ""
-              }
             },
             "buy_buttons_rhMNwM": {
               "type": "_buy-buttons",
@@ -1071,8 +1071,8 @@
             "custom_liquid_benefits",
             "variant_picker_NYNfW9",
             "group_ngeVTK",
-            "shipping_date_8NUgUx",
             "kaching_bundles_app_block_BYnJPE",
+            "shipping_date_8NUgUx",
             "buy_buttons_rhMNwM",
             "usp_marquee_inline",
             "product_recommendations_CQcChJ",
