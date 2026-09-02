@@ -30,6 +30,8 @@
     "pcard_title_size_scale": 120,
     "pcard_price_font": "heading",
     "pcard_price_font_weight": "500",
+    "sale_badge_background": "#09412d",
+    "sale_badge_text": "#ffffff",
     "cart_bubble_background": "#09412d",
     "cart_bubble_text": "#ffffff",
     "input_corner_radius": 10,
@@ -79,6 +81,13 @@
     "show_currency_code": false,
     "cart_item_image_ratio": "3/4",
     "content_for_index": [],
+    "blocks": {
+      "15557474716127144420": {
+        "type": "shopify://apps/kaching-bundles/blocks/app-embed-block/6c637362-a106-4a32-94ac-94dcfd68cdb8",
+        "disabled": false,
+        "settings": {}
+      }
+    },
     "color_schemes": {
       "scheme-1": {
         "settings": {
@@ -470,9 +479,7 @@
           "progress_bar": "#ffffff"
         }
       }
-    },
-    "sale_badge_background": "#09412d",
-    "sale_badge_text": "#ffffff"
+    }
   },
   "installed_preset_name": "Pebble",
   "presets": {
