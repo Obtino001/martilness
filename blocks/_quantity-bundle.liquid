@@ -278,7 +278,7 @@
     </div>
     <div class="pr-bar qty-bundle__pr-bar">
       <div class="pr-bar__pay">
-        {%- assign buy_payment_methods = 'dankort,visa,master,apple_pay,mobilepay,google_pay,viabill' | split: ',' -%}
+        {%- assign buy_payment_methods = 'dankort,visa,master,apple_pay,mobilepay,google_pay' | split: ',' -%}
         {%- for method in buy_payment_methods -%}
           {%- render 'martilness-payment-icon', type: method -%}
         {%- endfor -%}
