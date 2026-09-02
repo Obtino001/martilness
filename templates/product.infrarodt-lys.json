@@ -524,11 +524,11 @@
               "type": "_shipping-date",
               "name": "Afsendes",
               "settings": {
-                "label": "Afsendes:",
-                "cutoff_hour": 17,
-                "text_today": "i dag",
-                "text_tomorrow": "i morgen",
-                "text_monday": "mandag",
+                "label": "På lager.",
+                "cutoff_hour": 14,
+                "text_today": "Bestilling inden 14 sendes samme hverdag",
+                "text_tomorrow": "Bestilling inden 14 sendes samme hverdag",
+                "text_monday": "Bestilling inden 14 sendes samme hverdag",
                 "type_preset": "",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
@@ -1206,7 +1206,7 @@
         "includes_heading": "Shop efter kategori"
       }
     },
-        "flex_carousel_videos": {
+    "flex_carousel_videos": {
       "type": "flex-carousel",
       "blocks": {
         "video_card_1": {
@@ -3822,7 +3822,7 @@
     "breadcrumbs_zq9zwK",
     "main",
     "whats_included_Kp7mR2",
-        "flex_carousel_videos",
+    "flex_carousel_videos",
     "iwt_how_it_works",
     "iwt_health_benefits",
     "trustpilot_reviews_pdp",

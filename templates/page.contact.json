@@ -375,7 +375,7 @@
                 "icon_width_mobile": 28,
                 "heading": "Kontakt os",
                 "heading_preset": "h5",
-                "text": "<p>info@martilness.dk<br/>+45 2779 6900</p>",
+                "text": "<p><a href=\"mailto:info@martilness.dk\">info@martilness.dk</a><br/><a href=\"tel:+4527796900\">+45 2779 6900</a></p>",
                 "text_color": "subtext",
                 "link": "",
                 "show_link_icon": true,
@@ -548,7 +548,7 @@
               "type": "_simple-text",
               "static": true,
               "settings": {
-                "text": "<p>Baunebakkevej 12, 2.th, 2650 Hvidovre</p><p>+45 2779 6900 </p><p>Man–Fre: 11–18<br/>Lør: 12–16<br/>Søn: 12–16</p>",
+                "text": "<p>Baunebakkevej 12, 2.th, 2650 Hvidovre</p><p><a href=\"tel:+4527796900\">+45 2779 6900</a></p><p>Man–Fre: 11–18<br/>Lør: 12–16<br/>Søn: 12–16</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
                 "highlight_shape_color": "",

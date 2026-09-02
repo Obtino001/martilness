@@ -434,7 +434,7 @@
               "type": "_simple-text",
               "static": true,
               "settings": {
-                "text": "<p>Baunebakkevej 12, 2.th, 2650 Hvidovre<br/>+45 2779 6900</p><p>Man–Fre: 11–18<br/>Lør: 12–16<br/>Søn: 12–16</p>",
+                "text": "<p>Baunebakkevej 12, 2.th, 2650 Hvidovre<br/><a href=\"tel:+4527796900\">+45 2779 6900</a></p><p>Man–Fre: 11–18<br/>Lør: 12–16<br/>Søn: 12–16</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
                 "highlight_shape_color": "",

@@ -53,7 +53,7 @@
         <div class="footer__bar-col">
           <span class="footer__bar-label h5">{{ section.settings.payment_label | default: 'Betalingsmuligheder' }}</span>
           <div class="footer__bar-icons">
-            {%- assign footer_payment_methods = 'dankort,visa,master,apple_pay,mobilepay,google_pay,viabill' | split: ',' -%}
+            {%- assign footer_payment_methods = 'dankort,visa,master,apple_pay,mobilepay,google_pay' | split: ',' -%}
             {%- for method in footer_payment_methods -%}
               {%- render 'martilness-payment-icon', type: method -%}
             {%- endfor -%}

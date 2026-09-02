@@ -175,7 +175,7 @@
 
       {%- comment -%} Egne betalingsikoner — minimal top/bund-padding {%- endcomment -%}
       <div class="WI_paymentIcons">
-        {%- assign cart_payment_methods = 'dankort,visa,master,apple_pay,mobilepay,google_pay,viabill' | split: ',' -%}
+        {%- assign cart_payment_methods = 'dankort,visa,master,apple_pay,mobilepay,google_pay' | split: ',' -%}
         {%- for method in cart_payment_methods -%}
           {%- render 'martilness-payment-icon', type: method -%}
         {%- endfor -%}

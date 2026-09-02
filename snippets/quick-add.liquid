@@ -15,6 +15,10 @@
 
 {% liquid
   assign product_form_id = 'QuickAdd-ProductForm-' | append: product.id | append: '-' | append: block.id
+  assign read_more_text = 'actions.read_more' | t
+  if read_more_text contains 'Translation missing' or read_more_text == blank
+    assign read_more_text = 'Læs mere'
+  endif
   assign add_to_cart_text = 'actions.add_to_cart' | t
   assign choose_options_text = 'actions.choose_options' | t
   assign button_icon = button_icon | default: settings.pcard_quick_add_icon
@@ -22,6 +26,11 @@
 
   # Logic to determine which variant to use (matching swatch selection logic from product-card)
   assign variant = product.selected_or_first_available_variant
+
+  assign target_pdp_url = product.url
+  if variant.url != blank
+    assign target_pdp_url = variant.url
+  endif
 
   if variant.available
     assign can_add_to_cart = true
@@ -76,59 +85,44 @@
       >
       {% comment %} If there is one variant option but it's swatches or if it's a single variant product, then use add to cart button {% endcomment %}
       {%- unless mode == 'view' -%}
-        {%- if product.variants.size == 1 or product.options.size == 1 -%}
-          {% render 'add-to-cart-button',
-            add_to_cart_text: add_to_cart_text,
-            button_type: button_style,
-            button_icon: button_icon,
-            button_size: button_size,
-            can_add_to_cart: can_add_to_cart,
-            mode: 'quick-add'
-          %}
-        {%- endif -%}
-        {%- if product.variants.size > 1 -%}
-          {%- liquid
-            assign button_class = 'btn btn--primary quick-add__button quick-add__button--choose button-choose-options'
-            assign btn_text_class = 'btn__text'
-            assign icon_extra_class = ''
+        {%- liquid
+          assign button_class = 'btn btn--primary quick-add__button'
+          assign btn_text_class = 'btn__text'
+          assign icon_extra_class = ''
 
-            if button_style == 'with_icon'
-              assign button_class = button_class | append: ' btn--icon-solid-desktop md:justify-start md:w-full'
-              assign btn_text_class = btn_text_class | append: ' hidden md:flex'
-              assign icon_extra_class = icon_extra_class | append: ' md:hidden'
-            elsif button_style == 'icon_only'
-              assign button_class = button_class | append: ' btn--icon-only'
-              assign btn_text_class = btn_text_class | append: ' hidden'
-            elsif button_style == 'text_only'
-              assign button_class = button_class | append: ' md:w-full'
-              assign btn_text_class = btn_text_class | append: ' hidden md:flex'
-              assign icon_extra_class = icon_extra_class | append: ' md:hidden'
-            endif
+          if button_style == 'with_icon'
+            assign button_class = button_class | append: ' btn--icon-solid-desktop md:justify-start md:w-full'
+            assign btn_text_class = btn_text_class | append: ' hidden md:flex'
+            assign icon_extra_class = icon_extra_class | append: ' md:hidden'
+          elsif button_style == 'icon_only'
+            assign button_class = button_class | append: ' btn--icon-only'
+            assign btn_text_class = btn_text_class | append: ' hidden'
+          elsif button_style == 'text_only'
+            assign button_class = button_class | append: ' md:w-full'
+            assign btn_text_class = btn_text_class | append: ' hidden md:flex'
+            assign icon_extra_class = icon_extra_class | append: ' md:hidden'
+          endif
 
-            if button_size
-              assign button_class = button_class | append: ' btn--' | append: button_size
-            endif
-          -%}
-          <button
-            class="{{ button_class }}"
-            type="button"
-            name="add"
-            on:click="quick-add-component/handleClick"
-            aria-label="{{ choose_options_text }}"
-          >
-            <span class="{{ btn_text_class }}">{{ choose_options_text }}</span>
-            {% render 'icon', icon: 'basket', class: icon_extra_class, size: button_icon_size %}
-            {%- if button_style == 'with_icon' -%}
-              <span class="btn__icon hidden md:flex">
-                <span class="btn__icon-text">{{ choose_options_text }}</span>
-                <span class="btn__icon-icon">
-                  {%- render 'icon', icon: button_icon, size: button_icon_size -%}
-                </span>
+          if button_size
+            assign button_class = button_class | append: ' btn--' | append: button_size
+          endif
+        -%}
+        <a
+          href="{{ target_pdp_url }}"
+          class="{{ button_class }}"
+          aria-label="{{ read_more_text }} - {{ product.title | escape }}"
+        >
+          <span class="{{ btn_text_class }}">{{ read_more_text }}</span>
+          {% render 'icon', icon: button_icon, class: icon_extra_class, size: button_icon_size %}
+          {%- if button_style == 'with_icon' -%}
+            <span class="btn__icon hidden md:flex">
+              <span class="btn__icon-text">{{ read_more_text }}</span>
+              <span class="btn__icon-icon">
+                {%- render 'icon', icon: button_icon, size: button_icon_size -%}
               </span>
-            {%- endif -%}
-            {% render 'loading-spinner', class: 'quick-add__button-spinner hidden' %}
-          </button>
-        {%- endif -%}
+            </span>
+          {%- endif -%}
+        </a>
       {%- else -%}
         {% comment %} For quickview button {% endcomment %}
         <button
