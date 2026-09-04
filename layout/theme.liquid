@@ -149,14 +149,13 @@
             // Create bottom description container
             const bottomDesc = document.createElement('div');
             bottomDesc.id = 'bottom-collection-desc';
-            bottomDesc.className = 'collection-banner spacing-style';
+            bottomDesc.className = 'collection-banner-bottom';
             bottomDesc.style.maxWidth = '600px';
+            bottomDesc.style.padding = '40px 15px'; // top/bottom 40px, left/right 15px to match container
+            // If they want it left-aligned, we leave margin default. If centered, we'd use margin: 40px auto.
+            // The screenshot shows the top text left-aligned with the rest of the content.
             bottomDesc.innerHTML = `
-              <div class="section__container section-grid section-grid--fixed">
-                <div class="section__wrapper" style="padding-top: 40px; padding-bottom: 40px;">
-                   <div class="rte" style="color: var(--color-subtext);">${fullHTML}</div>
-                </div>
-              </div>
+               <div class="rte" style="color: var(--color-subtext);">${fullHTML}</div>
             `;
             bottomDesc.style.display = 'none';
             
