@@ -1379,7 +1379,7 @@
           "name": "Timeline",
           "settings": {
             "content_row_gap": 12,
-            "badge_text": "DAG 1",
+            "badge_text": "{{ closest.product.metafields.custom.timeline.value.timeline_dag.value }}",
             "badge_color": "#000000",
             "badge_background_color": "#d9ede4"
           },
@@ -1388,7 +1388,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<p>Det første dybe åndedræt</p>",
+                "text": "<p>{{ closest.product.metafields.custom.timeline.value.timeline_heading.value }}</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
                 "highlight_shape_color": "",
@@ -1420,7 +1420,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>Mærk roen brede sig, så snart lyset rammer huden. Nervesystemet falder til ro, skuldrene sænker sig, og cellerne starter genopbygningen indefra. Du mærker en subtil, men klar forandring med det samme.</p><p><strong>87% mærkede en fysisk forskel i kroppen allerede efter første session.</strong></p>",
+                "text": "{{ closest.product.metafields.custom.timeline.value.timeline_text | metafield_tag }}",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
                 "highlight_shape_color": "",
