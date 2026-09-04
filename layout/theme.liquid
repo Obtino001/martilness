@@ -115,6 +115,61 @@
           }
         });
         {% endif %}
+
+        // Collection description read more logic
+        const descBlock = document.querySelector('.collection-description-block');
+        const collectionGrid = document.querySelector('.main-collection');
+        
+        if (descBlock && collectionGrid) {
+          const rte = descBlock.querySelector('.rte') || descBlock;
+          const fullHTML = rte.innerHTML;
+          
+          if (rte.textContent.trim().length > 150) {
+            descBlock.style.maxWidth = '600px';
+            
+            // Clamp top text
+            rte.style.display = '-webkit-box';
+            rte.style.webkitLineClamp = '2'; 
+            rte.style.webkitBoxOrient = 'vertical';
+            rte.style.overflow = 'hidden';
+            
+            // Create read more link
+            const readMore = document.createElement('a');
+            readMore.href = '#bottom-collection-desc';
+            readMore.textContent = 'Læs mere';
+            readMore.style.display = 'inline-block';
+            readMore.style.marginTop = '10px';
+            readMore.style.textDecoration = 'underline';
+            readMore.style.textUnderlineOffset = '4px';
+            readMore.style.fontWeight = '600';
+            readMore.style.cursor = 'pointer';
+            
+            descBlock.appendChild(readMore);
+            
+            // Create bottom description container
+            const bottomDesc = document.createElement('div');
+            bottomDesc.id = 'bottom-collection-desc';
+            bottomDesc.className = 'collection-banner spacing-style';
+            bottomDesc.style.maxWidth = '600px';
+            bottomDesc.innerHTML = `
+              <div class="section__container section-grid section-grid--fixed">
+                <div class="section__wrapper" style="padding-top: 40px; padding-bottom: 40px;">
+                   <div class="rte" style="color: var(--color-subtext);">${fullHTML}</div>
+                </div>
+              </div>
+            `;
+            bottomDesc.style.display = 'none';
+            
+            collectionGrid.parentNode.insertBefore(bottomDesc, collectionGrid.nextSibling);
+            
+            readMore.addEventListener('click', (e) => {
+              e.preventDefault();
+              descBlock.style.display = 'none';
+              bottomDesc.style.display = 'block';
+              bottomDesc.scrollIntoView({ behavior: 'smooth' });
+            });
+          }
+        }
       });
     </script>
   </body>

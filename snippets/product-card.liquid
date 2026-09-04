@@ -9,13 +9,8 @@
   endif
 
   assign has_quick_view = false
-  assign show_quick_view = show_quick_view | default: settings.pcard_show_quick_view, allow_false: true
-  assign show_quick_view_mobile = show_quick_view_mobile | default: settings.pcard_show_quick_view_mobile, allow_false: true
-  if product != blank
-    if show_quick_view or show_quick_view_mobile
-      assign has_quick_view = true
-    endif
-  endif
+  assign show_quick_view = false
+  assign show_quick_view_mobile = false
 
   # Logic to determine which variant URL to use (matching swatch selection logic)
   assign variant_to_link = product.selected_or_first_available_variant

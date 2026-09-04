@@ -1465,13 +1465,13 @@
         "type": "checkbox",
         "id": "pcard_show_quick_view",
         "label": "t:settings.show_quick_view",
-        "default": true
+        "default": false
       },
       {
         "type": "checkbox",
         "id": "pcard_show_quick_view_mobile",
         "label": "t:settings.show_quick_view_on_mobile",
-        "default": true
+        "default": false
       }
     ]
   },
