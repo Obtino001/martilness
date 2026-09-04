@@ -108,9 +108,7 @@
           class="form-control form-control--textarea w-full"
           name="contact[{{ 'blocks.contact_form.your_message' | t }}]"
           placeholder="{{ 'blocks.contact_form.your_message' | t }}"
-        >
-          {{- form.body -}}
-        </textarea>
+        >{%- if form.body -%}{{- form.body -}}{%- endif -%}</textarea>
       </div>
 
       {% comment %} button submit {% endcomment %}
