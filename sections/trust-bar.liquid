@@ -24,43 +24,46 @@
     padding: 0 48px;
     display: flex;
     align-items: center;
-    justify-content: center;
   }
 
   .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__desktop {
-    position: relative;
     width: 100%;
     max-width: 1480px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: center;
     white-space: nowrap;
   }
 
-  .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__left {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
+  .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__end {
+    flex: 1 1 0;
     display: flex;
     align-items: center;
+    min-width: 0;
+  }
+
+  .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__end--start {
     justify-content: flex-start;
   }
 
-  .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__center {
+  .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__end--start:not(:has(.iwao-trust-bar__phone)) {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__end--start:has(.iwao-trust-bar__phone) {
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__cluster {
+    flex: 0 1 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 2.4rem;
   }
 
-  .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__right {
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
+  .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__end--end {
     justify-content: flex-end;
   }
 
@@ -257,58 +260,58 @@
 
 <div class="iwao-trust-bar-{{ section.id }}" data-iwao-trust-bar="">
   <div class="iwao-trust-bar__inner">
-    
     {%- liquid
-      assign has_explicit_right = false
+      assign right_id = blank
       for block in section.blocks
-        if block.settings.position == 'right'
-          assign has_explicit_right = true
-          break
+        assign text_down = block.settings.text | downcase
+        if block.settings.position == 'right' or text_down contains 'trustpilot'
+          assign right_id = block.id
         endif
       endfor
+      if right_id == blank and section.blocks.size > 1
+        for block in section.blocks
+          if forloop.last
+            assign right_id = block.id
+          endif
+        endfor
+      endif
     -%}
 
     <!-- DESKTOP -->
     <div class="iwao-trust-bar__desktop">
-      <div class="iwao-trust-bar__left">
+      <div class="iwao-trust-bar__end iwao-trust-bar__end--start"{% if section.settings.phone_text == blank %} aria-hidden="true"{% endif %}>
         {%- if section.settings.phone_text != blank -%}
           <a class="iwao-trust-bar__phone" href="{{ section.settings.phone_url }}" aria-label="{{ section.settings.phone_text }}">
-            <div class="iwao-trust-bar__icon">
-              {{ section.settings.phone_icon }}
-            </div>
+            <div class="iwao-trust-bar__icon">{{ section.settings.phone_icon }}</div>
             <span>{{ section.settings.phone_text }}</span>
           </a>
+        {%- else -%}
+          {%- for block in section.blocks -%}
+            {%- if block.id == right_id -%}
+              <span class="iwao-trust-bar__item">
+                <div class="iwao-trust-bar__icon">{{ block.settings.icon }}</div>
+                <span>{{ block.settings.text }}</span>
+              </span>
+            {%- endif -%}
+          {%- endfor -%}
         {%- endif -%}
       </div>
 
-      <div class="iwao-trust-bar__center">
+      <div class="iwao-trust-bar__cluster">
         {%- assign is_first_center = true -%}
         {%- for block in section.blocks -%}
-          {%- assign is_right = false -%}
-          {%- if has_explicit_right -%}
-            {%- if block.settings.position == 'right' -%}
-              {%- assign is_right = true -%}
-            {%- endif -%}
-          {%- elsif forloop.last and section.blocks.size > 1 -%}
-            {%- assign is_right = true -%}
-          {%- endif -%}
-
-          {%- unless is_right -%}
+          {%- unless block.id == right_id -%}
             {%- unless is_first_center -%}
               <span class="iwao-trust-bar__divider" aria-hidden="true"></span>
             {%- endunless -%}
             {%- if block.settings.link != blank -%}
               <a class="iwao-trust-bar__item" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
-                <div class="iwao-trust-bar__icon">
-                  {{ block.settings.icon }}
-                </div>
+                <div class="iwao-trust-bar__icon">{{ block.settings.icon }}</div>
                 <span>{{ block.settings.text }}</span>
               </a>
             {%- else -%}
               <span class="iwao-trust-bar__item" {{ block.shopify_attributes }}>
-                <div class="iwao-trust-bar__icon">
-                  {{ block.settings.icon }}
-                </div>
+                <div class="iwao-trust-bar__icon">{{ block.settings.icon }}</div>
                 <span>{{ block.settings.text }}</span>
               </span>
             {%- endif -%}
@@ -317,38 +320,20 @@
         {%- endfor -%}
       </div>
 
-      <div class="iwao-trust-bar__right">
-        {%- assign is_first_right = true -%}
+      <div class="iwao-trust-bar__end iwao-trust-bar__end--end">
         {%- for block in section.blocks -%}
-          {%- assign is_right = false -%}
-          {%- if has_explicit_right -%}
-            {%- if block.settings.position == 'right' -%}
-              {%- assign is_right = true -%}
-            {%- endif -%}
-          {%- elsif forloop.last and section.blocks.size > 1 -%}
-            {%- assign is_right = true -%}
-          {%- endif -%}
-
-          {%- if is_right -%}
-            {%- unless is_first_right -%}
-              <span class="iwao-trust-bar__divider" aria-hidden="true"></span>
-            {%- endunless -%}
+          {%- if block.id == right_id -%}
             {%- if block.settings.link != blank -%}
               <a class="iwao-trust-bar__item" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
-                <div class="iwao-trust-bar__icon">
-                  {{ block.settings.icon }}
-                </div>
+                <div class="iwao-trust-bar__icon">{{ block.settings.icon }}</div>
                 <span>{{ block.settings.text }}</span>
               </a>
             {%- else -%}
               <span class="iwao-trust-bar__item" {{ block.shopify_attributes }}>
-                <div class="iwao-trust-bar__icon">
-                  {{ block.settings.icon }}
-                </div>
+                <div class="iwao-trust-bar__icon">{{ block.settings.icon }}</div>
                 <span>{{ block.settings.text }}</span>
               </span>
             {%- endif -%}
-            {%- assign is_first_right = false -%}
           {%- endif -%}
         {%- endfor -%}
       </div>
