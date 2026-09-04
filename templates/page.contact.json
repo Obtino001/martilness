@@ -187,7 +187,7 @@
                 "full_width": true,
                 "checkbox_checked_value": "Yes",
                 "checkbox_uncheck_value": "No",
-                "select_options": "Spørgsmål om produkt,Min ordrer,Returnering,Levering,Samarbejde, Andet"
+                "select_options": "Spørgsmål om produkt,Min ordrer,Samarbejde, Andet"
               },
               "blocks": {}
             }
