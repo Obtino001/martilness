@@ -1,5 +1,4 @@
 {%- liquid
-  assign accent = section.settings.accent_color | default: '#26B173'
   assign heading = section.settings.heading | default: 'Vi er her for at hjælpe!'
   assign phone = section.settings.phone | default: '+45 2779 6900'
   assign email = section.settings.email | default: 'info@martilness.dk'
@@ -11,7 +10,7 @@
   id="section-{{ section.id }}"
   class="mt-contact color-{{ section.settings.color_scheme }}"
   style="
-    --mt-contact-accent: {{ accent }};
+    --mt-contact-accent: rgb(var(--color-primary-button-background));
     --mt-contact-pad-top: {{ section.settings.padding_top }}px;
     --mt-contact-pad-bottom: {{ section.settings.padding_bottom }}px;
   "
@@ -240,7 +239,7 @@
   }
 
   #section-{{ section.id }} .mt-contact__form-wrap {
-    background: #f3f3f3;
+    background: rgb(var(--color-foreground) / 0.05);
     padding: 2.4rem;
   }
 
@@ -262,8 +261,8 @@
   }
 
   #section-{{ section.id }} .mt-contact__form .form-control {
-    background: #fff;
-    border-radius: 0;
+    background: rgb(var(--color-background));
+    border-radius: var(--inputs-radius, 0);
   }
 
   #section-{{ section.id }} .mt-contact__form textarea.form-control {
@@ -272,19 +271,10 @@
   }
 
   #section-{{ section.id }} .mt-contact__submit.btn--primary {
-    background-color: var(--mt-contact-accent);
-    border-color: var(--mt-contact-accent);
-    color: #fff;
     text-transform: uppercase;
     letter-spacing: 0.04em;
     min-height: 5.2rem;
     justify-content: center;
-  }
-
-  #section-{{ section.id }} .mt-contact__submit.btn--primary:hover {
-    background-color: var(--mt-contact-accent);
-    color: #fff;
-    filter: brightness(0.92);
   }
 
   @media (min-width: 750px) {
@@ -365,7 +355,7 @@
       "type": "color",
       "id": "accent_color",
       "label": "Link and button color",
-      "default": "#26B173"
+      "default": "#09412d"
     },
     {
       "type": "color_scheme",

@@ -144,7 +144,7 @@
             readMore.style.fontWeight = '600';
             readMore.style.cursor = 'pointer';
             
-            descBlock.appendChild(readMore);
+            descBlock.parentNode.insertBefore(readMore, descBlock.nextSibling);
             
             // Create bottom description container
             const bottomDesc = document.createElement('div');
