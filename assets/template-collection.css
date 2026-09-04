@@ -89,6 +89,9 @@ results-list[show-filtering=false] .facet-filtering {
 }
 
 @media (min-width: 1024px) {
+  results-list[show-filtering=false] .collection__wrapper {
+    grid-template-columns: minmax(0, 1fr);
+  }
   results-list .collection__wrapper {
     grid-template-areas: "toolbar toolbar" "remove-buttons remove-buttons" "main-collection-grid main-collection-grid";
   }

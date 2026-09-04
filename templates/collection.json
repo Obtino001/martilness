@@ -96,7 +96,7 @@
       },
       "name": "t:names.collection_banner",
       "settings": {
-        "container": "full",
+        "container": "fixed",
         "enable_header_overlay": false,
         "show_image": false,
         "toggle_overlay": true,

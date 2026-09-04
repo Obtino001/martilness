@@ -119,15 +119,11 @@
           const fullHTML = rte.innerHTML;
           
           if (rte.textContent.trim().length > 150) {
-            descBlock.style.maxWidth = '600px';
-            
-            // Clamp top text
             rte.style.display = '-webkit-box';
             rte.style.webkitLineClamp = '2'; 
             rte.style.webkitBoxOrient = 'vertical';
             rte.style.overflow = 'hidden';
             
-            // Create read more link
             const readMore = document.createElement('a');
             readMore.href = '#bottom-collection-desc';
             readMore.textContent = 'Læs mere';
@@ -140,18 +136,14 @@
             
             descBlock.parentNode.insertBefore(readMore, descBlock.nextSibling);
             
-            // Create bottom description container
             const bottomDesc = document.createElement('div');
             bottomDesc.id = 'bottom-collection-desc';
-            bottomDesc.className = 'collection-banner-bottom';
-            bottomDesc.style.padding = '40px 0'; // top/bottom padding
-            
+            bottomDesc.className = 'collection-banner-bottom section-grid section-grid--fixed';
+            bottomDesc.style.paddingBlock = '40px';
             bottomDesc.innerHTML = `
-               <div class="section__container">
-                 <div class="rte" style="color: var(--color-subtext); max-width: 600px;">
-                   ${fullHTML}
-                 </div>
-               </div>
+              <div class="rte" style="color: var(--color-subtext);">
+                ${fullHTML}
+              </div>
             `;
             bottomDesc.style.display = 'none';
             
@@ -160,7 +152,8 @@
             readMore.addEventListener('click', (e) => {
               e.preventDefault();
               descBlock.style.display = 'none';
-              bottomDesc.style.display = 'block';
+              readMore.style.display = 'none';
+              bottomDesc.style.display = 'grid';
               bottomDesc.scrollIntoView({ behavior: 'smooth' });
             });
           }
