@@ -27,7 +27,7 @@
     data-index="{{ block_index }}"
     ref="texts[]"
   >
-    <h3 class="h5 collection-highlight__preview-title text-capitalize">{{ 'content.x_collection' | t: name: collection_name }}</h3>
+    <h3 class="h5 collection-highlight__preview-title text-capitalize">{{ collection_name }}</h3>
     <div class="color-subtext collection-highlight__preview-text rte">{{- block.settings.description -}}</div>
   </div>
 {%- endcapture -%}
