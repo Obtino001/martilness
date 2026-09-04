@@ -1339,6 +1339,7 @@
         "video_card_MNEVpH",
         "video_card_C4C9Qb"
       ],
+      "disabled": true,
       "name": "t:names.flex_carousel_video_cards",
       "settings": {
         "container": "page-width",
