@@ -14,8 +14,8 @@
       "name": "Martilness Hero",
       "settings": {
         "show_rating": true,
-        "rating": "4.8",
-        "rating_suffix": "4,8 på Trustpilot",
+        "rating": "",
+        "rating_suffix": "på Trustpilot",
         "title": "Alle har ret til fysisk og psykisk velvære",
         "subtitle": "Hurtig levering. Stort udvalg. Fra isbad til sauna — velvære derhjemme.",
         "btn1_label": "Se vores produkter",
@@ -1971,7 +1971,10 @@
       "name": "Trustpilot reviews",
       "settings": {
         "heading": "Vi samler på glade kunder",
+        "header_layout": "center",
+        "layout": "marquee",
         "rating_label": "4,8 ud af 5 stjerner på Trustpilot",
+        "rating_url": "",
         "marquee_speed": 40,
         "pause_on_hover": true,
         "link_label": "Se flere anmeldelser her →",
