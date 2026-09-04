@@ -1,3 +1,35 @@
+{%- liquid
+  assign scroll_id = block.settings.scroll_target | strip
+-%}
+{%- if scroll_id != blank -%}
+  <a
+    href="#{{ scroll_id }}"
+    class="accordion__summary accordion__summary--link flex"
+    {{ block.shopify_attributes }}
+  >
+    <span class="accordion__summary-text">
+      {% if block.settings.icon != 'none' or block.settings.image_upload != blank %}
+        {% render 'icon-or-image',
+          icon: block.settings.icon,
+          image_upload: block.settings.image_upload,
+          class_name: 'accordion__summary-icon',
+          width: block.settings.width,
+          width_mobile: block.settings.width_mobile,
+          attributes: block.shopify_attributes,
+          icon_size: block.settings.icon_size
+        %}
+      {% endif %}
+      {{ block.settings.text }}
+    </span>
+    {% render 'icon', icon: 'caret-down', class: 'flex shrink-0 accordion__summary-arrow icon--caret' %}
+  </a>
+  <style>
+    .accordion__summary--link {
+      color: inherit;
+      text-decoration: none;
+    }
+  </style>
+{%- else -%}
 <details
   ref="item[]"
   class="accordion__details{% if block.settings.open_row_by_default %} is-open{% endif %}"
@@ -30,6 +62,7 @@
     </div>
   </div>
 </details>
+{%- endif -%}
 {% schema %}
 {
   "name": "t:names.accordion_row",
@@ -45,6 +78,12 @@
       "id": "open_row_by_default",
       "label": "t:settings.open_row_by_default",
       "default": false
+    },
+    {
+      "type": "text",
+      "id": "scroll_target",
+      "label": "Scroll to section ID",
+      "info": "If set, this row only scrolls. It will not open as an accordion."
     },
     {
       "type": "header",

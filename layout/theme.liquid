@@ -80,18 +80,15 @@
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-        const healthTarget = document.getElementById('sundhedsmaessige-fordele')
-          || document.querySelector('[id*="iwt_health_benefits"]');
-        if (healthTarget) {
-          document.querySelectorAll('.accordion__summary').forEach((summary) => {
-            if (!summary.textContent.includes('Sundhedsmæssige fordele')) return;
-            summary.addEventListener('click', (event) => {
-              event.preventDefault();
-              event.stopPropagation();
-              healthTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, true);
+        document.querySelectorAll('.accordion__summary--link').forEach((link) => {
+          link.addEventListener('click', (event) => {
+            const id = (link.getAttribute('href') || '').replace('#', '');
+            const target = id ? document.getElementById(id) : null;
+            if (!target) return;
+            event.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
           });
-        }
+        });
 
         const targetText = 'Læs mere her om hvordan rødlysterapi virker';
         document.querySelectorAll('p').forEach(p => {
@@ -147,12 +144,14 @@
             const bottomDesc = document.createElement('div');
             bottomDesc.id = 'bottom-collection-desc';
             bottomDesc.className = 'collection-banner-bottom';
-            bottomDesc.style.maxWidth = '600px';
-            bottomDesc.style.padding = '40px 15px'; // top/bottom 40px, left/right 15px to match container
-            // If they want it left-aligned, we leave margin default. If centered, we'd use margin: 40px auto.
-            // The screenshot shows the top text left-aligned with the rest of the content.
+            bottomDesc.style.padding = '40px 0'; // top/bottom padding
+            
             bottomDesc.innerHTML = `
-               <div class="rte" style="color: var(--color-subtext);">${fullHTML}</div>
+               <div class="section__container">
+                 <div class="rte" style="color: var(--color-subtext); max-width: 600px;">
+                   ${fullHTML}
+                 </div>
+               </div>
             `;
             bottomDesc.style.display = 'none';
             
