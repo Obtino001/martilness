@@ -434,6 +434,7 @@
               "blocks": {
                 "subheading": {
                   "type": "_simple-text",
+                  "disabled": true,
                   "static": true,
                   "settings": {
                     "text": "<p>Isbad kollektion</p>",
@@ -575,6 +576,7 @@
               "blocks": {
                 "subheading": {
                   "type": "_simple-text",
+                  "disabled": true,
                   "static": true,
                   "settings": {
                     "text": "<p>Dampsauna kollektion</p>",
@@ -673,7 +675,7 @@
           "name": "t:categories.collection",
           "settings": {
             "collection": "saunataeppe",
-            "title": "Saunatæppe",
+            "title": "",
             "title_preset": "custom",
             "title_font": "var(--font-heading--family)",
             "title_font_weight": "",
@@ -716,6 +718,7 @@
               "blocks": {
                 "subheading": {
                   "type": "_simple-text",
+                  "disabled": true,
                   "static": true,
                   "settings": {
                     "text": "<p>Saunatæppe kollektion</p>",
@@ -814,7 +817,6 @@
           "name": "t:categories.collection",
           "settings": {
             "collection": "infrarodt-lys",
-            "image": "shopify://shop_images/DSC09528_44f17d66-85fb-4abc-9bf1-9661ae33f9ae.jpg",
             "title": "Infrarødt lys",
             "title_preset": "custom",
             "title_font": "var(--font-heading--family)",
@@ -858,6 +860,7 @@
               "blocks": {
                 "subheading": {
                   "type": "_simple-text",
+                  "disabled": true,
                   "static": true,
                   "settings": {
                     "text": "<p>Infrarødt lys kollektion</p>",
