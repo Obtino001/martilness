@@ -30,41 +30,31 @@
     width: 100%;
     max-width: 1480px;
     margin: 0 auto;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     align-items: center;
     white-space: nowrap;
   }
 
-  .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__end {
-    flex: 1 1 0;
+  .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__item-wrap {
     display: flex;
     align-items: center;
-    min-width: 0;
   }
 
-  .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__end--start {
-    justify-content: flex-start;
+  .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__item-wrap:nth-child(1) {
+    justify-self: start;
   }
 
-  .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__end--start:not(:has(.iwao-trust-bar__phone)) {
-    visibility: hidden;
-    pointer-events: none;
+  .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__item-wrap:nth-child(2) {
+    justify-self: center;
   }
 
-  .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__end--start:has(.iwao-trust-bar__phone) {
-    visibility: visible;
-    pointer-events: auto;
+  .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__item-wrap:nth-child(3) {
+    justify-self: center;
   }
 
-  .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__cluster {
-    flex: 0 1 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__end--end {
-    justify-content: flex-end;
+  .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__item-wrap:nth-child(n+4) {
+    justify-self: end;
   }
 
   .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__item,
@@ -279,64 +269,30 @@
 
     <!-- DESKTOP -->
     <div class="iwao-trust-bar__desktop">
-      <div class="iwao-trust-bar__end iwao-trust-bar__end--start"{% if section.settings.phone_text == blank %} aria-hidden="true"{% endif %}>
-        {%- if section.settings.phone_text != blank -%}
+      {%- if section.settings.phone_text != blank -%}
+        <div class="iwao-trust-bar__item-wrap">
           <a class="iwao-trust-bar__phone" href="{{ section.settings.phone_url }}" aria-label="{{ section.settings.phone_text }}">
             <div class="iwao-trust-bar__icon">{{ section.settings.phone_icon }}</div>
             <span>{{ section.settings.phone_text }}</span>
           </a>
-        {%- else -%}
-          {%- for block in section.blocks -%}
-            {%- if block.id == right_id -%}
-              <span class="iwao-trust-bar__item">
-                <div class="iwao-trust-bar__icon">{{ block.settings.icon }}</div>
-                <span>{{ block.settings.text }}</span>
-              </span>
-            {%- endif -%}
-          {%- endfor -%}
-        {%- endif -%}
-      </div>
+        </div>
+      {%- endif -%}
 
-      <div class="iwao-trust-bar__cluster">
-        {%- assign is_first_center = true -%}
-        {%- for block in section.blocks -%}
-          {%- unless block.id == right_id -%}
-            {%- unless is_first_center -%}
-              <span class="iwao-trust-bar__divider" aria-hidden="true"></span>
-            {%- endunless -%}
-            {%- if block.settings.link != blank -%}
-              <a class="iwao-trust-bar__item" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
-                <div class="iwao-trust-bar__icon">{{ block.settings.icon }}</div>
-                <span>{{ block.settings.text }}</span>
-              </a>
-            {%- else -%}
-              <span class="iwao-trust-bar__item" {{ block.shopify_attributes }}>
-                <div class="iwao-trust-bar__icon">{{ block.settings.icon }}</div>
-                <span>{{ block.settings.text }}</span>
-              </span>
-            {%- endif -%}
-            {%- assign is_first_center = false -%}
-          {%- endunless -%}
-        {%- endfor -%}
-      </div>
-
-      <div class="iwao-trust-bar__end iwao-trust-bar__end--end">
-        {%- for block in section.blocks -%}
-          {%- if block.id == right_id -%}
-            {%- if block.settings.link != blank -%}
-              <a class="iwao-trust-bar__item" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
-                <div class="iwao-trust-bar__icon">{{ block.settings.icon }}</div>
-                <span>{{ block.settings.text }}</span>
-              </a>
-            {%- else -%}
-              <span class="iwao-trust-bar__item" {{ block.shopify_attributes }}>
-                <div class="iwao-trust-bar__icon">{{ block.settings.icon }}</div>
-                <span>{{ block.settings.text }}</span>
-              </span>
-            {%- endif -%}
+      {%- for block in section.blocks -%}
+        <div class="iwao-trust-bar__item-wrap">
+          {%- if block.settings.link != blank -%}
+            <a class="iwao-trust-bar__item" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+              <div class="iwao-trust-bar__icon">{{ block.settings.icon }}</div>
+              <span>{{ block.settings.text }}</span>
+            </a>
+          {%- else -%}
+            <span class="iwao-trust-bar__item" {{ block.shopify_attributes }}>
+              <div class="iwao-trust-bar__icon">{{ block.settings.icon }}</div>
+              <span>{{ block.settings.text }}</span>
+            </span>
           {%- endif -%}
-        {%- endfor -%}
-      </div>
+        </div>
+      {%- endfor -%}
     </div>
 
     <!-- MOBILE -->
