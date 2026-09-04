@@ -1778,11 +1778,11 @@
           "type": "_timeline-media",
           "static": true,
           "settings": {
-            "image_1": "shopify://shop_images/Rodlys_maske_21_1.webp",
+            "image_1": "{{ closest.product.metafields.custom.timeline.value.image_1.value }}",
             "image_ratio_1": "adapt",
             "image_width_1": 84,
             "image_border_radius_1": 0,
-            "image_2": "shopify://shop_images/Rodlys_maske_22_1.webp",
+            "image_2": "{{ closest.product.metafields.custom.timeline.value.image_2.value }}",
             "image_ratio_2": "adapt",
             "image_width_2": 48,
             "image_border_radius_2": 0
@@ -1793,7 +1793,7 @@
               "static": true,
               "settings": {
                 "icon": "heart",
-                "text": "60 DAGES TRANSFORMATION",
+                "text": "{{ closest.product.metafields.custom.timeline.value.spinning_icon_badge.value }}",
                 "font": "var(--font-heading--family)",
                 "font_size": 12,
                 "font_size_mobile": 8,
