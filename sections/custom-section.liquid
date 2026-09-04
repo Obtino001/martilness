@@ -55,7 +55,12 @@
 {%- endcapture -%}
 <div
   class="section custom-section {{ section.settings.container }}{% unless use_color_scheme_in_container %} border-style color-{{ section.settings.color_scheme }}{% else %} inherit-color-scheme{% endunless %}"
-  style="{{ inline_style | replace: '  ', ' ' | strip | strip_newlines }}"
+  {% if section.id contains 'health_benefits' %}
+    id="sundhedsmaessige-fordele"
+    style="{{ inline_style | replace: '  ', ' ' | strip | strip_newlines }}; scroll-margin-top: 10rem;"
+  {% else %}
+    style="{{ inline_style | replace: '  ', ' ' | strip | strip_newlines }}"
+  {% endif %}
 >
   <div
     class="{{ content_wrapper_class | replace: '  ', ' ' | strip | strip_newlines }}"

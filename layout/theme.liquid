@@ -80,21 +80,19 @@
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-        {% if template.suffix == 'infrarodt-lys' %}
-        const targetText = 'Sundhedsmæssige fordele';
-        document.querySelectorAll('p').forEach(p => {
-          if (p.textContent.includes(targetText) && !p.querySelector('a')) {
-            const parts = p.innerHTML.split(targetText);
-            p.innerHTML = parts[0] + '<a href="#footer" style="text-decoration: underline; text-underline-offset: 4px; font-weight: 600; cursor: pointer;">' + targetText + '</a>' + parts[1];
-            
-            const a = p.querySelector('a');
-            a.addEventListener('click', (e) => {
-              e.preventDefault();
-              window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-            });
-          }
-        });
-        {% else %}
+        const healthTarget = document.getElementById('sundhedsmaessige-fordele')
+          || document.querySelector('[id*="iwt_health_benefits"]');
+        if (healthTarget) {
+          document.querySelectorAll('.accordion__summary').forEach((summary) => {
+            if (!summary.textContent.includes('Sundhedsmæssige fordele')) return;
+            summary.addEventListener('click', (event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              healthTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, true);
+          });
+        }
+
         const targetText = 'Læs mere her om hvordan rødlysterapi virker';
         document.querySelectorAll('p').forEach(p => {
           if (p.textContent.includes(targetText) && !p.querySelector('a')) {
@@ -114,7 +112,6 @@
             }
           }
         });
-        {% endif %}
 
         // Collection description read more logic
         const descBlock = document.querySelector('.collection-description-block');
