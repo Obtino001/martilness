@@ -143,6 +143,20 @@
   flex-shrink: 0;
 }
 
+.media-gallery--quick-add .media-gallery__item,
+.media-gallery--quick-add .media-gallery__item .media {
+  --ratio: 1 / 1;
+  --ratio-mobile: 1 / 1;
+  aspect-ratio: 1 / 1;
+}
+
+.media-gallery--quick-add .media-gallery__item .media img,
+.media-gallery--quick-add .media-gallery__item .media__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .media-gallery--quick-add .media-gallery__carousel--single .media-gallery__item {
   flex: 0 0 100%;
 }

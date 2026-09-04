@@ -70,7 +70,7 @@
           %}
             {% render 'product-media',
               media: media,
-              image_ratio: block_settings.media_aspect_ratio,
+              image_ratio: '1/1',
               is_main_product_media: forloop.first,
               selected_product: selected_product,
               first_3d_model: first_3d_model,
@@ -108,7 +108,7 @@
         { "value": "16/9", "label": "t:options.landscape" },
         { "value": "4/3", "label": "t:options.landscape_4_3" }
       ],
-      "default": "auto"
+      "default": "1/1"
     },
     {
       "type": "range",

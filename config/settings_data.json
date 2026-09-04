@@ -59,7 +59,7 @@
     "show_caculate_shipping_rate": false,
     "show_installments": false,
     "show_accelerated_checkout_buttons": false,
-    "cart_thumbnail_ratio": "adapt",
+    "cart_thumbnail_ratio": "1/1",
     "free_shipping_goal_amount": "499",
     "cart_empty_recommendation_collection": [
       "testpakker",
