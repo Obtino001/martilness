@@ -5,6 +5,7 @@
   assign link_url = section.settings.link_url
   assign speed = section.settings.marquee_speed | default: 40
   assign pause_on_hover = section.settings.pause_on_hover
+  assign layout = section.settings.layout | default: 'marquee'
 -%}
 
 <div
@@ -17,53 +18,116 @@
   "
 >
   <div class="mt-reviews__inner">
-    <div class="mt-reviews__header page-width">
+    <div class="mt-reviews__header mt-reviews__header--{{ section.settings.header_layout | default: 'center' }} page-width">
       {% if heading != blank %}
         <h2 class="mt-reviews__heading">{{ heading }}</h2>
       {% endif %}
       {% if rating_label != blank %}
-        <div class="mt-reviews__rating">
+        {%- if section.settings.rating_url != blank -%}
+          <a class="mt-reviews__rating" href="{{ section.settings.rating_url }}" {% if section.settings.rating_url contains 'http' %}target="_blank" rel="noopener"{% endif %}>
+        {%- else -%}
+          <div class="mt-reviews__rating">
+        {%- endif -%}
           <span class="mt-reviews__stars" aria-hidden="true">
             {%- for i in (1..5) -%}
               <svg viewBox="0 0 24 24" focusable="false"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             {%- endfor -%}
           </span>
           <span class="mt-reviews__rating-text">{{ rating_label }}</span>
-        </div>
+        {%- if section.settings.rating_url != blank -%}
+          </a>
+        {%- else -%}
+          </div>
+        {%- endif -%}
       {% endif %}
     </div>
 
     {% if section.blocks.size > 0 %}
-      <div
-        class="mt-reviews__marquee{% if pause_on_hover %} mt-reviews__marquee--pause{% endif %}"
-        role="region"
-        aria-label="{{ heading | escape }}"
-      >
-        <div class="mt-reviews__track">
-          {%- for pass in (1..2) -%}
-            <div class="mt-reviews__group" {% if pass == 2 %}aria-hidden="true"{% endif %}>
-              {% for block in section.blocks %}
-                <article class="mt-reviews__card" {% if pass == 1 %}{{ block.shopify_attributes }}{% endif %}>
-                  <div class="mt-reviews__card-stars" aria-hidden="true">
-                    {%- for i in (1..5) -%}
-                      <svg viewBox="0 0 24 24" focusable="false"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    {%- endfor -%}
+      {%- if layout == 'carousel' -%}
+        <div class="mt-reviews__carousel-wrap page-width">
+          <carousel-slider
+            class="mt-reviews__carousel carousel carousel--visible relative"
+            aria-label="{{ heading | escape }}"
+          >
+            <script type="application/json" ref="config">
+              {
+                "slidesPerView": "auto",
+                "spaceBetween": 20,
+                "loop": false,
+                "mousewheel": {
+                  "enabled": true,
+                  "forceToAxis": true,
+                  "thresholdTime": 300,
+                  "thresholdDelta": 10
+                },
+                "pagination": false,
+                "counter": false
+              }
+            </script>
+            <div class="swiper" ref="container">
+              <div class="swiper-wrapper">
+                {% for block in section.blocks %}
+                  <div class="swiper-slide">
+                    <article class="mt-reviews__card mt-reviews__card--carousel" {{ block.shopify_attributes }}>
+                      <div class="mt-reviews__card-stars" aria-hidden="true">
+                        {%- for i in (1..5) -%}
+                          <svg viewBox="0 0 24 24" focusable="false"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        {%- endfor -%}
+                      </div>
+                      {% if block.settings.author != blank %}
+                        <h3 class="mt-reviews__card-title">{{ block.settings.author }}</h3>
+                      {% elsif block.settings.title != blank %}
+                        <h3 class="mt-reviews__card-title">{{ block.settings.title }}</h3>
+                      {% endif %}
+                      {% if block.settings.text != blank %}
+                        <p class="mt-reviews__card-text">{{ block.settings.text }}</p>
+                      {% endif %}
+                    </article>
                   </div>
-                  {% if block.settings.title != blank %}
-                    <h3 class="mt-reviews__card-title">{{ block.settings.title }}</h3>
-                  {% endif %}
-                  {% if block.settings.text != blank %}
-                    <p class="mt-reviews__card-text">{{ block.settings.text }}</p>
-                  {% endif %}
-                  {% if block.settings.author != blank %}
-                    <p class="mt-reviews__card-author">- {{ block.settings.author }}</p>
-                  {% endif %}
-                </article>
-              {% endfor %}
+                {% endfor %}
+              </div>
             </div>
-          {%- endfor -%}
+            {% render 'carousel-controls',
+              ref: 'controls',
+              type: 'absolute',
+              pagination: false,
+              counter: false,
+              navigation_inside: true
+            %}
+          </carousel-slider>
         </div>
-      </div>
+      {%- else -%}
+        <div
+          class="mt-reviews__marquee{% if pause_on_hover %} mt-reviews__marquee--pause{% endif %}"
+          role="region"
+          aria-label="{{ heading | escape }}"
+        >
+          <div class="mt-reviews__track">
+            {%- for pass in (1..2) -%}
+              <div class="mt-reviews__group" {% if pass == 2 %}aria-hidden="true"{% endif %}>
+                {% for block in section.blocks %}
+                  <article class="mt-reviews__card" {% if pass == 1 %}{{ block.shopify_attributes }}{% endif %}>
+                    <div class="mt-reviews__card-stars" aria-hidden="true">
+                      {%- for i in (1..5) -%}
+                        <svg viewBox="0 0 24 24" focusable="false"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                      {%- endfor -%}
+                    </div>
+                    {% if block.settings.title != blank %}
+                      <h3 class="mt-reviews__card-title">{{ block.settings.title }}</h3>
+                    {% endif %}
+                    {% if block.settings.text != blank %}
+                      <p class="mt-reviews__card-text">{{ block.settings.text }}</p>
+                    {% endif %}
+                    {% if block.settings.author != blank %}
+                      <p class="mt-reviews__card-author">- {{ block.settings.author }}</p>
+                    {% endif %}
+                  </article>
+                {% endfor %}
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
     {% endif %}
 
     {% if link_label != blank %}
@@ -85,7 +149,7 @@
     padding: var(--mt-reviews-pad-top) 0 var(--mt-reviews-pad-bottom);
     background: rgb(var(--color-background));
     color: rgb(var(--color-foreground));
-    overflow: hidden;
+    overflow: {% if layout == 'carousel' %}visible{% else %}hidden{% endif %};
   }
 
   #section-{{ section.id }} .mt-reviews__header,
@@ -98,6 +162,33 @@
   #section-{{ section.id }} .mt-reviews__header {
     text-align: center;
     margin-bottom: 4rem;
+  }
+
+  #section-{{ section.id }} .mt-reviews__header--split {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.6rem 2.4rem;
+    text-align: left;
+    margin-bottom: 3.2rem;
+    flex-wrap: wrap;
+  }
+
+  #section-{{ section.id }} .mt-reviews__header--split .mt-reviews__heading {
+    margin: 0;
+    flex: 1 1 18rem;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  #section-{{ section.id }} .mt-reviews__header--split .mt-reviews__rating {
+    justify-content: flex-end;
+    margin-left: auto;
+  }
+
+  #section-{{ section.id }} a.mt-reviews__rating {
+    text-decoration: none;
+    color: inherit;
   }
 
   #section-{{ section.id }} .mt-reviews__heading {
@@ -133,6 +224,37 @@
   #section-{{ section.id }} .mt-reviews__rating-text {
     font-size: 1.5rem;
     font-weight: 500;
+  }
+
+  #section-{{ section.id }} .mt-reviews__carousel-wrap {
+    position: relative;
+  }
+
+  #section-{{ section.id }} .mt-reviews__carousel {
+    display: block;
+  }
+
+  #section-{{ section.id }} .mt-reviews__carousel .swiper-slide {
+    width: min(34rem, 82vw);
+    height: auto;
+  }
+
+  #section-{{ section.id }} .mt-reviews__card--carousel {
+    width: 100%;
+    height: 100%;
+    min-height: 22rem;
+  }
+
+  #section-{{ section.id }} .mt-reviews__carousel .carousel__controls--absolute .carousel__button {
+    opacity: 1 !important;
+  }
+
+  #section-{{ section.id }} .mt-reviews__carousel .carousel__controls--absolute .carousel__button--prev {
+    --navigation-offset-left: 1rem;
+  }
+
+  #section-{{ section.id }} .mt-reviews__carousel .carousel__controls--absolute .carousel__button--next {
+    --navigation-offset-left: -1rem;
   }
 
   #section-{{ section.id }} .mt-reviews__marquee {
@@ -249,10 +371,35 @@
       "default": "Vi samler på glade kunder"
     },
     {
+      "type": "select",
+      "id": "header_layout",
+      "label": "Header layout",
+      "options": [
+        { "value": "center", "label": "Centered" },
+        { "value": "split", "label": "Title left, rating right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Reviews layout",
+      "options": [
+        { "value": "marquee", "label": "Marquee" },
+        { "value": "carousel", "label": "Carousel" }
+      ],
+      "default": "marquee"
+    },
+    {
       "type": "text",
       "id": "rating_label",
       "label": "Trustpilot rating text",
       "default": "4,8 ud af 5 stjerner på Trustpilot"
+    },
+    {
+      "type": "url",
+      "id": "rating_url",
+      "label": "Trustpilot link"
     },
     {
       "type": "range",
@@ -263,13 +410,15 @@
       "step": 5,
       "unit": "s",
       "default": 40,
-      "info": "Lower = faster"
+      "info": "Lower = faster",
+      "visible_if": "{{ section.settings.layout == 'marquee' }}"
     },
     {
       "type": "checkbox",
       "id": "pause_on_hover",
       "label": "Pause on hover",
-      "default": true
+      "default": true,
+      "visible_if": "{{ section.settings.layout == 'marquee' }}"
     },
     {
       "type": "text",

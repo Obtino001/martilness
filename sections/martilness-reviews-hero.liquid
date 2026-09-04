@@ -1,0 +1,199 @@
+{%- liquid
+  assign overlay_text = section.settings.overlay_text | default: 'Danskere elsker vores velvære'
+  assign accent = section.settings.accent_color | default: '#09412d'
+-%}
+
+<div
+  id="section-{{ section.id }}"
+  class="mt-reviews-hero color-{{ section.settings.color_scheme }}"
+  style="--mt-reviews-hero-accent: {{ accent }}; --mt-reviews-hero-height: {{ section.settings.image_height }}px;"
+>
+  <div class="mt-reviews-hero__media">
+    {%- if section.blocks.size > 0 -%}
+      {%- for block in section.blocks -%}
+        <div class="mt-reviews-hero__cell" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            {%- assign image_alt = block.settings.image.alt | default: overlay_text -%}
+            {%- if forloop.first -%}
+              {%- assign image_loading = 'eager' -%}
+            {%- else -%}
+              {%- assign image_loading = 'lazy' -%}
+            {%- endif -%}
+            {{
+              block.settings.image
+              | image_url: width: 900
+              | image_tag:
+                loading: image_loading,
+                widths: '240, 360, 480, 720, 900',
+                sizes: '(min-width: 990px) 20vw, 50vw',
+                alt: image_alt,
+                class: 'mt-reviews-hero__image'
+            }}
+          {%- else -%}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'mt-reviews-hero__image mt-reviews-hero__image--placeholder' }}
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    {%- else -%}
+      {%- for i in (1..5) -%}
+        <div class="mt-reviews-hero__cell">
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'mt-reviews-hero__image mt-reviews-hero__image--placeholder' }}
+        </div>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+
+  {%- if overlay_text != blank -%}
+    <div class="mt-reviews-hero__overlay">
+      <h1 class="mt-reviews-hero__headline">{{ overlay_text }}</h1>
+    </div>
+  {%- endif -%}
+</div>
+
+<style>
+  #section-{{ section.id }}.mt-reviews-hero {
+    position: relative;
+    background: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+  }
+
+  #section-{{ section.id }} .mt-reviews-hero__media {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.4rem;
+    min-height: calc(var(--mt-reviews-hero-height) * 0.72);
+  }
+
+  #section-{{ section.id }} .mt-reviews-hero__cell {
+    min-height: 22rem;
+    overflow: hidden;
+    background: rgb(var(--color-foreground) / 0.06);
+  }
+
+  #section-{{ section.id }} .mt-reviews-hero__cell:nth-child(n + 5) {
+    display: none;
+  }
+
+  #section-{{ section.id }} .mt-reviews-hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  #section-{{ section.id }} .mt-reviews-hero__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    pointer-events: none;
+  }
+
+  #section-{{ section.id }} .mt-reviews-hero__headline {
+    margin: 0;
+    max-width: min(56rem, 92vw);
+    padding: 1.8rem 2.4rem;
+    background: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+    border: 0.15rem solid var(--mt-reviews-hero-accent);
+    font-family: var(--font-heading--family);
+    font-weight: var(--font-heading--weight, 700);
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 750px) {
+    #section-{{ section.id }} .mt-reviews-hero__media {
+      grid-template-columns: repeat(5, 1fr);
+      min-height: var(--mt-reviews-hero-height);
+    }
+
+    #section-{{ section.id }} .mt-reviews-hero__cell {
+      min-height: var(--mt-reviews-hero-height);
+    }
+
+    #section-{{ section.id }} .mt-reviews-hero__cell:nth-child(n + 5) {
+      display: block;
+    }
+
+    #section-{{ section.id }} .mt-reviews-hero__cell:nth-child(n + 6) {
+      display: none;
+    }
+
+    #section-{{ section.id }} .mt-reviews-hero__headline {
+      padding: 2.4rem 3.2rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Reviews photo hero",
+  "tag": "section",
+  "class": "section-mt-reviews-hero",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "overlay_text",
+      "label": "Overlay text",
+      "default": "Danskere elsker vores velvære"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Overlay border",
+      "default": "#09412d"
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "Photo height",
+      "min": 280,
+      "max": 560,
+      "step": 10,
+      "unit": "px",
+      "default": 420
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "photo",
+      "name": "Photo",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews photo hero",
+      "blocks": [
+        { "type": "photo" },
+        { "type": "photo" },
+        { "type": "photo" },
+        { "type": "photo" },
+        { "type": "photo" }
+      ]
+    }
+  ]
+}
+{% endschema %}

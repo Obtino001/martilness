@@ -1,0 +1,160 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "reviews_hero": {
+      "type": "martilness-reviews-hero",
+      "blocks": {
+        "photo_1": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/thumbnail_1x1.1-2_6fe1b89a-a9d6-4aec-a668-785dcb1f6fd6.jpg"
+          }
+        },
+        "photo_2": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/DSC00496_b04cb529-663f-4662-b7a3-cd329bd6088f.jpg"
+          }
+        },
+        "photo_3": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/DSC00652-scaled.jpg"
+          }
+        },
+        "photo_4": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/DSC09528_44f17d66-85fb-4abc-9bf1-9661ae33f9ae.jpg"
+          }
+        },
+        "photo_5": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/martilness1.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "photo_1",
+        "photo_2",
+        "photo_3",
+        "photo_4",
+        "photo_5"
+      ],
+      "name": "Reviews photo hero",
+      "settings": {
+        "overlay_text": "Danskere elsker vores velvære",
+        "accent_color": "#09412d",
+        "image_height": 420,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "reviews": {
+      "type": "martilness-reviews",
+      "blocks": {
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "title": "God kvalitet af...",
+            "text": "Hurtig levering og god kvalitet af varen. Mangler dog en brugsvejledning men ellers fint.",
+            "author": "Anders Hein"
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "title": "Alt var perfekt",
+            "text": "Bestilte infrarødt saunatæppe. Virkelig godt produkt og varen ankom hurtigt.",
+            "author": "Lene"
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "title": "Jeg er tilfreds med købet",
+            "text": "Jeg er tilfreds med købet, også for at prøve noget nyt og se hvad der sker.",
+            "author": "Adam Sebastian Nielsen"
+          }
+        },
+        "review_4": {
+          "type": "review",
+          "settings": {
+            "title": "Saunatæppet er fantastisk!",
+            "text": "Saunatæppet er fantastisk! Prisen er langt lavere end andre steder, men kvaliteten er helt i top 💪",
+            "author": "Ronni Iversen"
+          }
+        },
+        "review_5": {
+          "type": "review",
+          "settings": {
+            "title": "Hurtig levering",
+            "text": "Hurtig levering og god kvalitet af varen.",
+            "author": "Brian Gade"
+          }
+        },
+        "review_6": {
+          "type": "review",
+          "settings": {
+            "title": "Alt vel",
+            "text": "Alt vel. Hurtig levering og dejlig service.",
+            "author": "Lydia P."
+          }
+        },
+        "review_7": {
+          "type": "review",
+          "settings": {
+            "title": "Kvaliteten er i top",
+            "text": "Saunatæppet er fantastisk! Kvaliteten er helt i top.",
+            "author": "Morten Jespersen"
+          }
+        },
+        "review_8": {
+          "type": "review",
+          "settings": {
+            "title": "Tusind tak",
+            "text": "Vil lige sige tusind tak for den hurtige levering – det ramte plet :)",
+            "author": "Karina Nielsen"
+          }
+        }
+      },
+      "block_order": [
+        "review_1",
+        "review_2",
+        "review_3",
+        "review_4",
+        "review_5",
+        "review_6",
+        "review_7",
+        "review_8"
+      ],
+      "name": "Trustpilot reviews",
+      "settings": {
+        "heading": "Kundeanmeldelser",
+        "header_layout": "split",
+        "layout": "carousel",
+        "rating_label": "Fremragende 4,8 bedømt",
+        "rating_url": "https://dk.trustpilot.com/review/martilness.dk",
+        "marquee_speed": 40,
+        "pause_on_hover": true,
+        "link_label": "Se alle anmeldelser på Trustpilot →",
+        "link_url": "https://dk.trustpilot.com/review/martilness.dk",
+        "color_scheme": "scheme-1",
+        "padding_top": 48,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "reviews_hero",
+    "reviews"
+  ]
+}

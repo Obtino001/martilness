@@ -141,24 +141,48 @@
   #section-{{ section.id }} .mt-giveaway__tab {
     position: fixed;
     left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
+    bottom: 1.6rem;
+    transform: translateX(-50%) translateY(calc(100% + 2.4rem));
     z-index: calc(var(--mt-giveaway-z) + 1);
     margin: 0;
-    padding: 0.85rem 1.6rem 1rem;
+    padding: 0.95rem 1.8rem;
     border: 0;
-    border-radius: 0.6rem 0.6rem 0 0;
+    border-radius: 0.8rem;
     background: var(--mt-giveaway-accent);
     color: #fff;
     font-size: 1.3rem;
     font-weight: 600;
     line-height: 1.2;
     cursor: pointer;
-    box-shadow: 0 -0.4rem 1.6rem rgb(0 0 0 / 18%);
+    box-shadow: 0 0.4rem 1.8rem rgb(0 0 0 / 22%);
     max-width: min(92vw, 42rem);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    animation: mt-giveaway-tab-in-{{ section.id }} 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+  }
+
+  #section-{{ section.id }} .mt-giveaway__tab:hover {
+    box-shadow: 0 0.6rem 2.2rem rgb(0 0 0 / 28%);
+  }
+
+  @keyframes mt-giveaway-tab-in-{{ section.id }} {
+    from {
+      transform: translateX(-50%) translateY(calc(100% + 2.4rem));
+      opacity: 0;
+    }
+    to {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #section-{{ section.id }} .mt-giveaway__tab {
+      animation: none;
+      transform: translateX(-50%);
+      opacity: 1;
+    }
   }
 
   #section-{{ section.id }} .mt-giveaway__tab[hidden],
