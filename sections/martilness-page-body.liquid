@@ -37,16 +37,6 @@
         <p class="mt-page-body__empty">Denne side har endnu intet indhold.</p>
       {% endif %}
 
-      {% if cta_label != blank %}
-        <div class="mt-page-body__cta">
-          <a
-            class="mt-page-body__cta-btn"
-            href="{{ cta_link | default: '#' }}"
-          >
-            {{ cta_label }}
-          </a>
-        </div>
-      {% endif %}
     </div>
   </div>
 </div>
@@ -464,21 +454,6 @@
       "id": "accent_color",
       "label": "Accent green",
       "default": "#09412d"
-    },
-    {
-      "type": "header",
-      "content": "CTA"
-    },
-    {
-      "type": "text",
-      "id": "cta_label",
-      "label": "Button label",
-      "default": "Kontakt os"
-    },
-    {
-      "type": "url",
-      "id": "cta_link",
-      "label": "Button link"
     },
     {
       "type": "range",
