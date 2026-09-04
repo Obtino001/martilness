@@ -1356,7 +1356,7 @@
         "border_width": 1,
         "border_opacity": 100,
         "border_radius": 0,
-        "control_type": "standard",
+        "control_type": "none",
         "control_alignment": "center",
         "device": "desktop",
         "padding-block-start": 48,
