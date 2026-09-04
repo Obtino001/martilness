@@ -13,7 +13,7 @@
   >
     {%- if block.settings.heading != blank -%}
       <label
-        class="form-label"
+        class="form-label visually-hidden"
         for="ContactForm-{{ block.settings.field_type }}-{{ block.id }}"
       >
         {{- block.settings.heading -}}
@@ -32,8 +32,9 @@
       {% # theme-check-disable %}
       value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
       {% # theme-check-enable %}
-      {% if block.settings.placeholder != blank %}
-        placeholder="{{ block.settings.placeholder }}"
+      {% assign phone_placeholder = block.settings.placeholder | default: block.settings.heading %}
+      {% if phone_placeholder != blank %}
+        placeholder="{{ phone_placeholder }}"
       {% endif %}
       {% if block.settings.required %}
         aria-invalid="true"
@@ -49,7 +50,7 @@
   >
     {%- if block.settings.heading != blank -%}
       <label
-        class="form-label"
+        class="form-label visually-hidden"
         for="ContactForm-email-{{ block.id }}"
       >
         {{- block.settings.heading -}}
@@ -66,8 +67,9 @@
       autocapitalize="off"
       value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
       required
-      {% if block.settings.placeholder != blank %}
-        placeholder="{{ block.settings.placeholder }}"
+      {% assign email_placeholder = block.settings.placeholder | default: block.settings.heading %}
+      {% if email_placeholder != blank %}
+        placeholder="{{ email_placeholder }}"
       {% endif %}
     >
   </div>
@@ -78,7 +80,7 @@
   >
     {%- if block.settings.heading != blank -%}
       <label
-        class="form-label"
+        class="form-label visually-hidden"
         for="ContactForm-{{ block.settings.field_type }}-{{ block.id }}"
       >
         {{- block.settings.heading -}}
@@ -93,8 +95,9 @@
       class="form-control w-full"
       name="contact[{{- field_name -}}]"
       value=""
-      {% if block.settings.placeholder != blank %}
-        placeholder="{{ block.settings.placeholder }}"
+      {% assign text_placeholder = block.settings.placeholder | default: block.settings.heading %}
+      {% if text_placeholder != blank %}
+        placeholder="{{ text_placeholder }}"
       {% endif %}
       {% if block.settings.required %}
         aria-invalid="true"
@@ -109,7 +112,7 @@
   >
     {%- if block.settings.heading != blank -%}
       <label
-        class="form-label"
+        class="form-label visually-hidden"
         for="ContactForm-{{ block.settings.field_type }}-{{ block.id }}"
       >
         {{- block.settings.heading -}}
@@ -123,8 +126,9 @@
       id="ContactForm-{{ block.settings.field_type }}-{{ block.id }}"
       class="form-control w-full form-control--textarea"
       name="contact[{{- field_name -}}]"
-      {% if block.settings.placeholder != blank %}
-        placeholder="{{ block.settings.placeholder }}"
+      {% assign textarea_placeholder = block.settings.placeholder | default: block.settings.heading %}
+      {% if textarea_placeholder != blank %}
+        placeholder="{{ textarea_placeholder }}"
       {% endif %}
       {% if block.settings.required %}
         aria-invalid="true"
@@ -144,7 +148,7 @@
   >
     {%- if block.settings.heading != blank -%}
       <label
-        class="form-label"
+        class="form-label visually-hidden"
         for="ContactForm-{{ block.settings.field_type }}-{{ block.id }}"
       >
         {{- block.settings.heading -}}
@@ -163,8 +167,9 @@
           required
         {% endif %}
       >
-        {%- if block.settings.placeholder != blank -%}
-          <option value="">{{ block.settings.placeholder }}</option>
+        {% assign select_placeholder = block.settings.placeholder | default: block.settings.heading %}
+        {%- if select_placeholder != blank -%}
+          <option value="">{{ select_placeholder }}</option>
         {%- endif -%}
         {%- for option in options -%}
           <option value="{{ option }}" label="{{ option }}">{{ option }}</option>
@@ -213,7 +218,7 @@
   >
     {%- if block.settings.heading != blank -%}
       <label
-        class="form-label"
+        class="form-label visually-hidden"
         for="ContactForm-{{ block.settings.field_type }}-{{ block.id }}"
       >
         {{- block.settings.heading -}}

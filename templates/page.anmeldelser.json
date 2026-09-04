@@ -57,9 +57,68 @@
         "image_height": 420,
         "color_scheme": "scheme-1"
       }
-    }
+    },
+    "trustpilot_reviews_pdp": {
+      "type": "martilness-reviews",
+      "blocks": {
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "title": "God kvalitet af...",
+            "text": "Hurtig levering og god kvalitet af varen. Mangler dog en brugsvejledning men ellers fint.",
+            "author": "Anders Hein"
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "title": "Alt var perfekt",
+            "text": "Bestilte infrarødt saunatæppe. Virkelig godt produkt og varen ankom hurtigt.",
+            "author": "Lene"
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "title": "Jeg er tilfreds med købet",
+            "text": "Jeg er tilfreds med købet, også for at prøve noget nyt og se hvad der sker.",
+            "author": "Adam Sebastian Nielsen"
+          }
+        },
+        "review_4": {
+          "type": "review",
+          "settings": {
+            "title": "Saunatæppet er fantastisk!",
+            "text": "Saunatæppet er fantastisk! Prisen er langt lavere end andre steder, men kvaliteten er helt i top 💪",
+            "author": "Ronni Iversen"
+          }
+        }
+      },
+      "block_order": [
+        "review_1",
+        "review_2",
+        "review_3",
+        "review_4"
+      ],
+      "name": "Trustpilot reviews",
+      "settings": {
+        "heading": "Vi samler på glade kunder",
+        "header_layout": "center",
+        "layout": "marquee",
+        "rating_label": "4,8 ud af 5 stjerner på Trustpilot",
+        "rating_url": "",
+        "marquee_speed": 40,
+        "pause_on_hover": true,
+        "link_label": "Se flere anmeldelser her →",
+        "link_url": "https://dk.trustpilot.com/review/martilness.dk",
+        "color_scheme": "scheme-1",
+        "padding_top": 28,
+        "padding_bottom": 64
+      }
+    },
   },
   "order": [
-    "reviews_hero"
+    "reviews_hero",
+    "trustpilot_reviews_pdp",
   ]
 }
