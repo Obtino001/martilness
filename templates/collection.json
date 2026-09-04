@@ -309,6 +309,7 @@
       ],
       "name": "t:names.custom_section",
       "settings": {
+        "require_metafield_key": "",
         "container": "page-width",
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -348,11 +349,11 @@
       },
       "settings": {
         "container": "fixed",
-        "products_per_page": 12,
+        "products_per_page": 48,
         "pagination": "number",
         "column_gap": 30,
         "row_gap": 30,
-        "enable_filtering": false,
+        "enable_filtering": true,
         "filter_type": "vertical",
         "enable_sorting": false,
         "enable_grid_density": false,
