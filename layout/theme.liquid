@@ -77,5 +77,29 @@
       {% render 'back-to-top-button' %}
     {%- endif -%}
     {% render 'martilness-color-swatches' %}
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const targetText = 'Læs mere her om hvordan rødlysterapi virker';
+        document.querySelectorAll('p').forEach(p => {
+          if (p.textContent.includes(targetText) && !p.querySelector('a')) {
+            const currentSection = p.closest('.shopify-section');
+            if (currentSection && currentSection.nextElementSibling) {
+              const nextSectionId = currentSection.nextElementSibling.id;
+              if (nextSectionId) {
+                 const parts = p.innerHTML.split(targetText);
+                 p.innerHTML = parts[0] + '<a href="#' + nextSectionId + '" style="text-decoration: underline; text-underline-offset: 4px; font-weight: 600; cursor: pointer;">' + targetText + '</a>' + parts[1];
+                 
+                 const a = p.querySelector('a');
+                 a.addEventListener('click', (e) => {
+                   e.preventDefault();
+                   currentSection.nextElementSibling.scrollIntoView({ behavior: 'smooth' });
+                 });
+              }
+            }
+          }
+        });
+      });
+    </script>
   </body>
 </html>
