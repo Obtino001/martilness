@@ -48,7 +48,7 @@
       style="{% render 'layout-panel-style', type: 'grid', columns_md: '2' %}{% render 'gap-style', settings: block.settings %}"
     >
       <div class="form-field form-field--name">
-        <label class="form-label" for="ContactForm-name-{{ section.id }}">
+        <label class="form-label visually-hidden" for="ContactForm-name-{{ section.id }}">
           {{- 'blocks.contact_form.name' | t -}}
         </label>
         <input
@@ -58,10 +58,11 @@
           id="ContactForm-name-{{ section.id }}"
           name="contact[{{ 'blocks.contact_form.name' | t }}]"
           value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+          placeholder="{{ 'blocks.contact_form.name' | t }}"
         >
       </div>
       <div class="form-field form-field--email">
-        <label class="form-label" for="ContactForm-email-{{ section.id }}">
+        <label class="form-label visually-hidden" for="ContactForm-email-{{ section.id }}">
           {{- 'blocks.contact_form.email' | t -}}
           <span aria-hidden="true">*</span>
         </label>
@@ -75,6 +76,7 @@
           autocapitalize="off"
           value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
           required
+          placeholder="{{ 'blocks.contact_form.email' | t }}*"
           {% if form.errors contains 'email' %}
             aria-invalid="true"
             aria-describedby="ContactForm-email-error-{{ section.id }}"
@@ -97,7 +99,7 @@
 
       {% comment %} form-body {% endcomment %}
       <div class="form-field form-field--full form-field--body">
-        <label class="form-label" for="ContactForm-body-{{ section.id }}">
+        <label class="form-label visually-hidden" for="ContactForm-body-{{ section.id }}">
           {{- 'blocks.contact_form.your_message' | t -}}
         </label>
         <textarea
@@ -105,7 +107,7 @@
           id="ContactForm-body-{{ section.id }}"
           class="form-control form-control--textarea w-full"
           name="contact[{{ 'blocks.contact_form.your_message' | t }}]"
-          placeholder=""
+          placeholder="{{ 'blocks.contact_form.your_message' | t }}"
         >
           {{- form.body -}}
         </textarea>
