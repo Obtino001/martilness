@@ -8244,14 +8244,7 @@ body:not(.header-pinned) .header-scrolled .header {
   transition: color var(--animation-duration--fast) var(--animation-easing);
 }
 .menu__item::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  border-radius: 99px;
-  background: rgb(var(--color-primary-button-background));
-  opacity: 0;
-  transition: opacity var(--animation-duration--fast) var(--animation-easing);
+  display: none;
 }
 
 shopify-account {
@@ -8286,10 +8279,10 @@ shopify-account::part(signed-out-avatar) {
 
 @media (hover: hover) {
   .menu__item:hover {
-    color: rgb(var(--color-primary-button-text));
-  }
-  .menu__item:hover::before {
-    opacity: 1;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 2px;
+    opacity: 0.8;
   }
 }
 @media (min-width: 1024px) {
