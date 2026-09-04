@@ -28,33 +28,40 @@
   }
 
   .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__desktop {
+    position: relative;
     width: 100%;
     max-width: 1480px;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
     align-items: center;
+    justify-content: center;
     white-space: nowrap;
   }
 
   .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    min-width: 0;
   }
 
   .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__center {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 0;
+    padding: 0 2.4rem;
   }
 
   .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__right {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    min-width: 0;
   }
 
   .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__item,
