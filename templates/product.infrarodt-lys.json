@@ -908,6 +908,7 @@
                   "settings": {
                     "text": "Beskrivelse",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -967,6 +968,7 @@
                   "settings": {
                     "text": "Tekniske specifikationer",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -996,6 +998,7 @@
                   "settings": {
                     "text": "Hvad er inkluderet?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -1025,6 +1028,7 @@
                   "settings": {
                     "text": "30 dages fuld tilfredshedsgaranti",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -1704,7 +1708,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<p>Din 60-Dages Transformation</p>",
+                "text": "<p>{{ closest.product.metafields.custom.timeline.value.heading.value }}</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
                 "highlight_shape_color": "",
@@ -2652,6 +2656,7 @@
                   "settings": {
                     "text": "Hvorfor skal jeg købe et saunatæppe?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -2699,6 +2704,7 @@
                   "settings": {
                     "text": "Hvordan virker et infrarødt saunatæppe?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -2746,6 +2752,7 @@
                   "settings": {
                     "text": "Hvordan bruges saunatæppet?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -2793,6 +2800,7 @@
                   "settings": {
                     "text": "Hvordan rengør og opbevarer jeg saunatæppet?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -2840,6 +2848,7 @@
                   "settings": {
                     "text": "Hvor ofte må jeg bruge saunatæppet?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -2887,6 +2896,7 @@
                   "settings": {
                     "text": "Hvor længe kan jeg ligge i saunatæppet?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -2934,6 +2944,7 @@
                   "settings": {
                     "text": "Hvilken temperatur skal jeg vælge?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -2981,6 +2992,7 @@
                   "settings": {
                     "text": "Hvor hurtigt varmer det op?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3028,6 +3040,7 @@
                   "settings": {
                     "text": "Hvad skal jeg have på, når jeg bruger tæppet?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3075,6 +3088,7 @@
                   "settings": {
                     "text": "Hvor meget sveder jeg?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3122,6 +3136,7 @@
                   "settings": {
                     "text": "Hvad hvis jeg falder i søvn?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3169,6 +3184,7 @@
                   "settings": {
                     "text": "Kan jeg tabe mig ved at bruge et infrarødt saunatæppe?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3216,6 +3232,7 @@
                   "settings": {
                     "text": "Kan saunatæppet hjælpe med at lindre smerter?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3263,6 +3280,7 @@
                   "settings": {
                     "text": "Er saunatæppet godt mod gigt?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3310,6 +3328,7 @@
                   "settings": {
                     "text": "Hvad hvis jeg har for højt eller lavt blodtryk?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3357,6 +3376,7 @@
                   "settings": {
                     "text": "Hvem bør ikke bruge et infrarødt saunatæppe?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3404,6 +3424,7 @@
                   "settings": {
                     "text": "Hvad koster det i strøm at bruge saunatæppet?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3451,6 +3472,7 @@
                   "settings": {
                     "text": "Hvad betyder antal zoner? Og hvad har du brug for?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3498,6 +3520,7 @@
                   "settings": {
                     "text": "Kan jeg bruge mit saunatæppe i kombination med isbad?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3545,6 +3568,7 @@
                   "settings": {
                     "text": "Velcro eller lynlås?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3592,6 +3616,7 @@
                   "settings": {
                     "text": "Hvor mange lag består tæppet af?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
