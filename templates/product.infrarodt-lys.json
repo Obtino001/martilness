@@ -1339,6 +1339,7 @@
         "video_card_MNEVpH",
         "video_card_C4C9Qb"
       ],
+      "disabled": true,
       "name": "t:names.flex_carousel_video_cards",
       "settings": {
         "container": "page-width",
@@ -1363,6 +1364,482 @@
         "padding-block-end": 48,
         "padding-block-start-mobile": 32,
         "padding-block-end-mobile": 32
+      }
+    },
+    "progress_timeline_60d": {
+      "type": "progress-timeline",
+      "blocks": {
+        "timeline_day_1": {
+          "type": "_timeline",
+          "name": "Timeline",
+          "settings": {
+            "content_row_gap": 12,
+            "badge_text": "DAG 1",
+            "badge_color": "#000000",
+            "badge_background_color": "#d9ede4"
+          },
+          "blocks": {
+            "heading_timeline_day_1": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<p>Det første dybe åndedræt</p>",
+                "highlight_style": "none",
+                "highlight_font_style": "italic",
+                "highlight_shape_color": "",
+                "highlight_text_color": "",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_weight": "",
+                "font_size": 15,
+                "font_size_mobile": 15,
+                "line_height": "normal",
+                "text_color": "text",
+                "text_color_gradient": "",
+                "disable_line_break_mobile": false,
+                "width": "fit-content",
+                "text_alignment": "left",
+                "width_mobile": "fit-content",
+                "text_alignment_mobile": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "mobile-padding-scale": 80,
+                "animation_type": "none",
+                "animation_delay": 250
+              },
+              "blocks": {}
+            },
+            "text_timeline_day_1": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Mærk roen brede sig, så snart lyset rammer huden. Nervesystemet falder til ro, skuldrene sænker sig, og cellerne starter genopbygningen indefra. Du mærker en subtil, men klar forandring med det samme.</p><p><strong>87% mærkede en fysisk forskel i kroppen allerede efter første session.</strong></p>",
+                "highlight_style": "none",
+                "highlight_font_style": "italic",
+                "highlight_shape_color": "",
+                "highlight_text_color": "",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_weight": "",
+                "font_size": 15,
+                "font_size_mobile": 15,
+                "line_height": "normal",
+                "text_color": "subtext",
+                "text_color_gradient": "",
+                "disable_line_break_mobile": false,
+                "width": "fit-content",
+                "text_alignment": "left",
+                "width_mobile": "fit-content",
+                "text_alignment_mobile": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "mobile-padding-scale": 80,
+                "animation_type": "none",
+                "animation_delay": 250
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "heading_timeline_day_1",
+            "text_timeline_day_1"
+          ]
+        },
+        "timeline_day_2": {
+          "type": "_timeline",
+          "name": "Timeline",
+          "settings": {
+            "content_row_gap": 12,
+            "badge_text": "DAG 7",
+            "badge_color": "#000000",
+            "badge_background_color": "#d9ede4"
+          },
+          "blocks": {
+            "heading_timeline_day_2": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<p>Kroppen giver slip</p>",
+                "highlight_style": "none",
+                "highlight_font_style": "italic",
+                "highlight_shape_color": "",
+                "highlight_text_color": "",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_weight": "",
+                "font_size": 15,
+                "font_size_mobile": 15,
+                "line_height": "normal",
+                "text_color": "text",
+                "text_color_gradient": "",
+                "disable_line_break_mobile": false,
+                "width": "fit-content",
+                "text_alignment": "left",
+                "width_mobile": "fit-content",
+                "text_alignment_mobile": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "mobile-padding-scale": 80,
+                "animation_type": "none",
+                "animation_delay": 250
+              },
+              "blocks": {}
+            },
+            "text_timeline_day_2": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Den genstridige stivhed, du normalt vågner med, slipper sit jerngreb. Kroppen føles lettere, og de dybtliggende spændinger fra hverdagens stress begynder at løsne sig. Bevægelse føles frit igen.</p><p><strong>89% Oplevede en markant reduktion i smerter og ubehag.</strong></p>",
+                "highlight_style": "none",
+                "highlight_font_style": "italic",
+                "highlight_shape_color": "",
+                "highlight_text_color": "",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_weight": "",
+                "font_size": 15,
+                "font_size_mobile": 15,
+                "line_height": "normal",
+                "text_color": "subtext",
+                "text_color_gradient": "",
+                "disable_line_break_mobile": false,
+                "width": "fit-content",
+                "text_alignment": "left",
+                "width_mobile": "fit-content",
+                "text_alignment_mobile": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "mobile-padding-scale": 80,
+                "animation_type": "none",
+                "animation_delay": 250
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "heading_timeline_day_2",
+            "text_timeline_day_2"
+          ]
+        },
+        "timeline_day_3": {
+          "type": "_timeline",
+          "name": "Timeline",
+          "settings": {
+            "content_row_gap": 12,
+            "badge_text": "DAG 30",
+            "badge_color": "#000000",
+            "badge_background_color": "#d9ede4"
+          },
+          "blocks": {
+            "heading_timeline_day_3": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<p>Genfind den krop, du husker</p>",
+                "highlight_style": "none",
+                "highlight_font_style": "italic",
+                "highlight_shape_color": "",
+                "highlight_text_color": "",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_weight": "",
+                "font_size": 15,
+                "font_size_mobile": 15,
+                "line_height": "normal",
+                "text_color": "text",
+                "text_color_gradient": "",
+                "disable_line_break_mobile": false,
+                "width": "fit-content",
+                "text_alignment": "left",
+                "width_mobile": "fit-content",
+                "text_alignment_mobile": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "mobile-padding-scale": 80,
+                "animation_type": "none",
+                "animation_delay": 250
+              },
+              "blocks": {}
+            },
+            "text_timeline_day_3": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Kan du huske, hvordan det føltes at have overskud? Hvor kroppen var modstandsdygtig, og dagen ikke flåede al energi ud af dig? Den følelse vender tilbage nu.</p><p><strong>92% oplevede mærkbar forskel i energi</strong></p>",
+                "highlight_style": "none",
+                "highlight_font_style": "italic",
+                "highlight_shape_color": "",
+                "highlight_text_color": "",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_weight": "",
+                "font_size": 15,
+                "font_size_mobile": 15,
+                "line_height": "normal",
+                "text_color": "subtext",
+                "text_color_gradient": "",
+                "disable_line_break_mobile": false,
+                "width": "fit-content",
+                "text_alignment": "left",
+                "width_mobile": "fit-content",
+                "text_alignment_mobile": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "mobile-padding-scale": 80,
+                "animation_type": "none",
+                "animation_delay": 250
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "heading_timeline_day_3",
+            "text_timeline_day_3"
+          ]
+        },
+        "timeline_day_4": {
+          "type": "_timeline",
+          "name": "Timeline",
+          "settings": {
+            "content_row_gap": 12,
+            "badge_text": "DAG 45-60",
+            "badge_color": "#000000",
+            "badge_background_color": "#d9ede4"
+          },
+          "blocks": {
+            "heading_timeline_day_4": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<p>Spejlet lyver ikke længere</p>",
+                "highlight_style": "none",
+                "highlight_font_style": "italic",
+                "highlight_shape_color": "",
+                "highlight_text_color": "",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_weight": "",
+                "font_size": 15,
+                "font_size_mobile": 15,
+                "line_height": "normal",
+                "text_color": "text",
+                "text_color_gradient": "",
+                "disable_line_break_mobile": false,
+                "width": "fit-content",
+                "text_alignment": "left",
+                "width_mobile": "fit-content",
+                "text_alignment_mobile": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "mobile-padding-scale": 80,
+                "animation_type": "none",
+                "animation_delay": 250
+              },
+              "blocks": {}
+            },
+            "text_timeline_day_4": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Nu kan det ikke længere kun mærkes – det kan ses. Det grå og matte udtryk er væk. Huden stråler af sundhed, gløden er tilbage, og spejlbilledet viser den udhvilede, stærke version af dig selv.</p><p><strong>95% Oplevede en markant forbedring i udseende og generel livskvalitet.</strong></p><p><em>*Baseret på interne data og brugerfeedback fra Martilness.</em></p>",
+                "highlight_style": "none",
+                "highlight_font_style": "italic",
+                "highlight_shape_color": "",
+                "highlight_text_color": "",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_weight": "",
+                "font_size": 15,
+                "font_size_mobile": 15,
+                "line_height": "normal",
+                "text_color": "subtext",
+                "text_color_gradient": "",
+                "disable_line_break_mobile": false,
+                "width": "fit-content",
+                "text_alignment": "left",
+                "width_mobile": "fit-content",
+                "text_alignment_mobile": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "mobile-padding-scale": 80,
+                "animation_type": "none",
+                "animation_delay": 250
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "heading_timeline_day_4",
+            "text_timeline_day_4"
+          ]
+        },
+        "section-header-vertical": {
+          "type": "_section-header-vertical",
+          "static": true,
+          "settings": {
+            "horizontal_alignment_flex_direction_column": "center",
+            "device": "desktop",
+            "padding-block-end": 60,
+            "padding-block-end-mobile": 24
+          },
+          "blocks": {
+            "text_XAACXk": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<p>Din 60-Dages Transformation</p>",
+                "highlight_style": "none",
+                "highlight_font_style": "italic",
+                "highlight_shape_color": "",
+                "highlight_text_color": "",
+                "type_preset": "h1",
+                "font": "var(--font-body--family)",
+                "font_weight": "",
+                "font_size": 15,
+                "font_size_mobile": 15,
+                "line_height": "normal",
+                "text_color": "text",
+                "text_color_gradient": "",
+                "disable_line_break_mobile": false,
+                "width": "fit-content",
+                "text_alignment": "left",
+                "width_mobile": "fit-content",
+                "text_alignment_mobile": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "mobile-padding-scale": 80,
+                "animation_type": "none",
+                "animation_delay": 250
+              },
+              "blocks": {}
+            },
+            "text_Q7VgTq": {
+              "type": "text",
+              "name": "t:names.subheading",
+              "settings": {
+                "text": "<p>Reelle resultater, du kan se, mærke og leve i. Her er, hvad der sker med din krop, når du tænder for det røde lys.</p>",
+                "highlight_style": "none",
+                "highlight_font_style": "italic",
+                "highlight_shape_color": "",
+                "highlight_text_color": "",
+                "type_preset": "text-subheading",
+                "font": "var(--font-body--family)",
+                "font_weight": "",
+                "font_size": 15,
+                "font_size_mobile": 15,
+                "line_height": "normal",
+                "text_color": "text",
+                "text_color_gradient": "",
+                "disable_line_break_mobile": false,
+                "width": "fit-content",
+                "text_alignment": "left",
+                "width_mobile": "fit-content",
+                "text_alignment_mobile": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 20,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "mobile-padding-scale": 80,
+                "animation_type": "none",
+                "animation_delay": 250
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_XAACXk",
+            "text_Q7VgTq"
+          ]
+        },
+        "timeline-media": {
+          "type": "_timeline-media",
+          "static": true,
+          "settings": {
+            "image_1": "shopify://shop_images/Rodlys_maske_21_1.webp",
+            "image_ratio_1": "adapt",
+            "image_width_1": 84,
+            "image_border_radius_1": 0,
+            "image_2": "shopify://shop_images/Rodlys_maske_22_1.webp",
+            "image_ratio_2": "adapt",
+            "image_width_2": 48,
+            "image_border_radius_2": 0
+          },
+          "blocks": {
+            "spinning-icon-badge": {
+              "type": "spinning-icon-badge",
+              "static": true,
+              "settings": {
+                "icon": "heart",
+                "text": "60 DAGES TRANSFORMATION",
+                "font": "var(--font-heading--family)",
+                "font_size": 12,
+                "font_size_mobile": 8,
+                "text_color": "text",
+                "text_color_gradient": "",
+                "color_scheme": "scheme-2",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": []
+        },
+        "button": {
+          "type": "_button",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "label": "",
+            "link": "",
+            "style": "primary",
+            "size": "large",
+            "icon": "caret-right",
+            "icon_only": false,
+            "icon_style": "solid",
+            "mobile_full_width": false
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "timeline_day_1",
+        "timeline_day_2",
+        "timeline_day_3",
+        "timeline_day_4"
+      ],
+      "custom_css": [
+        "h2 {font-size: 32px;}"
+      ],
+      "name": "t:names.progress_timeline",
+      "settings": {
+        "container": "page-width",
+        "progress_bar_color": "#000000",
+        "color_scheme": "scheme-1",
+        "device": "desktop",
+        "padding-block-start": 50,
+        "padding-block-end": 50,
+        "padding-block-start-mobile": 48,
+        "padding-block-end-mobile": 48
       }
     },
     "iwt_how_it_works": {
@@ -1853,482 +2330,6 @@
         "color_scheme": "scheme-1",
         "padding_top": 64,
         "padding_bottom": 64
-      }
-    },
-    "progress_timeline_60d": {
-      "type": "progress-timeline",
-      "blocks": {
-        "timeline_day_1": {
-          "type": "_timeline",
-          "name": "Timeline",
-          "settings": {
-            "content_row_gap": 12,
-            "badge_text": "DAG 1",
-            "badge_color": "#000000",
-            "badge_background_color": "#d9ede4"
-          },
-          "blocks": {
-            "heading_timeline_day_1": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<p>Det første dybe åndedræt</p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "normal",
-                "text_color": "text",
-                "text_color_gradient": "",
-                "disable_line_break_mobile": false,
-                "width": "fit-content",
-                "text_alignment": "left",
-                "width_mobile": "fit-content",
-                "text_alignment_mobile": "left",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0,
-                "mobile-padding-scale": 80,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            },
-            "text_timeline_day_1": {
-              "type": "text",
-              "name": "t:names.text",
-              "settings": {
-                "text": "<p>Mærk roen brede sig, så snart lyset rammer huden. Nervesystemet falder til ro, skuldrene sænker sig, og cellerne starter genopbygningen indefra. Du mærker en subtil, men klar forandring med det samme.</p><p><strong>87% mærkede en fysisk forskel i kroppen allerede efter første session.</strong></p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "normal",
-                "text_color": "subtext",
-                "text_color_gradient": "",
-                "disable_line_break_mobile": false,
-                "width": "fit-content",
-                "text_alignment": "left",
-                "width_mobile": "fit-content",
-                "text_alignment_mobile": "left",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0,
-                "mobile-padding-scale": 80,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "heading_timeline_day_1",
-            "text_timeline_day_1"
-          ]
-        },
-        "timeline_day_2": {
-          "type": "_timeline",
-          "name": "Timeline",
-          "settings": {
-            "content_row_gap": 12,
-            "badge_text": "DAG 7",
-            "badge_color": "#000000",
-            "badge_background_color": "#d9ede4"
-          },
-          "blocks": {
-            "heading_timeline_day_2": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<p>Kroppen giver slip</p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "normal",
-                "text_color": "text",
-                "text_color_gradient": "",
-                "disable_line_break_mobile": false,
-                "width": "fit-content",
-                "text_alignment": "left",
-                "width_mobile": "fit-content",
-                "text_alignment_mobile": "left",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0,
-                "mobile-padding-scale": 80,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            },
-            "text_timeline_day_2": {
-              "type": "text",
-              "name": "t:names.text",
-              "settings": {
-                "text": "<p>Den genstridige stivhed, du normalt vågner med, slipper sit jerngreb. Kroppen føles lettere, og de dybtliggende spændinger fra hverdagens stress begynder at løsne sig. Bevægelse føles frit igen.</p><p><strong>89% Oplevede en markant reduktion i smerter og ubehag.</strong></p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "normal",
-                "text_color": "subtext",
-                "text_color_gradient": "",
-                "disable_line_break_mobile": false,
-                "width": "fit-content",
-                "text_alignment": "left",
-                "width_mobile": "fit-content",
-                "text_alignment_mobile": "left",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0,
-                "mobile-padding-scale": 80,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "heading_timeline_day_2",
-            "text_timeline_day_2"
-          ]
-        },
-        "timeline_day_3": {
-          "type": "_timeline",
-          "name": "Timeline",
-          "settings": {
-            "content_row_gap": 12,
-            "badge_text": "DAG 30",
-            "badge_color": "#000000",
-            "badge_background_color": "#d9ede4"
-          },
-          "blocks": {
-            "heading_timeline_day_3": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<p>Genfind den krop, du husker</p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "normal",
-                "text_color": "text",
-                "text_color_gradient": "",
-                "disable_line_break_mobile": false,
-                "width": "fit-content",
-                "text_alignment": "left",
-                "width_mobile": "fit-content",
-                "text_alignment_mobile": "left",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0,
-                "mobile-padding-scale": 80,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            },
-            "text_timeline_day_3": {
-              "type": "text",
-              "name": "t:names.text",
-              "settings": {
-                "text": "<p>Kan du huske, hvordan det føltes at have overskud? Hvor kroppen var modstandsdygtig, og dagen ikke flåede al energi ud af dig? Den følelse vender tilbage nu.</p><p><strong>92% oplevede mærkbar forskel i energi</strong></p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "normal",
-                "text_color": "subtext",
-                "text_color_gradient": "",
-                "disable_line_break_mobile": false,
-                "width": "fit-content",
-                "text_alignment": "left",
-                "width_mobile": "fit-content",
-                "text_alignment_mobile": "left",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0,
-                "mobile-padding-scale": 80,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "heading_timeline_day_3",
-            "text_timeline_day_3"
-          ]
-        },
-        "timeline_day_4": {
-          "type": "_timeline",
-          "name": "Timeline",
-          "settings": {
-            "content_row_gap": 12,
-            "badge_text": "DAG 45-60",
-            "badge_color": "#000000",
-            "badge_background_color": "#d9ede4"
-          },
-          "blocks": {
-            "heading_timeline_day_4": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<p>Spejlet lyver ikke længere</p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "normal",
-                "text_color": "text",
-                "text_color_gradient": "",
-                "disable_line_break_mobile": false,
-                "width": "fit-content",
-                "text_alignment": "left",
-                "width_mobile": "fit-content",
-                "text_alignment_mobile": "left",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0,
-                "mobile-padding-scale": 80,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            },
-            "text_timeline_day_4": {
-              "type": "text",
-              "name": "t:names.text",
-              "settings": {
-                "text": "<p>Nu kan det ikke længere kun mærkes – det kan ses. Det grå og matte udtryk er væk. Huden stråler af sundhed, gløden er tilbage, og spejlbilledet viser den udhvilede, stærke version af dig selv.</p><p><strong>95% Oplevede en markant forbedring i udseende og generel livskvalitet.</strong></p><p><em>*Baseret på interne data og brugerfeedback fra Martilness.</em></p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "normal",
-                "text_color": "subtext",
-                "text_color_gradient": "",
-                "disable_line_break_mobile": false,
-                "width": "fit-content",
-                "text_alignment": "left",
-                "width_mobile": "fit-content",
-                "text_alignment_mobile": "left",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0,
-                "mobile-padding-scale": 80,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "heading_timeline_day_4",
-            "text_timeline_day_4"
-          ]
-        },
-        "section-header-vertical": {
-          "type": "_section-header-vertical",
-          "static": true,
-          "settings": {
-            "horizontal_alignment_flex_direction_column": "center",
-            "device": "desktop",
-            "padding-block-end": 60,
-            "padding-block-end-mobile": 24
-          },
-          "blocks": {
-            "text_XAACXk": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<p>Din 60-Dages Transformation</p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "h1",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "normal",
-                "text_color": "text",
-                "text_color_gradient": "",
-                "disable_line_break_mobile": false,
-                "width": "fit-content",
-                "text_alignment": "left",
-                "width_mobile": "fit-content",
-                "text_alignment_mobile": "left",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0,
-                "mobile-padding-scale": 80,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            },
-            "text_Q7VgTq": {
-              "type": "text",
-              "name": "t:names.subheading",
-              "settings": {
-                "text": "<p>Reelle resultater, du kan se, mærke og leve i. Her er, hvad der sker med din krop, når du tænder for det røde lys.</p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "text-subheading",
-                "font": "var(--font-body--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "normal",
-                "text_color": "text",
-                "text_color_gradient": "",
-                "disable_line_break_mobile": false,
-                "width": "fit-content",
-                "text_alignment": "left",
-                "width_mobile": "fit-content",
-                "text_alignment_mobile": "left",
-                "padding-block-start": 0,
-                "padding-block-end": 20,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0,
-                "mobile-padding-scale": 80,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_XAACXk",
-            "text_Q7VgTq"
-          ]
-        },
-        "timeline-media": {
-          "type": "_timeline-media",
-          "static": true,
-          "settings": {
-            "image_1": "shopify://shop_images/Rodlys_maske_21_1.webp",
-            "image_ratio_1": "adapt",
-            "image_width_1": 84,
-            "image_border_radius_1": 0,
-            "image_2": "shopify://shop_images/Rodlys_maske_22_1.webp",
-            "image_ratio_2": "adapt",
-            "image_width_2": 48,
-            "image_border_radius_2": 0
-          },
-          "blocks": {
-            "spinning-icon-badge": {
-              "type": "spinning-icon-badge",
-              "static": true,
-              "settings": {
-                "icon": "heart",
-                "text": "60 DAGES TRANSFORMATION",
-                "font": "var(--font-heading--family)",
-                "font_size": 12,
-                "font_size_mobile": 8,
-                "text_color": "text",
-                "text_color_gradient": "",
-                "color_scheme": "scheme-2",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
-        },
-        "button": {
-          "type": "_button",
-          "disabled": true,
-          "static": true,
-          "settings": {
-            "label": "",
-            "link": "",
-            "style": "primary",
-            "size": "large",
-            "icon": "caret-right",
-            "icon_only": false,
-            "icon_style": "solid",
-            "mobile_full_width": false
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "timeline_day_1",
-        "timeline_day_2",
-        "timeline_day_3",
-        "timeline_day_4"
-      ],
-      "custom_css": [
-        "h2 {font-size: 32px;}"
-      ],
-      "name": "t:names.progress_timeline",
-      "settings": {
-        "container": "page-width",
-        "progress_bar_color": "#000000",
-        "color_scheme": "scheme-1",
-        "device": "desktop",
-        "padding-block-start": 50,
-        "padding-block-end": 50,
-        "padding-block-start-mobile": 48,
-        "padding-block-end-mobile": 48
       }
     },
     "martilness_split_faq_UcENen": {
@@ -3786,10 +3787,10 @@
     "main",
     "whats_included_Kp7mR2",
     "flex_carousel_videos",
+    "progress_timeline_60d",
     "iwt_how_it_works",
     "iwt_health_benefits",
     "trustpilot_reviews_pdp",
-    "progress_timeline_60d",
     "martilness_split_faq_UcENen",
     "faq_banner_pdp_Mtq1",
     "17843818126653bf72",
