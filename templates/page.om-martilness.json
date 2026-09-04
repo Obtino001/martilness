@@ -40,7 +40,7 @@
         "layout": "article",
         "show_page_title": false,
         "accent_color": "#09412d",
-        "cta_label": "Kontakt os",
+        "cta_label": "",
         "cta_link": "shopify://pages/kontakt",
         "padding_top": 40,
         "padding_bottom": 64
