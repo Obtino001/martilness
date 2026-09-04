@@ -1459,7 +1459,7 @@
           "name": "Timeline",
           "settings": {
             "content_row_gap": 12,
-            "badge_text": "DAG 7",
+            "badge_text": "{{ closest.product.metafields.custom.timeline.value.timeline_dag_1.value }}",
             "badge_color": "#000000",
             "badge_background_color": "#d9ede4"
           },
@@ -1468,7 +1468,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<p>Kroppen giver slip</p>",
+                "text": "<p>{{ closest.product.metafields.custom.timeline.value.timeline_heading_1.value }}</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
                 "highlight_shape_color": "",
@@ -1500,7 +1500,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>Den genstridige stivhed, du normalt vågner med, slipper sit jerngreb. Kroppen føles lettere, og de dybtliggende spændinger fra hverdagens stress begynder at løsne sig. Bevægelse føles frit igen.</p><p><strong>89% Oplevede en markant reduktion i smerter og ubehag.</strong></p>",
+                "text": "{{ closest.product.metafields.custom.timeline.value.timeline_text_1 | metafield_tag }}",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
                 "highlight_shape_color": "",
@@ -1539,7 +1539,7 @@
           "name": "Timeline",
           "settings": {
             "content_row_gap": 12,
-            "badge_text": "DAG 30",
+            "badge_text": "{{ closest.product.metafields.custom.timeline.value.timeline_dag_2.value }}",
             "badge_color": "#000000",
             "badge_background_color": "#d9ede4"
           },
@@ -1548,7 +1548,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<p>Genfind den krop, du husker</p>",
+                "text": "<p>{{ closest.product.metafields.custom.timeline.value.timeline_heading_2.value }}</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
                 "highlight_shape_color": "",
@@ -1580,7 +1580,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>Kan du huske, hvordan det føltes at have overskud? Hvor kroppen var modstandsdygtig, og dagen ikke flåede al energi ud af dig? Den følelse vender tilbage nu.</p><p><strong>92% oplevede mærkbar forskel i energi</strong></p>",
+                "text": "{{ closest.product.metafields.custom.timeline.value.timeline_text_2 | metafield_tag }}",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
                 "highlight_shape_color": "",
@@ -1619,7 +1619,7 @@
           "name": "Timeline",
           "settings": {
             "content_row_gap": 12,
-            "badge_text": "DAG 45-60",
+            "badge_text": "{{ closest.product.metafields.custom.timeline.value.timeline_dag_3.value }}",
             "badge_color": "#000000",
             "badge_background_color": "#d9ede4"
           },
@@ -1628,7 +1628,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<p>Spejlet lyver ikke længere</p>",
+                "text": "<p>{{ closest.product.metafields.custom.timeline.value.timeline_heading_3.value }}</p>",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
                 "highlight_shape_color": "",
@@ -1660,7 +1660,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>Nu kan det ikke længere kun mærkes – det kan ses. Det grå og matte udtryk er væk. Huden stråler af sundhed, gløden er tilbage, og spejlbilledet viser den udhvilede, stærke version af dig selv.</p><p><strong>95% Oplevede en markant forbedring i udseende og generel livskvalitet.</strong></p><p><em>*Baseret på interne data og brugerfeedback fra Martilness.</em></p>",
+                "text": "{{ closest.product.metafields.custom.timeline.value.timeline_text_3 | metafield_tag }}",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
                 "highlight_shape_color": "",
