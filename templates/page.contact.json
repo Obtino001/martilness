@@ -129,7 +129,8 @@
         "padding-block-end-mobile": 24,
         "padding-inline-start-mobile": 16,
         "padding-inline-end-mobile": 16
-      }
+      },
+      "disabled": true
     },
     "custom_section_tUbpGU": {
       "type": "custom-section",
@@ -253,205 +254,51 @@
             "padding-inline-end-mobile": 0
           },
           "blocks": {
-            "group_cQUErA": {
-              "type": "group",
-              "name": "t:names.group",
+            "text_intro": {
+              "type": "_simple-text",
               "settings": {
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "column_gap": 12,
-                "row_gap": 12,
-                "enable_sticky_desktop": false,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "inherit_color_scheme": true,
-                "color_scheme": "",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "enable_swipe_on_mobile": false,
-                "swipe_custom_width_column": false,
-                "swipe_column_width": 76,
-                "columns_mobile": 2,
-                "column_gap_mobile": 12,
-                "row_gap_mobile": 12,
-                "device": "mobile",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0,
-                "padding-block-start-mobile": 0,
-                "padding-block-end-mobile": 4,
-                "padding-inline-start-mobile": 0,
-                "padding-inline-end-mobile": 0
-              },
-              "blocks": {
-                "text_BY6EHY": {
-                  "type": "text",
-                  "name": "t:names.heading",
-                  "settings": {
-                    "text": "<p>Information</p>",
-                    "highlight_style": "none",
-                    "highlight_font_style": "italic",
-                    "highlight_shape_color": "",
-                    "highlight_text_color": "",
-                    "type_preset": "h3",
-                    "font": "var(--font-body--family)",
-                    "font_weight": "",
-                    "font_size": 15,
-                    "font_size_mobile": 15,
-                    "line_height": "normal",
-                    "text_color": "text",
-                    "text_color_gradient": "",
-                    "disable_line_break_mobile": false,
-                    "width": "fit-content",
-                    "text_alignment": "left",
-                    "width_mobile": "fit-content",
-                    "text_alignment_mobile": "left",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0,
-                    "mobile-padding-scale": 80,
-                    "animation_type": "none",
-                    "animation_delay": 250
-                  },
-                  "blocks": {}
-                },
-                "text_WjdEzb": {
-                  "type": "text",
-                  "name": "t:names.text",
-                  "settings": {
-                    "text": "<p>Adresse, telefon og åbningstider – alt det praktiske.</p>",
-                    "highlight_style": "none",
-                    "highlight_font_style": "italic",
-                    "highlight_shape_color": "",
-                    "highlight_text_color": "",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_weight": "",
-                    "font_size": 15,
-                    "font_size_mobile": 15,
-                    "line_height": "normal",
-                    "text_color": "subtext",
-                    "text_color_gradient": "",
-                    "disable_line_break_mobile": false,
-                    "width": "fit-content",
-                    "text_alignment": "left",
-                    "width_mobile": "fit-content",
-                    "text_alignment_mobile": "left",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0,
-                    "mobile-padding-scale": 80,
-                    "animation_type": "none",
-                    "animation_delay": 250
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_BY6EHY",
-                "text_WjdEzb"
-              ]
+                "text": "<h3 style=\"margin-bottom: 1rem;\">Vi er her for at hjælpe!</h3><p>Hvis du har spørgsmål, store som små, eller har brug for mere information om vores produkter, tøv endelig ikke med at kontakte os. Vores team står klar til at hjælpe dig, så du får den bedste oplevelse og de svar, du søger.</p><p style=\"margin-top: 1rem;\">Vi glæder os til at høre fra dig!</p>",
+                "type_preset": "rte",
+                "text_color": "text"
+              }
             },
-            "icon_box_xh6q86": {
-              "type": "icon-box",
-              "name": "t:names.icon_box_card",
+            "text_return": {
+              "type": "_simple-text",
               "settings": {
-                "direction": "horizontal",
-                "text_align": "left",
-                "icon": "phone",
-                "icon_spacing": 12,
-                "icon_size": "custom-size",
-                "icon_width": 28,
-                "icon_width_mobile": 28,
-                "heading": "Kontakt os",
-                "heading_preset": "h5",
-                "text": "<p><a href=\"mailto:info@martilness.dk\">info@martilness.dk</a><br/><a href=\"tel:+4527796900\">+45 2779 6900</a></p>",
-                "text_color": "subtext",
-                "link": "",
-                "show_link_icon": true,
-                "content_row_gap": 4,
-                "style": "standard",
-                "inherit_color_scheme": true,
-                "color_scheme": "",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 10,
-                "border_radius": 10
-              },
-              "blocks": {}
+                "text": "<h5 style=\"margin-bottom: 0.2rem;\">Returnering eller reklamation</h5><p>Skal du returnere eller reklamere over et produkt kan du gå direkte her til vores <a href=\"/pages/returnering\" style=\"color: rgb(var(--color-primary-button-background));\">returportal</a> eller vores <a href=\"/pages/reklamation\" style=\"color: rgb(var(--color-primary-button-background));\">reklamationsside</a>.</p>",
+                "type_preset": "rte",
+                "text_color": "text"
+              }
             },
-            "icon_box_BEMkqB": {
-              "type": "icon-box",
-              "name": "t:names.icon_box_card",
+            "text_address": {
+              "type": "_simple-text",
               "settings": {
-                "direction": "horizontal",
-                "text_align": "left",
-                "icon": "map-pin",
-                "icon_spacing": 12,
-                "icon_size": "custom-size",
-                "icon_width": 32,
-                "icon_width_mobile": 32,
-                "heading": "Adresse",
-                "heading_preset": "h5",
-                "text": "<p>Baunebakkevej 12, 2.th<br/>2650 Hvidovre<br/>CVR: 35633146</p>",
-                "text_color": "subtext",
-                "link": "",
-                "show_link_icon": true,
-                "content_row_gap": 4,
-                "style": "standard",
-                "inherit_color_scheme": true,
-                "color_scheme": "",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 10,
-                "border_radius": 10
-              },
-              "blocks": {}
+                "text": "<h5 style=\"margin-bottom: 0.2rem;\">Martilness</h5><p>Baunebakkevej 12, 2.th<br>2650 Hvidovre<br>CVR: 35633146</p>",
+                "type_preset": "rte",
+                "text_color": "text"
+              }
             },
-            "icon_box_Bkx7De": {
-              "type": "icon-box",
-              "name": "t:names.icon_box_card",
+            "text_phone": {
+              "type": "_simple-text",
               "settings": {
-                "direction": "horizontal",
-                "text_align": "left",
-                "icon": "clock",
-                "icon_spacing": 12,
-                "icon_size": "custom-size",
-                "icon_width": 28,
-                "icon_width_mobile": 28,
-                "heading": "Åbningstider",
-                "heading_preset": "h5",
-                "text": "<p>Mandag–fredag: 08.00–20.00<br/>Weekend: E-mails besvares hurtigst muligt</p>",
-                "text_color": "subtext",
-                "link": "",
-                "show_link_icon": true,
-                "content_row_gap": 4,
-                "style": "standard",
-                "inherit_color_scheme": true,
-                "color_scheme": "",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 10,
-                "border_radius": 10
-              },
-              "blocks": {}
+                "text": "<p style=\"display: flex; align-items: center; gap: 8px; color: rgb(var(--color-primary-button-background));\"><svg style=\"width: 16px; height: 16px; margin-bottom: -1px;\" fill=\"currentColor\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z\"></path></svg><a href=\"tel:+4527796900\" style=\"color: rgb(var(--color-primary-button-background)); text-decoration: none;\">Tlf.: +45 2779 6900</a></p>",
+                "type_preset": "rte"
+              }
+            },
+            "text_email": {
+              "type": "_simple-text",
+              "settings": {
+                "text": "<p style=\"display: flex; align-items: center; gap: 8px; color: rgb(var(--color-primary-button-background)); margin-top: -10px;\"><svg style=\"width: 16px; height: 16px; margin-bottom: -1px;\" fill=\"currentColor\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z\"></path><path d=\"M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z\"></path></svg><a href=\"mailto:info@martilness.dk\" style=\"color: rgb(var(--color-primary-button-background)); text-decoration: none;\">info@martilness.dk</a></p>",
+                "type_preset": "rte"
+              }
             }
           },
           "block_order": [
-            "group_cQUErA",
-            "icon_box_xh6q86",
-            "icon_box_BEMkqB",
-            "icon_box_Bkx7De"
+            "text_intro",
+            "text_return",
+            "text_address",
+            "text_phone",
+            "text_email"
           ]
         }
       },
