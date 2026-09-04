@@ -1740,7 +1740,7 @@
               "type": "text",
               "name": "t:names.subheading",
               "settings": {
-                "text": "<p>Reelle resultater, du kan se, mærke og leve i. Her er, hvad der sker med din krop, når du tænder for det røde lys.</p>",
+                "text": "{{ closest.product.metafields.custom.timeline.value.text | metafield_tag }}",
                 "highlight_style": "none",
                 "highlight_font_style": "italic",
                 "highlight_shape_color": "",
