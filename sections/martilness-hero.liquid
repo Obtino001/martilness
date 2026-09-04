@@ -152,7 +152,15 @@
     text-wrap: pretty;
   }
 
+  #shopify-section-{{ section.id }} .fr-hero__full-link {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+  }
+
   #shopify-section-{{ section.id }} .fr-hero__ctas {
+    position: relative;
+    z-index: 4;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
@@ -286,6 +294,9 @@
 -%}
 <div class="fr-hero-wrap fr-hero-wrap--{{ container }}  section-grid--{{ container }}">
   <div class="fr-hero {{ hero_modifier }} color-{{ section.settings.color_scheme }}">
+    {%- if btn1_link != blank -%}
+      <a href="{{ btn1_link }}" class="fr-hero__full-link" aria-label="{{ title | escape }}"></a>
+    {%- endif -%}
     {% if use_picker_images or hero_desktop != blank or hero_mobile != blank %}
       <div class="fr-hero__bg">
         <picture>
