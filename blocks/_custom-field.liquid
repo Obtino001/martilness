@@ -134,11 +134,7 @@
         aria-invalid="true"
         required
       {% endif %}
-    >
-        {% # theme-check-disable %}
-          {{- form[field_name] -}}
-        {% # theme-check-enable %}
-      </textarea>
+    >{%- if form[field_name] -%}{{- form[field_name] -}}{%- endif -%}</textarea>
   </div>
 {%- elsif block.settings.field_type == 'select' -%}
   {% assign options = block.settings.select_options | split: ',' %}
