@@ -386,290 +386,6 @@
     "collection_links_Mtq1": {
       "type": "collection-highlight",
       "blocks": {
-        "collection_highlight_1": {
-          "type": "_collection-highlight",
-          "name": "t:categories.collection",
-          "settings": {
-            "collection": "isbad",
-            "title": "Isbad",
-            "title_preset": "custom",
-            "title_font": "var(--font-heading--family)",
-            "title_font_weight": "",
-            "title_font_size": 68,
-            "title_font_size_mobile": 38,
-            "title_line_height": "loose",
-            "description": "<p>Robuste isbade til hjemmet –<br/>restitution og mental styrke året rundt.</p>"
-          },
-          "blocks": {
-            "collection-highlight-image-card": {
-              "type": "_collection-highlight-image-card",
-              "name": "t:names.image_card",
-              "static": true,
-              "settings": {
-                "image": "shopify://shop_images/thumbnail_1x1.1-2_6fe1b89a-a9d6-4aec-a668-785dcb1f6fd6.jpg",
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "card_link": "",
-                "edge_gap": "lg",
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "flex-end",
-                "column_gap": 12,
-                "column_gap_mobile": 12,
-                "row_gap": 32,
-                "row_gap_mobile": 24,
-                "inherit_color_scheme": false,
-                "color_scheme": "scheme-inverse",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 20,
-                "card_label": "",
-                "card_label_text_color": "#ffffff",
-                "enable_preload_image": false
-              },
-              "blocks": {
-                "subheading": {
-                  "type": "_simple-text",
-                  "disabled": true,
-                  "static": true,
-                  "settings": {
-                    "text": "<p>Isbad kollektion</p>",
-                    "highlight_style": "none",
-                    "highlight_font_style": "italic",
-                    "highlight_shape_color": "",
-                    "highlight_text_color": "",
-                    "type_preset": "text-subheading",
-                    "font": "var(--font-body--family)",
-                    "font_weight": "",
-                    "font_size": 15,
-                    "font_size_mobile": 15,
-                    "line_height": "normal",
-                    "text_color": "text",
-                    "padding-block-start": 0,
-                    "padding-block-end": 20,
-                    "mobile-padding-scale": 80,
-                    "animation_type": "none",
-                    "animation_delay": 250
-                  },
-                  "blocks": {}
-                },
-                "heading": {
-                  "type": "_simple-text",
-                  "static": true,
-                  "settings": {
-                    "text": "<p>Isbad</p>",
-                    "highlight_style": "none",
-                    "highlight_font_style": "italic",
-                    "highlight_shape_color": "",
-                    "highlight_text_color": "",
-                    "type_preset": "custom",
-                    "font": "var(--font-heading--family)",
-                    "font_weight": "",
-                    "font_size": 48,
-                    "font_size_mobile": 34,
-                    "line_height": "normal",
-                    "text_color": "text",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "mobile-padding-scale": 80,
-                    "animation_type": "none",
-                    "animation_delay": 250
-                  },
-                  "blocks": {}
-                },
-                "text": {
-                  "type": "_simple-text",
-                  "static": true,
-                  "settings": {
-                    "text": "",
-                    "highlight_style": "none",
-                    "highlight_font_style": "italic",
-                    "highlight_shape_color": "",
-                    "highlight_text_color": "",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_weight": "",
-                    "font_size": 15,
-                    "font_size_mobile": 15,
-                    "line_height": "normal",
-                    "text_color": "text",
-                    "padding-block-start": 24,
-                    "padding-block-end": 0,
-                    "mobile-padding-scale": 80,
-                    "animation_type": "none",
-                    "animation_delay": 250
-                  },
-                  "blocks": {}
-                },
-                "button": {
-                  "type": "button",
-                  "static": true,
-                  "settings": {
-                    "label": "Shop nu",
-                    "link": "shopify://collections/isbad",
-                    "style": "primary",
-                    "size": "large",
-                    "icon": "caret-right",
-                    "icon_only": false,
-                    "icon_style": "solid",
-                    "mobile_full_width": true,
-                    "animation_type": "none",
-                    "animation_delay": 250
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": []
-            }
-          },
-          "block_order": []
-        },
-        "collection_highlight_2": {
-          "type": "_collection-highlight",
-          "name": "t:categories.collection",
-          "settings": {
-            "collection": "dampsauna",
-            "title": "Dampsauna",
-            "title_preset": "custom",
-            "title_font": "var(--font-heading--family)",
-            "title_font_weight": "",
-            "title_font_size": 68,
-            "title_font_size_mobile": 38,
-            "title_line_height": "loose",
-            "description": "<p>Effektiv varme og velvære<br/>uden at det kræver meget plads.</p>"
-          },
-          "blocks": {
-            "collection-highlight-image-card": {
-              "type": "_collection-highlight-image-card",
-              "name": "t:names.image_card",
-              "static": true,
-              "settings": {
-                "image": "shopify://shop_images/DSC00496_b04cb529-663f-4662-b7a3-cd329bd6088f.jpg",
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "card_link": "",
-                "edge_gap": "lg",
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "flex-end",
-                "column_gap": 12,
-                "column_gap_mobile": 12,
-                "row_gap": 32,
-                "row_gap_mobile": 24,
-                "inherit_color_scheme": false,
-                "color_scheme": "scheme-inverse",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 20,
-                "card_label": "",
-                "card_label_text_color": "#ffffff",
-                "enable_preload_image": false
-              },
-              "blocks": {
-                "subheading": {
-                  "type": "_simple-text",
-                  "disabled": true,
-                  "static": true,
-                  "settings": {
-                    "text": "<p>Dampsauna kollektion</p>",
-                    "highlight_style": "none",
-                    "highlight_font_style": "italic",
-                    "highlight_shape_color": "",
-                    "highlight_text_color": "",
-                    "type_preset": "text-subheading",
-                    "font": "var(--font-body--family)",
-                    "font_weight": "",
-                    "font_size": 15,
-                    "font_size_mobile": 15,
-                    "line_height": "normal",
-                    "text_color": "text",
-                    "padding-block-start": 0,
-                    "padding-block-end": 20,
-                    "mobile-padding-scale": 80,
-                    "animation_type": "none",
-                    "animation_delay": 250
-                  },
-                  "blocks": {}
-                },
-                "heading": {
-                  "type": "_simple-text",
-                  "static": true,
-                  "settings": {
-                    "text": "<p>Dampsauna</p>",
-                    "highlight_style": "none",
-                    "highlight_font_style": "italic",
-                    "highlight_shape_color": "",
-                    "highlight_text_color": "",
-                    "type_preset": "custom",
-                    "font": "var(--font-heading--family)",
-                    "font_weight": "",
-                    "font_size": 48,
-                    "font_size_mobile": 34,
-                    "line_height": "normal",
-                    "text_color": "text",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "mobile-padding-scale": 80,
-                    "animation_type": "none",
-                    "animation_delay": 250
-                  },
-                  "blocks": {}
-                },
-                "text": {
-                  "type": "_simple-text",
-                  "static": true,
-                  "settings": {
-                    "text": "<p></p>",
-                    "highlight_style": "none",
-                    "highlight_font_style": "italic",
-                    "highlight_shape_color": "",
-                    "highlight_text_color": "",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_weight": "",
-                    "font_size": 15,
-                    "font_size_mobile": 15,
-                    "line_height": "normal",
-                    "text_color": "text",
-                    "padding-block-start": 24,
-                    "padding-block-end": 0,
-                    "mobile-padding-scale": 80,
-                    "animation_type": "none",
-                    "animation_delay": 250
-                  },
-                  "blocks": {}
-                },
-                "button": {
-                  "type": "button",
-                  "static": true,
-                  "settings": {
-                    "label": "Shop nu",
-                    "link": "/products/dampsauna",
-                    "style": "primary",
-                    "size": "large",
-                    "icon": "caret-right",
-                    "icon_only": false,
-                    "icon_style": "solid",
-                    "mobile_full_width": true,
-                    "animation_type": "none",
-                    "animation_delay": 250
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": []
-            }
-          },
-          "block_order": []
-        },
         "collection_highlight_3": {
           "type": "_collection-highlight",
           "name": "t:categories.collection",
@@ -1095,6 +811,290 @@
             }
           },
           "block_order": []
+        },
+        "collection_highlight_2": {
+          "type": "_collection-highlight",
+          "name": "t:categories.collection",
+          "settings": {
+            "collection": "dampsauna",
+            "title": "Dampsauna",
+            "title_preset": "custom",
+            "title_font": "var(--font-heading--family)",
+            "title_font_weight": "",
+            "title_font_size": 68,
+            "title_font_size_mobile": 38,
+            "title_line_height": "loose",
+            "description": "<p>Effektiv varme og velvære<br/>uden at det kræver meget plads.</p>"
+          },
+          "blocks": {
+            "collection-highlight-image-card": {
+              "type": "_collection-highlight-image-card",
+              "name": "t:names.image_card",
+              "static": true,
+              "settings": {
+                "image": "shopify://shop_images/DSC00496_b04cb529-663f-4662-b7a3-cd329bd6088f.jpg",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "card_link": "",
+                "edge_gap": "lg",
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "flex-end",
+                "column_gap": 12,
+                "column_gap_mobile": 12,
+                "row_gap": 32,
+                "row_gap_mobile": 24,
+                "inherit_color_scheme": false,
+                "color_scheme": "scheme-inverse",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 20,
+                "card_label": "",
+                "card_label_text_color": "#ffffff",
+                "enable_preload_image": false
+              },
+              "blocks": {
+                "subheading": {
+                  "type": "_simple-text",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {
+                    "text": "<p>Dampsauna kollektion</p>",
+                    "highlight_style": "none",
+                    "highlight_font_style": "italic",
+                    "highlight_shape_color": "",
+                    "highlight_text_color": "",
+                    "type_preset": "text-subheading",
+                    "font": "var(--font-body--family)",
+                    "font_weight": "",
+                    "font_size": 15,
+                    "font_size_mobile": 15,
+                    "line_height": "normal",
+                    "text_color": "text",
+                    "padding-block-start": 0,
+                    "padding-block-end": 20,
+                    "mobile-padding-scale": 80,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                },
+                "heading": {
+                  "type": "_simple-text",
+                  "static": true,
+                  "settings": {
+                    "text": "<p>Dampsauna</p>",
+                    "highlight_style": "none",
+                    "highlight_font_style": "italic",
+                    "highlight_shape_color": "",
+                    "highlight_text_color": "",
+                    "type_preset": "custom",
+                    "font": "var(--font-heading--family)",
+                    "font_weight": "",
+                    "font_size": 48,
+                    "font_size_mobile": 34,
+                    "line_height": "normal",
+                    "text_color": "text",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "mobile-padding-scale": 80,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                },
+                "text": {
+                  "type": "_simple-text",
+                  "static": true,
+                  "settings": {
+                    "text": "<p></p>",
+                    "highlight_style": "none",
+                    "highlight_font_style": "italic",
+                    "highlight_shape_color": "",
+                    "highlight_text_color": "",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_weight": "",
+                    "font_size": 15,
+                    "font_size_mobile": 15,
+                    "line_height": "normal",
+                    "text_color": "text",
+                    "padding-block-start": 24,
+                    "padding-block-end": 0,
+                    "mobile-padding-scale": 80,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                },
+                "button": {
+                  "type": "button",
+                  "static": true,
+                  "settings": {
+                    "label": "Shop nu",
+                    "link": "/products/dampsauna",
+                    "style": "primary",
+                    "size": "large",
+                    "icon": "caret-right",
+                    "icon_only": false,
+                    "icon_style": "solid",
+                    "mobile_full_width": true,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            }
+          },
+          "block_order": []
+        },
+        "collection_highlight_1": {
+          "type": "_collection-highlight",
+          "name": "t:categories.collection",
+          "settings": {
+            "collection": "isbad",
+            "title": "Isbad",
+            "title_preset": "custom",
+            "title_font": "var(--font-heading--family)",
+            "title_font_weight": "",
+            "title_font_size": 68,
+            "title_font_size_mobile": 38,
+            "title_line_height": "loose",
+            "description": "<p>Robuste isbade til hjemmet –<br/>restitution og mental styrke året rundt.</p>"
+          },
+          "blocks": {
+            "collection-highlight-image-card": {
+              "type": "_collection-highlight-image-card",
+              "name": "t:names.image_card",
+              "static": true,
+              "settings": {
+                "image": "shopify://shop_images/thumbnail_1x1.1-2_6fe1b89a-a9d6-4aec-a668-785dcb1f6fd6.jpg",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "card_link": "",
+                "edge_gap": "lg",
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "flex-end",
+                "column_gap": 12,
+                "column_gap_mobile": 12,
+                "row_gap": 32,
+                "row_gap_mobile": 24,
+                "inherit_color_scheme": false,
+                "color_scheme": "scheme-inverse",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 20,
+                "card_label": "",
+                "card_label_text_color": "#ffffff",
+                "enable_preload_image": false
+              },
+              "blocks": {
+                "subheading": {
+                  "type": "_simple-text",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {
+                    "text": "<p>Isbad kollektion</p>",
+                    "highlight_style": "none",
+                    "highlight_font_style": "italic",
+                    "highlight_shape_color": "",
+                    "highlight_text_color": "",
+                    "type_preset": "text-subheading",
+                    "font": "var(--font-body--family)",
+                    "font_weight": "",
+                    "font_size": 15,
+                    "font_size_mobile": 15,
+                    "line_height": "normal",
+                    "text_color": "text",
+                    "padding-block-start": 0,
+                    "padding-block-end": 20,
+                    "mobile-padding-scale": 80,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                },
+                "heading": {
+                  "type": "_simple-text",
+                  "static": true,
+                  "settings": {
+                    "text": "<p>Isbad</p>",
+                    "highlight_style": "none",
+                    "highlight_font_style": "italic",
+                    "highlight_shape_color": "",
+                    "highlight_text_color": "",
+                    "type_preset": "custom",
+                    "font": "var(--font-heading--family)",
+                    "font_weight": "",
+                    "font_size": 48,
+                    "font_size_mobile": 34,
+                    "line_height": "normal",
+                    "text_color": "text",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "mobile-padding-scale": 80,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                },
+                "text": {
+                  "type": "_simple-text",
+                  "static": true,
+                  "settings": {
+                    "text": "",
+                    "highlight_style": "none",
+                    "highlight_font_style": "italic",
+                    "highlight_shape_color": "",
+                    "highlight_text_color": "",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_weight": "",
+                    "font_size": 15,
+                    "font_size_mobile": 15,
+                    "line_height": "normal",
+                    "text_color": "text",
+                    "padding-block-start": 24,
+                    "padding-block-end": 0,
+                    "mobile-padding-scale": 80,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                },
+                "button": {
+                  "type": "button",
+                  "static": true,
+                  "settings": {
+                    "label": "Shop nu",
+                    "link": "shopify://collections/isbad",
+                    "style": "primary",
+                    "size": "large",
+                    "icon": "caret-right",
+                    "icon_only": false,
+                    "icon_style": "solid",
+                    "mobile_full_width": true,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            }
+          },
+          "block_order": []
         }
       },
       "block_order": [
@@ -1128,18 +1128,11 @@
     "product_tabs_VFRpjk": {
       "type": "product-tabs",
       "blocks": {
-        "collection_isbad": {
+        "collection_C4aep4": {
           "type": "collection",
           "settings": {
-            "collection": "isbad",
-            "title": "Isbad"
-          }
-        },
-        "collection_kyfeYK": {
-          "type": "collection",
-          "settings": {
-            "collection": "isbad-dampsauna",
-            "title": "Isbad + Dampsauna"
+            "collection": "infrarodt-lys",
+            "title": "Infrarødt lys"
           }
         },
         "collection_saunataeppe": {
@@ -1149,24 +1142,31 @@
             "title": "Saunatæppe"
           }
         },
-        "collection_C4aep4": {
-          "type": "collection",
-          "settings": {
-            "collection": "infrarodt-lys",
-            "title": "Infrarødt lys"
-          }
-        },
         "collection_led_maske": {
           "type": "collection",
           "settings": {
             "collection": "infrarod-led-maske",
             "title": "Infrarød LED maske"
           }
+        },
+        "collection_kyfeYK": {
+          "type": "collection",
+          "settings": {
+            "collection": "isbad-dampsauna",
+            "title": "Isbad + Dampsauna"
+          }
+        },
+        "collection_isbad": {
+          "type": "collection",
+          "settings": {
+            "collection": "isbad",
+            "title": "Isbad"
+          }
         }
       },
       "block_order": [
-        "collection_saunataeppe",
         "collection_C4aep4",
+        "collection_saunataeppe",
         "collection_led_maske",
         "collection_kyfeYK",
         "collection_isbad"
