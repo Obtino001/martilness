@@ -155,6 +155,40 @@
             <span class="btn__text">{{ 'blocks.contact_form.send_message' | t }}</span>
           </button>
         {%- endform -%}
+
+        <script>
+          (function() {
+            var form = document.getElementById('{{ form_id }}');
+            if (!form) return;
+
+            var nameInput = document.getElementById('{{ form_id }}-name');
+            var emailInput = document.getElementById('{{ form_id }}-email');
+
+            function resetCustom() {
+              this.setCustomValidity('');
+            }
+            if (nameInput) nameInput.addEventListener('input', resetCustom);
+            if (emailInput) emailInput.addEventListener('input', resetCustom);
+
+            form.addEventListener('submit', function(e) {
+              if (nameInput && !nameInput.value.trim()) {
+                e.preventDefault();
+                nameInput.setCustomValidity('Udfyld venligst dette felt');
+                nameInput.reportValidity();
+                nameInput.focus();
+                return false;
+              }
+
+              if (emailInput && !emailInput.value.trim()) {
+                e.preventDefault();
+                emailInput.setCustomValidity('Udfyld venligst en gyldig e-mailadresse');
+                emailInput.reportValidity();
+                emailInput.focus();
+                return false;
+              }
+            });
+          })();
+        </script>
       </div>
     </div>
   </div>
