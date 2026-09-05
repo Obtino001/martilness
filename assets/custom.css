@@ -340,16 +340,3 @@ html {
   color: rgb(var(--color-foreground)) !important;
   text-decoration: underline !important;
 }
-
-.footer__top-block--footer_column_6qKBdj .icon-block,
-.footer__top-block--footer_column_6qKBdj .icon-block svg,
-#FooterColumn-footer_column_6qKBdj .icon-block,
-#FooterColumn-footer_column_6qKBdj .icon-block svg,
-.footer__top-block:has(a[href*="mailto:info@martilness.dk"]) .icon-block,
-.footer__top-block:has(a[href*="mailto:info@martilness.dk"]) .icon-block svg {
-  color: var(--color-foreground-secondary) !important;
-  stroke: var(--color-foreground-secondary) !important;
-  opacity: 0.85;
-}
-
-
