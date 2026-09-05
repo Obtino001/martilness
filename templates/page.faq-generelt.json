@@ -26,8 +26,8 @@
       "type": "martilness-page-hero",
       "name": "Martilness page hero",
       "settings": {
-        "custom_title": "",
-        "subtitle": "Svar på de mest almindelige spørgsmål om ordrer, fragt og betaling.",
+        "custom_title": "Herunder finder du ofte stillede spørgsmål",
+        "subtitle": "Såfremt du ikke måtte få svar dit spørgsmål, må du endelig kontakte os her",
         "accent_color": "#09412d",
         "padding_top": 48,
         "padding_bottom": 48
@@ -40,8 +40,6 @@
         "layout": "faq",
         "show_page_title": false,
         "accent_color": "#09412d",
-        "cta_label": "Kontakt os",
-        "cta_link": "shopify://pages/kontakt",
         "padding_top": 40,
         "padding_bottom": 64
       }
