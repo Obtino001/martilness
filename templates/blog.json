@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "breadcrumbs_EFh8N7": {
@@ -23,6 +32,7 @@
             "heading": "Seneste artikler",
             "heading_preset": "h1",
             "font": "var(--font-body--family)",
+            "font_weight": "",
             "font_size": 15,
             "font_size_mobile": 15,
             "line_height": "normal"
@@ -45,7 +55,14 @@
             "show_tags": true,
             "show_date": true,
             "show_author": true,
-            "show_button": false
+            "show_excerpt": false,
+            "show_button": false,
+            "highlight_image_ratio": "adapt",
+            "image_ratio_mobile": "adapt",
+            "show_button_highlight_card": false,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "highlight_color_scheme": ""
           },
           "blocks": {}
         }
@@ -59,7 +76,7 @@
         "columns_mobile": "1",
         "column_gap_mobile": 32,
         "row_gap_mobile": 32,
-        "color_scheme": "",
+        "color_scheme": "scheme-2",
         "padding-block-start": 32,
         "padding-block-end": 100
       }
@@ -73,6 +90,7 @@
           "settings": {
             "thickness": 1,
             "width_percent": 100,
+            "disable_on_desktop": false,
             "disable_on_mobile": false,
             "device": "mobile",
             "padding-block-start": 0,
@@ -83,9 +101,12 @@
           "blocks": {}
         }
       },
-      "block_order": ["divider_AQLiFU"],
+      "block_order": [
+        "divider_AQLiFU"
+      ],
       "name": "t:names.custom_section",
       "settings": {
+        "require_metafield_key": "",
         "container": "page-width--full",
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -114,5 +135,9 @@
       }
     }
   },
-  "order": ["breadcrumbs_EFh8N7", "main", "custom_section_wR64in"]
+  "order": [
+    "breadcrumbs_EFh8N7",
+    "main",
+    "custom_section_wR64in"
+  ]
 }
