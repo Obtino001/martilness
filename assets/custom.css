@@ -2,22 +2,21 @@
     height: 100%;
 }
 
-/* Collection description: short teaser at top, full text expands in place */
+/* Collection description: first paragraph stays visible; rest opens in place */
 .collection-desc {
   max-width: 48rem;
 }
 
-.collection-desc.is-collapsed .collection-desc__full {
-  display: none;
+.collection-desc.is-collapsed .collection-desc__body > *:not(:first-child) {
+  display: none !important;
 }
 
-.collection-desc:not(.is-collapsed) .collection-desc__teaser {
-  display: none;
+.collection-desc__body > :first-child {
+  margin-block-start: 0;
 }
 
-.collection-desc__teaser,
-.collection-desc__teaser p {
-  margin: 0;
+.collection-desc.is-expanded .collection-desc__toggle {
+  display: none;
 }
 
 .collection-desc__toggle {

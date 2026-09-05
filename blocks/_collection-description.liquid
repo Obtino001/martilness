@@ -5,31 +5,19 @@
     assign text = ''
   endif
   assign plain = text | strip_html | strip
-  assign teaser = ''
-  if text contains '</p>'
-    assign teaser = text | split: '</p>' | first | append: '</p>'
-  else
-    assign teaser = '<p>' | append: plain | truncatewords: 16, '' | append: '</p>'
-  endif
-  assign teaser_plain = teaser | strip_html | strip
-  if teaser_plain.size > 110
-    assign teaser = '<p>' | append: teaser_plain | truncatewords: 16, '' | append: '</p>'
-  endif
   assign show_toggle = false
-  if plain.size > teaser_plain.size
+  if plain.size > 80
     assign show_toggle = true
   endif
 -%}
 {%- if text != blank -%}
   <div
-    class="collection-desc{% if show_toggle %} is-collapsed{% endif %}"
+    class="collection-desc text-block rte color-subtext{% if show_toggle %} is-collapsed{% endif %}"
     data-collection-desc
+    {{ block.shopify_attributes }}
   >
-    {%- if show_toggle -%}
-      <div class="collection-desc__teaser rte collection-description-block">{{ teaser }}</div>
-    {%- endif -%}
-    <div class="collection-desc__full{% unless show_toggle %} collection-description-block{% endunless %}">
-      {% render 'text', fallback_text: text, block: block %}
+    <div class="collection-desc__body collection-description-block">
+      {{ text }}
     </div>
     {%- if show_toggle -%}
       <button type="button" class="collection-desc__toggle">Læs mere</button>
