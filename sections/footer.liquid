@@ -81,14 +81,21 @@
             >
           {%- endif -%}
         </div>
-        <div class="footer__bar-col">
+        {%- assign reviews_url = section.settings.reviews_url | default: 'https://dk.trustpilot.com/review/martilness.dk' -%}
+        <a
+          href="{{ reviews_url }}"
+          class="footer__bar-col footer__bar-col--link text-decoration-none color-current"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="{{ section.settings.reviews_label | default: 'Anmeldelser' }} - Trustpilot"
+        >
           <span class="footer__bar-label h5">{{ section.settings.reviews_label | default: 'Anmeldelser' }}</span>
           <div class="footer__bar-stars">
             {%- for i in (1..5) -%}
               <span class="footer__bar-star"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
             {%- endfor -%}
           </div>
-        </div>
+        </a>
       </div>
     {%- endif -%}
     {%- if section.settings.menu != blank -%}
@@ -159,6 +166,15 @@
   justify-content: flex-start;
   gap: 1rem;
   text-align: center;
+}
+a.footer__bar-col {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: opacity var(--animation-duration--fast) var(--animation-easing);
+}
+a.footer__bar-col:hover {
+  opacity: 0.82;
 }
 .footer__bar-col:not(:last-child) {
   border-inline-end: 0.1rem solid rgb(var(--color-border) / var(--color-border-alpha));
@@ -362,6 +378,11 @@
       "id": "reviews_label",
       "label": "Anmeldelser-label",
       "default": "Anmeldelser"
+    },
+    {
+      "type": "url",
+      "id": "reviews_url",
+      "label": "Anmeldelser-link"
     },
     {
       "type": "header",
