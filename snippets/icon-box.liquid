@@ -59,6 +59,7 @@
       href="{{ link }}"
       class="absolute inset-0"
       aria-label="{{ heading | escape }}"
+      {% if link contains 'http' or link contains 'trustpilot' %}target="_blank" rel="noopener noreferrer"{% endif %}
     ></a>
   {%- endif -%}
   <div class="icon-box__icon flex flex-col shrink-0">

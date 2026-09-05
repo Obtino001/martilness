@@ -15,14 +15,39 @@
     <ul class="mt-trust-pills__list" role="list">
       {% for block in section.blocks %}
         {% if block.settings.label != blank %}
-          <li class="mt-trust-pills__item" {{ block.shopify_attributes }}>
-            <span class="mt-trust-pills__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" focusable="false">
-                <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <span class="mt-trust-pills__label">{{ block.settings.label }}</span>
-          </li>
+          {%- liquid
+            assign pill_link = block.settings.link
+            assign label_down = block.settings.label | downcase
+            if pill_link == blank and label_down contains 'trustpilot'
+              assign pill_link = 'https://dk.trustpilot.com/review/martilness.dk'
+            endif
+          -%}
+          {%- if pill_link != blank -%}
+            <li class="mt-trust-pills__item-wrap">
+              <a
+                href="{{ pill_link }}"
+                {% if pill_link contains 'http' %}target="_blank" rel="noopener noreferrer"{% endif %}
+                class="mt-trust-pills__item mt-trust-pills__item--link"
+                {{ block.shopify_attributes }}
+              >
+                <span class="mt-trust-pills__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" focusable="false">
+                    <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span class="mt-trust-pills__label">{{ block.settings.label }}</span>
+              </a>
+            </li>
+          {%- else -%}
+            <li class="mt-trust-pills__item" {{ block.shopify_attributes }}>
+              <span class="mt-trust-pills__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" focusable="false">
+                  <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="mt-trust-pills__label">{{ block.settings.label }}</span>
+            </li>
+          {%- endif -%}
         {% endif %}
       {% endfor %}
     </ul>
@@ -61,6 +86,15 @@
     background: #fff;
     color: var(--mt-pill-accent);
     white-space: nowrap;
+    text-decoration: none;
+  }
+  #section-{{ section.id }} a.mt-trust-pills__item {
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  #section-{{ section.id }} a.mt-trust-pills__item:hover {
+    transform: translateY(-2px);
+    opacity: 0.92;
   }
 
   #section-{{ section.id }} .mt-trust-pills__icon {

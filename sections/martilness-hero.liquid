@@ -118,6 +118,13 @@
     border: 0;
     box-shadow: 0 0.4rem 1.6rem rgb(0 0 0 / 6%);
     -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  #shopify-section-{{ section.id }} a.fr-hero__rating:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
   }
   #shopify-section-{{ section.id }} .fr-hero__stars { display: inline-flex; gap: 0.25rem; }
   #shopify-section-{{ section.id }} .fr-hero__star {
@@ -362,7 +369,13 @@
     <div class="fr-hero__inner">
       {% if section.settings.show_rating %}
         <motion-component data-motion="fade-up" data-motion-delay="0">
-          <div class="fr-hero__rating">
+          <a
+            href="https://dk.trustpilot.com/review/martilness.dk"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="fr-hero__rating"
+            aria-label="Trustpilot: {{ rating }}/5 {{ rating_suffix }}"
+          >
             <span class="fr-hero__stars" aria-hidden="true">
               {%- for i in (1..5) -%}
                 <span class="fr-hero__star">
@@ -371,7 +384,7 @@
               {%- endfor -%}
             </span>
             <span class="fr-hero__rating-text">{{ rating }}/5 · {{ rating_suffix }}</span>
-          </div>
+          </a>
         </motion-component>
       {% endif %}
 
