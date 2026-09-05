@@ -110,28 +110,49 @@
           }
         });
 
-        // Collection description stays at the top: 2 lines, then expand in place
+        // Collection teaser stays at top; remaining text opens under the product grid
         const descBlock = document.querySelector('.collection-description-block');
+        const collectionGrid = document.querySelector('.main-collection');
 
-        if (descBlock && descBlock.textContent.trim().length > 150) {
-          descBlock.style.display = '-webkit-box';
-          descBlock.style.webkitBoxOrient = 'vertical';
-          descBlock.style.webkitLineClamp = '2';
-          descBlock.style.overflow = 'hidden';
+        if (descBlock && collectionGrid && descBlock.textContent.trim().length > 150) {
+          const paragraphs = Array.from(descBlock.querySelectorAll(':scope > p'));
+          const restNodes = paragraphs.length > 1 ? paragraphs.slice(1) : [];
+
+          const teaser = paragraphs[0] || descBlock;
+          teaser.style.display = '-webkit-box';
+          teaser.style.webkitBoxOrient = 'vertical';
+          teaser.style.webkitLineClamp = '2';
+          teaser.style.overflow = 'hidden';
 
           const readMore = document.createElement('a');
-          readMore.href = '#';
+          readMore.href = '#bottom-collection-desc';
           readMore.textContent = 'Læs mere';
           readMore.style.cssText =
             'display:inline-block;margin-top:10px;text-decoration:underline;text-underline-offset:4px;font-weight:600;cursor:pointer;';
           descBlock.parentNode.insertBefore(readMore, descBlock.nextSibling);
 
+          const bottomDesc = document.createElement('div');
+          bottomDesc.id = 'bottom-collection-desc';
+          bottomDesc.className = 'collection-banner-bottom section-grid section-grid--fixed';
+          bottomDesc.style.cssText = 'display:none;padding-block:40px;scroll-margin-top:8rem;';
+          const bottomInner = document.createElement('div');
+          bottomInner.className = 'rte';
+          bottomInner.style.color = 'var(--color-subtext)';
+
+          if (restNodes.length) {
+            restNodes.forEach((node) => bottomInner.appendChild(node));
+          } else {
+            bottomInner.innerHTML = descBlock.innerHTML;
+          }
+
+          bottomDesc.appendChild(bottomInner);
+          collectionGrid.parentNode.insertBefore(bottomDesc, collectionGrid.nextSibling);
+
           readMore.addEventListener('click', (e) => {
             e.preventDefault();
-            descBlock.style.display = 'block';
-            descBlock.style.webkitLineClamp = 'unset';
-            descBlock.style.overflow = 'visible';
             readMore.style.display = 'none';
+            bottomDesc.style.display = 'grid';
+            bottomDesc.scrollIntoView({ behavior: 'smooth', block: 'start' });
           });
         }
       });
