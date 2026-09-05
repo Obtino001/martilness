@@ -675,7 +675,7 @@
           "name": "t:categories.collection",
           "settings": {
             "collection": "saunataeppe",
-            "title": "",
+            "title": "Saunatæppe",
             "title_preset": "custom",
             "title_font": "var(--font-heading--family)",
             "title_font_weight": "",
@@ -1098,11 +1098,11 @@
         }
       },
       "block_order": [
-        "collection_highlight_1",
-        "collection_highlight_2",
         "collection_highlight_3",
         "collection_highlight_4",
-        "collection_highlight_led_maske"
+        "collection_highlight_led_maske",
+        "collection_highlight_2",
+        "collection_highlight_1"
       ],
       "custom_css": [
         ".collection-highlight__preview-text {max-width: 34rem;}",
@@ -1165,11 +1165,11 @@
         }
       },
       "block_order": [
-        "collection_isbad",
-        "collection_kyfeYK",
         "collection_saunataeppe",
         "collection_C4aep4",
-        "collection_led_maske"
+        "collection_led_maske",
+        "collection_kyfeYK",
+        "collection_isbad"
       ],
       "name": "t:names.product_tab_carousel",
       "settings": {
