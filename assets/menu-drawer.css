@@ -50,6 +50,10 @@
   padding-block: 1rem;
   min-height: 4.8rem;
 }
+.menu-drawer__item-link-heading .h3,
+.menu-drawer__item-link-back {
+  font-family: "Martilness Nav Q", var(--font-heading--family);
+}
 .menu-drawer__item-link-back {
   min-height: 4.8rem;
 }

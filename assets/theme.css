@@ -8228,6 +8228,15 @@ body:not(.header-pinned) .header-scrolled .header {
   transform: translateY(-100%) !important;
 }
 
+/* Decorative heading fonts draw Q with a long tail that sits under FAQ. */
+@font-face {
+  font-family: "Martilness Nav Q";
+  src: local("Arial"), local("Helvetica Neue"), local("Helvetica");
+  unicode-range: U+0051, U+0071;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 .menu__item {
   position: relative;
   z-index: 0;
@@ -8236,7 +8245,7 @@ body:not(.header-pinned) .header-scrolled .header {
   line-height: 1.6;
   padding: 0.6rem 1.2rem;
   column-gap: 0.6rem;
-  font-family: var(--font-navigation--family);
+  font-family: "Martilness Nav Q", var(--font-navigation--family);
   font-weight: var(--font-navigation--weight);
   font-style: var(--font-navigation--style);
   text-transform: var(--font-navigation--transform);
@@ -8280,7 +8289,7 @@ shopify-account::part(signed-out-avatar) {
 @media (hover: hover) {
   .menu__item:hover {
     text-decoration: underline;
-    text-underline-offset: 4px;
+    text-underline-offset: 0.35em;
     text-decoration-thickness: 2px;
     opacity: 0.8;
   }
