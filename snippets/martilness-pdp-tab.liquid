@@ -211,42 +211,43 @@
     {%- endif -%}
 
   {%- when 'inkluderet' -%}
-    {%- if is_led_maske -%}
+    {%- assign mf_field = product.metafields.custom.hvad_er_inkluderet -%}
+    {%- if mf_field == blank -%}
+      {%- assign mf_field = product.metafields.custom.hvad_er_inkluderets -%}
+    {%- endif -%}
+    {%- capture mf_check -%}{{ mf_field | metafield_tag }}{%- endcapture -%}
+    {%- assign mf_txt = mf_check | strip_html | strip -%}
+    {%- if mf_txt != blank -%}
+      {% render 'martilness-metafield-html', metafield: mf_field, format_list: true %}
+    {%- elsif is_led_maske -%}
       <div class="mt-pdp-tab rte">
         <ul class="mt-pdp-tab__list">
-          <li>Infrarød LED-maske</li>
-          <li>Fjernbetjening</li>
-          <li>AC/DC-adapter (220V)</li>
-          <li>Dansk manual</li>
+          <li>Infrarød/Nærinfrarød Lysterapimaske med 7 forskellige farver.</li>
+          <li>Dansk brugervejledning</li>
+          <li>Strømstik til almindelig stikkontakt (det følger ikke med hos de fleste af vores konkurrenter)</li>
+          <li>Briller (kan bruges under behandling efter ønske)</li>
+          <li>Eksklusiv opbevaringsæske</li>
         </ul>
       </div>
-    {%- else -%}
-      {%- assign mf_field = product.metafields.custom.hvad_er_inkluderet -%}
-      {%- if mf_field == blank -%}
-        {%- assign mf_field = product.metafields.custom.hvad_er_inkluderets -%}
-      {%- endif -%}
-      {%- if mf_field != blank -%}
-        {% render 'martilness-metafield-html', metafield: mf_field, format_list: true %}
-      {%- elsif is_saunataeppe -%}
-        <div class="mt-pdp-tab rte">
-          <ul class="mt-pdp-tab__list">
-            <li>Saunatæppe</li>
-            <li>Fiber håndklæde til at ligge på</li>
-            <li>Controller til at regulere varme og tid</li>
-            <li>Dansk manual</li>
-            <li>Elegant og robust stofpose, der gør det nemt at folde sammen og praktisk at opbevare eller transportere.</li>
-          </ul>
-        </div>
-      {%- elsif is_dampsauna -%}
-        <div class="mt-pdp-tab rte">
-          <ul class="mt-pdp-tab__list">
-            <li>Damp Sauna</li>
-            <li>Damp Generator</li>
-            <li>Fjernbetjening til at styre varmen</li>
-            <li>Sammenklappelig stol</li>
-          </ul>
-        </div>
-      {%- endif -%}
+    {%- elsif is_saunataeppe -%}
+      <div class="mt-pdp-tab rte">
+        <ul class="mt-pdp-tab__list">
+          <li>Saunatæppe</li>
+          <li>Fiber håndklæde til at ligge på</li>
+          <li>Controller til at regulere varme og tid</li>
+          <li>Dansk manual</li>
+          <li>Elegant og robust stofpose, der gør det nemt at folde sammen og praktisk at opbevare eller transportere.</li>
+        </ul>
+      </div>
+    {%- elsif is_dampsauna -%}
+      <div class="mt-pdp-tab rte">
+        <ul class="mt-pdp-tab__list">
+          <li>Damp Sauna</li>
+          <li>Damp Generator</li>
+          <li>Fjernbetjening til at styre varmen</li>
+          <li>Sammenklappelig stol</li>
+        </ul>
+      </div>
     {%- endif -%}
 
   {%- when 'garanti' -%}
