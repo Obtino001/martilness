@@ -193,3 +193,72 @@ html {
   display: none !important;
 }
 
+/* ==========================================================================
+   Product Media Gallery - Video Play Button Centered
+   ========================================================================== */
+.media-gallery__item .deferred-media__poster-icon,
+.media-gallery__item .video-placeholder-wrapper__poster-icon,
+.product-media .deferred-media__poster-icon,
+.product-media .video-placeholder-wrapper__poster-icon {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  inset-inline-start: 50% !important;
+  bottom: auto !important;
+  transform: translate(-50%, -50%) !important;
+  --button-width: 5.6rem !important;
+  --button-height: 5.6rem !important;
+  width: 5.6rem !important;
+  height: 5.6rem !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  color: #09412d !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35) !important;
+  border-radius: 50% !important;
+  z-index: 3 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, color 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+.media-gallery__item .deferred-media__poster-icon:hover,
+.media-gallery__item .video-placeholder-wrapper__poster-icon:hover,
+.product-media .deferred-media__poster-icon:hover,
+.product-media .video-placeholder-wrapper__poster-icon:hover {
+  transform: translate(-50%, -50%) scale(1.1) !important;
+  background-color: #ffffff !important;
+  color: #1cb377 !important;
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.45) !important;
+}
+
+.media-gallery__item .deferred-media__poster-icon .icon,
+.media-gallery__item .video-placeholder-wrapper__poster-icon .icon,
+.product-media .deferred-media__poster-icon .icon,
+.product-media .video-placeholder-wrapper__poster-icon .icon {
+  width: 2.2rem !important;
+  height: 2.2rem !important;
+  margin-inline-start: 3px !important; /* Optical center alignment for play triangle */
+}
+
+@media (max-width: 767.98px) {
+  .media-gallery__item .deferred-media__poster-icon,
+  .media-gallery__item .video-placeholder-wrapper__poster-icon,
+  .product-media .deferred-media__poster-icon,
+  .product-media .video-placeholder-wrapper__poster-icon {
+    --button-width: 4.8rem !important;
+    --button-height: 4.8rem !important;
+    width: 4.8rem !important;
+    height: 4.8rem !important;
+  }
+
+  .media-gallery__item .deferred-media__poster-icon .icon,
+  .media-gallery__item .video-placeholder-wrapper__poster-icon .icon,
+  .product-media .deferred-media__poster-icon .icon,
+  .product-media .video-placeholder-wrapper__poster-icon .icon {
+    width: 1.8rem !important;
+    height: 1.8rem !important;
+    margin-inline-start: 2px !important;
+  }
+}
+

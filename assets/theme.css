@@ -7935,12 +7935,8 @@ more-payment-options-link a:hover {
 }
 .media-gallery__item .deferred-media__poster-icon,
 .media-gallery__item .video-placeholder-wrapper__poster-icon {
-  --button-width: 3.4rem;
-  --button-height: 3.4rem;
-  top: unset;
-  bottom: 1rem;
-  inset-inline-start: 1rem;
-  transform: unset;
+  --button-width: 5.6rem;
+  --button-height: 5.6rem;
 }
 .media-gallery__item-content a {
   pointer-events: auto;
