@@ -1671,7 +1671,7 @@
         "header_layout": "center",
         "layout": "marquee",
         "rating_label": "4,8 ud af 5 stjerner på Trustpilot",
-        "rating_url": "",
+        "rating_url": "https://dk.trustpilot.com/review/martilness.dk",
         "marquee_speed": 40,
         "pause_on_hover": true,
         "link_label": "Se flere anmeldelser her →",

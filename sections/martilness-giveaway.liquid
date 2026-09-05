@@ -146,7 +146,7 @@
     z-index: calc(var(--mt-giveaway-z) + 1);
     margin: 0;
     padding: 0.95rem 1.8rem;
-    border: 0;
+    border: 1.5px solid {{ section.settings.tab_border_color | default: '#ffffff' }};
     border-radius: 0.8rem;
     background: var(--mt-giveaway-accent);
     color: #fff;
@@ -154,16 +154,19 @@
     font-weight: 600;
     line-height: 1.2;
     cursor: pointer;
-    box-shadow: 0 0.4rem 1.8rem rgb(0 0 0 / 22%);
+    box-shadow: 0 0.4rem 2rem rgb(0 0 0 / 30%), 0 0.1rem 0.6rem rgb(0 0 0 / 20%);
     max-width: min(92vw, 42rem);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     animation: mt-giveaway-tab-in-{{ section.id }} 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, filter 0.2s ease;
   }
 
   #section-{{ section.id }} .mt-giveaway__tab:hover {
-    box-shadow: 0 0.6rem 2.2rem rgb(0 0 0 / 28%);
+    box-shadow: 0 0.6rem 2.4rem rgb(0 0 0 / 40%), 0 0.2rem 0.8rem rgb(0 0 0 / 25%);
+    border-color: #ffffff;
+    filter: brightness(1.08);
   }
 
   @keyframes mt-giveaway-tab-in-{{ section.id }} {
@@ -472,6 +475,12 @@
       "id": "accent_color",
       "label": "Accent (button + tab)",
       "default": "#2f6b3a"
+    },
+    {
+      "type": "color",
+      "id": "tab_border_color",
+      "label": "Tab border color",
+      "default": "#ffffff"
     },
     {
       "type": "checkbox",

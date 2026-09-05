@@ -432,7 +432,7 @@
                     "text_rBYn7g": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Ja. Vi er et dansk firma med fysisk butik, CVR-nummer og mange tilfredse kunder. Vores butik ligger i Hvidovre, og vi har et stort antal anmeldelser på Trustpilot, som du er velkommen til at tjekke. Vi pakker diskret, leverer hurtigt og står klar, hvis der opstår spørgsmål før eller efter dit køb. Kort sagt: du handler med rigtige mennesker, som er til at få fat i.</p>",
+                        "text": "<p>Ja. Vi er et dansk firma med fysisk butik, CVR-nummer og mange tilfredse kunder. Vores butik ligger i Hvidovre, og vi har et stort antal anmeldelser på <a href=\"https://dk.trustpilot.com/review/martilness.dk\" target=\"_blank\" rel=\"noopener noreferrer\">Trustpilot</a>, som du er velkommen til at tjekke. Vi pakker diskret, leverer hurtigt og står klar, hvis der opstår spørgsmål før eller efter dit køb. Kort sagt: du handler med rigtige mennesker, som er til at få fat i.</p>",
                         "highlight_style": "none",
                         "highlight_font_style": "italic",
                         "highlight_shape_color": "",
