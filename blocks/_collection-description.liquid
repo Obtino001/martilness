@@ -5,15 +5,10 @@
 -%}
 {%- unless closest_collection.handle == 'all' or text == blank -%}
   {%- if plain.size > 140 -%}
-    <details class="collection-desc">
-      <summary class="collection-desc__summary">
-        <span class="collection-desc__teaser">{{ plain | truncatewords: 9 }}</span>
-        <span class="collection-desc__label">Læs mere</span>
-      </summary>
-      <div class="collection-desc__full">
-        {% render 'text', fallback_text: text, block: block, class: 'collection-description-block' %}
-      </div>
-    </details>
+    <div class="collection-desc">
+      <p class="collection-desc__teaser">{{ plain | truncatewords: 9 }}</p>
+      <a class="collection-desc__label" href="#collection-description-full">Læs mere</a>
+    </div>
   {%- else -%}
     {% render 'text', fallback_text: text, block: block, class: 'collection-description-block' %}
   {%- endif -%}

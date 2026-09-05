@@ -87,6 +87,20 @@
   </div>
 </results-list>
 
+{%- if collection.handle != 'all' and collection.description != blank -%}
+  {%- assign collection_desc_plain = collection.description | strip_html | strip -%}
+  {%- if collection_desc_plain.size > 140 -%}
+    <div
+      id="collection-description-full"
+      class="collection-desc-full section-grid section-grid--{{ section.settings.container }}"
+    >
+      <div class="collection-desc-full__inner rte">
+        {{ collection.description }}
+      </div>
+    </div>
+  {%- endif -%}
+{%- endif -%}
+
 {% unless request.design_mode %}
   <script>
     (() => {

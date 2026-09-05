@@ -6,17 +6,8 @@
   max-width: 48rem;
 }
 
-.collection-desc__summary {
-  cursor: pointer;
-  list-style: none;
-}
-
-.collection-desc__summary::-webkit-details-marker {
-  display: none;
-}
-
 .collection-desc__teaser {
-  display: block;
+  margin: 0;
 }
 
 .collection-desc__label {
@@ -25,8 +16,17 @@
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 4px;
+  color: inherit;
 }
 
-.collection-desc[open] > .collection-desc__summary {
-  display: none;
+.collection-desc-full {
+  padding-block: 24px 80px;
+}
+
+.collection-desc-full__inner {
+  max-width: 48rem;
+}
+
+#collection-description-full {
+  scroll-margin-top: 100px;
 }
