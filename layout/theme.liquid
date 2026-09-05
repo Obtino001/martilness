@@ -110,11 +110,13 @@
           }
         });
 
-        // Collection description: clamp to 2 lines, then expand in place
+        // Collection description: 2 lines stay at top; rest opens below products
         const descBlock = document.querySelector('.collection-description-block');
+        const collectionGrid = document.querySelector('.main-collection');
 
-        if (descBlock) {
+        if (descBlock && collectionGrid) {
           const rte = descBlock.querySelector('.rte') || descBlock;
+          const fullHTML = rte.innerHTML;
 
           if (rte.textContent.trim().length > 150) {
             rte.style.display = '-webkit-box';
@@ -123,7 +125,7 @@
             rte.style.overflow = 'hidden';
 
             const readMore = document.createElement('a');
-            readMore.href = '#';
+            readMore.href = '#bottom-collection-desc';
             readMore.textContent = 'Læs mere';
             readMore.style.display = 'inline-block';
             readMore.style.marginTop = '10px';
@@ -134,12 +136,24 @@
 
             descBlock.parentNode.insertBefore(readMore, descBlock.nextSibling);
 
+            const bottomDesc = document.createElement('div');
+            bottomDesc.id = 'bottom-collection-desc';
+            bottomDesc.className = 'collection-banner-bottom section-grid section-grid--fixed';
+            bottomDesc.style.paddingBlock = '40px';
+            bottomDesc.style.display = 'none';
+            bottomDesc.innerHTML = `
+              <div class="rte" style="color: var(--color-subtext);">
+                ${fullHTML}
+              </div>
+            `;
+
+            collectionGrid.parentNode.insertBefore(bottomDesc, collectionGrid.nextSibling);
+
             readMore.addEventListener('click', (e) => {
               e.preventDefault();
-              rte.style.display = 'block';
-              rte.style.webkitLineClamp = 'unset';
-              rte.style.overflow = 'visible';
               readMore.style.display = 'none';
+              bottomDesc.style.display = 'grid';
+              bottomDesc.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
           }
         }
