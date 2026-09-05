@@ -110,38 +110,50 @@
           }
         });
 
-        // Collection description: clamp to 2 lines, expand the rest in place
+        // Collection teaser stays at top; remaining text opens under the product grid
         const descBlock = document.querySelector('.collection-description-block');
+        const collectionGrid = document.querySelector('.main-collection');
 
-        if (descBlock) {
-          const rte = descBlock.querySelector('.rte') || descBlock;
+        if (descBlock && collectionGrid && descBlock.textContent.trim().length > 150) {
+          const paragraphs = Array.from(descBlock.querySelectorAll(':scope > p'));
+          const restNodes = paragraphs.length > 1 ? paragraphs.slice(1) : [];
 
-          if (rte.textContent.trim().length > 150) {
-            rte.style.display = '-webkit-box';
-            rte.style.webkitLineClamp = '2';
-            rte.style.webkitBoxOrient = 'vertical';
-            rte.style.overflow = 'hidden';
+          const teaser = paragraphs[0] || descBlock;
+          teaser.style.display = '-webkit-box';
+          teaser.style.webkitBoxOrient = 'vertical';
+          teaser.style.webkitLineClamp = '2';
+          teaser.style.overflow = 'hidden';
 
-            const readMore = document.createElement('a');
-            readMore.href = '#';
-            readMore.textContent = 'Læs mere';
-            readMore.style.display = 'inline-block';
-            readMore.style.marginTop = '10px';
-            readMore.style.textDecoration = 'underline';
-            readMore.style.textUnderlineOffset = '4px';
-            readMore.style.fontWeight = '600';
-            readMore.style.cursor = 'pointer';
+          const readMore = document.createElement('a');
+          readMore.href = '#bottom-collection-desc';
+          readMore.textContent = 'Læs mere';
+          readMore.style.cssText =
+            'display:inline-block;margin-top:10px;text-decoration:underline;text-underline-offset:4px;font-weight:600;cursor:pointer;';
+          descBlock.parentNode.insertBefore(readMore, descBlock.nextSibling);
 
-            descBlock.parentNode.insertBefore(readMore, descBlock.nextSibling);
+          const bottomDesc = document.createElement('div');
+          bottomDesc.id = 'bottom-collection-desc';
+          bottomDesc.className = 'collection-banner-bottom section-grid section-grid--fixed';
+          bottomDesc.style.cssText = 'display:none;padding-block:40px;scroll-margin-top:8rem;';
+          const bottomInner = document.createElement('div');
+          bottomInner.className = 'rte';
+          bottomInner.style.color = 'var(--color-subtext)';
 
-            readMore.addEventListener('click', (e) => {
-              e.preventDefault();
-              rte.style.display = 'block';
-              rte.style.webkitLineClamp = 'unset';
-              rte.style.overflow = 'visible';
-              readMore.style.display = 'none';
-            });
+          if (restNodes.length) {
+            restNodes.forEach((node) => bottomInner.appendChild(node));
+          } else {
+            bottomInner.innerHTML = descBlock.innerHTML;
           }
+
+          bottomDesc.appendChild(bottomInner);
+          collectionGrid.parentNode.insertBefore(bottomDesc, collectionGrid.nextSibling);
+
+          readMore.addEventListener('click', (e) => {
+            e.preventDefault();
+            readMore.style.display = 'none';
+            bottomDesc.style.display = 'grid';
+            bottomDesc.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
         }
       });
     </script>
