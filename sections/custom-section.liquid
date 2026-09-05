@@ -58,6 +58,9 @@
   {% if section.id contains 'health_benefits' %}
     id="sundhedsmaessige-fordele"
     style="{{ inline_style | replace: '  ', ' ' | strip | strip_newlines }}; scroll-margin-top: 10rem;"
+  {% elsif section.id contains 'how_it_works' %}
+    id="hvordan-virker-det"
+    style="{{ inline_style | replace: '  ', ' ' | strip | strip_newlines }}; scroll-margin-top: 10rem;"
   {% else %}
     style="{{ inline_style | replace: '  ', ' ' | strip | strip_newlines }}"
   {% endif %}

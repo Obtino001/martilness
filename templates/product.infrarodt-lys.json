@@ -963,6 +963,20 @@
                     "liquid_pdp_tab_fordele"
                   ]
                 },
+                "pdp_tab_how": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "text": "Hvordan virker det?",
+                    "open_row_by_default": false,
+                    "scroll_target": "hvordan-virker-det",
+                    "icon": "none",
+                    "icon_size": "extra-large",
+                    "width": 24,
+                    "width_mobile": 24
+                  },
+                  "blocks": {},
+                  "block_order": []
+                },
                 "pdp_tab_specs": {
                   "type": "_accordion-row",
                   "settings": {
@@ -1057,6 +1071,7 @@
               "block_order": [
                 "pdp_tab_beskrivelse",
                 "pdp_tab_fordele",
+                "pdp_tab_how",
                 "pdp_tab_specs",
                 "pdp_tab_inkluderet",
                 "pdp_tab_garanti"
