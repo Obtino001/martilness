@@ -1,38 +1,23 @@
 {%- liquid
   assign closest_collection = closest.collection
   assign text = closest_collection.description
-  if closest_collection.handle == 'all'
-    assign text = ''
-  endif
   assign plain = text | strip_html | strip
-  assign teaser = plain | truncatewords: 9, ''
-  assign show_toggle = false
-  if plain.size > teaser.size
-    assign show_toggle = true
-  endif
 -%}
-{%- if text != blank -%}
-  <div
-    class="collection-desc text-block rte color-subtext{% if show_toggle %} is-collapsed{% endif %}"
-    data-collection-desc
-    {{ block.shopify_attributes }}
-  >
-    {%- if show_toggle -%}
-      <p class="collection-desc__teaser">{{ teaser }}</p>
-    {%- endif -%}
-    <div
-      class="collection-desc__body collection-description-block"
-      {% if show_toggle %}
-        hidden
-      {% endif %}
-    >
-      {{ text }}
-    </div>
-    {%- if show_toggle -%}
-      <button type="button" class="collection-desc__toggle">Læs mere</button>
-    {%- endif -%}
-  </div>
-{%- endif -%}
+{%- unless closest_collection.handle == 'all' or text == blank -%}
+  {%- if plain.size > 140 -%}
+    <details class="collection-desc">
+      <summary class="collection-desc__summary">
+        <span class="collection-desc__teaser">{{ plain | truncatewords: 9 }}</span>
+        <span class="collection-desc__label">Læs mere</span>
+      </summary>
+      <div class="collection-desc__full">
+        {% render 'text', fallback_text: text, block: block, class: 'collection-description-block' %}
+      </div>
+    </details>
+  {%- else -%}
+    {% render 'text', fallback_text: text, block: block, class: 'collection-description-block' %}
+  {%- endif -%}
+{%- endunless -%}
 {% schema %}
 {
   "name": "t:names.collection_description",
