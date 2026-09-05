@@ -341,3 +341,15 @@ html {
   color: rgb(var(--color-foreground)) !important;
   text-decoration: underline !important;
 }
+
+/* ==========================================================================
+   Giveaway Form Inputs & Button - Rounded Radius
+   ========================================================================== */
+.mt-giveaway__input {
+  border-radius: var(--input-border-radius, 1rem) !important;
+}
+
+.mt-giveaway__submit {
+  border-radius: var(--button-corner-radius, 1rem) !important;
+}
+
