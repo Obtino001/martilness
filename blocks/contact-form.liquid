@@ -1,44 +1,13 @@
 {%- liquid
   assign form_id = 'ContactForm-' | append: block.id
-
-  assign is_reklamation = false
-  if template.suffix == 'reklamation' or page.handle == 'reklamation' or request.path contains 'reklamation'
-    assign is_reklamation = true
-  elsif block.settings.show_default_name == false or block.settings.show_default_email == false or block.settings.show_default_message == false
-    assign is_reklamation = true
-  endif
-
-  assign show_name = true
-  if is_reklamation or block.settings.show_default_name == false
-    assign show_name = false
-  endif
-
-  assign show_email = true
-  if is_reklamation or block.settings.show_default_email == false
-    assign show_email = false
-  endif
-
-  assign show_message = true
-  if is_reklamation or block.settings.show_default_message == false
-    assign show_message = false
-  endif
-
-  assign submit_label = block.settings.submit_button_label
-  if submit_label == blank
-    if is_reklamation
-      assign submit_label = 'SEND'
-    else
-      assign submit_label = 'blocks.contact_form.send_message' | t
-    endif
-  endif
 -%}
 <div
-  class="contact-form size-style{% if is_reklamation %} contact-form--reklamation{% endif %}"
+  class="contact-form size-style"
   style="{% render 'size-style', settings: block.settings %}"
   {{ block.shopify_attributes }}
 >
   {% comment %} Contact Form {% endcomment %}
-  {%- form 'contact', id: form_id, class: 'w-full', enctype: 'multipart/form-data' -%}
+  {%- form 'contact', id: form_id, class: 'w-full' -%}
     {%- if form.posted_successfully? -%}
       <div class="form-status-list" role="status">
         <h3
@@ -78,191 +47,83 @@
       class="contact__fields layout-panel-grid gap-style"
       style="{% render 'layout-panel-style', type: 'grid', columns_md: '2' %}{% render 'gap-style', settings: block.settings %}"
     >
-      {%- if show_name -%}
-        <div class="form-field form-field--name">
-          <label class="form-label visually-hidden" for="ContactForm-name-{{ section.id }}">
-            {{- 'blocks.contact_form.name' | t -}}
-            <span aria-hidden="true">*</span>
-          </label>
-          <input
-            class="form-control w-full"
-            autocomplete="name"
-            type="text"
-            id="ContactForm-name-{{ section.id }}"
-            name="contact[{{ 'blocks.contact_form.name' | t }}]"
-            value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
-            placeholder="{{ 'blocks.contact_form.name' | t }}*"
-            required
-            aria-required="true"
+      {% comment %} <div class="form-field form-field--name">
+        <label class="form-label visually-hidden" for="ContactForm-name-{{ section.id }}">
+          {{- 'blocks.contact_form.name' | t -}}
+        </label>
+        <input
+          class="form-control w-full"
+          autocomplete="name"
+          type="text"
+          id="ContactForm-name-{{ section.id }}"
+          name="contact[{{ 'blocks.contact_form.name' | t }}]"
+          value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+          placeholder="{{ 'blocks.contact_form.name' | t }}"
+        >
+      </div>
+      <div class="form-field form-field--email">
+        <label class="form-label visually-hidden" for="ContactForm-email-{{ section.id }}">
+          {{- 'blocks.contact_form.email' | t -}}
+          <span aria-hidden="true">*</span>
+        </label>
+        <input
+          autocomplete="email"
+          type="email"
+          id="ContactForm-email-{{ section.id }}"
+          class="form-control w-full"
+          name="contact[email]"
+          spellcheck="false"
+          autocapitalize="off"
+          value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+          required
+          placeholder="{{ 'blocks.contact_form.email' | t }}*"
+          {% if form.errors contains 'email' %}
+            aria-invalid="true"
+            aria-describedby="ContactForm-email-error-{{ section.id }}"
+          {% endif %}
+        >
+        {%- if form.errors contains 'email' -%}
+          <span
+            class="form-message form-message--small form-message--error flex gap-2"
+            id="ContactForm-email-error-{{ section.id }}"
           >
-        </div>
-      {%- endif -%}
-
-      {%- if show_email -%}
-        <div class="form-field form-field--email">
-          <label class="form-label visually-hidden" for="ContactForm-email-{{ section.id }}">
-            {{- 'blocks.contact_form.email' | t -}}
-            <span aria-hidden="true">*</span>
-          </label>
-          <input
-            autocomplete="email"
-            type="email"
-            id="ContactForm-email-{{ section.id }}"
-            class="form-control w-full"
-            name="contact[email]"
-            spellcheck="false"
-            autocapitalize="off"
-            value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-            required
-            placeholder="{{ 'blocks.contact_form.email' | t }}*"
-            {% if form.errors contains 'email' %}
-              aria-invalid="true"
-              aria-describedby="ContactForm-email-error-{{ section.id }}"
-            {% endif %}
-          >
-          {%- if form.errors contains 'email' -%}
-            <span
-              class="form-message form-message--small form-message--error flex gap-2"
-              id="ContactForm-email-error-{{ section.id }}"
-            >
-              {% render 'icon', icon: 'warning', class: 'shrink-0' %}
-              {{- form.errors.translated_fields.email | capitalize }}
-              {{ form.errors.messages.email -}}
-            </span>
-          {%- endif -%}
-        </div>
-      {%- endif -%}
+            {% render 'icon', icon: 'warning', class: 'shrink-0' %}
+            {{- form.errors.translated_fields.email | capitalize }}
+            {{ form.errors.messages.email -}}
+          </span>
+        {%- endif -%}
+      </div> {% endcomment %}
 
       {% comment %} Blocks custom field {% endcomment %}
       {% content_for 'blocks' %}
 
       {% comment %} form-body {% endcomment %}
-      {%- if show_message -%}
-        <div class="form-field form-field--full form-field--body">
-          <label class="form-label visually-hidden" for="ContactForm-body-{{ section.id }}">
-            {{- 'blocks.contact_form.your_message' | t -}}
-          </label>
-          <textarea
-            rows="5"
-            id="ContactForm-body-{{ section.id }}"
-            class="form-control form-control--textarea w-full"
-            name="contact[{{ 'blocks.contact_form.your_message' | t }}]"
-            placeholder="{{ 'blocks.contact_form.your_message' | t }}"
-          >{%- if form.body -%}{{- form.body -}}{%- endif -%}</textarea>
-        </div>
-      {%- endif -%}
+      <div class="form-field form-field--full form-field--body">
+        <label class="form-label visually-hidden" for="ContactForm-body-{{ section.id }}">
+          {{- 'blocks.contact_form.your_message' | t -}}
+        </label>
+        <textarea
+          rows="5"
+          id="ContactForm-body-{{ section.id }}"
+          class="form-control form-control--textarea w-full"
+          name="contact[{{ 'blocks.contact_form.your_message' | t }}]"
+          placeholder="{{ 'blocks.contact_form.your_message' | t }}"
+        >{%- if form.body -%}{{- form.body -}}{%- endif -%}</textarea>
+      </div>
 
       {% comment %} button submit {% endcomment %}
-      <div class="contact__button form-footer text-center form-field--full{% if is_reklamation %} contact__button--reklamation w-full{% endif %}">
-        <button type="submit" class="btn btn--primary btn--large{% unless is_reklamation %} btn--icon-solid{% endunless %}{% if is_reklamation %} btn--reklamation-send w-full{% endif %}">
-          <span class="btn__text">{{ submit_label }}</span>
-          {%- unless is_reklamation -%}
-            <span class="btn__icon">
-              <span class="btn__icon-text">{{ submit_label }}</span>
-              <span class="btn__icon-icon">
-                {% render 'icon', icon: 'caret-right' %}
-              </span>
+      <div class="contact__button form-footer text-center form-field--full">
+        <button type="submit" class="btn btn--primary btn--large btn--icon-solid">
+          <span class="btn__text">{{ 'blocks.contact_form.send_message' | t }}</span>
+          <span class="btn__icon">
+            <span class="btn__icon-text">{{ 'blocks.contact_form.send_message' | t }}</span>
+            <span class="btn__icon-icon">
+              {% render 'icon', icon: 'caret-right' %}
             </span>
-          {%- endunless -%}
+          </span>
         </button>
       </div>
     </div>
-
-    {%- if is_reklamation -%}
-      <style>
-        .contact-form--reklamation .contact__fields {
-          row-gap: 16px !important;
-          column-gap: 16px !important;
-        }
-        .contact-form--reklamation .form-control {
-          background-color: #eeeeee !important;
-          border: 1px solid transparent !important;
-          box-shadow: none !important;
-          border-radius: 4px !important;
-          color: #333333 !important;
-          font-size: 15px !important;
-          padding: 12px 16px !important;
-          height: 48px !important;
-        }
-        .contact-form--reklamation .form-control::placeholder {
-          color: #777777 !important;
-          opacity: 1 !important;
-        }
-        .contact-form--reklamation .form-control:focus {
-          background-color: #ffffff !important;
-          border-color: #1cb377 !important;
-          outline: none !important;
-          box-shadow: 0 0 0 1px #1cb377 !important;
-        }
-        .contact-form--reklamation textarea.form-control {
-          height: 110px !important;
-          min-height: 100px !important;
-          resize: vertical;
-        }
-        .contact-form--reklamation .select {
-          width: 100% !important;
-          max-width: 100% !important;
-          background-color: #eeeeee !important;
-          border-radius: 4px !important;
-        }
-        .contact-form--reklamation .select select {
-          background-color: transparent !important;
-          border: none !important;
-          height: 48px !important;
-          color: #555555 !important;
-          font-size: 15px !important;
-          padding-left: 16px !important;
-        }
-        .contact-form--reklamation .form-label--file-heading {
-          display: block !important;
-          margin-bottom: 8px !important;
-          font-size: 15px !important;
-          font-weight: 500 !important;
-          color: #222222 !important;
-        }
-        .contact-form--reklamation .form-field--file input[type="file"] {
-          height: auto !important;
-          padding: 6px 0 !important;
-          background: transparent !important;
-          border: none !important;
-          box-shadow: none !important;
-          border-radius: 0 !important;
-          font-size: 14px !important;
-          color: #333333 !important;
-          cursor: pointer !important;
-        }
-        .contact-form--reklamation .contact__button,
-        .contact__button--reklamation {
-          width: 100% !important;
-          grid-column: 1 / -1 !important;
-          margin-top: 8px !important;
-        }
-        .btn--reklamation-send {
-          width: 100% !important;
-          background-color: #1cb377 !important;
-          border: 1px solid #1cb377 !important;
-          color: #ffffff !important;
-          border-radius: 4px !important;
-          padding: 14px 24px !important;
-          font-size: 16px !important;
-          font-weight: 700 !important;
-          text-transform: uppercase !important;
-          letter-spacing: 0.06em !important;
-          justify-content: center !important;
-          box-shadow: none !important;
-          cursor: pointer !important;
-          transition: background-color 0.2s ease, border-color 0.2s ease !important;
-        }
-        .btn--reklamation-send:hover {
-          background-color: #169c67 !important;
-          border-color: #169c67 !important;
-          color: #ffffff !important;
-        }
-        .btn--reklamation-send .btn__icon {
-          display: none !important;
-        }
-      </style>
-    {%- endif -%}
   {%- endform -%}
 </div>
 {% schema %}
@@ -365,33 +226,6 @@
       "step": 1,
       "unit": "px",
       "default": 20
-    },
-    {
-      "type": "header",
-      "content": "Default fields"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_default_name",
-      "label": "Show default name",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_default_email",
-      "label": "Show default email",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_default_message",
-      "label": "Show default message textarea",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "submit_button_label",
-      "label": "Submit button text"
     }
   ],
   "blocks": [
