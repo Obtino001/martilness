@@ -24,15 +24,17 @@
     padding: 0 48px;
     display: flex;
     align-items: center;
+    justify-content: center;
   }
 
   .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__desktop {
-    width: 100%;
+    width: auto;
     max-width: 1480px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    gap: 36px;
     white-space: nowrap;
   }
 
@@ -89,6 +91,7 @@
 
   @media (max-width: 1280px) {
     .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__inner { padding: 0 32px; }
+    .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__desktop { gap: 26px; }
     .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__divider { margin: 0 20px; }
     .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__item,
     .iwao-trust-bar-{{ section.id }} a.iwao-trust-bar__phone { font-size: 14px; gap: 8px; }
@@ -96,6 +99,7 @@
 
   @media (max-width: 1180px) {
     .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__inner { padding: 0 24px; }
+    .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__desktop { gap: 18px; }
     .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__divider { margin: 0 14px; }
     .iwao-trust-bar-{{ section.id }} .iwao-trust-bar__item,
     .iwao-trust-bar-{{ section.id }} a.iwao-trust-bar__phone { font-size: 13px; gap: 7px; }

@@ -8250,6 +8250,7 @@ body:not(.header-pinned) .header-scrolled .header {
   z-index: 0;
   text-decoration: none;
   color: inherit;
+  font-size: 1.7rem;
   line-height: 1.6;
   padding: 0.6rem 1.2rem;
   column-gap: 0.6rem;
