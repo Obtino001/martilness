@@ -33,14 +33,13 @@
         #06281c 100%
       );
     color: #fff;
-    padding: var(--mt-page-hero-pad-top) var(--page-padding, 1.6rem) var(--mt-page-hero-pad-bottom);
+    padding-block-start: var(--mt-page-hero-pad-top);
+    padding-block-end: var(--mt-page-hero-pad-bottom);
     border-bottom: 1px solid rgb(9 65 45 / 25%);
   }
 
   #section-{{ section.id }} .mt-page-hero__inner {
-    max-width: var(--page-width, 1500px);
     width: 100%;
-    margin: 0 auto;
   }
 
   #section-{{ section.id }} .mt-page-hero__title {
