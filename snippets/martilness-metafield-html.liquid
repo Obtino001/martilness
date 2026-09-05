@@ -67,6 +67,8 @@
     </div>
   {%- elsif format_list and mf_plain contains ':' -%}
     {%- assign work = mf_plain -%}
+    {%- assign work = work | replace: 'Temperatur 30', '|||Temperatur: 30' -%}
+    {%- assign work = work | replace: '220VROHS', '220V|||ROHS' -%}
     {%- assign labels = 'Nærinfrarødt lys|Nærinfrarød (NIR)|Nærinfrarød|Antal LED-lamper|Certificeringer|Tidsindstilling|Strømforbrug|Strømstyrke|Temperatur|Materiale|Betjening|Spænding|Størrelse|LED-lys|Vægt|ROHS|Orange|Lilla|Cyan|Grøn|Blå|Rød|Gul' | split: '|' -%}
     {%- for label in labels -%}
       {%- assign needle = label | append: ':' -%}

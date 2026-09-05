@@ -17,127 +17,94 @@
 >
   <div class="mt-product-details__container">
     {%- comment -%} LEFT: product specs card {%- endcomment -%}
-    <aside class="mt-pd-card" id="pd-card-{{ section.id }}">
-      <div class="mt-pd-card__header">
-        <span class="mt-pd-card__badge" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
-            <rect x="9" y="3" width="6" height="4" rx="1"/>
-            <path d="M9 12h6M9 16h4"/>
-          </svg>
-        </span>
-        <h2 class="mt-pd-card__title">{{ section.settings.details_heading }}</h2>
-      </div>
-
-      <div class="mt-pd-card__grid">
-        {% for block in section.blocks %}
-          {% if block.type == 'details_list' %}
-            {%- liquid
-              assign mf_key = block.settings.metafield_key | strip
-              assign mf_field = blank
-              assign mf_probe_txt = ''
-              if mf_key != blank and product_ref != blank
-                assign mf_field = product_ref.metafields.custom[mf_key]
-                # Some stores name the key with a trailing "s" (tekniske_specifikationers)
-                if mf_field == blank
-                  assign mf_key_alt = mf_key | append: 's'
+    {%- capture card_blocks -%}
+      {% for block in section.blocks %}
+        {% if block.type == 'details_list' %}
+          {%- liquid
+            assign mf_key = block.settings.metafield_key | strip
+            assign mf_field = blank
+            assign mf_probe_txt = ''
+            if mf_key != blank and product_ref != blank
+              assign mf_field = product_ref.metafields.custom[mf_key]
+              if mf_field == blank
+                assign mf_key_alt = mf_key | append: 's'
+                assign mf_field = product_ref.metafields.custom[mf_key_alt]
+              endif
+              if mf_field == blank
+                assign last_char = mf_key | slice: -1
+                if last_char == 's'
+                  assign trimmed_len = mf_key | size | minus: 1
+                  assign mf_key_alt = mf_key | slice: 0, trimmed_len
                   assign mf_field = product_ref.metafields.custom[mf_key_alt]
                 endif
-                if mf_field == blank
-                  assign last_char = mf_key | slice: -1
-                  if last_char == 's'
-                    assign trimmed_len = mf_key | size | minus: 1
-                    assign mf_key_alt = mf_key | slice: 0, trimmed_len
-                    assign mf_field = product_ref.metafields.custom[mf_key_alt]
-                  endif
-                endif
               endif
-              assign has_metafield = false
-              if mf_field != blank
-                capture mf_probe
-                  echo mf_field | metafield_tag
-                endcapture
-                assign mf_probe_txt = mf_probe | strip_html | strip
-                if mf_probe_txt != blank
-                  assign has_metafield = true
-                endif
+            endif
+            assign has_metafield = false
+            if mf_field != blank
+              capture mf_probe
+                echo mf_field | metafield_tag
+              endcapture
+              assign mf_probe_txt = mf_probe | strip_html | strip
+              if mf_probe_txt != blank
+                assign has_metafield = true
               endif
+            endif
 
-              assign mf_probe_down = mf_probe_txt | downcase
-              assign use_led_content = false
-              if mf_key == 'tekniske_specifikationer' or mf_key == 'specs'
-                if mf_probe_down contains 'led-lamper' or mf_probe_down contains 'biologiske led' or mf_probe_down contains 'nærinfrarødt lys'
-                  assign use_led_content = true
+            capture block_output
+              if has_metafield
+                assign use_color_dots = false
+                if mf_key == 'sundhedsmaessige_fordele' or mf_key == 'fordele'
+                  assign use_color_dots = true
                 endif
+                render 'martilness-metafield-html', metafield: mf_field, format_list: true, color_swatches: use_color_dots
+              elsif mf_key == 'tekniske_specifikationer' or mf_key == 'specs'
+                render 'martilness-pdp-tab', product: product_ref, tab: 'specs'
+              elsif mf_key == 'hvad_er_inkluderet' or mf_key == 'inkluderet'
+                render 'martilness-pdp-tab', product: product_ref, tab: 'inkluderet'
+              elsif mf_key == 'sundhedsmaessige_fordele' or mf_key == 'fordele'
+                render 'martilness-pdp-tab', product: product_ref, tab: 'fordele'
+              elsif block.settings.block_content != blank
+                echo '<div class="mt-pdp-tab rte" data-mt-color-auto>'
+                echo block.settings.block_content
+                echo '</div>'
               endif
-              if mf_key == 'sundhedsmaessige_fordele' or mf_key == 'fordele'
-                if mf_probe_down contains 'hvad hjælper de enkelte farver' or mf_probe_down contains 'nærinfrarød (nir)'
-                  assign use_led_content = true
-                endif
-              endif
-              # Fallback: IR-lys template + LED/maske product
-              if use_led_content == false and template.suffix == 'infrarodt-lys'
-                assign _pt = product_ref.title | default: '' | downcase
-                if _pt contains 'led' or _pt contains 'maske'
-                  if mf_key == 'tekniske_specifikationer' or mf_key == 'specs' or mf_key == 'sundhedsmaessige_fordele' or mf_key == 'fordele'
-                    assign use_led_content = true
-                  endif
-                endif
-              endif
-            -%}
+            endcapture
+
+            assign block_output_clean = block_output | strip_html | strip
+          -%}
+          {%- if block_output_clean != blank -%}
             <div class="mt-pd-block" {{ block.shopify_attributes }}>
               {% if block.settings.block_heading != blank %}
                 <h3 class="mt-pd-block__heading">{{ block.settings.block_heading }}</h3>
               {% endif %}
               <div class="mt-pd-block__list">
-                {%- if use_led_content -%}
-                  {%- if mf_key == 'tekniske_specifikationer' or mf_key == 'specs' -%}
-                    <div class="mt-pdp-tab rte">
-                      <ul class="mt-pdp-tab__list">
-                        <li>Antal LED-lamper: 124</li>
-                        <li>LED-lys: 7 biologiske LED-farver</li>
-                        <li>Nærinfrarødt lys: 810–850 nm</li>
-                        <li>Spænding: 220V (medfølgende AC/DC-adapter: 5V, DC 1000mA)</li>
-                        <li>Tidsindstilling: 10, 15, 20, 25 eller 30 minutter</li>
-                        <li>Materiale: Blød og fleksibel silikone</li>
-                        <li>Certificeringer: CE &amp; RoHS</li>
-                        <li>Betjening: Fjernbetjening med forudindstillede programmer</li>
-                      </ul>
-                    </div>
-                  {%- else -%}
-                    <div class="mt-pdp-tab rte mt-pdp-tab--swatches">
-                      <p><strong>Hvad hjælper de enkelte farver med?</strong></p>
-                      <ul class="mt-pdp-tab__list mt-pdp-tab__list--colors">
-                        <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--rod" aria-hidden="true"></span><span><strong>Rød:</strong> Stimulerer kollagen og gør huden mere spændstig</span></li>
-                        <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--bla" aria-hidden="true"></span><span><strong>Blå:</strong> Reducerer akne, betændelse og urenheder</span></li>
-                        <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--gron" aria-hidden="true"></span><span><strong>Grøn:</strong> Beroliger huden og dæmper pigmentforandringer</span></li>
-                        <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--gul" aria-hidden="true"></span><span><strong>Gul:</strong> Lysner mørke pletter og forbedrer hudtonen</span></li>
-                        <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--lilla" aria-hidden="true"></span><span><strong>Lilla:</strong> Modvirker hævelser og stimulerer blodcirkulationen</span></li>
-                        <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--orange" aria-hidden="true"></span><span><strong>Orange:</strong> Understøtter lymfesystemet og reducerer hævelse</span></li>
-                        <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--cyan" aria-hidden="true"></span><span><strong>Cyan:</strong> Dæmper fedtet hud og mindsker hudorme</span></li>
-                        <li class="mt-pdp-tab__swatch-row"><span class="mt-color-dot mt-color-dot--nir" aria-hidden="true"></span><span><strong>Nærinfrarød (NIR):</strong> Trænger dybt ned i huden og understøtter cellefornyelse og blodcirkulation</span></li>
-                      </ul>
-                    </div>
-                  {%- endif -%}
-                {%- elsif has_metafield -%}
-                  {% liquid
-                    assign use_color_dots = false
-                    if mf_key == 'sundhedsmaessige_fordele' or mf_key == 'fordele'
-                      assign use_color_dots = true
-                    endif
-                  %}
-                  {% render 'martilness-metafield-html', metafield: mf_field, format_list: true, color_swatches: use_color_dots %}
-                {%- elsif block.settings.block_content != blank -%}
-                  <div class="mt-pdp-tab rte" data-mt-color-auto>
-                    {{ block.settings.block_content }}
-                  </div>
-                {%- endif -%}
+                {{ block_output }}
               </div>
             </div>
-          {% endif %}
-        {% endfor %}
-      </div>
-    </aside>
+          {%- endif -%}
+        {% endif %}
+      {% endfor %}
+    {%- endcapture -%}
+
+    {%- assign card_has_content = card_blocks | strip_html | strip -%}
+    {%- if card_has_content != blank -%}
+      <aside class="mt-pd-card" id="pd-card-{{ section.id }}">
+        <div class="mt-pd-card__header">
+          <span class="mt-pd-card__badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
+              <rect x="9" y="3" width="6" height="4" rx="1"/>
+              <path d="M9 12h6M9 16h4"/>
+            </svg>
+          </span>
+          <h2 class="mt-pd-card__title">{{ section.settings.details_heading }}</h2>
+        </div>
+
+        <div class="mt-pd-card__grid">
+          {{ card_blocks }}
+        </div>
+      </aside>
+    {%- endif -%}
 
     {%- comment -%} RIGHT: shop by category {%- endcomment -%}
     <div class="mt-wi-card">
@@ -196,6 +163,11 @@
     max-width: 1480px;
     margin: 0 auto;
     width: 100%;
+  }
+
+  #section-{{ section.id }} .mt-product-details__container:not(:has(.mt-pd-card)) {
+    grid-template-columns: 1fr;
+    max-width: 960px;
   }
 
   /* —— Specs card (theme green) —— */
