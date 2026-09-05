@@ -908,6 +908,7 @@
                   "settings": {
                     "text": "Beskrivelse",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -980,6 +981,7 @@
                   "settings": {
                     "text": "Tekniske specifikationer",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -1009,6 +1011,7 @@
                   "settings": {
                     "text": "Hvad er inkluderet?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -1038,6 +1041,7 @@
                   "settings": {
                     "text": "30 dages fuld tilfredshedsgaranti",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -1142,7 +1146,7 @@
         "included_item_BF6Bh9": {
           "type": "included_item",
           "settings": {
-            "image": "shopify://shop_images/IMG_6335-1-copy.png",
+            "image": "shopify://shop_images/thumbnail_1x1.1-2_6fe1b89a-a9d6-4aec-a668-785dcb1f6fd6.jpg",
             "title": "Isbad",
             "link": "shopify://collections/isbad"
           }
@@ -1861,7 +1865,7 @@
         "header_layout": "center",
         "layout": "marquee",
         "rating_label": "4,8 ud af 5 stjerner på Trustpilot",
-        "rating_url": "https://dk.trustpilot.com/review/martilness.dk",
+        "rating_url": "",
         "marquee_speed": 40,
         "pause_on_hover": true,
         "link_label": "Se flere anmeldelser her →",
@@ -2440,7 +2444,6 @@
         "success_message": "Tak! Du er nu med i konkurrencen.",
         "panel_background": "#0a0a0a",
         "accent_color": "#2f6b3a",
-        "tab_border_color": "#ffffff",
         "open_by_default": false,
         "z_index": 40
       }
