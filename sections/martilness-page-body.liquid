@@ -210,6 +210,10 @@
     margin: 0 auto;
   }
 
+  #section-{{ section.id }}.mt-page-body--faq .mt-page-body__wrap {
+    max-width: {{ section.settings.faq_max_width | default: 960 }}px;
+  }
+
   #section-{{ section.id }} .mt-page-body__card {
     background: #f3f6f4;
     border: 1px solid rgb(9 65 45 / 8%);
@@ -441,6 +445,16 @@
         { "value": "faq", "label": "FAQ accordion" }
       ],
       "default": "article"
+    },
+    {
+      "type": "range",
+      "id": "faq_max_width",
+      "label": "FAQ max width",
+      "min": 700,
+      "max": 1400,
+      "step": 20,
+      "unit": "px",
+      "default": 960
     },
     {
       "type": "checkbox",
