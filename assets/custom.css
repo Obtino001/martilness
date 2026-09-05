@@ -96,9 +96,9 @@ html {
 .contact-form--reklamation .form-control:focus,
 .contact-form:has(input[name*="Ordrenummer"]) .form-control:focus {
   background-color: #ffffff !important;
-  border-color: #0921d !important;
+  border-color: #09412d !important;
   outline: none !important;
-  box-shadow: 0 0 0 1px #0921d !important;
+  box-shadow: 0 0 0 1px #09412d !important;
 }
 
 /* Textareas */
@@ -186,8 +186,8 @@ html {
 .contact-form:has(input[name*="Ordrenummer"]) .contact__button .btn,
 .btn--reklamation-send {
   width: 100% !important;
-  background-color: #0921d !important;
-  border: 1px solid #0921d !important;
+  background-color: #09412d !important;
+  border: 1px solid #09412d !important;
   color: #ffffff !important;
   border-radius: 4px !important;
   padding: 14px 24px !important;
@@ -254,7 +254,7 @@ html {
 .product-media .video-placeholder-wrapper__poster-icon:hover {
   transform: translate(-50%, -50%) scale(1.1) !important;
   background-color: #ffffff !important;
-  color: #0921d !important;
+  color: #09412d !important;
   box-shadow: 0 6px 28px rgba(0, 0, 0, 0.45) !important;
 }
 
