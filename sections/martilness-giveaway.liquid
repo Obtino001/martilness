@@ -8,6 +8,10 @@
   assign form_id = 'MartilnessGiveaway-' | append: section.id
   assign panel_bg = section.settings.panel_background | default: '#0a0a0a'
   assign accent = section.settings.accent_color | default: '#2f6b3a'
+  assign tab_border = section.settings.tab_border_color
+  if tab_border == blank or tab_border == 'rgba(0,0,0,0)' or tab_border == 'transparent' or tab_border == '#00000000'
+    assign tab_border = '#ffffff'
+  endif
   assign open_by_default = section.settings.open_by_default
 -%}
 
@@ -146,7 +150,7 @@
     z-index: calc(var(--mt-giveaway-z) + 1);
     margin: 0;
     padding: 0.95rem 1.8rem;
-    border: 1.5px solid {{ section.settings.tab_border_color | default: '#ffffff' }};
+    border: 2px solid {{ tab_border }} !important;
     border-radius: 0.8rem;
     background: var(--mt-giveaway-accent);
     color: #fff;

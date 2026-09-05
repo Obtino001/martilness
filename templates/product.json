@@ -2444,6 +2444,7 @@
         "success_message": "Tak! Du er nu med i konkurrencen.",
         "panel_background": "#0a0a0a",
         "accent_color": "#2f6b3a",
+        "tab_border_color": "#ffffff",
         "open_by_default": false,
         "z_index": 40
       }
