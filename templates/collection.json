@@ -60,7 +60,7 @@
                 "line_height": "normal",
                 "text_color": "text",
                 "padding-block-start": 0,
-                "padding-block-end": 0,
+                "padding-block-end": 23,
                 "mobile-padding-scale": 80,
                 "animation_type": "fade-up",
                 "animation_delay": 50
