@@ -111,6 +111,7 @@
         "page_intro",
         "page_content"
       ],
+      "disabled": true,
       "settings": {
         "container": "fixed",
         "container_custom_width": 880,
@@ -129,8 +130,7 @@
         "padding-block-end-mobile": 24,
         "padding-inline-start-mobile": 16,
         "padding-inline-end-mobile": 16
-      },
-      "disabled": true
+      }
     },
     "mt_contact": {
       "type": "martilness-contact",
@@ -139,7 +139,7 @@
         "heading": "Vi er her for at hjælpe!",
         "intro": "<p>Hvis du har spørgsmål, store som små, eller har brug for mere information om vores produkter, tøv endelig ikke med at kontakte os. Vores team står klar til at hjælpe dig, så du får den bedste oplevelse og de svar, du søger.</p><p>Vi glæder os til at høre fra dig!</p>",
         "returns_heading": "Returnering eller reklamation",
-        "returns_text": "<p>Skal du returnere eller reklamere over et produkt kan du gå direkte her til vores <a href=\"/pages/returnering\">returportal</a> eller vores <a href=\"/pages/reklamation\">reklamationsside</a>.</p>",
+        "returns_text": "<p>Skal du returnere eller reklamere over et produkt kan du gå direkte her til vores <a href=\"https://return.shipmondo.com/martilness\" target=\"_blank\" title=\"https://return.shipmondo.com/martilness\">returportal</a> eller vores <a href=\"/pages/reklamation\">reklamationsside</a>.</p>",
         "company": "Martilness",
         "address": "<p>Baunebakkevej 12, 2.th<br/>2650 Hvidovre<br/>CVR: 35633146</p>",
         "phone": "+45 2779 6900",
