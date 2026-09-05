@@ -57,12 +57,6 @@
                   assign use_color_dots = true
                 endif
                 render 'martilness-metafield-html', metafield: mf_field, format_list: true, color_swatches: use_color_dots
-              elsif mf_key == 'tekniske_specifikationer' or mf_key == 'specs'
-                render 'martilness-pdp-tab', product: product_ref, tab: 'specs'
-              elsif mf_key == 'hvad_er_inkluderet' or mf_key == 'inkluderet'
-                render 'martilness-pdp-tab', product: product_ref, tab: 'inkluderet'
-              elsif mf_key == 'sundhedsmaessige_fordele' or mf_key == 'fordele'
-                render 'martilness-pdp-tab', product: product_ref, tab: 'fordele'
               elsif block.settings.block_content != blank
                 echo '<div class="mt-pdp-tab rte" data-mt-color-auto>'
                 echo block.settings.block_content
@@ -221,7 +215,7 @@
 
   #section-{{ section.id }} .mt-pd-card__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 2.4rem 2.8rem;
   }
 
