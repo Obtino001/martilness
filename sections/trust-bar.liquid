@@ -267,9 +267,16 @@
       {%- endif -%}
 
       {%- for block in section.blocks -%}
+        {%- liquid
+          assign item_link = block.settings.link
+          assign text_down = block.settings.text | downcase
+          if item_link == blank and text_down contains 'trustpilot'
+            assign item_link = 'https://dk.trustpilot.com/review/martilness.dk'
+          endif
+        -%}
         <div class="iwao-trust-bar__item-wrap">
-          {%- if block.settings.link != blank -%}
-            <a class="iwao-trust-bar__item" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+          {%- if item_link != blank -%}
+            <a class="iwao-trust-bar__item" href="{{ item_link }}" {% if item_link contains 'http' %}target="_blank" rel="noopener noreferrer"{% endif %} {{ block.shopify_attributes }}>
               <div class="iwao-trust-bar__icon">{{ block.settings.icon }}</div>
               <span>{{ block.settings.text }}</span>
             </a>
@@ -290,8 +297,15 @@
           {%- for i in (1..2) -%} <!-- Looped twice for infinite marquee effect -->
             <div class="iwao-trust-bar__group">
               {%- for block in section.blocks -%}
-                {%- if block.settings.link != blank -%}
-                  <a class="iwao-trust-bar__item" href="{{ block.settings.link }}">
+                {%- liquid
+                  assign item_link = block.settings.link
+                  assign text_down = block.settings.text | downcase
+                  if item_link == blank and text_down contains 'trustpilot'
+                    assign item_link = 'https://dk.trustpilot.com/review/martilness.dk'
+                  endif
+                -%}
+                {%- if item_link != blank -%}
+                  <a class="iwao-trust-bar__item" href="{{ item_link }}" {% if item_link contains 'http' %}target="_blank" rel="noopener noreferrer"{% endif %}>
                     <div class="iwao-trust-bar__icon">
                       {{ block.settings.icon }}
                     </div>
