@@ -979,8 +979,7 @@
                     "width": 24,
                     "width_mobile": 24
                   },
-                  "blocks": {},
-                  "block_order": []
+                  "blocks": {}
                 },
                 "pdp_tab_specs": {
                   "type": "_accordion-row",
