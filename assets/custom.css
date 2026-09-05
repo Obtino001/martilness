@@ -1,3 +1,31 @@
 .fr-hero__bg picture{
     height: 100%;
 }
+
+/* Collection description: 2-line teaser at the top, expand in place */
+.collection-desc {
+  max-width: 48rem;
+}
+
+.collection-desc.is-collapsed .collection-desc__clip {
+  max-height: 3.1em;
+  overflow: hidden;
+}
+
+.collection-desc__toggle {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+#bottom-collection-desc {
+  display: none !important;
+}

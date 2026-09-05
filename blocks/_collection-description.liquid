@@ -1,8 +1,24 @@
 {%- liquid
   assign closest_collection = closest.collection
   assign text = closest_collection.description
+  if closest_collection.handle == 'all'
+    assign text = ''
+  endif
+  assign plain = text | strip_html | strip
 -%}
-{% render 'text', fallback_text: text, block: block, class: 'collection-description-block' %}
+{%- if text != blank -%}
+  <div
+    class="collection-desc{% if plain.size > 120 %} is-collapsed{% endif %}"
+    data-collection-desc
+  >
+    <div class="collection-desc__clip">
+      {% render 'text', fallback_text: text, block: block, class: 'collection-description-block' %}
+    </div>
+    {%- if plain.size > 120 -%}
+      <button type="button" class="collection-desc__toggle">Læs mere</button>
+    {%- endif -%}
+  </div>
+{%- endif -%}
 {% schema %}
 {
   "name": "t:names.collection_description",
