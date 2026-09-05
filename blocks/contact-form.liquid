@@ -47,79 +47,87 @@
       class="contact__fields layout-panel-grid gap-style"
       style="{% render 'layout-panel-style', type: 'grid', columns_md: '2' %}{% render 'gap-style', settings: block.settings %}"
     >
-      <div class="form-field form-field--name">
-        <label class="form-label visually-hidden" for="ContactForm-name-{{ section.id }}">
-          {{- 'blocks.contact_form.name' | t -}}
-          <span aria-hidden="true">*</span>
-        </label>
-        <input
-          class="form-control w-full"
-          autocomplete="name"
-          type="text"
-          id="ContactForm-name-{{ section.id }}"
-          name="contact[{{ 'blocks.contact_form.name' | t }}]"
-          value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
-          placeholder="{{ 'blocks.contact_form.name' | t }}*"
-          required
-          aria-required="true"
-        >
-      </div>
-      <div class="form-field form-field--email">
-        <label class="form-label visually-hidden" for="ContactForm-email-{{ section.id }}">
-          {{- 'blocks.contact_form.email' | t -}}
-          <span aria-hidden="true">*</span>
-        </label>
-        <input
-          autocomplete="email"
-          type="email"
-          id="ContactForm-email-{{ section.id }}"
-          class="form-control w-full"
-          name="contact[email]"
-          spellcheck="false"
-          autocapitalize="off"
-          value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-          required
-          placeholder="{{ 'blocks.contact_form.email' | t }}*"
-          {% if form.errors contains 'email' %}
-            aria-invalid="true"
-            aria-describedby="ContactForm-email-error-{{ section.id }}"
-          {% endif %}
-        >
-        {%- if form.errors contains 'email' -%}
-          <span
-            class="form-message form-message--small form-message--error flex gap-2"
-            id="ContactForm-email-error-{{ section.id }}"
+      {%- if block.settings.show_default_name != false -%}
+        <div class="form-field form-field--name">
+          <label class="form-label visually-hidden" for="ContactForm-name-{{ section.id }}">
+            {{- 'blocks.contact_form.name' | t -}}
+            <span aria-hidden="true">*</span>
+          </label>
+          <input
+            class="form-control w-full"
+            autocomplete="name"
+            type="text"
+            id="ContactForm-name-{{ section.id }}"
+            name="contact[{{ 'blocks.contact_form.name' | t }}]"
+            value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+            placeholder="{{ 'blocks.contact_form.name' | t }}*"
+            required
+            aria-required="true"
           >
-            {% render 'icon', icon: 'warning', class: 'shrink-0' %}
-            {{- form.errors.translated_fields.email | capitalize }}
-            {{ form.errors.messages.email -}}
-          </span>
-        {%- endif -%}
-      </div>
+        </div>
+      {%- endif -%}
+
+      {%- if block.settings.show_default_email != false -%}
+        <div class="form-field form-field--email">
+          <label class="form-label visually-hidden" for="ContactForm-email-{{ section.id }}">
+            {{- 'blocks.contact_form.email' | t -}}
+            <span aria-hidden="true">*</span>
+          </label>
+          <input
+            autocomplete="email"
+            type="email"
+            id="ContactForm-email-{{ section.id }}"
+            class="form-control w-full"
+            name="contact[email]"
+            spellcheck="false"
+            autocapitalize="off"
+            value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+            required
+            placeholder="{{ 'blocks.contact_form.email' | t }}*"
+            {% if form.errors contains 'email' %}
+              aria-invalid="true"
+              aria-describedby="ContactForm-email-error-{{ section.id }}"
+            {% endif %}
+          >
+          {%- if form.errors contains 'email' -%}
+            <span
+              class="form-message form-message--small form-message--error flex gap-2"
+              id="ContactForm-email-error-{{ section.id }}"
+            >
+              {% render 'icon', icon: 'warning', class: 'shrink-0' %}
+              {{- form.errors.translated_fields.email | capitalize }}
+              {{ form.errors.messages.email -}}
+            </span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
 
       {% comment %} Blocks custom field {% endcomment %}
       {% content_for 'blocks' %}
 
       {% comment %} form-body {% endcomment %}
-      <div class="form-field form-field--full form-field--body">
-        <label class="form-label visually-hidden" for="ContactForm-body-{{ section.id }}">
-          {{- 'blocks.contact_form.your_message' | t -}}
-        </label>
-        <textarea
-          rows="5"
-          id="ContactForm-body-{{ section.id }}"
-          class="form-control form-control--textarea w-full"
-          name="contact[{{ 'blocks.contact_form.your_message' | t }}]"
-          placeholder="{{ 'blocks.contact_form.your_message' | t }}"
-        >{%- if form.body -%}{{- form.body -}}{%- endif -%}</textarea>
-      </div>
+      {%- if block.settings.show_default_message != false -%}
+        <div class="form-field form-field--full form-field--body">
+          <label class="form-label visually-hidden" for="ContactForm-body-{{ section.id }}">
+            {{- 'blocks.contact_form.your_message' | t -}}
+          </label>
+          <textarea
+            rows="5"
+            id="ContactForm-body-{{ section.id }}"
+            class="form-control form-control--textarea w-full"
+            name="contact[{{ 'blocks.contact_form.your_message' | t }}]"
+            placeholder="{{ 'blocks.contact_form.your_message' | t }}"
+          >{%- if form.body -%}{{- form.body -}}{%- endif -%}</textarea>
+        </div>
+      {%- endif -%}
 
       {% comment %} button submit {% endcomment %}
+      {%- assign submit_label = block.settings.submit_button_label | default: ('blocks.contact_form.send_message' | t) -%}
       <div class="contact__button form-footer text-center form-field--full">
         <button type="submit" class="btn btn--primary btn--large btn--icon-solid">
-          <span class="btn__text">{{ 'blocks.contact_form.send_message' | t }}</span>
+          <span class="btn__text">{{ submit_label }}</span>
           <span class="btn__icon">
-            <span class="btn__icon-text">{{ 'blocks.contact_form.send_message' | t }}</span>
+            <span class="btn__icon-text">{{ submit_label }}</span>
             <span class="btn__icon-icon">
               {% render 'icon', icon: 'caret-right' %}
             </span>
@@ -229,6 +237,33 @@
       "step": 1,
       "unit": "px",
       "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Default fields"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_default_name",
+      "label": "Show default name",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_default_email",
+      "label": "Show default email",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_default_message",
+      "label": "Show default message textarea",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "submit_button_label",
+      "label": "Submit button text"
     }
   ],
   "blocks": [

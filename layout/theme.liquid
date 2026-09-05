@@ -52,7 +52,7 @@
     {% unless settings.animations_enabled %}
       data-motion-disabled="true"
     {% endunless %}
-    class="{{ template.name }} {% if settings.animations_enabled %}animations-enabled {% endif %}{% if settings.page_transitions_enabled %}page-transitions-enabled {% endif %}{% unless cart.empty? %}cart-has-items{% endunless %}"
+    class="{{ template.name }} {% if template.suffix %}template-suffix-{{ template.suffix }} template--{{ template.suffix }} {% endif %}{% if settings.animations_enabled %}animations-enabled {% endif %}{% if settings.page_transitions_enabled %}page-transitions-enabled {% endif %}{% unless cart.empty? %}cart-has-items{% endunless %}"
   >
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
 

@@ -93,8 +93,9 @@
       type="text"
       id="ContactForm-{{ block.settings.field_type }}-{{ block.id }}"
       class="form-control w-full"
-      name="contact[{{- field_name -}}]"
-      value=""
+      name="contact[{%- if block.settings.heading == 'Dit navn' or block.settings.heading == 'Navn' -%}name{%- else -%}{{- field_name -}}{%- endif -%}]"
+      autocomplete="{%- if block.settings.heading == 'Dit navn' or block.settings.heading == 'Navn' -%}name{%- else -%}off{%- endif -%}"
+      value="{% if block.settings.heading == 'Dit navn' or block.settings.heading == 'Navn' %}{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}{% endif %}"
       {% assign text_placeholder = block.settings.placeholder | default: block.settings.heading %}
       {% if text_placeholder != blank %}
         placeholder="{{ text_placeholder }}"
@@ -214,7 +215,7 @@
   >
     {%- if block.settings.heading != blank -%}
       <label
-        class="form-label visually-hidden"
+        class="form-label form-label--file-heading block mb-2 font-medium"
         for="ContactForm-{{ block.settings.field_type }}-{{ block.id }}"
       >
         {{- block.settings.heading -}}

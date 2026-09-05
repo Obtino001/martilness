@@ -53,7 +53,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Har du modtaget et produkt med fejl, så udfyld formularen nedenfor. Vi behandler din reklamation hurtigst muligt og vender tilbage til dig.</p>",
+            "text": "<p>Har du været uheldig og modtage et produkt, der er defekt eller mangelfuldt, så udfyld venligst formularen herunder og vi kontakter dig indenfor 3 arbejdsdage med forslag til løsning eller eventuelle yderligere spørgsmål.</p>",
             "highlight_style": "none",
             "highlight_font_style": "italic",
             "highlight_shape_color": "",
@@ -115,7 +115,11 @@
             "row_gap": 20,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
-            "row_gap_mobile": 20
+            "row_gap_mobile": 20,
+            "show_default_name": false,
+            "show_default_email": false,
+            "show_default_message": false,
+            "submit_button_label": "SEND"
           },
           "blocks": {
             "field_ordrenummer": {
