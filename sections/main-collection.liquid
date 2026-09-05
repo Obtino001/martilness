@@ -98,6 +98,20 @@
         {{ collection.description }}
       </div>
     </div>
+    <script>
+      (() => {
+        const full = document.querySelector('#collection-description-full .collection-desc-full__inner');
+        if (!full) return;
+        /* Hide the first two <p> that the teaser already shows via line-clamp */
+        const paragraphs = full.querySelectorAll(':scope > p, :scope > h3, :scope > h4, :scope > h5, :scope > h6');
+        let hidden = 0;
+        for (const el of paragraphs) {
+          if (hidden >= 2) break;
+          el.style.display = 'none';
+          hidden++;
+        }
+      })();
+    </script>
   {%- endif -%}
 {%- endif -%}
 

@@ -3,10 +3,17 @@
 }
 
 .collection-desc {
-  max-width: 48rem;
 }
 
 .collection-desc__teaser {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0;
+}
+
+.collection-desc__teaser * {
   margin: 0;
 }
 
@@ -24,9 +31,12 @@
 }
 
 .collection-desc-full__inner {
-  max-width: 48rem;
 }
 
 #collection-description-full {
   scroll-margin-top: 100px;
+}
+
+html {
+  scroll-behavior: smooth;
 }

@@ -6,7 +6,7 @@
 {%- unless closest_collection.handle == 'all' or text == blank -%}
   {%- if plain.size > 140 -%}
     <div class="collection-desc">
-      <p class="collection-desc__teaser">{{ plain | truncatewords: 9 }}</p>
+      <div class="collection-desc__teaser rte">{{ collection.description }}</div>
       <a class="collection-desc__label" href="#collection-description-full">Læs mere</a>
     </div>
   {%- else -%}
