@@ -2,21 +2,27 @@
     height: 100%;
 }
 
-/* Collection description: first paragraph stays visible; rest opens in place */
+/* Collection description: short teaser, then expand the rest in place */
 .collection-desc {
   max-width: 48rem;
 }
 
-.collection-desc.is-collapsed .collection-desc__body > *:not(:first-child) {
+.collection-desc.is-collapsed .collection-desc__body,
+.collection-desc.is-collapsed .collection-desc__body[hidden] {
   display: none !important;
 }
 
-.collection-desc__body > :first-child {
-  margin-block-start: 0;
+.collection-desc.is-expanded .collection-desc__teaser,
+.collection-desc.is-expanded .collection-desc__toggle {
+  display: none !important;
 }
 
-.collection-desc.is-expanded .collection-desc__toggle {
-  display: none;
+.collection-desc.is-expanded .collection-desc__body {
+  display: block !important;
+}
+
+.collection-desc__teaser {
+  margin: 0;
 }
 
 .collection-desc__toggle {

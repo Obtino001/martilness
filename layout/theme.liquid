@@ -116,8 +116,11 @@
           event.preventDefault();
           const box = btn.closest('[data-collection-desc]');
           if (!box) return;
-          box.classList.remove('is-collapsed');
+          const body = box.querySelector('.collection-desc__body');
+          if (!body || !body.innerHTML.trim()) return;
+          body.hidden = false;
           box.classList.add('is-expanded');
+          box.classList.remove('is-collapsed');
         });
 
         const leftover = document.getElementById('bottom-collection-desc');

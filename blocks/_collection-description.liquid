@@ -5,8 +5,9 @@
     assign text = ''
   endif
   assign plain = text | strip_html | strip
+  assign teaser = plain | truncatewords: 9, ''
   assign show_toggle = false
-  if plain.size > 80
+  if plain.size > teaser.size
     assign show_toggle = true
   endif
 -%}
@@ -16,7 +17,15 @@
     data-collection-desc
     {{ block.shopify_attributes }}
   >
-    <div class="collection-desc__body collection-description-block">
+    {%- if show_toggle -%}
+      <p class="collection-desc__teaser">{{ teaser }}</p>
+    {%- endif -%}
+    <div
+      class="collection-desc__body collection-description-block"
+      {% if show_toggle %}
+        hidden
+      {% endif %}
+    >
       {{ text }}
     </div>
     {%- if show_toggle -%}
