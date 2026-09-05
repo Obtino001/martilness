@@ -53,7 +53,7 @@
           "settings": {
             "text_alignment": "left",
             "show_tags": true,
-            "show_date": true,
+            "show_date": false,
             "show_author": true,
             "show_excerpt": false,
             "show_button": false,
