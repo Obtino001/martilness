@@ -1,9 +1,16 @@
 {%- liquid
   assign collection = block.settings.collection
   assign collection_name = 'placeholders.collection_title' | t
+  assign target_url = collection.url
 
   if collection != blank
     assign collection_name = collection.title
+    if collection.all_products_count == 1
+      assign single_product = collection.products.first
+      if single_product != blank and single_product.url != blank
+        assign target_url = single_product.url
+      endif
+    endif
   endif
   if block.settings.title != blank
     assign collection_name = block.settings.title
@@ -18,7 +25,7 @@
     class="collection-highlight__part collection-highlight__image absolute inset-0 overflow-hidden h-full w-full{% if block_index == 0 %} is-active{% endif %}"
     style="--aspect-ratio: 1"
   >
-  {%- content_for 'block', type: '_collection-highlight-image-card', id: 'collection-highlight-image-card' -%}
+  {%- content_for 'block', type: '_collection-highlight-image-card', id: 'collection-highlight-image-card', closest.collection: collection -%}
   </div>
 {%- endcapture -%}
 {%- capture texts_html -%}
@@ -42,8 +49,8 @@
   class="collection-highlight__part collection-highlight__part-title collection-highlight__title relative flex items-center"
   aria-current="{% if block_index == 0 %}true{% else %}false{% endif %}"
   tabindex="{% if block_index == 0 %}0{% else %}-1{% endif %}"
-  {% if collection.url != blank %}
-    data-link-url="{{ collection.url | escape }}"
+  {% if target_url != blank %}
+    data-link-url="{{ target_url | escape }}"
   {% endif %}
   {{ block.shopify_attributes }}
 >
@@ -67,9 +74,9 @@
       line_height: block.settings.title_line_height
     -%}
   {%- endcapture -%}
-  {%- if collection.url != blank -%}
+  {%- if target_url != blank -%}
     <a
-      href="{{ collection.url }}"
+      href="{{ target_url }}"
       aria-label="{{ collection_name | escape }}"
       class="absolute inset-0 z-1"
       tabindex="-1"

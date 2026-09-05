@@ -1,6 +1,22 @@
+{%- liquid
+  assign button_link = block.settings.link
+  if closest.collection != blank and closest.collection.all_products_count == 1
+    assign single_product = closest.collection.products.first
+    if single_product.url != blank
+      if button_link == blank or button_link == closest.collection.url
+        assign button_link = single_product.url
+      else
+        assign collection_handle_path = '/collections/' | append: closest.collection.handle
+        if button_link == collection_handle_path
+          assign button_link = single_product.url
+        endif
+      endif
+    endif
+  endif
+-%}
 {% render 'button',
   label: block.settings.label,
-  link: block.settings.link,
+  link: button_link,
   style: block.settings.style,
   size: block.settings.size,
   icon: block.settings.icon,

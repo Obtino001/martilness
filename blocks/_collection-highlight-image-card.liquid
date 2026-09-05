@@ -9,7 +9,7 @@
     content_for 'block', type: '_simple-text', id: 'text'
   endcapture
   capture button
-    content_for 'block', type: 'button', id: 'button'
+    content_for 'block', type: 'button', id: 'button', closest.collection: closest.collection
   endcapture
   capture badge
     content_for 'blocks'
@@ -20,6 +20,15 @@
   if block.settings.image_preload
     assign loading = 'eager'
     assign fetchpriority = 'high'
+  endif
+-%}
+{%- liquid
+  assign card_href = block.settings.card_link
+  if closest.collection != blank and closest.collection.all_products_count == 1
+    assign single_product = closest.collection.products.first
+    if single_product.url != blank
+      assign card_href = single_product.url
+    endif
   endif
 -%}
 {%- capture card_image_sizes -%}(min-width: 768px) calc(min(100vw, {{ settings.page_width }}px) / 2), 100vw{%- endcapture -%}
@@ -42,7 +51,7 @@
 
 {% render 'image-card',
   mode: 'dynamic',
-  card_link: block.settings.card_link,
+  card_link: card_href,
   card_image: card_image,
   subheading: subheading,
   heading: heading,
