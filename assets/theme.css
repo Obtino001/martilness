@@ -2823,6 +2823,10 @@ button:disabled,
 .product-card--horizontal {
   padding-inline-end: 0.1rem;
 }
+.product-card__action {
+  position: relative;
+  z-index: 2;
+}
 .product-card--horizontal .product-card__media {
   width: var(--product-card-media-width, 9rem);
   border-radius: min(1rem, var(--product-card-media-radius));

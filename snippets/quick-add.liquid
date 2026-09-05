@@ -11,9 +11,11 @@
   @param {string} [color_scheme] - The color scheme of the quick add component
   @param {string} [class] - The class of the quick add component
   @param {string} [button_icon_size] - The size of the button icon
+  @param {boolean} [link_to_product] - Link to the product page instead of adding to cart
 {%- enddoc -%}
 
 {% liquid
+  assign link_to_product = link_to_product | default: false, allow_false: true
   assign product_form_id = 'QuickAdd-ProductForm-' | append: product.id | append: '-' | append: block.id
   assign read_more_text = 'actions.read_more' | t
   if read_more_text contains 'Translation missing' or read_more_text == blank
@@ -107,22 +109,46 @@
             assign button_class = button_class | append: ' btn--' | append: button_size
           endif
         -%}
-        <a
-          href="{{ target_pdp_url }}"
-          class="{{ button_class }}"
-          aria-label="{{ read_more_text }} - {{ product.title | escape }}"
-        >
-          <span class="{{ btn_text_class }}">{{ read_more_text }}</span>
-          {% render 'icon', icon: button_icon, class: icon_extra_class, size: button_icon_size %}
-          {%- if button_style == 'with_icon' -%}
-            <span class="btn__icon hidden md:flex">
-              <span class="btn__icon-text">{{ read_more_text }}</span>
-              <span class="btn__icon-icon">
-                {%- render 'icon', icon: button_icon, size: button_icon_size -%}
+        {%- if link_to_product -%}
+          <a
+            href="{{ target_pdp_url }}"
+            class="{{ button_class }}"
+            aria-label="{{ read_more_text }} - {{ product.title | escape }}"
+          >
+            <span class="{{ btn_text_class }}">{{ read_more_text }}</span>
+            {% render 'icon', icon: button_icon, class: icon_extra_class, size: button_icon_size %}
+            {%- if button_style == 'with_icon' -%}
+              <span class="btn__icon hidden md:flex">
+                <span class="btn__icon-text">{{ read_more_text }}</span>
+                <span class="btn__icon-icon">
+                  {%- render 'icon', icon: button_icon, size: button_icon_size -%}
+                </span>
               </span>
-            </span>
-          {%- endif -%}
-        </a>
+            {%- endif -%}
+          </a>
+        {%- else -%}
+          <button
+            type="submit"
+            name="add"
+            class="{{ button_class }}"
+            aria-label="{{ add_to_cart_text }} - {{ product.title | escape }}"
+            {% if variant.available == false %}
+              disabled
+            {% endif %}
+          >
+            <span class="{{ btn_text_class }}">{{ add_to_cart_text }}</span>
+            {% render 'icon', icon: button_icon, class: icon_extra_class, size: button_icon_size %}
+            {%- if button_style == 'with_icon' -%}
+              <span class="btn__icon hidden md:flex">
+                <span class="btn__icon-text">{{ add_to_cart_text }}</span>
+                <span class="btn__icon-icon">
+                  {%- render 'icon', icon: button_icon, size: button_icon_size -%}
+                </span>
+              </span>
+            {%- endif -%}
+            {% render 'loading-spinner', class: 'quick-add__button-spinner hidden' %}
+          </button>
+        {%- endif -%}
       {%- else -%}
         {% comment %} For quickview button {% endcomment %}
         <button
