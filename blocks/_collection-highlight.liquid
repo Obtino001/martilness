@@ -15,6 +15,13 @@
   if block.settings.title != blank
     assign collection_name = block.settings.title
   endif
+  if target_url == blank
+    if all_products['infrarod-led-maske'] != blank and block.settings.title contains 'LED'
+      assign target_url = all_products['infrarod-led-maske'].url
+    elsif block.settings.title contains 'LED'
+      assign target_url = '/products/infrarod-led-maske'
+    endif
+  endif
 
   assign block_index = section.blocks | find_index: 'id', block.id
 -%}

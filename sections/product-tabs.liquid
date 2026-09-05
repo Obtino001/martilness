@@ -107,7 +107,7 @@
   {%- endcapture -%}
 
   {%- capture list_items -%}
-    {% if collection != blank and shop.products_count != 0 %}
+    {% if collection != blank and shop.products_count != 0 and collection.products.size > 0 %}
       {% paginate collection.products by limit %}
         {% for product in collection.products limit: limit %}
           <div class="f-column{% if type == 'carousel' %} swiper-slide{% endif %}">
@@ -115,6 +115,11 @@
           </div>
         {% endfor %}
       {% endpaginate %}
+    {% elsif all_products['infrarod-led-maske'] != blank and block.settings.title contains 'LED' or block.settings.collection == 'infrarod-led-maske' %}
+      {% assign led_product = all_products['infrarod-led-maske'] %}
+      <div class="f-column{% if type == 'carousel' %} swiper-slide{% endif %}">
+        {%- render 'product-card', product: led_product, media_sizes: media_sizes -%}
+      </div>
     {% else %}
       {% for i in (1..limit) %}
         <div class="f-column{% if type == 'carousel' %} swiper-slide{% endif %}">
