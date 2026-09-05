@@ -107,47 +107,22 @@
             assign button_class = button_class | append: ' btn--' | append: button_size
           endif
         -%}
-        {%- if quick_add_button == 'add' -%}
-          <button
-            type="submit"
-            name="add"
-            class="{{ button_class }}"
-            aria-label="{{ add_to_cart_text }} - {{ product.title | escape }}"
-            on:click="quick-add-component/handleClick"
-            {% if variant.available == false %}
-              disabled
-            {% endif %}
-          >
-            <span class="{{ btn_text_class }}">{{ add_to_cart_text }}</span>
-            {% render 'icon', icon: button_icon, class: icon_extra_class, size: button_icon_size %}
-            {%- if button_style == 'with_icon' -%}
-              <span class="btn__icon hidden md:flex">
-                <span class="btn__icon-text">{{ add_to_cart_text }}</span>
-                <span class="btn__icon-icon">
-                  {%- render 'icon', icon: button_icon, size: button_icon_size -%}
-                </span>
+        <a
+          href="{{ target_pdp_url }}"
+          class="{{ button_class }}"
+          aria-label="{{ read_more_text }} - {{ product.title | escape }}"
+        >
+          <span class="{{ btn_text_class }}">{{ read_more_text }}</span>
+          {% render 'icon', icon: button_icon, class: icon_extra_class, size: button_icon_size %}
+          {%- if button_style == 'with_icon' -%}
+            <span class="btn__icon hidden md:flex">
+              <span class="btn__icon-text">{{ read_more_text }}</span>
+              <span class="btn__icon-icon">
+                {%- render 'icon', icon: button_icon, size: button_icon_size -%}
               </span>
-            {%- endif -%}
-            {% render 'loading-spinner', class: 'quick-add__button-spinner hidden' %}
-          </button>
-        {%- else -%}
-          <a
-            href="{{ target_pdp_url }}"
-            class="{{ button_class }}"
-            aria-label="{{ choose_options_text }} - {{ product.title | escape }}"
-          >
-            <span class="{{ btn_text_class }}">{{ choose_options_text }}</span>
-            {% render 'icon', icon: button_icon, class: icon_extra_class, size: button_icon_size %}
-            {%- if button_style == 'with_icon' -%}
-              <span class="btn__icon hidden md:flex">
-                <span class="btn__icon-text">{{ choose_options_text }}</span>
-                <span class="btn__icon-icon">
-                  {%- render 'icon', icon: button_icon, size: button_icon_size -%}
-                </span>
-              </span>
-            {%- endif -%}
-          </a>
-        {%- endif -%}
+            </span>
+          {%- endif -%}
+        </a>
       {%- else -%}
         {% comment %} For quickview button {% endcomment %}
         <button
