@@ -17,7 +17,8 @@
   {%- endif -%}
 {%- endcapture -%}
 <{{ wrapper_tag }}
-  class="footer__top-block{% if block.settings.enable_divider %} footer__top-block--with-border{% endif %} accordion f-column relative w-full shrink-0"
+  id="FooterColumn-{{ block.id }}"
+  class="footer__top-block footer__top-block--{{ block.id }}{% if block.settings.enable_divider %} footer__top-block--with-border{% endif %} accordion f-column relative w-full shrink-0"
   style="{{ inline_style }}"
   {{ block.shopify_attributes }}
   data-section-id="{{ section.id }}"

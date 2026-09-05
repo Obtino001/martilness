@@ -288,3 +288,68 @@ html {
   }
 }
 
+/* ==========================================================================
+   Footer Contact Column (Kontaktoplysninger) - Normal Weight & Subtext Match
+   ========================================================================== */
+.footer__top-block--footer_column_6qKBdj,
+#FooterColumn-footer_column_6qKBdj,
+.footer__top-block:has(a[href*="mailto:info@martilness.dk"]) {
+  color: var(--color-foreground-secondary);
+}
+
+.footer__top-block--footer_column_6qKBdj .accordion__inner,
+.footer__top-block--footer_column_6qKBdj .accordion__inner p,
+.footer__top-block--footer_column_6qKBdj .accordion__inner a,
+.footer__top-block--footer_column_6qKBdj .text-block,
+.footer__top-block--footer_column_6qKBdj .rte,
+#FooterColumn-footer_column_6qKBdj .accordion__inner,
+#FooterColumn-footer_column_6qKBdj .accordion__inner p,
+#FooterColumn-footer_column_6qKBdj .accordion__inner a,
+#FooterColumn-footer_column_6qKBdj .text-block,
+#FooterColumn-footer_column_6qKBdj .rte,
+.footer__top-block:has(a[href*="mailto:info@martilness.dk"]) .accordion__inner p,
+.footer__top-block:has(a[href*="mailto:info@martilness.dk"]) .accordion__inner a,
+.footer .text-block--tx_addr,
+.footer .text-block--tx_addr p,
+.footer .text-block--tx_mail,
+.footer .text-block--tx_mail p,
+.footer .text-block--tx_mail a,
+.footer .text-block--tx_tlf,
+.footer .text-block--tx_tlf p,
+.footer .text-block--tx_tlf a {
+  font-weight: 400 !important;
+  color: var(--color-foreground-secondary) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.footer__top-block--footer_column_6qKBdj .accordion__inner a,
+#FooterColumn-footer_column_6qKBdj .accordion__inner a,
+.footer .text-block--tx_mail a,
+.footer .text-block--tx_tlf a,
+.footer__top-block:has(a[href*="mailto:info@martilness.dk"]) a {
+  text-decoration: none !important;
+  transition: color var(--animation-duration--fast, 0.2s) ease;
+}
+
+.footer__top-block--footer_column_6qKBdj .accordion__inner a:hover,
+#FooterColumn-footer_column_6qKBdj .accordion__inner a:hover,
+.footer .text-block--tx_mail a:hover,
+.footer .text-block--tx_tlf a:hover,
+.footer__top-block:has(a[href*="mailto:info@martilness.dk"]) a:hover {
+  color: rgb(var(--color-foreground)) !important;
+  text-decoration: underline !important;
+}
+
+.footer__top-block--footer_column_6qKBdj .icon-block,
+.footer__top-block--footer_column_6qKBdj .icon-block svg,
+#FooterColumn-footer_column_6qKBdj .icon-block,
+#FooterColumn-footer_column_6qKBdj .icon-block svg,
+.footer__top-block:has(a[href*="mailto:info@martilness.dk"]) .icon-block,
+.footer__top-block:has(a[href*="mailto:info@martilness.dk"]) .icon-block svg {
+  color: var(--color-foreground-secondary) !important;
+  stroke: var(--color-foreground-secondary) !important;
+  opacity: 0.85;
+}
+
+
