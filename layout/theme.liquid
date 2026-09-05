@@ -110,22 +110,20 @@
           }
         });
 
-        // Collection description read more logic
+        // Collection description: clamp to 2 lines, then expand in place
         const descBlock = document.querySelector('.collection-description-block');
-        const collectionGrid = document.querySelector('.main-collection');
-        
-        if (descBlock && collectionGrid) {
+
+        if (descBlock) {
           const rte = descBlock.querySelector('.rte') || descBlock;
-          const fullHTML = rte.innerHTML;
-          
+
           if (rte.textContent.trim().length > 150) {
             rte.style.display = '-webkit-box';
-            rte.style.webkitLineClamp = '2'; 
+            rte.style.webkitLineClamp = '2';
             rte.style.webkitBoxOrient = 'vertical';
             rte.style.overflow = 'hidden';
-            
+
             const readMore = document.createElement('a');
-            readMore.href = '#bottom-collection-desc';
+            readMore.href = '#';
             readMore.textContent = 'Læs mere';
             readMore.style.display = 'inline-block';
             readMore.style.marginTop = '10px';
@@ -133,28 +131,15 @@
             readMore.style.textUnderlineOffset = '4px';
             readMore.style.fontWeight = '600';
             readMore.style.cursor = 'pointer';
-            
+
             descBlock.parentNode.insertBefore(readMore, descBlock.nextSibling);
-            
-            const bottomDesc = document.createElement('div');
-            bottomDesc.id = 'bottom-collection-desc';
-            bottomDesc.className = 'collection-banner-bottom section-grid section-grid--fixed';
-            bottomDesc.style.paddingBlock = '40px';
-            bottomDesc.innerHTML = `
-              <div class="rte" style="color: var(--color-subtext);">
-                ${fullHTML}
-              </div>
-            `;
-            bottomDesc.style.display = 'none';
-            
-            collectionGrid.parentNode.insertBefore(bottomDesc, collectionGrid.nextSibling);
-            
+
             readMore.addEventListener('click', (e) => {
               e.preventDefault();
-              descBlock.style.display = 'none';
+              rte.style.display = 'block';
+              rte.style.webkitLineClamp = 'unset';
+              rte.style.overflow = 'visible';
               readMore.style.display = 'none';
-              bottomDesc.style.display = 'grid';
-              bottomDesc.scrollIntoView({ behavior: 'smooth' });
             });
           }
         }
