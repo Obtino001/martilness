@@ -270,10 +270,22 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
+    },
+    "mt_page_hero": {
+      "type": "martilness-page-hero",
+      "name": "Martilness page hero",
+      "settings": {
+        "custom_title": "Kontakt",
+        "subtitle": "",
+        "accent_color": "#09412d",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
     }
   },
   "order": [
     "breadcrumbs",
+    "mt_page_hero",
     "main",
     "mt_contact",
     "store_locator_BQJBp9"
