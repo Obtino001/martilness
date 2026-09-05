@@ -992,13 +992,6 @@
             "title": "Isbad"
           }
         },
-        "collection_4waXYt": {
-          "type": "collection",
-          "settings": {
-            "collection": "dampsauna",
-            "title": "Dampsauna"
-          }
-        },
         "collection_kyfeYK": {
           "type": "collection",
           "settings": {
@@ -1023,7 +1016,6 @@
       },
       "block_order": [
         "collection_isbad",
-        "collection_4waXYt",
         "collection_kyfeYK",
         "collection_saunataeppe",
         "collection_C4aep4"
