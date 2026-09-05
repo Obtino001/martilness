@@ -60,7 +60,8 @@ html {
    ========================================================================== */
 .template--reklamation .contact__fields,
 .template-suffix-reklamation .contact__fields,
-.contact-form:has(#ContactForm-field_ordrenummer) .contact__fields {
+.contact-form--reklamation .contact__fields,
+.contact-form:has(input[name*="Ordrenummer"]) .contact__fields {
   row-gap: 16px !important;
   column-gap: 16px !important;
 }
@@ -68,8 +69,9 @@ html {
 /* Light gray rounded input fields & textareas */
 .template--reklamation .form-control,
 .template-suffix-reklamation .form-control,
-.contact-form:has(#ContactForm-field_ordrenummer) .form-control {
-  background-color: #f0f0f0 !important;
+.contact-form--reklamation .form-control,
+.contact-form:has(input[name*="Ordrenummer"]) .form-control {
+  background-color: #eeeeee !important;
   border: 1px solid transparent !important;
   box-shadow: none !important;
   border-radius: 4px !important;
@@ -82,7 +84,8 @@ html {
 
 .template--reklamation .form-control::placeholder,
 .template-suffix-reklamation .form-control::placeholder,
-.contact-form:has(#ContactForm-field_ordrenummer) .form-control::placeholder {
+.contact-form--reklamation .form-control::placeholder,
+.contact-form:has(input[name*="Ordrenummer"]) .form-control::placeholder {
   color: #777777 !important;
   opacity: 1 !important;
   font-size: 15px !important;
@@ -90,7 +93,8 @@ html {
 
 .template--reklamation .form-control:focus,
 .template-suffix-reklamation .form-control:focus,
-.contact-form:has(#ContactForm-field_ordrenummer) .form-control:focus {
+.contact-form--reklamation .form-control:focus,
+.contact-form:has(input[name*="Ordrenummer"]) .form-control:focus {
   background-color: #ffffff !important;
   border-color: #1cb377 !important;
   outline: none !important;
@@ -100,7 +104,8 @@ html {
 /* Textareas */
 .template--reklamation textarea.form-control,
 .template-suffix-reklamation textarea.form-control,
-.contact-form:has(#ContactForm-field_ordrenummer) textarea.form-control {
+.contact-form--reklamation textarea.form-control,
+.contact-form:has(input[name*="Ordrenummer"]) textarea.form-control {
   height: 110px !important;
   min-height: 100px !important;
   resize: vertical;
@@ -110,16 +115,18 @@ html {
 /* Select dropdown */
 .template--reklamation .select,
 .template-suffix-reklamation .select,
-.contact-form:has(#ContactForm-field_ordrenummer) .select {
+.contact-form--reklamation .select,
+.contact-form:has(input[name*="Ordrenummer"]) .select {
   width: 100% !important;
   max-width: 100% !important;
-  background-color: #f0f0f0 !important;
+  background-color: #eeeeee !important;
   border-radius: 4px !important;
 }
 
 .template--reklamation .select select,
 .template-suffix-reklamation .select select,
-.contact-form:has(#ContactForm-field_ordrenummer) .select select {
+.contact-form--reklamation .select select,
+.contact-form:has(input[name*="Ordrenummer"]) .select select {
   background-color: transparent !important;
   border: none !important;
   height: 48px !important;
@@ -131,13 +138,15 @@ html {
 /* File upload field */
 .template--reklamation .form-field--file,
 .template-suffix-reklamation .form-field--file,
-.contact-form:has(#ContactForm-field_ordrenummer) .form-field--file {
+.contact-form--reklamation .form-field--file,
+.contact-form:has(input[name*="Ordrenummer"]) .form-field--file {
   margin-top: 4px;
 }
 
 .template--reklamation .form-label--file-heading,
 .template-suffix-reklamation .form-label--file-heading,
-.contact-form:has(#ContactForm-field_ordrenummer) .form-label--file-heading {
+.contact-form--reklamation .form-label--file-heading,
+.contact-form:has(input[name*="Ordrenummer"]) .form-label--file-heading {
   display: block !important;
   margin-bottom: 8px !important;
   font-size: 15px !important;
@@ -147,7 +156,8 @@ html {
 
 .template--reklamation .form-field--file input[type="file"],
 .template-suffix-reklamation .form-field--file input[type="file"],
-.contact-form:has(#ContactForm-field_ordrenummer) .form-field--file input[type="file"] {
+.contact-form--reklamation .form-field--file input[type="file"],
+.contact-form:has(input[name*="Ordrenummer"]) .form-field--file input[type="file"] {
   height: auto !important;
   padding: 6px 0 !important;
   background: transparent !important;
@@ -160,16 +170,28 @@ html {
 }
 
 /* Full width solid green SEND button */
+.template--reklamation .contact__button,
+.template-suffix-reklamation .contact__button,
+.contact-form--reklamation .contact__button,
+.contact-form:has(input[name*="Ordrenummer"]) .contact__button,
+.contact__button--reklamation {
+  width: 100% !important;
+  grid-column: 1 / -1 !important;
+  margin-top: 8px !important;
+}
+
 .template--reklamation .contact__button .btn,
 .template-suffix-reklamation .contact__button .btn,
-.contact-form:has(#ContactForm-field_ordrenummer) .contact__button .btn {
+.contact-form--reklamation .contact__button .btn,
+.contact-form:has(input[name*="Ordrenummer"]) .contact__button .btn,
+.btn--reklamation-send {
   width: 100% !important;
   background-color: #1cb377 !important;
   border: 1px solid #1cb377 !important;
   color: #ffffff !important;
   border-radius: 4px !important;
   padding: 14px 24px !important;
-  font-size: 15px !important;
+  font-size: 16px !important;
   font-weight: 700 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.06em !important;
@@ -181,7 +203,9 @@ html {
 
 .template--reklamation .contact__button .btn:hover,
 .template-suffix-reklamation .contact__button .btn:hover,
-.contact-form:has(#ContactForm-field_ordrenummer) .contact__button .btn:hover {
+.contact-form--reklamation .contact__button .btn:hover,
+.contact-form:has(input[name*="Ordrenummer"]) .contact__button .btn:hover,
+.btn--reklamation-send:hover {
   background-color: #169c67 !important;
   border-color: #169c67 !important;
   color: #ffffff !important;
@@ -189,7 +213,9 @@ html {
 
 .template--reklamation .contact__button .btn .btn__icon,
 .template-suffix-reklamation .contact__button .btn .btn__icon,
-.contact-form:has(#ContactForm-field_ordrenummer) .contact__button .btn .btn__icon {
+.contact-form--reklamation .contact__button .btn .btn__icon,
+.contact-form:has(input[name*="Ordrenummer"]) .contact__button .btn .btn__icon,
+.btn--reklamation-send .btn__icon {
   display: none !important;
 }
 
