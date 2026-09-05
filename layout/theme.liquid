@@ -109,15 +109,6 @@
             }
           }
         });
-
-        document.querySelectorAll('a[href="#collection-description-full"]').forEach((link) => {
-          link.addEventListener('click', (event) => {
-            const target = document.getElementById('collection-description-full');
-            if (!target) return;
-            event.preventDefault();
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          });
-        });
       });
     </script>
   </body>
