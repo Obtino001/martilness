@@ -8235,12 +8235,13 @@ body:not(.header-pinned) .header-scrolled .header {
   transform: translateY(-100%) !important;
 }
 
-/* Decorative heading fonts draw Q with a long tail that sits under FAQ. */
+/* Decorative fonts draw Q with a long tail. Swap only that letter site-wide. */
 @font-face {
   font-family: "Martilness Nav Q";
-  src: local("Arial"), local("Helvetica Neue"), local("Helvetica");
+  src: local("Segoe UI"), local("Arial"), local("Helvetica Neue"), local("Helvetica");
   unicode-range: U+0051, U+0071;
   font-weight: 100 900;
+  font-style: normal;
   font-display: swap;
 }
 
