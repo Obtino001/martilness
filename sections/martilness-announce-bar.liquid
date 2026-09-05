@@ -44,8 +44,15 @@
                   </svg>
               {%- endcase -%}
             </span>
-            {%- if block.settings.link != blank -%}
-              <a class="mt-announce-bar__text" href="{{ block.settings.link }}">{{ block.settings.text }}</a>
+            {%- liquid
+              assign item_link = block.settings.link
+              assign item_text_down = block.settings.text | downcase
+              if item_link == blank and item_text_down contains 'trustpilot'
+                assign item_link = 'https://dk.trustpilot.com/review/martilness.dk'
+              endif
+            -%}
+            {%- if item_link != blank -%}
+              <a class="mt-announce-bar__text text-decoration-none color-current" href="{{ item_link }}" {% if item_link contains 'http' %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ block.settings.text }}</a>
             {%- else -%}
               <span class="mt-announce-bar__text">{{ block.settings.text }}</span>
             {%- endif -%}
