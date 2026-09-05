@@ -291,10 +291,11 @@ html {
 /* ==========================================================================
    Footer Contact Column (Kontaktoplysninger) - Normal Weight & Subtext Match
    ========================================================================== */
-.footer__top-block--footer_column_6qKBdj,
-#FooterColumn-footer_column_6qKBdj,
-.footer__top-block:has(a[href*="mailto:info@martilness.dk"]) {
-  color: var(--color-foreground-secondary);
+.footer__top-block--footer_column_6qKBdj .accordion__summary,
+.footer__top-block--footer_column_6qKBdj .accordion__summary span,
+#FooterColumn-footer_column_6qKBdj .accordion__summary,
+#FooterColumn-footer_column_6qKBdj .accordion__summary span {
+  color: #ffffff !important;
 }
 
 .footer__top-block--footer_column_6qKBdj .accordion__inner,

@@ -1,5 +1,11 @@
 {%- liquid
   assign layout = section.settings.layout | default: 'article'
+  assign page_handle = page.handle | downcase
+  assign page_title_down = page.title | downcase
+  assign template_suffix_down = template.suffix | downcase
+  if page_handle contains 'faq' or page_title_down contains 'faq' or page_title_down contains 'spørgsmål' or template_suffix_down contains 'faq'
+    assign layout = 'faq'
+  endif
   assign accent = section.settings.accent_color | default: '#09412d'
   assign show_title = false
   assign cta_label = section.settings.cta_label
@@ -30,9 +36,7 @@
         >
           {{ page.content }}
         </div>
-        {% if layout == 'faq' %}
-          <div class="mt-page-body__faq" data-mt-page-faq hidden></div>
-        {% endif %}
+        <div class="mt-page-body__faq" data-mt-page-faq hidden></div>
       {% else %}
         <p class="mt-page-body__empty">Denne side har endnu intet indhold.</p>
       {% endif %}
@@ -51,6 +55,7 @@
 
     const pageTitle = source.getAttribute('data-mt-page-title') || {{ page.title | json }};
     const norm = (value) => (value || '').replace(/\s+/g, ' ').replace(/[–—]/g, '-').trim().toLowerCase();
+    const cleanStr = (value) => (value || '').replace(/[\s\u00a0\u200B]+/g, ' ').trim();
     const titleNorm = norm(pageTitle);
 
     function isDuplicateTitle(el) {
@@ -72,7 +77,7 @@
     if (!target || source.dataset.mtLayout !== 'faq' || source.dataset.mtFaqBound === 'true') return;
     source.dataset.mtFaqBound = 'true';
 
-    const nodes = Array.from(source.childNodes).filter((n) => {
+    const rawNodes = Array.from(source.childNodes).filter((n) => {
       if (n.nodeType === Node.TEXT_NODE) return n.textContent.trim().length > 0;
       if (n.nodeType === Node.ELEMENT_NODE) {
         const tag = n.tagName;
@@ -82,26 +87,66 @@
       return false;
     });
 
+    // Flatten paragraphs that contain a strong question followed by <br> or answer text
+    const nodes = [];
+    rawNodes.forEach((node) => {
+      if (node.nodeType === Node.ELEMENT_NODE && (node.tagName === 'P' || node.tagName === 'DIV')) {
+        const strong = node.querySelector('strong, b');
+        if (strong && node.childNodes.length > 1) {
+          const firstChild = node.childNodes[0];
+          const isAtStart = firstChild === strong || (firstChild.nodeType === Node.TEXT_NODE && !firstChild.textContent.trim() && node.childNodes[1] === strong);
+          if (isAtStart) {
+            const sText = cleanStr(strong.textContent);
+            if (/\?[\s:]*$/.test(sText) || (sText.length < 160 && (node.querySelector('br') || sText.endsWith(':')))) {
+              const qP = document.createElement('p');
+              qP.innerHTML = strong.outerHTML;
+              nodes.push(qP);
+
+              const ansP = document.createElement('p');
+              let passed = false;
+              Array.from(node.childNodes).forEach((child) => {
+                if (child === strong) {
+                  passed = true;
+                  return;
+                }
+                if (passed) ansP.appendChild(child.cloneNode(true));
+              });
+              while (ansP.firstChild && (ansP.firstChild.nodeName === 'BR' || (ansP.firstChild.nodeType === Node.TEXT_NODE && !ansP.firstChild.textContent.trim()))) {
+                ansP.removeChild(ansP.firstChild);
+              }
+              if (ansP.textContent.trim() || ansP.querySelector('img, a, iframe')) {
+                nodes.push(ansP);
+              }
+              return;
+            }
+          }
+        }
+      }
+      nodes.push(node);
+    });
+
     function isQuestionEl(el) {
       if (!el || el.nodeType !== Node.ELEMENT_NODE) return false;
       if (isDuplicateTitle(el)) return false;
       const tag = el.tagName;
       if (/^H[1-6]$/.test(tag)) return true;
       if (tag === 'P' || tag === 'DIV') {
-        const html = el.innerHTML.trim();
-        const text = el.textContent.trim();
+        const text = cleanStr(el.textContent);
         if (!text) return false;
-        const onlyStrong =
-          /^<(strong|b)(\s[^>]*)?>[\s\S]+<\/\1>$/i.test(html) ||
-          ((el.querySelector('strong,b') && el.querySelector('strong,b').textContent.trim() === text));
-        if (onlyStrong && text.endsWith('?')) return true;
-        if (text.endsWith('?') && text.length < 160 && !el.querySelector('a,ul,ol,img')) return true;
+        const strongEl = el.querySelector('strong, b');
+        const strongText = strongEl ? cleanStr(strongEl.textContent) : '';
+        const isOnlyStrong = strongEl && strongText === text;
+        const hasQMark = /\?[\s:]*$/.test(text);
+
+        if (isOnlyStrong && (hasQMark || text.length < 180)) return true;
+        if (hasQMark && text.length < 200 && !el.querySelector('a,ul,ol,img')) return true;
+        if (text.endsWith(':') && text.length < 120 && !el.querySelector('a,ul,ol,img')) return true;
       }
       return false;
     }
 
     function questionText(el) {
-      return (el.textContent || '').trim();
+      return cleanStr(el.textContent);
     }
 
     function headingClass(el) {
@@ -137,7 +182,7 @@
     });
     if (current) items.push(current);
 
-    if (items.length < 2) {
+    if (items.length < 1) {
       // Not enough Q&A pairs — leave article layout
       return;
     }
@@ -185,6 +230,15 @@
       row.appendChild(details);
       accordion.appendChild(row);
     });
+
+    // Single-open accordion behavior
+    accordion.addEventListener('toggle', (e) => {
+      if (e.target && e.target.tagName === 'DETAILS' && e.target.open) {
+        accordion.querySelectorAll('details').forEach((d) => {
+          if (d !== e.target && d.open) d.open = false;
+        });
+      }
+    }, true);
 
     if (intro.length) {
       const introWrap = document.createElement('div');
