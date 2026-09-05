@@ -109,6 +109,46 @@
             }
           }
         });
+        // Rewrite any legacy martilness.dk / WordPress links to the current Shopify domain
+        function rewriteDomainLink(anchor) {
+          const href = anchor.getAttribute('href');
+          if (!href) return;
+          if (href.includes('trustpilot.com') || href.startsWith('mailto:')) return;
+
+          try {
+            const url = new URL(href, window.location.origin);
+            if (url.hostname === 'martilness.dk' || url.hostname === 'www.martilness.dk') {
+              let newPath = url.pathname;
+              if (newPath.startsWith('/produkt/')) {
+                newPath = newPath.replace('/produkt/', '/products/');
+              } else if (newPath.startsWith('/product/')) {
+                newPath = newPath.replace('/product/', '/products/');
+              } else if (newPath.startsWith('/vare/')) {
+                newPath = newPath.replace('/vare/', '/products/');
+              } else if (newPath.startsWith('/vare-kategori/')) {
+                newPath = newPath.replace('/vare-kategori/', '/collections/');
+              } else if (newPath.startsWith('/produkt-kategori/')) {
+                newPath = newPath.replace('/produkt-kategori/', '/collections/');
+              } else if (newPath === '/butik' || newPath === '/butik/' || newPath === '/shop' || newPath === '/shop/') {
+                newPath = '/collections/all';
+              } else if (newPath === '/om-os' || newPath === '/om-os/') {
+                newPath = '/pages/om-martilness';
+              } else if (newPath === '/kontakt' || newPath === '/kontakt/') {
+                newPath = '/pages/contact';
+              }
+              anchor.setAttribute('href', window.location.origin + newPath + url.search + url.hash);
+            }
+          } catch (e) {}
+        }
+
+        document.querySelectorAll('a[href*="martilness.dk"]').forEach(rewriteDomainLink);
+
+        document.addEventListener('click', (e) => {
+          const anchor = e.target.closest('a[href*="martilness.dk"]');
+          if (anchor) {
+            rewriteDomainLink(anchor);
+          }
+        }, true);
       });
     </script>
   </body>

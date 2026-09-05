@@ -90,20 +90,28 @@
           {%- endif -%}
 
           <div class="mt-contact__field">
-            <label class="form-label" for="{{ form_id }}-name">{{ 'blocks.contact_form.name' | t }}</label>
+            <label class="form-label" for="{{ form_id }}-name">
+              {{ 'blocks.contact_form.name' | t }}
+              <span class="form-required" aria-hidden="true">*</span>
+            </label>
             <input
               class="form-control w-full"
               type="text"
               id="{{ form_id }}-name"
               name="contact[name]"
               autocomplete="name"
+              required
+              aria-required="true"
               value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
             >
           </div>
 
           <div class="mt-contact__row">
             <div class="mt-contact__field">
-              <label class="form-label" for="{{ form_id }}-email">{{ 'blocks.contact_form.email' | t }}</label>
+              <label class="form-label" for="{{ form_id }}-email">
+                {{ 'blocks.contact_form.email' | t }}
+                <span class="form-required" aria-hidden="true">*</span>
+              </label>
               <input
                 class="form-control w-full"
                 type="email"
@@ -113,6 +121,7 @@
                 spellcheck="false"
                 autocapitalize="off"
                 required
+                aria-required="true"
                 value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
                 {% if form.errors contains 'email' %}
                   aria-invalid="true"
@@ -260,6 +269,12 @@
     margin-bottom: 0.6rem;
     font-size: 1.4rem;
     font-weight: 500;
+  }
+
+  #section-{{ section.id }} .form-required {
+    color: #e03131;
+    margin-inline-start: 0.25rem;
+    font-weight: 600;
   }
 
   #section-{{ section.id }} .mt-contact__form .form-control {

@@ -81,7 +81,7 @@
           "name": "t:names.button",
           "settings": {
             "label": "Fortsæt til shoppen →",
-            "link": "https://www.franklins.dk",
+            "link": "/collections/all",
             "style": "primary",
             "size": "medium",
             "icon": "caret-right",
