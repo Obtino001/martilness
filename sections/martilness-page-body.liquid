@@ -200,13 +200,14 @@
 
 <style>
   #section-{{ section.id }}.mt-page-body {
-    padding-block-start: var(--mt-page-body-pad-top);
-    padding-block-end: var(--mt-page-body-pad-bottom);
+    padding: var(--mt-page-body-pad-top) var(--page-padding, 1.6rem) var(--mt-page-body-pad-bottom);
     background: #fff;
   }
 
   #section-{{ section.id }} .mt-page-body__wrap {
+    max-width: var(--page-width, 1500px);
     width: 100%;
+    margin: 0 auto;
   }
 
   #section-{{ section.id }} .mt-page-body__card {
