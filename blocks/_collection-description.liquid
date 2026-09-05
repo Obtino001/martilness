@@ -5,16 +5,33 @@
     assign text = ''
   endif
   assign plain = text | strip_html | strip
+  assign teaser = ''
+  if text contains '</p>'
+    assign teaser = text | split: '</p>' | first | append: '</p>'
+  else
+    assign teaser = '<p>' | append: plain | truncatewords: 16, '' | append: '</p>'
+  endif
+  assign teaser_plain = teaser | strip_html | strip
+  if teaser_plain.size > 110
+    assign teaser = '<p>' | append: teaser_plain | truncatewords: 16, '' | append: '</p>'
+  endif
+  assign show_toggle = false
+  if plain.size > teaser_plain.size
+    assign show_toggle = true
+  endif
 -%}
 {%- if text != blank -%}
   <div
-    class="collection-desc{% if plain.size > 120 %} is-collapsed{% endif %}"
+    class="collection-desc{% if show_toggle %} is-collapsed{% endif %}"
     data-collection-desc
   >
-    <div class="collection-desc__clip">
-      {% render 'text', fallback_text: text, block: block, class: 'collection-description-block' %}
+    {%- if show_toggle -%}
+      <div class="collection-desc__teaser rte collection-description-block">{{ teaser }}</div>
+    {%- endif -%}
+    <div class="collection-desc__full{% unless show_toggle %} collection-description-block{% endunless %}">
+      {% render 'text', fallback_text: text, block: block %}
     </div>
-    {%- if plain.size > 120 -%}
+    {%- if show_toggle -%}
       <button type="button" class="collection-desc__toggle">Læs mere</button>
     {%- endif -%}
   </div>
