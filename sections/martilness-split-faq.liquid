@@ -6,7 +6,10 @@
   assign image_radius = section.settings.image_radius | default: 20
 
   assign show_section = true
-  assign gate_key = section.settings.require_metafield_key | default: 'faqs' | strip
+  assign gate_key = section.settings.require_metafield_key
+  if gate_key != blank
+    assign gate_key = gate_key | strip
+  endif
   if gate_key != blank
     assign show_section = false
     assign gate_product = product
@@ -18,6 +21,9 @@
       if gate_mf != blank and gate_mf.value != blank
         assign show_section = true
       endif
+    endif
+    if section.blocks.size > 0
+      assign show_section = true
     endif
   endif
 -%}
@@ -40,10 +46,17 @@
   <div class="mt-split-faq__shell">
     <div class="mt-split-faq__grid">
       <div class="mt-split-faq__media">
-        {% if section.settings.image != blank %}
-          {%- assign split_faq_alt = section.settings.image.alt | default: heading -%}
+        {%- assign faq_img = section.settings.image -%}
+        {%- if faq_img == blank and product.metafields.custom.faq_with_image.value != blank -%}
+          {%- assign faq_img = product.metafields.custom.faq_with_image.value -%}
+        {%- endif -%}
+        {%- if faq_img == blank and product.featured_image != blank -%}
+          {%- assign faq_img = product.featured_image -%}
+        {%- endif -%}
+        {% if faq_img != blank %}
+          {%- assign split_faq_alt = faq_img.alt | default: heading -%}
           {{
-            section.settings.image
+            faq_img
             | image_url: width: 1600
             | image_tag:
               class: 'mt-split-faq__img',
