@@ -883,6 +883,7 @@
                   "settings": {
                     "text": "Beskrivelse",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -912,6 +913,7 @@
                   "settings": {
                     "text": "Antal zoner",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -941,6 +943,7 @@
                   "settings": {
                     "text": "Sundhedsmæssige fordele",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -970,6 +973,7 @@
                   "settings": {
                     "text": "Tekniske specifikationer",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -999,6 +1003,7 @@
                   "settings": {
                     "text": "Hvad er inkluderet?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -1028,6 +1033,7 @@
                   "settings": {
                     "text": "30 dages fuld tilfredshedsgaranti",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -1169,205 +1175,6 @@
         "accent_color": "#09412d",
         "details_heading": "Detaljer om produktet",
         "includes_heading": "Shop efter kategori"
-      }
-    },
-    "flex_carousel_videos": {
-      "type": "flex-carousel",
-      "blocks": {
-        "video_card_1": {
-          "type": "video-card",
-          "settings": {
-            "video": "shopify://files/videos/e7245f278ade4c8ba71d2eb6c1a3d2a0.HD-1080p-7.2Mbps-89498511.mp4",
-            "cover_image": "shopify://shop_images/e7245f278ade4c8ba71d2eb6c1a3d2a0.thumbnail.0000000000_600x_957e3f71-e7e6-4058-93de-623dde4286c5.webp",
-            "video_ratio": "3/4",
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "color_scheme": "scheme-1",
-            "border_radius": 20
-          },
-          "blocks": {
-            "video-card-info": {
-              "type": "_video-card-info",
-              "static": true,
-              "settings": {
-                "avatar_hidden_mobile": true,
-                "title": "",
-                "name_preset": "h4",
-                "bio": "",
-                "bio_text_color": "subtext"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
-        },
-        "video_card_gqmMJr": {
-          "type": "video-card",
-          "settings": {
-            "video": "shopify://files/videos/e7245f278ade4c8ba71d2eb6c1a3d2a0.HD-1080p-7.2Mbps-89498511.mp4",
-            "cover_image": "shopify://shop_images/e7245f278ade4c8ba71d2eb6c1a3d2a0.thumbnail.0000000000_600x_957e3f71-e7e6-4058-93de-623dde4286c5.webp",
-            "video_ratio": "3/4",
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "color_scheme": "scheme-1",
-            "border_radius": 20
-          },
-          "blocks": {
-            "video-card-info": {
-              "type": "_video-card-info",
-              "static": true,
-              "settings": {
-                "avatar_hidden_mobile": true,
-                "title": "",
-                "name_preset": "h4",
-                "bio": "",
-                "bio_text_color": "subtext"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
-        },
-        "video_card_MNEVpH": {
-          "type": "video-card",
-          "settings": {
-            "video": "shopify://files/videos/e7245f278ade4c8ba71d2eb6c1a3d2a0.HD-1080p-7.2Mbps-89498511.mp4",
-            "cover_image": "shopify://shop_images/e7245f278ade4c8ba71d2eb6c1a3d2a0.thumbnail.0000000000_600x_957e3f71-e7e6-4058-93de-623dde4286c5.webp",
-            "video_ratio": "3/4",
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "color_scheme": "scheme-1",
-            "border_radius": 20
-          },
-          "blocks": {
-            "video-card-info": {
-              "type": "_video-card-info",
-              "static": true,
-              "settings": {
-                "avatar_hidden_mobile": true,
-                "title": "",
-                "name_preset": "h4",
-                "bio": "",
-                "bio_text_color": "subtext"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
-        },
-        "video_card_C4C9Qb": {
-          "type": "video-card",
-          "settings": {
-            "video": "shopify://files/videos/e7245f278ade4c8ba71d2eb6c1a3d2a0.HD-1080p-7.2Mbps-89498511.mp4",
-            "cover_image": "shopify://shop_images/e7245f278ade4c8ba71d2eb6c1a3d2a0.thumbnail.0000000000_600x_957e3f71-e7e6-4058-93de-623dde4286c5.webp",
-            "video_ratio": "3/4",
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "color_scheme": "scheme-1",
-            "border_radius": 20
-          },
-          "blocks": {
-            "video-card-info": {
-              "type": "_video-card-info",
-              "static": true,
-              "settings": {
-                "avatar_hidden_mobile": true,
-                "title": "",
-                "name_preset": "h4",
-                "bio": "",
-                "bio_text_color": "subtext"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
-        },
-        "section-header-vertical": {
-          "type": "_section-header-vertical",
-          "static": true,
-          "settings": {
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "device": "desktop",
-            "padding-block-end": 32,
-            "padding-block-end-mobile": 20
-          },
-          "blocks": {
-            "heading": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<p>Elsket af 20.000+ danskere</p>",
-                "highlight_style": "none",
-                "highlight_font_style": "italic",
-                "highlight_shape_color": "",
-                "highlight_text_color": "",
-                "type_preset": "h2",
-                "font": "var(--font-heading--family)",
-                "font_weight": "",
-                "font_size": 15,
-                "font_size_mobile": 15,
-                "line_height": "normal",
-                "text_color": "text",
-                "text_color_gradient": "",
-                "disable_line_break_mobile": false,
-                "width": "fit-content",
-                "text_alignment": "left",
-                "width_mobile": "fit-content",
-                "text_alignment_mobile": "left",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0,
-                "mobile-padding-scale": 100,
-                "animation_type": "none",
-                "animation_delay": 250
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "heading"
-          ]
-        }
-      },
-      "block_order": [
-        "video_card_1",
-        "video_card_gqmMJr",
-        "video_card_MNEVpH",
-        "video_card_C4C9Qb"
-      ],
-      "name": "t:names.flex_carousel_video_cards",
-      "settings": {
-        "container": "page-width",
-        "overflow_content": "visible",
-        "slides_per_view": "columns",
-        "columns": 4,
-        "column_gap": 12,
-        "enable_swipe_on_mobile": true,
-        "swipe_custom_width_column": false,
-        "swipe_column_width": 76,
-        "columns_mobile": "2",
-        "column_gap_mobile": 8,
-        "color_scheme": "scheme-1",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "control_type": "standard",
-        "control_alignment": "center",
-        "device": "desktop",
-        "padding-block-start": 48,
-        "padding-block-end": 48,
-        "padding-block-start-mobile": 32,
-        "padding-block-end-mobile": 32
       }
     },
     "iwt_how_it_works": {
@@ -2627,6 +2434,7 @@
                   "settings": {
                     "text": "Hvorfor skal jeg købe et saunatæppe?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -2674,6 +2482,7 @@
                   "settings": {
                     "text": "Hvordan virker et infrarødt saunatæppe?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -2721,6 +2530,7 @@
                   "settings": {
                     "text": "Hvordan bruges saunatæppet?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -2768,6 +2578,7 @@
                   "settings": {
                     "text": "Hvordan rengør og opbevarer jeg saunatæppet?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -2815,6 +2626,7 @@
                   "settings": {
                     "text": "Hvor ofte må jeg bruge saunatæppet?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -2862,6 +2674,7 @@
                   "settings": {
                     "text": "Hvor længe kan jeg ligge i saunatæppet?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -2909,6 +2722,7 @@
                   "settings": {
                     "text": "Hvilken temperatur skal jeg vælge?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -2956,6 +2770,7 @@
                   "settings": {
                     "text": "Hvor hurtigt varmer det op?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3003,6 +2818,7 @@
                   "settings": {
                     "text": "Hvad skal jeg have på, når jeg bruger tæppet?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3050,6 +2866,7 @@
                   "settings": {
                     "text": "Hvor meget sveder jeg?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3097,6 +2914,7 @@
                   "settings": {
                     "text": "Hvad hvis jeg falder i søvn?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3144,6 +2962,7 @@
                   "settings": {
                     "text": "Kan jeg tabe mig ved at bruge et infrarødt saunatæppe?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3191,6 +3010,7 @@
                   "settings": {
                     "text": "Kan saunatæppet hjælpe med at lindre smerter?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3238,6 +3058,7 @@
                   "settings": {
                     "text": "Er saunatæppet godt mod gigt?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3285,6 +3106,7 @@
                   "settings": {
                     "text": "Hvad hvis jeg har for højt eller lavt blodtryk?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3332,6 +3154,7 @@
                   "settings": {
                     "text": "Hvem bør ikke bruge et infrarødt saunatæppe?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3379,6 +3202,7 @@
                   "settings": {
                     "text": "Hvad koster det i strøm at bruge saunatæppet?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3426,6 +3250,7 @@
                   "settings": {
                     "text": "Hvad betyder antal zoner? Og hvad har du brug for?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3473,6 +3298,7 @@
                   "settings": {
                     "text": "Kan jeg bruge mit saunatæppe i kombination med isbad?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3520,6 +3346,7 @@
                   "settings": {
                     "text": "Velcro eller lynlås?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3567,6 +3394,7 @@
                   "settings": {
                     "text": "Hvor mange lag består tæppet af?",
                     "open_row_by_default": false,
+                    "scroll_target": "",
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -3761,7 +3589,6 @@
     "breadcrumbs_zq9zwK",
     "main",
     "whats_included_Kp7mR2",
-    "flex_carousel_videos",
     "iwt_how_it_works",
     "iwt_health_benefits",
     "trustpilot_reviews_pdp",
