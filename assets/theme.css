@@ -2439,8 +2439,11 @@ button:disabled,
 .accordion--standard {
   --summary-padding-block: 2rem;
 }
+.accordion--standard .accordion__row {
+  border-bottom: 0.1rem solid rgb(var(--color-border) / var(--color-border-alpha));
+}
 .accordion--standard .accordion__details {
-  border-bottom: 0.1rem solid rgb(var(--color-border)/var(--color-border-alpha));
+  border-bottom: none;
 }
 .accordion--card {
   --summary-padding-block: 2rem;
