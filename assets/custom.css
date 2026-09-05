@@ -353,3 +353,19 @@ html {
   border-radius: var(--button-corner-radius, 1rem) !important;
 }
 
+/* ==========================================================================
+   FAQ Page Body - Full & Comfortable Width (>= 800px)
+   ========================================================================== */
+.mt-page-body--faq .mt-page-body__wrap {
+  max-width: 1000px !important;
+  width: 100% !important;
+  padding-inline: clamp(1.6rem, 3vw, 3.2rem) !important;
+  box-sizing: border-box !important;
+}
+
+.mt-page-body--faq .mt-page-body__card {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+

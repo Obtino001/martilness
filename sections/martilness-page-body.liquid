@@ -21,7 +21,7 @@
     --mt-page-body-pad-bottom: {{ section.settings.padding_bottom }}px;
   "
 >
-  <div class="mt-page-body__wrap page-width">
+  <div class="mt-page-body__wrap">
     <div class="mt-page-body__card">
       {% if show_title and page.title != blank %}
         <h2 class="mt-page-body__page-title">{{ page.title }}</h2>
@@ -73,9 +73,37 @@
       source.firstElementChild.remove();
     }
 
-    const target = root.querySelector('[data-mt-page-faq]');
-    if (!target || source.dataset.mtLayout !== 'faq' || source.dataset.mtFaqBound === 'true') return;
+    const isFaq =
+      source.dataset.mtLayout === 'faq' ||
+      window.location.pathname.toLowerCase().includes('faq') ||
+      window.location.pathname.toLowerCase().includes('sporgsmal') ||
+      (pageTitle && (pageTitle.toLowerCase().includes('faq') || pageTitle.toLowerCase().includes('spørgsmål'))) ||
+      root.classList.contains('mt-page-body--faq');
+
+    if (!isFaq || source.dataset.mtFaqBound === 'true') return;
     source.dataset.mtFaqBound = 'true';
+    root.classList.add('mt-page-body--faq');
+
+    let target = root.querySelector('[data-mt-page-faq]');
+    if (!target) {
+      target = document.createElement('div');
+      target.className = 'mt-page-body__faq';
+      target.setAttribute('data-mt-page-faq', '');
+      source.parentNode.insertBefore(target, source.nextSibling);
+    }
+
+    // Unwrap if rich text editor inserted a single wrapper container
+    while (
+      source.children.length === 1 &&
+      ['DIV', 'SECTION', 'MAIN', 'ARTICLE'].includes(source.firstElementChild.tagName) &&
+      !isQuestionEl(source.firstElementChild)
+    ) {
+      const wrapper = source.firstElementChild;
+      while (wrapper.firstChild) {
+        source.insertBefore(wrapper.firstChild, wrapper);
+      }
+      wrapper.remove();
+    }
 
     const rawNodes = Array.from(source.childNodes).filter((n) => {
       if (n.nodeType === Node.TEXT_NODE) return n.textContent.trim().length > 0;
@@ -252,23 +280,36 @@
   })();
 </script>
 
+{%- liquid
+  assign faq_width = section.settings.faq_max_width | default: 1000
+  if faq_width < 800
+    assign faq_width = 1000
+  endif
+-%}
+
 <style>
   #section-{{ section.id }}.mt-page-body {
-    padding: var(--mt-page-body-pad-top) var(--page-padding, 1.6rem) var(--mt-page-body-pad-bottom);
+    padding-top: var(--mt-page-body-pad-top);
+    padding-bottom: var(--mt-page-body-pad-bottom);
     background: #fff;
   }
 
   #section-{{ section.id }} .mt-page-body__wrap {
-    max-width: var(--page-width, 1500px);
+    max-width: 1200px;
     width: 100%;
     margin: 0 auto;
+    padding-inline: clamp(1.6rem, 3vw, 3.2rem);
+    box-sizing: border-box;
   }
 
   #section-{{ section.id }}.mt-page-body--faq .mt-page-body__wrap {
-    max-width: {{ section.settings.faq_max_width | default: 960 }}px;
+    max-width: {{ faq_width }}px;
+    width: 100%;
   }
 
   #section-{{ section.id }} .mt-page-body__card {
+    width: 100%;
+    box-sizing: border-box;
     background: #f3f6f4;
     border: 1px solid rgb(9 65 45 / 8%);
     border-radius: 1.6rem;
@@ -504,11 +545,11 @@
       "type": "range",
       "id": "faq_max_width",
       "label": "FAQ max width",
-      "min": 700,
+      "min": 800,
       "max": 1400,
       "step": 20,
       "unit": "px",
-      "default": 960
+      "default": 1000
     },
     {
       "type": "checkbox",
