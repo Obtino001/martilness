@@ -465,7 +465,7 @@
                 "tx_mail": {
                   "type": "text",
                   "settings": {
-                    "text": "<p><a href=\"mailto:info@martilness.dk\">info@martilness.dk</a></p>",
+                    "text": "<p>E-mail: <a href=\"mailto:info@martilness.dk\">info@martilness.dk</a></p>",
                     "highlight_style": "none",
                     "highlight_font_style": "italic",
                     "highlight_shape_color": "",
@@ -552,7 +552,7 @@
                 "tx_tlf": {
                   "type": "text",
                   "settings": {
-                    "text": "<p><a href=\"tel:+4527796900\">2779 6900</a></p>",
+                    "text": "<p>Telefon: <a href=\"tel:+4527796900\">2779 6900</a></p>",
                     "highlight_style": "none",
                     "highlight_font_style": "italic",
                     "highlight_shape_color": "",

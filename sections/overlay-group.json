@@ -203,7 +203,6 @@
         "image": "shopify://shop_images/DSC00435-Edit-scaled.jpg",
         "panel_background": "#09412d",
         "accent_color": "#09412d",
-        "tab_border_color": "#ffffff",
         "open_by_default": true,
         "z_index": 40
       }
