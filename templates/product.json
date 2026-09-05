@@ -1111,20 +1111,20 @@
     "whats_included_Kp7mR2": {
       "type": "whats-included",
       "blocks": {
-        "included_item_A7HArJ": {
-          "type": "included_item",
-          "settings": {
-            "image": "shopify://shop_images/DSC00719_1.jpg",
-            "title": "Saunatæppe",
-            "link": "shopify://collections/saunataeppe"
-          }
-        },
         "included_item_LPHdrX": {
           "type": "included_item",
           "settings": {
             "image": "shopify://shop_images/DSC09835_cc1a13ad-36bf-4154-934b-9b6223c5a129.jpg",
             "title": "Infrarødt lys",
             "link": "shopify://collections/infrarodt-lys"
+          }
+        },
+        "included_item_A7HArJ": {
+          "type": "included_item",
+          "settings": {
+            "image": "shopify://shop_images/DSC00719_1.jpg",
+            "title": "Saunatæppe",
+            "link": "shopify://collections/saunataeppe"
           }
         },
         "included_item_nTt7mR": {
@@ -1169,8 +1169,8 @@
         }
       },
       "block_order": [
-        "included_item_A7HArJ",
         "included_item_LPHdrX",
+        "included_item_A7HArJ",
         "included_item_nTt7mR",
         "included_item_FrrDw4",
         "included_item_BF6Bh9",
