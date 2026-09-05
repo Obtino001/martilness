@@ -526,9 +526,9 @@
               "settings": {
                 "label": "På lager.",
                 "cutoff_hour": 14,
-                "text_today": "Bestilling inden 14 sendes samme hverdag",
-                "text_tomorrow": "Bestilling inden 14 sendes samme hverdag",
-                "text_monday": "Bestilling inden 14 sendes samme hverdag",
+                "text_today": "2-5 virkedagers levering",
+                "text_tomorrow": "2-5 virkedagers levering",
+                "text_monday": "2-5 virkedagers levering",
                 "type_preset": "",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
