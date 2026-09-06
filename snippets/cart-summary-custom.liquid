@@ -116,7 +116,7 @@
         {%- if savings_cents > 0 -%}
           <div class="cart-summary__row cart-summary__row--discount flex justify-between gap-2">
             <span class="cart-summary__row-label">{{ discount_label }}</span>
-            <span class="cart-summary__row-value color-subtext">-{{ discount_display }}</span>
+            <span class="cart-summary__row-value">-{{ discount_display }}</span>
           </div>
         {%- endif -%}
         <div class="cart-summary__row cart-summary__row--subtotal flex justify-between gap-2" role="status">
@@ -184,12 +184,26 @@
   </div>
 </div>
 <style>
-  .cart-drawer-summary .cart-summary__row--subtotal,
-  .cart-drawer-summary .cart-summary__row--discount {
+  .cart-drawer-summary .cart-summary__row--subtotal {
     font-size: var(--font-size--paragraph);
     font-family: var(--font-button--family);
     font-weight: var(--font-button--weight);
     line-height: 1.4;
+  }
+  .cart-drawer-summary .cart-summary__row--discount {
+    margin-bottom: 0.4rem;
+    padding: 0.7rem 0.9rem;
+    border-radius: 0.8rem;
+    background: #e8f3ee;
+    color: #09412d;
+    font-size: 1.05em;
+    font-family: var(--font-button--family);
+    font-weight: 700;
+    line-height: 1.4;
+  }
+  .cart-drawer-summary .cart-summary__row--discount .cart-summary__row-value {
+    color: #09412d;
+    font-weight: 700;
   }
   .cart-drawer-summary .cart-summary__checkout-button .btn__text {
     font-size: var(--font-size--paragraph);
