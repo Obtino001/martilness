@@ -72,6 +72,14 @@ html {
   column-gap: 16px !important;
 }
 
+/* Hide default Meddelelse message field on Reklamation page */
+.template--reklamation .form-field--body,
+.template-suffix-reklamation .form-field--body,
+.contact-form--reklamation .form-field--body,
+.contact-form:has(input[name*="Ordrenummer"]) .form-field--body {
+  display: none !important;
+}
+
 /* Light gray rounded input fields & textareas */
 .template--reklamation .form-control,
 .template-suffix-reklamation .form-control,
