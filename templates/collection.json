@@ -67,6 +67,12 @@
               },
               "blocks": {}
             },
+            "collection_tabs_nav": {
+              "type": "_collection-nav-tabs",
+              "name": "Collection tabs",
+              "blocks": {},
+              "block_order": []
+            },
             "collection_description_R7rkDd": {
               "type": "_collection-description",
               "name": "t:names.collection_description",
@@ -90,6 +96,7 @@
           },
           "block_order": [
             "collection_title_rQYaHa",
+            "collection_tabs_nav",
             "collection_description_R7rkDd"
           ]
         }

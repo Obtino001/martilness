@@ -1,0 +1,26 @@
+<nav
+  class="collection-category-tabs tabs"
+  aria-label="Kategorier"
+  {{ block.shopify_attributes }}
+>
+  <div class="collection-category-tabs__list flex flex-wrap justify-start gap-2">
+    {% content_for 'blocks' %}
+  </div>
+</nav>
+{% schema %}
+{
+  "name": "Collection tabs",
+  "tag": null,
+  "blocks": [
+    {
+      "type": "_collection-nav-tab"
+    }
+  ],
+  "settings": [],
+  "presets": [
+    {
+      "name": "Collection tabs"
+    }
+  ]
+}
+{% endschema %}

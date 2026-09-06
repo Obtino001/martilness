@@ -418,7 +418,8 @@ html {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: flex-start !important;
-  padding-inline: 0.8rem !important;
+  gap: 0.6rem !important;
+  padding-inline: 0.6rem !important;
   margin-inline-end: 0 !important;
   text-decoration: none !important;
   color: currentColor !important;
@@ -438,17 +439,19 @@ html {
   align-items: center !important;
   justify-content: center !important;
   flex-shrink: 0 !important;
+  line-height: 0 !important;
 }
 
 .cart-icon__icon .icon,
 .cart-icon__icon .icon--large,
 .cart-icon__icon .icon--cart {
-  --icon-size: 3rem !important;
-  width: 3rem !important;
-  height: 3rem !important;
+  --icon-size: 2.2rem !important;
+  width: 2.2rem !important;
+  height: 2.2rem !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
+  line-height: 0 !important;
 }
 
 .cart-icon__icon svg {
@@ -459,13 +462,15 @@ html {
 
 .cart-icon__text {
   font-family: "Martilness Nav Q", var(--font-navigation--family, inherit);
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 500;
-  line-height: 1;
+  line-height: 1 !important;
   color: currentColor;
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
+  position: relative;
+  top: 1px;
 }
 
 .cart-count--inline {
@@ -501,9 +506,9 @@ html {
   .cart-icon__icon .icon,
   .cart-icon__icon .icon--large,
   .cart-icon__icon .icon--cart {
-    --icon-size: 2.6rem !important;
-    width: 2.6rem !important;
-    height: 2.6rem !important;
+    --icon-size: 2.0rem !important;
+    width: 2.0rem !important;
+    height: 2.0rem !important;
   }
 
   .cart-icon__text {
@@ -512,6 +517,7 @@ html {
 
   .header__buttons > .cart-icon,
   .header__buttons .cart-icon {
+    gap: 0.5rem !important;
     padding-inline: 0.4rem !important;
   }
 }
