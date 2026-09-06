@@ -1,6 +1,16 @@
 {%- liquid
   assign scroll_id = block.settings.scroll_target | strip
+  assign row_label = block.settings.text | strip | downcase
+  assign hide_how_row = false
+  if scroll_id == 'hvordan-virker-det' or row_label == 'hvordan virker det?'
+    assign iwt_product = closest.product | default: product
+    assign iwt_mf = iwt_product.metafields.custom.image_with_text
+    if iwt_mf == blank or iwt_mf.value == blank
+      assign hide_how_row = true
+    endif
+  endif
 -%}
+{%- unless hide_how_row -%}
 {%- if scroll_id != blank -%}
   <a
     href="#{{ scroll_id }}"
@@ -63,6 +73,7 @@
   </div>
 </details>
 {%- endif -%}
+{%- endunless -%}
 {% schema %}
 {
   "name": "t:names.accordion_row",
