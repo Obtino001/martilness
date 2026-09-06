@@ -25,26 +25,6 @@
   background: #ffffff;
 }
 
-/* Leverings-bar — theme green */
-.cart-drawer__delivery-bar {
-  --delivery-bar-bg: #09412d;
-  padding: 1rem var(--padding-inline, 1.6rem);
-  background: var(--delivery-bar-bg);
-  color: #ffffff;
-  font-weight: 600;
-  line-height: 1.2;
-  border-bottom: 0.1rem solid rgb(9 65 45 / 20%);
-}
-.cart-drawer__delivery-bar .icon {
-  color: #ffffff;
-  flex-shrink: 0;
-}
-@media (min-width: 750px) {
-  .cart-drawer__delivery-bar {
-    padding-inline: 2.4rem;
-  }
-}
-
 .cart-drawer__items {
   padding: var(--padding-block, 2rem) var(--padding-inline, 1.6rem);
   display: flex;

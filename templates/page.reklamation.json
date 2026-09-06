@@ -124,8 +124,8 @@
               "settings": {
                 "field_type": "text",
                 "heading": "Ordrenummer",
-                "placeholder": "Ordrenummer",
-                "required": false,
+                "placeholder": "Ordrenummer *",
+                "required": true,
                 "full_width": false,
                 "checkbox_checked_value": "Yes",
                 "checkbox_uncheck_value": "No",

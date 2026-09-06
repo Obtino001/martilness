@@ -144,15 +144,6 @@
               </button>
             </div>
             <div class="cart-drawer__content">
-              {%- comment -%}
-                Leverings-bar (bestil før cutoff → modtag i morgen).
-                Første barn af cart-drawer__content, som selv er uden padding,
-                så baren går kant-til-kant. Tekst kan rettes her.
-              {%- endcomment -%}
-              <div class="cart-drawer__delivery-bar flex items-center justify-center gap-2 text-center">
-                <span class="cart-drawer__delivery-bar-text">2-5 virkedagers levering</span>
-                {% render 'icon', icon: 'check', size: 'medium' %}
-              </div>
               {%- capture wrapper_class -%}
                 {%- if section.settings.cart_recommendations_inherit_color_scheme -%}
                   inherit-color-scheme
