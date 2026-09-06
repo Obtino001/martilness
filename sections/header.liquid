@@ -108,7 +108,7 @@
         {%- endif -%}
         <a
           href="{{ routes.cart_url }}"
-          class="cart-drawer-button cart-icon flex items-center justify-center text-decoration-none color-current relative cursor-pointer"
+          class="cart-drawer-button cart-icon flex items-center text-decoration-none color-current relative cursor-pointer"
           {% if request.page_type != 'cart' and settings.cart_type == 'drawer' %}
             on:click="#CartDrawer/open"
             aria-label="{{ 'actions.open_cart_drawer' | t }}"
@@ -118,8 +118,12 @@
             aria-label="{{ 'accessibility.cart' | t }}"
           {% endif %}
         >
-          {%- render 'icon', icon: 'basket', size: 'large' -%}
-          {% render 'cart-count', class: 'cart-count--absolute' %}
+          <span class="cart-icon__icon flex items-center justify-center">
+            {%- render 'icon', icon: 'cart', size: 'large' -%}
+          </span>
+          <span class="cart-icon__text">
+            Kurv ({% render 'cart-count', class: 'cart-count--inline', show_zero: true %})
+          </span>
         </a>
       </div>
     </div>

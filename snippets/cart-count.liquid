@@ -3,7 +3,7 @@
   if cart.item_count > 99
     assign class = class | append: ' cart-count--small-medium'
   endif
-  if cart.empty?
+  if cart.empty? and show_zero != true
     assign class = class | append: ' hidden'
   endif
 %}
@@ -12,6 +12,9 @@
   class="cart-count {{ class }}"
   {% if in_drawer %}
     data-context="drawer"
+  {% endif %}
+  {% if show_zero %}
+    data-show-zero="true"
   {% endif %}
 >
   <span class="visually-hidden">

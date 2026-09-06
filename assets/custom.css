@@ -407,3 +407,111 @@ html {
     justify-self: start !important;
   }
 }
+
+/* ==========================================================================
+   Header Cart Button & Icon with "Kurv (0)" Text
+   ========================================================================== */
+.header__buttons > .cart-icon,
+.header__buttons .cart-icon {
+  width: auto !important;
+  height: var(--header-icon-size, 3.6rem) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding-inline: 0.8rem !important;
+  margin-inline-end: 0 !important;
+  text-decoration: none !important;
+  color: currentColor !important;
+  transition: opacity var(--animation-duration--fast, 0.2s) ease;
+}
+
+.header__buttons .cart-icon:hover {
+  opacity: 0.8;
+}
+
+.cart-has-items .cart-icon {
+  margin-inline-end: 0 !important;
+}
+
+.cart-icon__icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+.cart-icon__icon .icon,
+.cart-icon__icon .icon--large,
+.cart-icon__icon .icon--cart {
+  --icon-size: 3rem !important;
+  width: 3rem !important;
+  height: 3rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.cart-icon__icon svg {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+}
+
+.cart-icon__text {
+  font-family: "Martilness Nav Q", var(--font-navigation--family, inherit);
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1;
+  color: currentColor;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+}
+
+.cart-count--inline {
+  display: inline !important;
+  width: auto !important;
+  height: auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  background: transparent !important;
+  color: inherit !important;
+  border-radius: 0 !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  position: static !important;
+  vertical-align: baseline !important;
+  box-shadow: none !important;
+}
+
+.cart-count--inline .cart-bubble__text-count {
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  color: inherit !important;
+  display: inline !important;
+  line-height: inherit !important;
+}
+
+@media (max-width: 767.98px) {
+  .cart-icon__icon .icon,
+  .cart-icon__icon .icon--large,
+  .cart-icon__icon .icon--cart {
+    --icon-size: 2.6rem !important;
+    width: 2.6rem !important;
+    height: 2.6rem !important;
+  }
+
+  .cart-icon__text {
+    font-size: 1.4rem;
+  }
+
+  .header__buttons > .cart-icon,
+  .header__buttons .cart-icon {
+    padding-inline: 0.4rem !important;
+  }
+}

@@ -68,7 +68,9 @@ class CartCount extends Component {
   renderCartBubble = async (itemCount) => {
     this.currentCartCount = itemCount;
 
-    this.classList.toggle("hidden", itemCount === 0);
+    if (!this.dataset.showZero) {
+      this.classList.toggle("hidden", itemCount === 0);
+    }
     this.classList.toggle("cart-count--small-medium", itemCount > 99);
     document.body.classList.toggle("cart-has-items", itemCount > 0);
   };
