@@ -14,8 +14,13 @@
 .collection-category-tabs .tabs__button {
   text-decoration: none;
   padding: 0.7rem 1.4rem;
-  border: none;
+  border: 1px solid rgb(var(--color-foreground) / 0.18);
+  border-radius: 999px;
   box-shadow: none;
+}
+
+.collection-category-tabs .tabs__button[aria-selected='true'] {
+  border-color: #09412d;
 }
 
 .template-collection .divider,
