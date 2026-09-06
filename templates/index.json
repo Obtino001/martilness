@@ -1128,11 +1128,11 @@
     "product_tabs_VFRpjk": {
       "type": "product-tabs",
       "blocks": {
-        "collection_led_maske": {
+        "collection_C4aep4": {
           "type": "collection",
           "settings": {
-            "collection": "infrarod-led-maske",
-            "title": "Infrarød LED maske"
+            "collection": "infrarodt-lys",
+            "title": "Infrarødt lys"
           }
         },
         "collection_saunataeppe": {
@@ -1142,11 +1142,11 @@
             "title": "Saunatæppe"
           }
         },
-        "collection_C4aep4": {
+        "collection_led_maske": {
           "type": "collection",
           "settings": {
-            "collection": "infrarodt-lys",
-            "title": "Infrarødt lys"
+            "collection": "infrarod-led-maske",
+            "title": "Infrarød LED maske"
           }
         },
         "collection_kyfeYK": {
@@ -1165,9 +1165,9 @@
         }
       },
       "block_order": [
-        "collection_led_maske",
-        "collection_saunataeppe",
         "collection_C4aep4",
+        "collection_saunataeppe",
+        "collection_led_maske",
         "collection_kyfeYK",
         "collection_isbad"
       ],
