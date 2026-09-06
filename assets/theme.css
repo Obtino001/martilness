@@ -8301,15 +8301,33 @@ shopify-account::part(signed-out-avatar) {
 }
 @media (min-width: 1024px) {
   .header--logo-left {
-    --header-grid-template: "logo nav icons" / auto auto 1fr;
+    --header-grid-template: "logo nav icons" / auto 1fr auto;
     --search-form-width: 31.8rem;
   }
   .header--logo-left .header__navigation {
-    margin-inline-start: 2.8rem;
+    display: flex;
+    justify-content: center;
+    margin-inline: 0;
+    min-width: 0;
+  }
+  .header--logo-left .header__navigation .header__menu {
+    display: flex;
+    justify-content: center;
+  }
+  .header--logo-left .header__navigation .header__menu > ul {
+    justify-content: center;
   }
   .header--logo-center {
     --header-grid-template: "nav logo icons" / 1fr auto 1fr;
     --search-form-width: 28.4rem;
+  }
+}
+@media (min-width: 1440px) {
+  .header--logo-left {
+    --header-grid-template: "logo nav icons" / 1fr auto 1fr;
+  }
+  .header--logo-left .header__logo {
+    justify-self: start;
   }
 }
 .has-mega-menu .header__background-inner {
