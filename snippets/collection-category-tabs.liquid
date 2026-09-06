@@ -8,7 +8,11 @@
     {%- for handle in tab_handles -%}
       {%- assign tab_collection = collections[handle] -%}
       {%- assign tab_title = tab_titles[forloop.index0] -%}
-      {%- assign tab_url = tab_collection.url | default: '/collections/' | append: handle -%}
+      {%- if tab_collection != blank and tab_collection.url != blank -%}
+        {%- assign tab_url = tab_collection.url -%}
+      {%- else -%}
+        {%- assign tab_url = routes.collections_url | append: '/' | append: handle -%}
+      {%- endif -%}
       <a
         href="{{ tab_url }}"
         class="tabs__button inline-flex items-center justify-center relative rounded"
