@@ -347,6 +347,7 @@
     },
     "custom_section_Fhc8QT": {
       "type": "custom-section",
+      "disabled": true,
       "blocks": {
         "divider_hrMVmR": {
           "type": "divider",
