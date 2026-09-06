@@ -67,12 +67,6 @@
               },
               "blocks": {}
             },
-            "collection_tabs_nav": {
-              "type": "_collection-nav-tabs",
-              "name": "Collection tabs",
-              "blocks": {},
-              "block_order": []
-            },
             "collection_description_R7rkDd": {
               "type": "_collection-description",
               "name": "t:names.collection_description",
@@ -92,12 +86,71 @@
                 "animation_delay": 250
               },
               "blocks": {}
+            },
+            "collection_nav_tabs_9XBciK": {
+              "type": "_collection-nav-tabs",
+              "name": "Collection tabs",
+              "settings": {},
+              "blocks": {
+                "collection_nav_tab_HhqPfa": {
+                  "type": "_collection-nav-tab",
+                  "name": "Tab",
+                  "settings": {
+                    "text": "Saunatæppe",
+                    "link": "shopify://products/infrarodt-saunataeppe"
+                  },
+                  "blocks": {}
+                },
+                "collection_nav_tab_8zgmPY": {
+                  "type": "_collection-nav-tab",
+                  "name": "Tab",
+                  "settings": {
+                    "text": "Infrarød LED maske",
+                    "link": "shopify://products/infrarod-led-maske"
+                  },
+                  "blocks": {}
+                },
+                "collection_nav_tab_bfXwpN": {
+                  "type": "_collection-nav-tab",
+                  "name": "Tab",
+                  "settings": {
+                    "text": "Infrarødt lys",
+                    "link": "shopify://collections/infrarodt-lys"
+                  },
+                  "blocks": {}
+                },
+                "collection_nav_tab_JAg7CW": {
+                  "type": "_collection-nav-tab",
+                  "name": "Tab",
+                  "settings": {
+                    "text": "Dampsauna",
+                    "link": "shopify://collections/dampsauna"
+                  },
+                  "blocks": {}
+                },
+                "collection_nav_tab_QtzHCq": {
+                  "type": "_collection-nav-tab",
+                  "name": "Tab",
+                  "settings": {
+                    "text": "Isbad",
+                    "link": "shopify://collections/isbad"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "collection_nav_tab_HhqPfa",
+                "collection_nav_tab_8zgmPY",
+                "collection_nav_tab_bfXwpN",
+                "collection_nav_tab_JAg7CW",
+                "collection_nav_tab_QtzHCq"
+              ]
             }
           },
           "block_order": [
             "collection_title_rQYaHa",
-            "collection_tabs_nav",
-            "collection_description_R7rkDd"
+            "collection_description_R7rkDd",
+            "collection_nav_tabs_9XBciK"
           ]
         }
       },
