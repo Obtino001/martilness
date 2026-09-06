@@ -98,18 +98,20 @@
       {% content_for 'blocks' %}
 
       {% comment %} form-body {% endcomment %}
-      <div class="form-field form-field--full form-field--body">
-        <label class="form-label visually-hidden" for="ContactForm-body-{{ section.id }}">
-          {{- 'blocks.contact_form.your_message' | t -}}
-        </label>
-        <textarea
-          rows="5"
-          id="ContactForm-body-{{ section.id }}"
-          class="form-control form-control--textarea w-full"
-          name="contact[{{ 'blocks.contact_form.your_message' | t }}]"
-          placeholder="{{ 'blocks.contact_form.your_message' | t }}"
-        >{%- if form.body -%}{{- form.body -}}{%- endif -%}</textarea>
-      </div>
+      {%- if block.settings.show_message_field != false -%}
+        <div class="form-field form-field--full form-field--body">
+          <label class="form-label visually-hidden" for="ContactForm-body-{{ section.id }}">
+            {{- 'blocks.contact_form.your_message' | t -}}
+          </label>
+          <textarea
+            rows="5"
+            id="ContactForm-body-{{ section.id }}"
+            class="form-control form-control--textarea w-full"
+            name="contact[{{ 'blocks.contact_form.your_message' | t }}]"
+            placeholder="{{ 'blocks.contact_form.your_message' | t }}"
+          >{%- if form.body -%}{{- form.body -}}{%- endif -%}</textarea>
+        </div>
+      {%- endif -%}
 
       {% comment %} button submit {% endcomment %}
       <div class="contact__button form-footer text-center form-field--full">
@@ -131,6 +133,12 @@
   "name": "t:names.contact_form",
   "tag": null,
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_message_field",
+      "label": "Show message field",
+      "default": true
+    },
     {
       "type": "select",
       "id": "width",

@@ -109,6 +109,7 @@
           "type": "contact-form",
           "name": "Contact form",
           "settings": {
+            "show_message_field": false,
             "width": "fill",
             "custom_width": 100,
             "column_gap": 24,
