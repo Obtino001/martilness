@@ -3,6 +3,7 @@
   assign text = closest_collection.title
 -%}
 {% render 'text', fallback_text: text, block: block, class: 'collection-title-block' %}
+{% render 'collection-category-tabs' %}
 {% schema %}
 {
   "name": "t:names.collection_title",

@@ -1122,15 +1122,7 @@
           "settings": {
             "image": "shopify://shop_images/DSC00719_1.jpg",
             "title": "Saunatæppe",
-            "link": "shopify://collections/saunataeppe"
-          }
-        },
-        "included_item_LPHdrX": {
-          "type": "included_item",
-          "settings": {
-            "image": "shopify://shop_images/DSC09835_cc1a13ad-36bf-4154-934b-9b6223c5a129.jpg",
-            "title": "Infrarødt lys",
-            "link": "shopify://collections/infrarodt-lys"
+            "link": "https://martilness-q6kc1td2.myshopify.com/products/infrarodt-saunataeppe"
           }
         },
         "included_item_nTt7mR": {
@@ -1139,6 +1131,14 @@
             "image": "shopify://shop_images/unnamed-1_f6ad1c7f-44d1-4e12-a817-f98e746143c6.jpg",
             "title": "Infrarød LED maske",
             "link": "shopify://products/infrarod-led-maske"
+          }
+        },
+        "included_item_LPHdrX": {
+          "type": "included_item",
+          "settings": {
+            "image": "shopify://shop_images/DSC09835_cc1a13ad-36bf-4154-934b-9b6223c5a129.jpg",
+            "title": "Infrarødt lys",
+            "link": "shopify://collections/infrarodt-lys"
           }
         },
         "included_item_FrrDw4": {
@@ -1152,7 +1152,7 @@
         "included_item_BF6Bh9": {
           "type": "included_item",
           "settings": {
-            "image": "shopify://shop_images/IMG_6335-1-copy.png",
+            "image": "shopify://shop_images/thumbnail_1x1.1-2_6fe1b89a-a9d6-4aec-a668-785dcb1f6fd6.jpg",
             "title": "Isbad",
             "link": "shopify://collections/isbad"
           }
