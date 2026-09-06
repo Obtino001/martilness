@@ -231,7 +231,7 @@
     style="{{ container_style | strip_newlines | strip }}"
   >
     <tabs-component data-section-id="{{ section.id }}" class="section__wrapper block tabs">
-      <div class="section__header flex flex-wrap flex-col md:flex-row items-start md:items-center justify-start md:justify-between gap-4">
+      <div class="section__header flex flex-col items-start gap-4">
         {% if heading != blank %}
           {% render 'text',
             fallback_text: heading,
@@ -254,7 +254,7 @@
             ref="tabNav"
           >
             <div
-              class="swipe__inner flex flex-wrap md:justify-end gap-2"
+              class="swipe__inner flex flex-wrap justify-start gap-2"
               role="tablist"
             >
               {{ tabs_html }}
