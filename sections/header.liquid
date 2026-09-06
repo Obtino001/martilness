@@ -88,24 +88,6 @@
         >
           {%- render 'icon', icon: 'search', size: 'large' -%}
         </button>
-        {%- if shop.customer_accounts_enabled -%}
-          <div class="header__account header__icon hidden lg:flex">
-            <shopify-account menu="{{ section.settings.customer_account_menu }}" class="w-full h-full flex items-center justify-center">
-              {%- if customer -%}
-                <div class="account-button__fallback" aria-label="{{ 'accessibility.account' | t }}"></div>
-              {%- else -%}
-                <span
-                  slot="signed-out-avatar"
-                  aria-hidden="true"
-                  aria-label="{{ 'accessibility.log_in' | t }}"
-                  class="flex items-center justify-center"
-                >
-                  {%- render 'icon', icon: 'account', size: 'large' -%}
-                </span>
-              {%- endif -%}
-            </shopify-account>
-          </div>
-        {%- endif -%}
         <a
           href="{{ routes.cart_url }}"
           class="cart-drawer-button cart-icon flex items-center text-decoration-none color-current relative cursor-pointer"
