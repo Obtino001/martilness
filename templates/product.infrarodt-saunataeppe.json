@@ -1162,7 +1162,7 @@
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
             "horizontal_alignment_flex_direction_column": "flex-start",
-            "column_gap": 0,
+            "column_gap": 67,
             "row_gap": 0,
             "enable_sticky_desktop": false,
             "width": "custom",
