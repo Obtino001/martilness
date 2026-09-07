@@ -110,9 +110,27 @@
         endif
       endif
     -%}
-    <div class="cart-summary__head flex items-start justify-between gap-4">
+    <div class="cart-summary__head flex flex-col gap-4">
+      {%- comment -%} Tag-ikon (rabatkode m.m.) over totalerne {%- endcomment -%}
+      {% if context == 'drawer' and has_addons %}
+        <div class="cart-summary__addons-custom flex flex-col gap-2 w-full pb-3 border-b" style="border-bottom: 1px solid rgba(0,0,0,0.05);">
+          {% if gift_summary_addon %}
+            {% render 'cart-gift-wrapping-drawer', color_scheme: color_scheme %}
+          {% endif %}
+          {% if settings.show_add_discount_code %}
+            {% render 'cart-discount-drawer', section_id: section.id, color_scheme: color_scheme %}
+          {% endif %}
+          {% if settings.show_cart_note %}
+            {% render 'cart-note-drawer', color_scheme: color_scheme %}
+          {% endif %}
+          {% if settings.show_caculate_shipping_rate %}
+            {% render 'cart-shipping-drawer', color_scheme: color_scheme %}
+          {% endif %}
+        </div>
+      {% endif %}
+
       {%- comment -%} Totaler: Rabat + Subtotal i to linjer {%- endcomment -%}
-      <div class="cart-summary__totals flex flex-col gap-1 flex-1 min-w-0">
+      <div class="cart-summary__totals flex flex-col gap-1 w-full min-w-0">
         {%- if savings_cents > 0 -%}
           <div class="cart-summary__row cart-summary__row--discount flex justify-between gap-2">
             <span class="cart-summary__row-label">{{ discount_label }}</span>
@@ -132,24 +150,6 @@
           </span>
         </div>
       </div>
-
-      {%- comment -%} Tag-ikon (rabatkode m.m.) til højre — skubber ikke totalerne ned {%- endcomment -%}
-      {% if context == 'drawer' and has_addons %}
-        <div class="{{ class_addons }} shrink-0">
-          {% if gift_summary_addon %}
-            {% render 'cart-gift-wrapping-drawer', color_scheme: color_scheme %}
-          {% endif %}
-          {% if settings.show_add_discount_code %}
-            {% render 'cart-discount-drawer', section_id: section.id, color_scheme: color_scheme %}
-          {% endif %}
-          {% if settings.show_cart_note %}
-            {% render 'cart-note-drawer', color_scheme: color_scheme %}
-          {% endif %}
-          {% if settings.show_caculate_shipping_rate %}
-            {% render 'cart-shipping-drawer', color_scheme: color_scheme %}
-          {% endif %}
-        </div>
-      {% endif %}
     </div>
 
     {%- comment -%} Kun checkout-knap (ingen "Se kurv"), med subtotal i teksten {%- endcomment -%}

@@ -1,14 +1,18 @@
 <dialog-component id="cart-discount-drawer" focus-target=".cart-discount__input">
   <button
-    class="cart-drawer__addon-button btn btn--small btn--secondary btn--icon-only"
+    class="cart-drawer__addon-button custom-discount-link flex items-center gap-2 w-full text-left button-unstyled cursor-pointer"
     on:click="/showDialog"
     aria-haspopup="dialog"
     aria-controls="cart-discount-dialog"
     aria-label="{{ 'actions.discount_code' | t }}"
-    data-tooltip="{{ 'actions.discount_code' | t | escape }}"
-    data-tooltip-position="top"
+    style="font-size: 1.4rem; padding: 0.5rem 0; color: #2c3547;"
   >
-    {%- render 'icon', icon: 'tag', size: 'large' -%}
+    <div style="color: #2c3547; opacity: 0.9; margin-top: 2px;">
+      {%- render 'icon', icon: 'tag', size: 'small' -%}
+    </div>
+    <span style="border-bottom: 1px solid rgba(44,53,71,0.3); padding-bottom: 1px; display: inline-block;">
+      Tilføj rabatkode
+    </span>
   </button>
   <dialog
     id="cart-discount-dialog"
