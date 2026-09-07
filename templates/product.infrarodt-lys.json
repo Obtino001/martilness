@@ -2033,6 +2033,7 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 20,
                 "padding-inline-end": 0,
+                "padding-inline-start-mobile": 0,
                 "mobile-padding-scale": 80
               },
               "blocks": {}
@@ -2140,6 +2141,7 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 20,
+                "padding-inline-end-mobile": 0,
                 "mobile-padding-scale": 80
               },
               "blocks": {}
@@ -3837,3 +3839,4 @@
     "product_recently_viewed_BYKjx8"
   ]
 }
+
