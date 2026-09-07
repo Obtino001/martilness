@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "breadcrumbs_zq9zwK": {
@@ -1581,10 +1572,10 @@
         "horizontal_alignment": "flex-start",
         "vertical_alignment": "stretch",
         "horizontal_alignment_flex_direction_column": "flex-start",
-        "column_gap": 0,
-        "row_gap": 0,
-        "column_gap_mobile": 0,
-        "row_gap_mobile": 0,
+        "column_gap": 32,
+        "row_gap": 32,
+        "column_gap_mobile": 24,
+        "row_gap_mobile": 24,
         "use_color_scheme_in_container": false,
         "color_scheme": "",
         "border": "none",
@@ -1798,10 +1789,10 @@
         "horizontal_alignment": "flex-start",
         "vertical_alignment": "stretch",
         "horizontal_alignment_flex_direction_column": "flex-start",
-        "column_gap": 0,
-        "row_gap": 0,
-        "column_gap_mobile": 0,
-        "row_gap_mobile": 0,
+        "column_gap": 32,
+        "row_gap": 32,
+        "column_gap_mobile": 24,
+        "row_gap_mobile": 24,
         "use_color_scheme_in_container": false,
         "color_scheme": "",
         "border": "none",
@@ -2496,4 +2487,3 @@
     "martilness_split_faq_h8BbVk"
   ]
 }
-
