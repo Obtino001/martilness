@@ -1026,9 +1026,8 @@
                 "border_radius": 20,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
-                "padding-inline-start": 20,
+                "padding-inline-start": 0,
                 "padding-inline-end": 0,
-                "padding-inline-start-mobile": 0,
                 "mobile-padding-scale": 80
               },
               "blocks": {}
@@ -1135,8 +1134,7 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 20,
-                "padding-inline-end-mobile": 0,
+                "padding-inline-end": 0,
                 "mobile-padding-scale": 80
               },
               "blocks": {}
@@ -1155,7 +1153,7 @@
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
             "horizontal_alignment_flex_direction_column": "flex-start",
-            "column_gap": 0,
+            "column_gap": 67,
             "row_gap": 0,
             "enable_sticky_desktop": false,
             "width": "custom",
@@ -1174,6 +1172,7 @@
             "columns_mobile": 2,
             "column_gap_mobile": 0,
             "row_gap_mobile": 0,
+            "order_mobile": -9,
             "device": "mobile",
             "padding-block-start": 48,
             "padding-block-end": 48,
