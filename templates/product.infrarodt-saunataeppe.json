@@ -168,9 +168,9 @@
               "settings": {
                 "label": "På lager.",
                 "cutoff_hour": 14,
-                "text_today": "2-5 virkedagers levering",
-                "text_tomorrow": "2-5 virkedagers levering",
-                "text_monday": "2-5 virkedagers levering",
+                "text_today": "1-3 dages levering",
+                "text_tomorrow": "1-3 dages levering",
+                "text_monday": "1-3 dages levering",
                 "type_preset": "",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
