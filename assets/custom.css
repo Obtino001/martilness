@@ -365,6 +365,15 @@ html {
   text-decoration: underline !important;
 }
 
+.footer-menu-list {
+  gap: 0 !important;
+}
+
+.footer-menu-list a {
+  padding-block: 0 !important;
+  line-height: 1.45 !important;
+}
+
 /* ==========================================================================
    Giveaway Form Inputs & Button - Rounded Radius
    ========================================================================== */
