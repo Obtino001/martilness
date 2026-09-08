@@ -485,7 +485,7 @@
               "type": "_product-recommendations",
               "name": "t:names.product_recommendations",
               "settings": {
-                "recommendations_type": "related",
+                "recommendations_type": "complementary",
                 "heading": "Andre købte også...",
                 "heading_preset": "h5",
                 "layout": "list",
