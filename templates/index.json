@@ -1128,13 +1128,6 @@
     "product_tabs_VFRpjk": {
       "type": "product-tabs",
       "blocks": {
-        "collection_C4aep4": {
-          "type": "collection",
-          "settings": {
-            "collection": "infrarodt-lys",
-            "title": "Infrarødt lys"
-          }
-        },
         "collection_saunataeppe": {
           "type": "collection",
           "settings": {
@@ -1149,11 +1142,18 @@
             "title": "Infrarød LED maske"
           }
         },
+        "collection_C4aep4": {
+          "type": "collection",
+          "settings": {
+            "collection": "infrarodt-lys",
+            "title": "Infrarødt lys"
+          }
+        },
         "collection_kyfeYK": {
           "type": "collection",
           "settings": {
-            "collection": "isbad-dampsauna",
-            "title": "Isbad + Dampsauna"
+            "collection": "dampsauna",
+            "title": "Dampsauna"
           }
         },
         "collection_isbad": {
@@ -1165,9 +1165,9 @@
         }
       },
       "block_order": [
-        "collection_C4aep4",
         "collection_saunataeppe",
         "collection_led_maske",
+        "collection_C4aep4",
         "collection_kyfeYK",
         "collection_isbad"
       ],
