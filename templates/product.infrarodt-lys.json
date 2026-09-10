@@ -3745,14 +3745,14 @@
       "type": "apps",
       "settings": {}
     },
-    "product_recently_viewed_BYKjx8": {
-      "type": "product-recently-viewed",
+    "product_recommendations_h9B4Bz": {
+      "type": "product-recommendations",
       "blocks": {
-        "text_FWqhU8": {
+        "text_KD8xrk": {
           "type": "text",
           "name": "t:names.header",
           "settings": {
-            "text": "<p><strong>Du så også på det her</strong></p>",
+            "text": "<p>Du vil måske også kunne lide</p>",
             "highlight_style": "none",
             "highlight_font_style": "italic",
             "highlight_shape_color": "",
@@ -3771,7 +3771,7 @@
             "width_mobile": "fit-content",
             "text_alignment_mobile": "left",
             "padding-block-start": 0,
-            "padding-block-end": 13,
+            "padding-block-end": 40,
             "padding-inline-start": 0,
             "padding-inline-end": 0,
             "mobile-padding-scale": 60,
@@ -3788,17 +3788,18 @@
         }
       },
       "block_order": [
-        "text_FWqhU8"
+        "text_KD8xrk"
       ],
-      "name": "t:names.product_recently_viewed",
+      "name": "t:names.product_recommendations",
       "settings": {
+        "recommendations_type": "related",
         "container": "fixed",
-        "type": "grid",
+        "layout_type": "grid",
         "columns_xxl": 4,
         "product_count": 4,
         "column_gap": 10,
         "row_gap": 10,
-        "enable_swipe_on_mobile": true,
+        "enable_swipe_on_mobile": false,
         "swipe_custom_width_column": false,
         "swipe_column_width": 76,
         "columns_mobile": "2",
@@ -3809,13 +3810,13 @@
         "border_width": 1,
         "border_opacity": 100,
         "border_radius": 0,
-        "device": "mobile",
+        "device": "desktop",
         "padding-block-start": 50,
         "padding-block-end": 50,
         "padding-inline-start": 15,
         "padding-inline-end": 15,
-        "padding-block-start-mobile": 30,
-        "padding-block-end-mobile": 10,
+        "padding-block-start-mobile": 48,
+        "padding-block-end-mobile": 48,
         "padding-inline-start-mobile": 16,
         "padding-inline-end-mobile": 16,
         "custom_columns": ""
@@ -3834,5 +3835,6 @@
     "martilness_split_faq_UcENen",
     "faq_banner_pdp_Mtq1",
     "17843818126653bf72",
+    "product_recommendations_h9B4Bz"
   ]
 }
