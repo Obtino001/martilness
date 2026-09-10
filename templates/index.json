@@ -1192,7 +1192,7 @@
         "heading_font_size_mobile": 15,
         "animation_type": "fade-up",
         "animation_delay": 50,
-        "product_count": 8,
+        "product_count": 16,
         "type": "carousel",
         "columns_xxl": 4,
         "column_gap": 10,
