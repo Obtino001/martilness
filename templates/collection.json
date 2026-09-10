@@ -179,6 +179,13 @@
     "product_tabs_HyAfrW": {
       "type": "product-tabs",
       "blocks": {
+        "collection_PJ78dj": {
+          "type": "collection",
+          "settings": {
+            "collection": "alle-produkter",
+            "title": ""
+          }
+        },
         "collection_Pa6zLA": {
           "type": "collection",
           "settings": {
@@ -216,6 +223,7 @@
         }
       },
       "block_order": [
+        "collection_PJ78dj",
         "collection_Pa6zLA",
         "collection_yhbUE3",
         "collection_i7Bkbf",
