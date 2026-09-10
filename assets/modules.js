@@ -62,13 +62,22 @@ class TabsComponent extends Component {
   }
 
   onTabClick(event) {
-    event.preventDefault();
-
     const target = /** @type {HTMLElement} */ (event.target);
     if (!target) return;
 
+    // Collection pages use real collection URLs — let the browser navigate.
+    if (target.getAttribute("href")?.startsWith("/collections/")) return;
+
+    event.preventDefault();
+
+    const dataIndex = Number(target.getAttribute("data-index"));
+    if (!Number.isNaN(dataIndex)) {
+      this.selectTab(dataIndex, true);
+      return;
+    }
+
     const tabs = /** @type {HTMLElement[]} */ (this.refs.tab);
-    const index = tabs.indexOf(target);
+    const index = Array.isArray(tabs) ? tabs.indexOf(target) : -1;
     if (index === -1) return;
 
     this.selectTab(index, true);

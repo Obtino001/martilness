@@ -23,6 +23,14 @@
   border-color: #09412d;
 }
 
+.tabs__button-text {
+  pointer-events: none;
+}
+
+.template-collection .tabs__button[aria-current='page'] {
+  color: rgb(var(--color-secondary-button-text));
+}
+
 .template-collection .divider,
 .template-suffix-collection .divider {
   display: none !important;

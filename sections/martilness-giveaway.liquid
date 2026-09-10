@@ -13,13 +13,15 @@
     assign tab_border = '#ffffff'
   endif
   assign open_by_default = section.settings.open_by_default
+  assign show_delay = section.settings.show_delay | default: 10
 -%}
 
 <div
   id="section-{{ section.id }}"
-  class="mt-giveaway"
+  class="mt-giveaway mt-giveaway--pending"
   data-mt-giveaway
   data-open-default="{{ open_by_default }}"
+  data-show-delay="{{ show_delay }}"
   data-storage-key="mt-giveaway-{{ section.id }}"
   style="
     --mt-giveaway-panel: {{ panel_bg }};
@@ -184,11 +186,23 @@
     }
   }
 
+  #section-{{ section.id }}.mt-giveaway--pending .mt-giveaway__tab {
+    animation: none;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(-50%) translateY(calc(100% + 2.4rem));
+  }
+
   @media (prefers-reduced-motion: reduce) {
     #section-{{ section.id }} .mt-giveaway__tab {
       animation: none;
       transform: translateX(-50%);
       opacity: 1;
+    }
+
+    #section-{{ section.id }}.mt-giveaway--pending .mt-giveaway__tab {
+      opacity: 0;
+      transform: translateX(-50%) translateY(calc(100% + 2.4rem));
     }
   }
 
@@ -376,8 +390,9 @@
     const closeBtn = root.querySelector('[data-mt-giveaway-close]');
     const storageKey = root.dataset.storageKey;
     const openDefault = root.dataset.openDefault === 'true';
+    const showDelayMs = Math.max(0, Number(root.dataset.showDelay || 10)) * 1000;
 
-    const setOpen = (open) => {
+    const setOpen = (open, persist = true) => {
       root.classList.toggle('is-open', open);
       if (tab) {
         tab.hidden = open;
@@ -390,6 +405,7 @@
           panel.setAttribute('hidden', '');
         }
       }
+      if (!persist) return;
       try {
         if (open) sessionStorage.removeItem(storageKey);
         else sessionStorage.setItem(storageKey, 'closed');
@@ -401,7 +417,16 @@
       if (sessionStorage.getItem(storageKey) === 'closed') startOpen = false;
     } catch (e) {}
 
-    setOpen(startOpen);
+    const revealGiveaway = () => {
+      root.classList.remove('mt-giveaway--pending');
+      setOpen(startOpen, false);
+    };
+
+    if (showDelayMs === 0) {
+      revealGiveaway();
+    } else {
+      window.setTimeout(revealGiveaway, showDelayMs);
+    }
 
     tab?.addEventListener('click', () => setOpen(true));
     closeBtn?.addEventListener('click', () => setOpen(false));
@@ -491,6 +516,16 @@
       "id": "open_by_default",
       "label": "Open panel by default",
       "default": false
+    },
+    {
+      "type": "range",
+      "id": "show_delay",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "sec",
+      "label": "Show after",
+      "default": 10
     },
     {
       "type": "range",

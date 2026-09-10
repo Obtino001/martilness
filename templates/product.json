@@ -2447,6 +2447,7 @@
         "accent_color": "#2f6b3a",
         "tab_border_color": "#ffffff",
         "open_by_default": false,
+        "show_delay": 10,
         "z_index": 40
       }
     },

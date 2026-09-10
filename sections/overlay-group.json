@@ -205,6 +205,7 @@
         "accent_color": "#09412d",
         "tab_border_color": "#ffffff",
         "open_by_default": true,
+        "show_delay": 10,
         "z_index": 40
       }
     }

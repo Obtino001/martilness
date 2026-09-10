@@ -60,6 +60,22 @@
 
   assign tabs_html = ''
   assign panels_html = ''
+  assign current_collection = collection
+  assign is_collection_template = false
+  if template.name == 'collection'
+    assign is_collection_template = true
+  endif
+
+  assign active_tab_index = 0
+  if is_collection_template and current_collection.handle != blank
+    for block in section.blocks
+      assign match_collection = block.settings.collection
+      if match_collection != blank and match_collection.handle == current_collection.handle
+        assign active_tab_index = forloop.index0
+        break
+      endif
+    endfor
+  endif
 %}
 {% capture section_style %}
   {% render 'spacing-style', settings: section.settings, use_padding_inline: use_padding_inline %}
@@ -80,27 +96,48 @@
 {%- endcapture -%}
 
 {%- for block in section.blocks -%}
+  {%- capture panel_id -%}{{ section.id }}-panel-{{ forloop.index0 }}{%- endcapture -%}
   {%- liquid
-    assign collection = block.settings.collection
+    assign tab_collection = block.settings.collection
+    assign collection = tab_collection
     assign tab_title = 'Tab [index]' | replace: '[index]', forloop.index
-    if block.settings.collection != blank
-      assign tab_title = collection.title
+    if tab_collection != blank
+      assign tab_title = tab_collection.title
     endif
     if block.settings.title != blank
       assign tab_title = block.settings.title
     endif
+
+    assign tab_is_active = false
+    if forloop.index0 == active_tab_index
+      assign tab_is_active = true
+    endif
+
+    assign tab_href = '#' | append: panel_id
+    assign tab_is_collection_link = false
+    if is_collection_template and tab_collection != blank and tab_collection.url != blank
+      assign tab_href = tab_collection.url
+      assign tab_is_collection_link = true
+    endif
   -%}
-  {%- capture panel_id -%}{{ section.id }}-panel-{{ forloop.index0 }}{%- endcapture -%}
   {%- capture tab_html -%}
     <a
-      href="#{{ panel_id }}"
+      href="{{ tab_href }}"
       aria-controls="{{ panel_id }}"
       ref="tab[]"
-      on:click="/onTabClick"
-      on:keydown="/onKeydown"
-      role="tab"
+      {% unless tab_is_collection_link %}
+        on:click="/onTabClick"
+        on:keydown="/onKeydown"
+        role="tab"
+      {% endunless %}
       data-index="{{ forloop.index0 }}"
       class="tabs__button inline-flex items-center justify-center relative rounded"
+      {% if tab_is_active %}
+        aria-selected="true"
+        aria-current="page"
+      {% else %}
+        aria-selected="false"
+      {% endif %}
     >
       <span class="tabs__button-text relative text-ellipsis">{{ tab_title }}</span>
     </a>
@@ -136,7 +173,7 @@
       class="tabs__panel"
       data-index="{{ forloop.index0 }}"
       {{ block.shopify_attributes }}
-      {% unless forloop.first %}
+      {% unless tab_is_active %}
         hidden
         data-lazy-loading="true"
       {% endunless %}
@@ -207,7 +244,7 @@
         {% endif %}
       {%- endcapture -%}
 
-      {%- unless forloop.first -%}
+      {%- unless tab_is_active -%}
         <template>{{ tab_panel_content }}</template>
         <noscript>{{ tab_panel_content }}</noscript>
       {%- else -%}
@@ -230,7 +267,7 @@
     class="section__container section-grid section-grid--{{ section.settings.container }}"
     style="{{ container_style | strip_newlines | strip }}"
   >
-    <tabs-component data-section-id="{{ section.id }}" class="section__wrapper block tabs">
+    <tabs-component data-section-id="{{ section.id }}" active-index="{{ active_tab_index }}" class="section__wrapper block tabs">
       <div class="section__header flex flex-col items-start gap-4">
         {% if heading != blank %}
           {% render 'text',
