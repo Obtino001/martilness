@@ -243,7 +243,7 @@
         "heading_font_size_mobile": 15,
         "animation_type": "fade-up",
         "animation_delay": 250,
-        "product_count": 8,
+        "product_count": 16,
         "type": "grid",
         "columns_xxl": 4,
         "column_gap": 30,
