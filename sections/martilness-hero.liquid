@@ -39,7 +39,7 @@
 
 <style>
   #shopify-section-{{ section.id }} .fr-hero-wrap {
-    padding-block: 1.2rem;
+    {% comment %} padding-block: 1.2rem; {% endcomment %}
     padding-inline: var(--page-padding, 1.6rem);
     box-sizing: border-box;
   }
@@ -245,9 +245,6 @@
   }
 
   @media screen and (min-width: 750px) {
-    #shopify-section-{{ section.id }} .fr-hero-wrap {
-      padding-block: 1.6rem;
-    }
     #shopify-section-{{ section.id }} .fr-hero {
       min-height: 56rem;
       border-radius: 2rem;
