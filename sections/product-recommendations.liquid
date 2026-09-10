@@ -63,29 +63,6 @@
   if section.settings.container == 'fixed'
     assign use_padding_inline = false
   endif
-
-  assign products = null
-  assign has_recommendations = false
-  if recommendations.performed and recommendations.products_count == 0
-    if recommendations_type == 'related'
-      assign products = collections.all.products | reject: 'id', product.id | where: 'available', true
-      assign has_recommendations = true
-    elsif recommendations_type == 'complementary'
-      assign products = null
-    endif
-  else
-    assign products = recommendations.products
-    if products != blank
-      assign products = products | where: 'available', true
-    endif
-    assign has_recommendations = true
-  endif
-
-  if recommendations.performed
-    if products == blank or products.size == 0
-      assign has_recommendations = false
-    endif
-  endif
 %}
 
 {%- capture section_style -%}
@@ -109,7 +86,7 @@
 >
   <product-recommendations
     id="product-recommendations-{{ section.id }}"
-    data-url="{{ routes.product_recommendations_url }}?limit=10"
+    data-url="{{ routes.product_recommendations_url }}?limit={{ limit }}"
     data-section-id="{{ section.id }}"
     data-product-id="{{ product.id }}"
     data-intent="{{ recommendations_type }}"
@@ -117,6 +94,22 @@
     class="section__container section-grid section-grid--{{ section.settings.container }}"
     style="{{ container_style | strip_newlines | strip }}"
   >
+    {% liquid
+      assign products = null
+      assign has_recommendations = false
+      if recommendations.performed and recommendations.products_count == 0
+        if recommendations_type == 'related'
+          assign products = collections.all.products | reject: 'id', product.id
+          assign has_recommendations = true
+        elsif recommendations_type == 'complementary'
+          # Do not recommend the All collection as complementary products
+          assign products = null
+        endif
+      else
+        assign products = recommendations.products
+        assign has_recommendations = true
+      endif
+    %}
     {% content_for 'blocks' %}
     {% if recommendations.performed %}
       {% capture list_items %}
