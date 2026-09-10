@@ -35,16 +35,12 @@
       endif
     -%}
     <span aria-hidden="true" class="breadcrumbs__sep"></span>
-    {%- if product_collection != blank -%}
+    {%- if product_collection != blank and product_collection.handle != 'all' and product_collection.handle != 'alle-produkter' and product_collection.title != 'Alle produkter' -%}
       <a href="{{ product_collection.url }}" class="reversed-link">
         {{- product_collection.title -}}
       </a>
-    {%- else -%}
-      <a href="{{ routes.all_products_collection_url }}" class="reversed-link">
-        {{- 'content.collection' | t -}}
-      </a>
+      <span aria-hidden="true" class="breadcrumbs__sep breadcrumbs__sep--last"></span>
     {%- endif -%}
-    <span aria-hidden="true" class="breadcrumbs__sep breadcrumbs__sep--last"></span>
     <span class="breadcrumbs__last color-subtext text-ellipsis">{{ product.title }}</span>
   {%- elsif template contains 'collection' and collection.handle -%}
     {%- if collection.handle != 'all' -%}
