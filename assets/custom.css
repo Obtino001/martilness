@@ -29,6 +29,16 @@
 }
 
 .collection-desc {
+  max-width: 48rem;
+}
+
+.collection-desc__summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.collection-desc__summary::-webkit-details-marker {
+  display: none;
 }
 
 .collection-desc__teaser {
@@ -52,12 +62,8 @@
   color: inherit;
 }
 
-.collection-desc-full {
-  padding-block: 24px 80px;
-}
-
-#collection-description-full {
-  scroll-margin-top: 100px;
+.collection-desc[open] > .collection-desc__summary {
+  display: none;
 }
 
 html {

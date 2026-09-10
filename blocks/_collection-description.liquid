@@ -5,10 +5,13 @@
 -%}
 {%- unless closest_collection.handle == 'all' or text == blank -%}
   {%- if plain.size > 140 -%}
-    <div class="collection-desc">
-      <div class="collection-desc__teaser rte">{{ collection.description }}</div>
-      <a class="collection-desc__label" href="#collection-description-full">Læs mere</a>
-    </div>
+    <details class="collection-desc">
+      <summary class="collection-desc__summary">
+        <span class="collection-desc__teaser rte">{{ text }}</span>
+        <span class="collection-desc__label">Læs mere</span>
+      </summary>
+      <div class="collection-desc__full rte">{{ text }}</div>
+    </details>
   {%- else -%}
     {% render 'text', fallback_text: text, block: block, class: 'collection-description-block' %}
   {%- endif -%}
