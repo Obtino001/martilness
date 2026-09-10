@@ -90,6 +90,7 @@
             "collection_nav_tabs_9XBciK": {
               "type": "_collection-nav-tabs",
               "name": "Collection tabs",
+              "disabled": true,
               "settings": {},
               "blocks": {
                 "collection_nav_tab_HhqPfa": {
@@ -173,6 +174,101 @@
         "padding-block-end": 0,
         "padding-block-start-mobile": 20,
         "padding-block-end-mobile": 0
+      }
+    },
+    "product_tabs_HyAfrW": {
+      "type": "product-tabs",
+      "blocks": {
+        "collection_ek7WAU": {
+          "type": "collection",
+          "settings": {
+            "collection": "alle-produkter",
+            "title": ""
+          }
+        },
+        "collection_Pa6zLA": {
+          "type": "collection",
+          "settings": {
+            "collection": "saunataeppe",
+            "title": ""
+          }
+        },
+        "collection_yhbUE3": {
+          "type": "collection",
+          "settings": {
+            "collection": "infrarod-led-maske",
+            "title": ""
+          }
+        },
+        "collection_i7Bkbf": {
+          "type": "collection",
+          "settings": {
+            "collection": "infrarodt-lys",
+            "title": ""
+          }
+        },
+        "collection_bNgtXX": {
+          "type": "collection",
+          "settings": {
+            "collection": "isbad",
+            "title": ""
+          }
+        },
+        "collection_EVXTqd": {
+          "type": "collection",
+          "settings": {
+            "collection": "dampsauna",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_ek7WAU",
+        "collection_Pa6zLA",
+        "collection_yhbUE3",
+        "collection_i7Bkbf",
+        "collection_bNgtXX",
+        "collection_EVXTqd"
+      ],
+      "name": "t:names.product_tab_grid",
+      "settings": {
+        "container": "fixed",
+        "heading": "",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_shape_color": "",
+        "highlight_text_color": "",
+        "heading_preset": "h1",
+        "heading_font_size": 15,
+        "heading_font_size_mobile": 15,
+        "animation_type": "fade-up",
+        "animation_delay": 250,
+        "product_count": 8,
+        "type": "grid",
+        "columns_xxl": 4,
+        "column_gap": 30,
+        "row_gap": 30,
+        "enable_swipe_on_mobile": false,
+        "swipe_custom_width_column": false,
+        "swipe_column_width": 76,
+        "columns_mobile": "2",
+        "column_gap_mobile": 8,
+        "row_gap_mobile": 24,
+        "color_scheme": "",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "device": "desktop",
+        "padding-block-start": 0,
+        "padding-block-end": 50,
+        "padding-inline-start": 0,
+        "padding-inline-end": 0,
+        "padding-block-start-mobile": 48,
+        "padding-block-end-mobile": 48,
+        "padding-inline-start-mobile": 0,
+        "padding-inline-end-mobile": 0,
+        "custom_columns": ""
       }
     },
     "flex_carousel_683AcJ": {
@@ -347,7 +443,6 @@
     },
     "custom_section_Fhc8QT": {
       "type": "custom-section",
-      "disabled": true,
       "blocks": {
         "divider_hrMVmR": {
           "type": "divider",
@@ -369,6 +464,7 @@
       "block_order": [
         "divider_hrMVmR"
       ],
+      "disabled": true,
       "name": "t:names.custom_section",
       "settings": {
         "require_metafield_key": "",
@@ -579,6 +675,7 @@
   "order": [
     "breadcrumbs_cRq7dB",
     "main-collection-banner",
+    "product_tabs_HyAfrW",
     "flex_carousel_683AcJ",
     "custom_section_Fhc8QT",
     "main",
