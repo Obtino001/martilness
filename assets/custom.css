@@ -23,26 +23,6 @@
   border-color: #09412d;
 }
 
-.tabs__button-text {
-  pointer-events: none;
-}
-
-.breadcrumbs__back {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  text-decoration: none;
-}
-
-.breadcrumbs__back-icon {
-  display: block;
-  flex-shrink: 0;
-}
-
-.template-collection .tabs__button[aria-current='page'] {
-  color: rgb(var(--color-secondary-button-text));
-}
-
 .template-collection .divider,
 .template-suffix-collection .divider {
   display: none !important;
@@ -254,8 +234,8 @@ html {
 .contact-form--reklamation .contact__button .btn:hover,
 .contact-form:has(input[name*="Ordrenummer"]) .contact__button .btn:hover,
 .btn--reklamation-send:hover {
-  background-color: #169c67 !important;
-  border-color: #169c67 !important;
+  background-color: #000 !important;
+  border-color: #000 !important;
   color: #ffffff !important;
 }
 
