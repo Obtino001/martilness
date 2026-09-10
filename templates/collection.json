@@ -505,6 +505,7 @@
           "blocks": {}
         }
       },
+      "disabled": true,
       "settings": {
         "container": "fixed",
         "products_per_page": 48,
