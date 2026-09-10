@@ -31,7 +31,12 @@
       if primary_collection != blank
         assign product_collection = primary_collection.value
       else
-        assign product_collection = product.collections | first
+        for c in product.collections
+          if c.handle != 'all' and c.handle != 'alle-produkter' and c.title != 'Alle produkter' and c.handle != 'frontpage'
+            assign product_collection = c
+            break
+          endif
+        endfor
       endif
     -%}
     <span aria-hidden="true" class="breadcrumbs__sep"></span>
