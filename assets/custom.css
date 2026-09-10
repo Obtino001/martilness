@@ -27,6 +27,18 @@
   pointer-events: none;
 }
 
+.breadcrumbs__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+}
+
+.breadcrumbs__back-icon {
+  display: block;
+  flex-shrink: 0;
+}
+
 .template-collection .tabs__button[aria-current='page'] {
   color: rgb(var(--color-secondary-button-text));
 }

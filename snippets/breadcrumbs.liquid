@@ -14,6 +14,7 @@
   role="navigation"
   aria-label="breadcrumbs"
 >
+  {%- unless template contains 'product' -%}
   <a
     href="{{ routes.root_url }}"
     title="{{- 'content.home' | t -}}"
@@ -21,31 +22,62 @@
   >
     {{- 'content.home' | t -}}
   </a>
+  {%- endunless -%}
   {%- if template contains 'page' -%}
     <span aria-hidden="true" class="breadcrumbs__sep"></span>
     <span class="breadcrumbs__last color-subtext text-ellipsis">{{ page.title }}</span>
   {%- elsif template contains 'product' -%}
     {%- liquid
+      assign back_url = routes.all_products_collection_url
       assign primary_collection = product.metafields.breadcrumbs.primary_collection
 
-      if primary_collection != blank
-        assign product_collection = primary_collection.value
-      else
-        assign product_collection = product.collections | first
+      if primary_collection != blank and primary_collection.value.url != blank
+        assign back_url = primary_collection.value.url
+      elsif product.collections.first != blank
+        assign back_url = product.collections.first.url
       endif
     -%}
-    <span aria-hidden="true" class="breadcrumbs__sep"></span>
-    {%- if product_collection != blank -%}
-      <a href="{{ product_collection.url }}" class="reversed-link">
-        {{- product_collection.title -}}
-      </a>
-    {%- else -%}
-      <a href="{{ routes.all_products_collection_url }}" class="reversed-link">
-        {{- 'content.collection' | t -}}
-      </a>
-    {%- endif -%}
-    <span aria-hidden="true" class="breadcrumbs__sep breadcrumbs__sep--last"></span>
-    <span class="breadcrumbs__last color-subtext text-ellipsis">{{ product.title }}</span>
+    <a
+      href="{{ back_url }}"
+      class="reversed-link breadcrumbs__back"
+      data-breadcrumb-back
+    >
+      <svg
+        class="breadcrumbs__back-icon"
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path
+          d="M10.5 3.5 6 8l4.5 4.5"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      {{- 'content.back' | t -}}
+    </a>
+    <script>
+      (() => {
+        const link = document.querySelector('[data-breadcrumb-back]');
+        if (!link) return;
+        link.addEventListener('click', (event) => {
+          try {
+            if (!document.referrer) return;
+            const from = new URL(document.referrer);
+            if (from.origin !== window.location.origin) return;
+            if (from.pathname === window.location.pathname) return;
+            if (window.history.length < 2) return;
+            event.preventDefault();
+            window.history.back();
+          } catch (e) {}
+        });
+      })();
+    </script>
   {%- elsif template contains 'collection' and collection.handle -%}
     {%- if collection.handle != 'all' -%}
       <span aria-hidden="true" class="breadcrumbs__sep"></span>
