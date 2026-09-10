@@ -213,7 +213,6 @@
             "field_billede": {
               "type": "_custom-field",
               "name": "Custom field",
-              "disabled": true,
               "settings": {
                 "field_type": "file",
                 "heading": "Vedhæft billede af fejlen:",
