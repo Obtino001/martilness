@@ -1128,6 +1128,13 @@
     "product_tabs_VFRpjk": {
       "type": "product-tabs",
       "blocks": {
+        "collection_MQaVnh": {
+          "type": "collection",
+          "settings": {
+            "collection": "alle-produkter",
+            "title": "Alle produkter"
+          }
+        },
         "collection_saunataeppe": {
           "type": "collection",
           "settings": {
@@ -1165,6 +1172,7 @@
         }
       },
       "block_order": [
+        "collection_MQaVnh",
         "collection_saunataeppe",
         "collection_led_maske",
         "collection_C4aep4",
