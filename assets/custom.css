@@ -646,20 +646,7 @@ html {
   }
 }
 
-/* Custom styling for Image with Text sections on PDP */
-#hvordan-virker-det .custom-section__content,
-#sundhedsmaessige-fordele .custom-section__content {
-  background-color: #f4f6f5;
-  border: 1px solid rgba(0,0,0,0.05);
-  border-radius: 16px;
-  padding: 2.4rem;
-}
-@media (min-width: 768px) {
-  #hvordan-virker-det .custom-section__content,
-  #sundhedsmaessige-fordele .custom-section__content {
-    padding: 4rem;
-  }
-}
+
 
 #hvordan-virker-det .rte ul,
 #sundhedsmaessige-fordele .rte ul {
@@ -670,7 +657,7 @@ html {
 #sundhedsmaessige-fordele .rte ul > li {
   position: relative;
   padding-left: 1.75rem;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1.6rem;
 }
 #hvordan-virker-det .rte ul > li::before,
 #sundhedsmaessige-fordele .rte ul > li::before {
