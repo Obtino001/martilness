@@ -8,10 +8,25 @@
     <details class="collection-desc">
       <summary class="collection-desc__summary">
         <span class="collection-desc__teaser rte">{{ text }}</span>
-        <span class="collection-desc__label">Læs mere</span>
+        <span class="collection-desc__label">
+          <span class="collection-desc__label-more">Læs mere</span>
+          <span class="collection-desc__label-less">Læs mindre</span>
+        </span>
       </summary>
       <div class="collection-desc__full rte">{{ text }}</div>
     </details>
+    <script>
+      (() => {
+        const resetCollectionDescriptions = () => {
+          document.querySelectorAll('.collection-desc[open]').forEach((description) => {
+            description.removeAttribute('open');
+          });
+        };
+
+        resetCollectionDescriptions();
+        window.addEventListener('pageshow', resetCollectionDescriptions, { once: true });
+      })();
+    </script>
   {%- else -%}
     {% render 'text', fallback_text: text, block: block, class: 'collection-description-block' %}
   {%- endif -%}

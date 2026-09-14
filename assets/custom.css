@@ -110,8 +110,30 @@
   color: inherit;
 }
 
-.collection-desc[open]>.collection-desc__summary {
+.collection-desc__label-less {
   display: none;
+}
+
+.collection-desc[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.collection-desc[open]>.collection-desc__summary {
+  order: 2;
+}
+
+.collection-desc[open]>.collection-desc__full {
+  order: 1;
+}
+
+.collection-desc[open] .collection-desc__teaser,
+.collection-desc[open] .collection-desc__label-more {
+  display: none;
+}
+
+.collection-desc[open] .collection-desc__label-less {
+  display: inline;
 }
 
 @media (max-width: 767.98px) {
