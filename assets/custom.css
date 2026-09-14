@@ -679,24 +679,17 @@ html {
 
 
 /* Footer USP sizes */
-.shopify-section-group-footer-group .icon-box__heading,
-[id*="footer-group"] .icon-box__heading,
-.icon-box__heading {
+.icon-box__content h3 {
   font-size: 1.6rem !important;
   margin-bottom: 0.5rem;
 }
-.shopify-section-group-footer-group .icon-box__text,
-[id*="footer-group"] .icon-box__text,
-.icon-box__text {
+.icon-box__content .rte p,
+.icon-box__content .rte {
   font-size: 1.4rem !important;
 }
-.shopify-section-group-footer-group .icon-box__content,
-[id*="footer-group"] .icon-box__content,
 .icon-box__content {
   gap: 0.5rem;
 }
-.shopify-section-group-footer-group .icon-box,
-[id*="footer-group"] .icon-box,
 .icon-box {
   margin-bottom: 2.5rem;
 }
