@@ -29,15 +29,28 @@
     --mt-giveaway-z: {{ section.settings.z_index | default: 40 }};
   "
 >
-  <button
-    type="button"
-    class="mt-giveaway__tab"
-    data-mt-giveaway-open
-    aria-expanded="false"
-    aria-controls="mt-giveaway-panel-{{ section.id }}"
-  >
-    <span class="mt-giveaway__tab-label">{{ tab_label }}</span>
-  </button>
+  <div class="mt-giveaway__tab-wrapper" data-mt-giveaway-tab-wrapper>
+    <button
+      type="button"
+      class="mt-giveaway__tab"
+      data-mt-giveaway-open
+      aria-expanded="false"
+      aria-controls="mt-giveaway-panel-{{ section.id }}"
+    >
+      <span class="mt-giveaway__tab-label">{{ tab_label }}</span>
+    </button>
+    <button
+      type="button"
+      class="mt-giveaway__tab-close"
+      data-mt-giveaway-dismiss
+      aria-label="{{ 'accessibility.close' | t | default: 'Luk' }}"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
 
   <div
     id="mt-giveaway-panel-{{ section.id }}"
@@ -144,12 +157,18 @@
     z-index: var(--mt-giveaway-z);
   }
 
-  #section-{{ section.id }} .mt-giveaway__tab {
+  #section-{{ section.id }} .mt-giveaway__tab-wrapper {
     position: fixed;
     left: 50%;
     bottom: 1.6rem;
     transform: translateX(-50%) translateY(calc(100% + 2.4rem));
     z-index: calc(var(--mt-giveaway-z) + 1);
+    animation: mt-giveaway-tab-in-{{ section.id }} 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  #section-{{ section.id }} .mt-giveaway__tab {
+    display: block;
     margin: 0;
     padding: 0.95rem 1.8rem;
     border: 2px solid {{ tab_border }} !important;
@@ -165,14 +184,43 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    animation: mt-giveaway-tab-in-{{ section.id }} 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, filter 0.2s ease;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease, filter 0.2s ease;
   }
 
   #section-{{ section.id }} .mt-giveaway__tab:hover {
     box-shadow: 0 0.6rem 2.4rem rgb(0 0 0 / 40%), 0 0.2rem 0.8rem rgb(0 0 0 / 25%);
     border-color: #ffffff;
     filter: brightness(1.08);
+  }
+
+  #section-{{ section.id }} .mt-giveaway__tab-close {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #000;
+    color: #fff;
+    border: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    padding: 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  #section-{{ section.id }} .mt-giveaway__tab-close:hover {
+    transform: scale(1.1);
+    background: #333;
+  }
+
+  #section-{{ section.id }} .mt-giveaway__tab-close svg {
+    width: 12px;
+    height: 12px;
   }
 
   @keyframes mt-giveaway-tab-in-{{ section.id }} {
@@ -186,7 +234,7 @@
     }
   }
 
-  #section-{{ section.id }}.mt-giveaway--pending .mt-giveaway__tab {
+  #section-{{ section.id }}.mt-giveaway--pending .mt-giveaway__tab-wrapper {
     animation: none;
     visibility: hidden;
     pointer-events: none;
@@ -194,20 +242,20 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    #section-{{ section.id }} .mt-giveaway__tab {
+    #section-{{ section.id }} .mt-giveaway__tab-wrapper {
       animation: none;
       transform: translateX(-50%);
       opacity: 1;
     }
 
-    #section-{{ section.id }}.mt-giveaway--pending .mt-giveaway__tab {
+    #section-{{ section.id }}.mt-giveaway--pending .mt-giveaway__tab-wrapper {
       opacity: 0;
       transform: translateX(-50%) translateY(calc(100% + 2.4rem));
     }
   }
 
-  #section-{{ section.id }} .mt-giveaway__tab[hidden],
-  #section-{{ section.id }}.is-open .mt-giveaway__tab {
+  #section-{{ section.id }} .mt-giveaway__tab-wrapper[hidden],
+  #section-{{ section.id }}.is-open .mt-giveaway__tab-wrapper {
     display: none;
   }
 
@@ -386,17 +434,28 @@
     root.dataset.mtGiveawayBound = 'true';
 
     const panel = root.querySelector('[data-mt-giveaway-panel]');
+    const tabWrapper = root.querySelector('[data-mt-giveaway-tab-wrapper]');
     const tab = root.querySelector('[data-mt-giveaway-open]');
     const closeBtn = root.querySelector('[data-mt-giveaway-close]');
+    const dismissBtn = root.querySelector('[data-mt-giveaway-dismiss]');
     const storageKey = root.dataset.storageKey;
     const openDefault = root.dataset.openDefault === 'true';
     const showDelayMs = Math.max(0, Number(root.dataset.showDelay || 10)) * 1000;
 
+    let isDismissed = false;
+    try {
+      if (sessionStorage.getItem(storageKey + '-dismissed') === 'true') {
+        isDismissed = true;
+      }
+    } catch(e) {}
+
     const setOpen = (open, persist = true) => {
       root.classList.toggle('is-open', open);
       if (tab) {
-        tab.hidden = open;
         tab.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+      if (tabWrapper) {
+        tabWrapper.hidden = open || isDismissed;
       }
       if (panel) {
         if (open) {
@@ -412,6 +471,20 @@
       } catch (e) {}
     };
 
+    const dismissTab = (e) => {
+      if (e) {
+        e.stopPropagation();
+        e.preventDefault();
+      }
+      isDismissed = true;
+      if (tabWrapper) {
+        tabWrapper.hidden = true;
+      }
+      try {
+        sessionStorage.setItem(storageKey + '-dismissed', 'true');
+      } catch(e) {}
+    };
+
     let startOpen = openDefault;
     try {
       if (sessionStorage.getItem(storageKey) === 'closed') startOpen = false;
@@ -419,6 +492,9 @@
 
     const revealGiveaway = () => {
       root.classList.remove('mt-giveaway--pending');
+      if (isDismissed) {
+        if (tabWrapper) tabWrapper.hidden = true;
+      }
       setOpen(startOpen, false);
     };
 
@@ -430,6 +506,7 @@
 
     tab?.addEventListener('click', () => setOpen(true));
     closeBtn?.addEventListener('click', () => setOpen(false));
+    dismissBtn?.addEventListener('click', dismissTab);
 
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && root.classList.contains('is-open')) setOpen(false);
