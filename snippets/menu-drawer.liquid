@@ -49,18 +49,42 @@
     </div>
     {%- if section.settings.enable_search_form -%}
       {%- liquid
-        assign search_color_scheme = section.settings.color_scheme
-        unless settings.dialog_color_scheme_inherit
-          assign search_color_scheme = settings.dialog_color_scheme
-        endunless
+        assign search_placeholder = 'content.search_input_placeholder' | t
+        assign menu_search_style = section.settings.search_form_style | default: 'solid'
       -%}
       <div class="menu-drawer__search header__search shrink-0 relative">
-        {%- render 'predictive-search',
-          context: 'header',
-          unique_id: 'MenuDrawer',
-          color_scheme: search_color_scheme,
-          form_style: section.settings.search_form_style
-        -%}
+        <form
+          class="search__form search__form--{{ menu_search_style }} w-full"
+          action="{{ routes.search_url }}"
+          method="get"
+          role="search"
+        >
+          <input type="hidden" name="options[prefix]" value="last">
+          <div class="search__field relative flex items-center w-full">
+            <input
+              id="SearchInput-MenuDrawer"
+              class="search__input form-control w-full"
+              type="search"
+              name="q"
+              placeholder="{{ search_placeholder | escape }}"
+              enterkeyhint="search"
+              autocorrect="off"
+              autocomplete="off"
+              autocapitalize="off"
+              spellcheck="false"
+            >
+            <label class="visually-hidden" for="SearchInput-MenuDrawer">
+              {{- 'content.search_input_label' | t -}}
+            </label>
+            <button
+              type="submit"
+              class="search__submit button-unstyled absolute flex items-center justify-center cursor-pointer"
+              aria-label="{{ 'content.search' | t }}"
+            >
+              {%- render 'icon', icon: 'search', size: 'large' -%}
+            </button>
+          </div>
+        </form>
       </div>
     {%- endif -%}
     {%- liquid
@@ -93,7 +117,7 @@
                   endif
                 endfor
               -%}
-              {%- if link.links != blank or mega_menu_block != blank -%}
+              {%- if link.links != blank -%}
                 {%- render 'menu-drawer-details', link: link, block: mega_menu_block -%}
               {%- else -%}
                 <a
@@ -101,12 +125,6 @@
                   class="menu-drawer__item-link menu-drawer__item-link-heading flex items-center justify-between gap-4 focus-visible--inset"
                 >
                   <span class="h3">{{- link.title | escape -}}</span>
-                  {%- render 'icon',
-                    icon: 'caret-right',
-                    size: 'extra-medium',
-                    class: 'menu-drawer__item-arrow shrink-0',
-                    attributes: 'aria-hidden="true"'
-                  -%}
                 </a>
               {%- endif -%}
             </li>
