@@ -28,7 +28,7 @@
   # Only treat as a color list when the text really names LED colors
   if color_swatches
     assign color_swatches = false
-    if mf_down contains 'rød:' or mf_down contains 'blå:' or mf_down contains 'grøn:' or mf_down contains 'nærinfrarød'
+    if mf_down contains 'rød:' or mf_down contains 'blå:' or mf_down contains 'grøn:' or mf_down contains 'nærinfrarød (nir):'
       assign color_swatches = true
     endif
   endif
