@@ -50,7 +50,12 @@
         on:click="#SubscribePopup/closeDialog"
         aria-label="{{ 'accessibility.close_dialog' | t }}"
       >
-        {% render 'icon', icon: 'close', size: 'large' %}
+        <span class="subscribe-popup__close-icon subscribe-popup__close-icon--desktop">
+          {% render 'icon', icon: 'close', size: 'large' %}
+        </span>
+        <span class="subscribe-popup__close-icon subscribe-popup__close-icon--mobile">
+          {% render 'icon', icon: 'arrow-left', size: 'large' %}
+        </span>
       </button>
       <div class="dialog__content flex-grow flex flex-wrap">
         {{ popup_image }}

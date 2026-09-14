@@ -2245,7 +2245,6 @@ class CollectionHighlight extends Component {
 class CollectionHighlightWithImageCard extends CollectionHighlight {
   #abortController = new AbortController();
   #hoverTracker = null;
-  #preventClick = false;
   #initialPreviewHeight = false;
   #currentActiveIndex = 0;
 
@@ -2264,7 +2263,6 @@ class CollectionHighlightWithImageCard extends CollectionHighlight {
         });
       });
 
-      this.onTouchChangeHandler = this.onTouchChange.bind(this);
       this.onClickHandler = this.onClick.bind(this);
       this.onKeydownHandler = this.handleNavigationKeys.bind(this);
       this.onMouseOverHandler = this.onMouseOver.bind(this);
@@ -2272,7 +2270,6 @@ class CollectionHighlightWithImageCard extends CollectionHighlight {
 
       if ("ontouchstart" in window) {
         titles.forEach((item) => {
-          item.addEventListener("touchstart", this.onTouchChangeHandler, { signal, passive: true });
           item.addEventListener("click", this.onClickHandler, { signal });
         });
       } else {
@@ -2362,23 +2359,13 @@ class CollectionHighlightWithImageCard extends CollectionHighlight {
     }
   }
 
-  onTouchChange(event) {
-    const titleEl = this.getTitleEl(event);
-    const index = Number(titleEl.dataset.index);
-
-    if (this.isActive(titleEl)) {
-      this.#preventClick = false;
-      return;
-    } else {
-      this.#preventClick = true;
-    }
-
-    this.setActiveTab(index);
-  }
-
   onClick(event) {
-    if (this.#preventClick) {
-      event.preventDefault();
+    const titleEl = this.getTitleEl(event);
+    if (!titleEl) return;
+
+    const index = Number(titleEl.dataset.index);
+    if (!this.isActive(titleEl)) {
+      this.setActiveTab(index);
     }
   }
 

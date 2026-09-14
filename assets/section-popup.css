@@ -2,6 +2,12 @@
   padding: 2.4rem 2rem;
   --text-align: center;
 }
+.subscribe-popup__close-icon {
+  display: flex;
+}
+.subscribe-popup__close-icon--mobile {
+  display: none;
+}
 @media (min-width: 768px) {
   .subscribe-popup__image {
     width: 50%;
@@ -22,6 +28,9 @@
     max-width: 44rem;
   }
   .subscribe-popup .dialog__close {
+    inset-inline: 1.6rem auto;
+    width: 4.4rem;
+    height: 4.4rem;
     color: #000;
   }
   .subscribe-popup .dialog__close::before {
@@ -29,6 +38,12 @@
     box-shadow: 0 8px 14px rgba(0, 0, 0, 0.15);
   }
   .subscribe-popup .dialog__close .icon {
-    --icon-size: 1.6rem;
+    --icon-size: 1.8rem;
+  }
+  .subscribe-popup__close-icon--desktop {
+    display: none;
+  }
+  .subscribe-popup__close-icon--mobile {
+    display: flex;
   }
 }
