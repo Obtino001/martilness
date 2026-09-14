@@ -680,12 +680,13 @@ html {
 
 /* Footer USP sizes */
 .icon-box__content h3 {
-  font-size: 1.6rem !important;
+  font-size: 1.8rem !important;
+  font-weight: 700;
   margin-bottom: 0.5rem;
 }
 .icon-box__content .rte p,
 .icon-box__content .rte {
-  font-size: 1.4rem !important;
+  font-size: 1.3rem !important;
 }
 .icon-box__content {
   gap: 0.5rem;
