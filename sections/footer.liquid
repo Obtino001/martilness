@@ -311,7 +311,7 @@
   .footer__bar {
     flex-direction: column;
     gap: 2.8rem;
-    padding-block: 1.6rem 0;
+    padding-block: 1.6rem 2.4rem;
     border-block-start: none;
   }
   .footer__bar-col:not(:last-child) {
@@ -322,20 +322,21 @@
   .footer .footer__bottom {
     padding-top: 0;
   }
-  /* Copyright + social: venstrestillet, stablet, divider over */
+  /* Copyright + social: centreret, stablet, divider over */
   .footer .footer__bottom-row:last-child {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 1.6rem;
-    text-align: left;
+    align-items: center;
+    gap: 2rem;
+    text-align: center;
     border-top: 0.1rem solid rgb(var(--color-border) / var(--color-border-alpha));
-    padding-top: 2rem;
+    padding-top: 2.4rem;
+    padding-bottom: 2.4rem;
   }
   .footer .footer__bottom-row:last-child > * {
     width: auto;
   }
   .footer .footer__bottom-row:last-child > div:last-child {
-    justify-content: flex-start;
+    justify-content: center;
   }
 }
 {% endstylesheet %}
