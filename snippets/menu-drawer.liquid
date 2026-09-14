@@ -117,7 +117,7 @@
                   endif
                 endfor
               -%}
-              {%- if link.links != blank -%}
+              {%- if link.links != blank or mega_menu_block != blank -%}
                 {%- render 'menu-drawer-details', link: link, block: mega_menu_block -%}
               {%- else -%}
                 <a
@@ -181,8 +181,39 @@
           </div>
         {%- endif -%}
 
+        {%- if section.settings.menu_drawer_show_trustpilot -%}
+          {%- assign trustpilot_url = section.settings.menu_drawer_trustpilot_link | default: 'https://dk.trustpilot.com/review/martilness.dk' -%}
+          <a
+            class="menu-drawer__trustpilot color-current text-decoration-none focus-visible--inset"
+            href="{{ trustpilot_url }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="{{ section.settings.menu_drawer_trustpilot_rating | escape }}"
+          >
+            <span class="menu-drawer__trustpilot-top flex items-center justify-between gap-3">
+              <strong class="menu-drawer__trustpilot-brand">Trustpilot</strong>
+              <span class="menu-drawer__trustpilot-verified">Trustpilot-anmeldelse</span>
+            </span>
+            <span class="menu-drawer__trustpilot-stars flex" aria-hidden="true">
+              {%- for i in (1..5) -%}
+                <span>
+                  <svg viewBox="0 0 24 24" focusable="false"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </span>
+              {%- endfor -%}
+            </span>
+            {%- if section.settings.menu_drawer_trustpilot_quote != blank -%}
+              <strong class="menu-drawer__trustpilot-title">{{ section.settings.menu_drawer_trustpilot_quote | escape }}</strong>
+            {%- endif -%}
+            {%- if section.settings.menu_drawer_trustpilot_text != blank -%}
+              <span class="menu-drawer__trustpilot-text">{{ section.settings.menu_drawer_trustpilot_text | escape }}</span>
+            {%- endif -%}
+            <span class="menu-drawer__trustpilot-bottom flex items-center justify-between gap-3">
+              <span>{{ section.settings.menu_drawer_trustpilot_author | escape }}</span>
+              <span>{{ section.settings.menu_drawer_trustpilot_rating | escape }} →</span>
+            </span>
+          </a>
+        {%- endif -%}
 
-      </div>
       {%- if drawer_collections_block != blank -%}
         <div class="menu-drawer__collections" aria-label="{{ 'content.collections' | t }}">
           <div class="menu-drawer__collections-track">
@@ -241,6 +272,7 @@
           </div>
         </div>
       {%- endif -%}
+      </div>
     </div>
   </dialog>
 </dialog-component>

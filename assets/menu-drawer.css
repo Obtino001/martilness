@@ -183,10 +183,61 @@
   font-weight: 500;
 }
 
+/* Compact Trustpilot testimonial between navigation and collections. */
+.menu-drawer__trustpilot {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin: 2.4rem var(--dialog-content-padding-inline) 0;
+  padding: 1.6rem;
+  border: 0.1rem solid rgb(var(--color-border) / var(--color-border-alpha));
+  border-radius: 1.6rem;
+  background: rgb(var(--color-background));
+  box-shadow: 0 0.8rem 2.4rem rgb(0 0 0 / 7%);
+}
+.menu-drawer__trustpilot-brand {
+  font-size: 1.8rem;
+  letter-spacing: -0.03em;
+}
+.menu-drawer__trustpilot-brand::before {
+  content: "★";
+  margin-inline-end: 0.4rem;
+  color: #00b67a;
+}
+.menu-drawer__trustpilot-verified,
+.menu-drawer__trustpilot-bottom {
+  color: rgb(var(--color-foreground) / 65%);
+  font-size: 1.2rem;
+}
+.menu-drawer__trustpilot-stars {
+  gap: 0.3rem;
+}
+.menu-drawer__trustpilot-stars > span {
+  display: grid;
+  width: 2.4rem;
+  height: 2.4rem;
+  place-items: center;
+  background: #00b67a;
+}
+.menu-drawer__trustpilot-stars svg {
+  width: 1.7rem;
+  height: 1.7rem;
+  fill: #fff;
+}
+.menu-drawer__trustpilot-title {
+  font-size: 1.5rem;
+  line-height: 1.35;
+}
+.menu-drawer__trustpilot-text {
+  color: rgb(var(--color-foreground) / 78%);
+  font-size: 1.3rem;
+  line-height: 1.45;
+}
+
 /* Collection slider at the bottom of the drawer */
 .menu-drawer__collections {
   flex: none;
-  padding-block: 0 0.4rem;
+  padding-block: 2.4rem 0.4rem;
 }
 .menu-drawer__collections-track {
   display: flex;

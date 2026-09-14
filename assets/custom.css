@@ -28,12 +28,33 @@
   display: none !important;
 }
 
+.collection-banner__content-inner {
+  gap: 0;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.collection-title-block {
+  width: 100%;
+  max-width: 72rem;
+}
+
+.collection-title-block :is(h1, h2, h3, p) {
+  margin: 0;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
 .collection-desc {
+  width: 100%;
+  max-width: 72rem;
+  color: rgb(var(--color-foreground) / 0.78);
 }
 
 .collection-desc__summary {
   list-style: none;
   cursor: pointer;
+  text-align: left;
 }
 
 .collection-desc__summary::-webkit-details-marker {
@@ -46,23 +67,79 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.55;
 }
 
 .collection-desc__teaser * {
   margin: 0;
 }
 
+.collection-desc__teaser :is(h1, h2, h3, h4, h5, h6),
+.collection-desc__full :is(h1, h2, h3, h4, h5, h6) {
+  margin-block: 0 0.8rem;
+  color: rgb(var(--color-foreground));
+  font-family: var(--font-heading--family);
+  font-size: 1.8rem;
+  font-weight: 650;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.collection-desc__full {
+  font-size: 1.5rem;
+  line-height: 1.6;
+}
+
+.collection-desc__full p {
+  margin-block: 0 1rem;
+}
+
+.collection-desc__full > :last-child {
+  margin-block-end: 0;
+}
+
 .collection-desc__label {
   display: inline-block;
-  margin-top: 8px;
+  margin-top: 0.8rem;
+  font-size: 1.4rem;
   font-weight: 600;
+  line-height: 1.4;
   text-decoration: underline;
-  text-underline-offset: 4px;
+  text-underline-offset: 0.3rem;
   color: inherit;
 }
 
 .collection-desc[open] > .collection-desc__summary {
   display: none;
+}
+
+@media (max-width: 767.98px) {
+  .collection-banner__content-inner {
+    width: 100%;
+  }
+
+  .collection-title-block {
+    padding-block-end: 1rem !important;
+  }
+
+  .collection-title-block :is(h1, h2, h3, p) {
+    font-size: 3.2rem;
+    line-height: 1.1;
+  }
+
+  .collection-desc__teaser,
+  .collection-desc__full {
+    font-size: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .collection-desc__teaser :is(h1, h2, h3, h4, h5, h6),
+  .collection-desc__full :is(h1, h2, h3, h4, h5, h6) {
+    margin-block-end: 0.6rem;
+    font-size: 1.7rem;
+    line-height: 1.3;
+  }
 }
 
 html {

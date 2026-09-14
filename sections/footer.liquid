@@ -322,6 +322,29 @@
 }
 
 @media (max-width: 767.98px) {
+  .footer {
+    --footer-mobile-row-height: 4.8rem;
+  }
+  .footer .footer__details > .accordion__summary,
+  .footer .footer__bar-summary {
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: var(--footer-mobile-row-height);
+    padding-block: 0;
+  }
+  .footer .footer__details > .accordion__summary > :first-child,
+  .footer .footer__bar-label {
+    margin: 0;
+    line-height: 1.3;
+  }
+  .footer .footer__details .accordion__summary-arrow,
+  .footer .footer__bar-caret {
+    flex: 0 0 auto;
+    width: 1.6rem;
+    height: 1.6rem;
+    margin: 0;
+  }
   /* Bar stables som kolonnerne: venstrestillet, vandrette dividers */
   .footer__bar {
     flex-direction: column;
@@ -344,9 +367,6 @@
     justify-content: flex-start;
   }
   .footer__bar-summary {
-    justify-content: space-between;
-    width: 100%;
-    padding-block: 1.6rem;
     cursor: pointer;
   }
   .footer__bar-caret {
@@ -359,12 +379,6 @@
   /* Stram gab op til baren */
   .footer .footer__bottom {
     padding-top: 0;
-  }
-  .footer .footer__bar-col:first-child {
-    padding-block-start: 0;
-  }
-  .footer .footer__bar-col:first-child .footer__bar-summary {
-    padding-block-start: 0.4rem;
   }
   /* Copyright + social: venstrestillet, stablet, divider over */
   .footer .footer__bottom-row:last-child {
