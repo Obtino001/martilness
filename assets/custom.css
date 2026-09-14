@@ -169,7 +169,7 @@ html {
 }
 
 @media (max-width: 767.98px) {
-  [id$='__collection_links_Mtq1'] {
+  [id$='__collection_links_Mtq1'] .collection-highlight__images {
     display: none;
   }
 }
