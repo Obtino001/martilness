@@ -1305,15 +1305,7 @@ class MenuDrawerDetails extends HTMLDetailsElement {
   }
 
   onSummaryClick(event) {
-    const summary = this.summary;
-    const href = summary.dataset.linkUrl;
-
-    if (href) {
-      event.preventDefault();
-      window.location.href = href;
-
-      return;
-    }
+    this.onOpenSubmenuButtonClick(event);
   }
 
   onOpenSubmenuButtonClick(event) {
@@ -1387,19 +1379,7 @@ class MenuDrawerSubmenu extends AccordionComponent {
   }
 
   onSummaryClick(event) {
-    event.preventDefault();
-
-    const { target } = event;
-    const summary = target.closest("summary");
-
-    if (summary) {
-      const href = summary.dataset.linkUrl;
-
-      if (href) {
-        window.location.href = href;
-        return;
-      }
-    }
+    super.onSummaryClick(event);
   }
 
   onArrowClick(event) {

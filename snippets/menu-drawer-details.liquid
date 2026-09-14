@@ -37,7 +37,6 @@
 >
   <summary
     class="menu-drawer__item-link menu-drawer__item-link-heading flex items-center justify-between gap-4"
-    data-link-url="{{ link.url }}"
   >
     <span class="h3">{{- link.title | escape -}}</span>
     <button class="menu-drawer__item-link-arrow button-unstyled flex items-center justify-center cursor-pointer">
@@ -82,7 +81,6 @@
                           ref="summary[]"
                           class="accordion__summary flex focus-visible--inset"
                           on:click="/onSummaryClick"
-                          data-link-url="{{ childlink.url }}"
                         >
                           <span class="h3">{{ childlink.title | escape }}</span>
                           <button

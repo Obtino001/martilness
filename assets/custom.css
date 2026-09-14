@@ -458,21 +458,21 @@ html {
 
 /* Footer USP grid: compact typography and rhythm on mobile only. */
 @media (max-width: 767.98px) {
-  [id$="__custom_section_4yLVt7"] .icon-box {
-    --icon-spacing: 0.7rem !important;
-    --content-gap: 0.3rem !important;
+  .footer-usp-section .icon-box {
+    --icon-spacing: 0.5rem !important;
+    --content-gap: 0.2rem !important;
   }
 
-  [id$="__custom_section_4yLVt7"] .icon-box__content h3 {
-    font-size: 1.15rem;
-    line-height: 1.25;
+  .footer-usp-section .icon-box__content h3 {
+    font-size: 1rem !important;
+    line-height: 1.2;
   }
 
-  [id$="__custom_section_4yLVt7"] .icon-box__content .text-block,
-  [id$="__custom_section_4yLVt7"] .icon-box__content .rte,
-  [id$="__custom_section_4yLVt7"] .icon-box__content p {
-    font-size: 0.95rem;
-    line-height: 1.4;
+  .footer-usp-section .icon-box__content .text-block,
+  .footer-usp-section .icon-box__content .rte,
+  .footer-usp-section .icon-box__content p {
+    font-size: 0.85rem !important;
+    line-height: 1.35;
   }
 }
 
