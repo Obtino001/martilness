@@ -1525,6 +1525,7 @@
             "columns_mobile": 2,
             "column_gap_mobile": 0,
             "row_gap_mobile": 0,
+            "order_mobile": -1,
             "device": "mobile",
             "padding-block-start": 0,
             "padding-block-end": 0,
