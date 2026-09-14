@@ -385,7 +385,6 @@
     },
     "collection_links_Mtq1": {
       "type": "collection-highlight",
-      "disabled": true,
       "blocks": {
         "collection_highlight_3": {
           "type": "_collection-highlight",

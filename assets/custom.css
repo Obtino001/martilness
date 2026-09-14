@@ -168,6 +168,12 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (max-width: 767.98px) {
+  [id$='__collection_links_Mtq1'] {
+    display: none;
+  }
+}
+
 /* Floating Giveaway Pill Tab - Crisp high visibility border */
 .mt-giveaway__tab,
 [data-mt-giveaway-open] {
