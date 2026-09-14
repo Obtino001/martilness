@@ -1795,11 +1795,11 @@
             "image_1": "{{ closest.product.metafields.custom.timeline.value.image_1.value }}",
             "image_ratio_1": "adapt",
             "image_width_1": 84,
-            "image_border_radius_1": 0,
+            "image_border_radius_1": 20,
             "image_2": "{{ closest.product.metafields.custom.timeline.value.image_2.value }}",
             "image_ratio_2": "adapt",
             "image_width_2": 48,
-            "image_border_radius_2": 0
+            "image_border_radius_2": 20
           },
           "blocks": {
             "spinning-icon-badge": {

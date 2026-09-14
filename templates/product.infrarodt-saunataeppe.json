@@ -1766,11 +1766,11 @@
             "image_1": "shopify://shop_images/Rodlys_maske_21_1.webp",
             "image_ratio_1": "adapt",
             "image_width_1": 84,
-            "image_border_radius_1": 0,
+            "image_border_radius_1": 20,
             "image_2": "shopify://shop_images/Rodlys_maske_22_1.webp",
             "image_ratio_2": "adapt",
             "image_width_2": 48,
-            "image_border_radius_2": 0
+            "image_border_radius_2": 20
           },
           "blocks": {
             "spinning-icon-badge": {
