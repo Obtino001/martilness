@@ -1,5 +1,5 @@
-.fr-hero__bg picture{
-    height: 100%;
+.fr-hero__bg picture {
+  height: 100%;
 }
 
 .collection-category-tabs {
@@ -95,7 +95,7 @@
   margin-block: 0 1rem;
 }
 
-.collection-desc__full > :last-child {
+.collection-desc__full> :last-child {
   margin-block-end: 0;
 }
 
@@ -110,7 +110,7 @@
   color: inherit;
 }
 
-.collection-desc[open] > .collection-desc__summary {
+.collection-desc[open]>.collection-desc__summary {
   display: none;
 }
 
@@ -369,10 +369,12 @@ html {
 .product-media .video-placeholder-wrapper__poster-icon .icon {
   width: 2.2rem !important;
   height: 2.2rem !important;
-  margin-inline-start: 3px !important; /* Optical center alignment for play triangle */
+  margin-inline-start: 3px !important;
+  /* Optical center alignment for play triangle */
 }
 
 @media (max-width: 767.98px) {
+
   .media-gallery__item .deferred-media__poster-icon,
   .media-gallery__item .video-placeholder-wrapper__poster-icon,
   .product-media .deferred-media__poster-icon,
@@ -464,7 +466,7 @@ html {
   }
 
   .footer-usp-section .icon-box__content h3 {
-    font-size: 1rem !important;
+    font-size: 1.5rem !important;
     line-height: 1.2;
   }
 
@@ -510,6 +512,7 @@ html {
   .header--logo-left {
     --header-grid-template: "logo nav icons" / auto 1fr auto !important;
   }
+
   .header--logo-left .header__navigation {
     display: flex !important;
     justify-content: center !important;
@@ -517,11 +520,13 @@ html {
     margin-inline-end: 0 !important;
     min-width: 0 !important;
   }
+
   .header--logo-left .header__navigation .header__menu {
     display: flex !important;
     justify-content: center !important;
   }
-  .header--logo-left .header__navigation .header__menu > ul {
+
+  .header--logo-left .header__navigation .header__menu>ul {
     justify-content: center !important;
   }
 }
@@ -535,7 +540,7 @@ html {
 /* ==========================================================================
    Header Cart Button & Icon with "Kurv (0)" Text
    ========================================================================== */
-.header__buttons > .cart-icon,
+.header__buttons>.cart-icon,
 .header__buttons .cart-icon {
   width: auto !important;
   height: var(--header-icon-size, 3.6rem) !important;
@@ -627,6 +632,7 @@ html {
 }
 
 @media (max-width: 767.98px) {
+
   .cart-icon__icon .icon,
   .cart-icon__icon .icon--large,
   .cart-icon__icon .icon--cart {
@@ -639,7 +645,7 @@ html {
     font-size: 1.4rem;
   }
 
-  .header__buttons > .cart-icon,
+  .header__buttons>.cart-icon,
   .header__buttons .cart-icon {
     gap: 0.5rem !important;
     padding-inline: 0.4rem !important;
@@ -653,16 +659,18 @@ html {
   list-style: none;
   padding-left: 0;
 }
-#hvordan-virker-det .rte ul > li,
-#sundhedsmaessige-fordele .rte ul > li {
+
+#hvordan-virker-det .rte ul>li,
+#sundhedsmaessige-fordele .rte ul>li {
   position: relative;
   padding-left: 2.8rem;
   margin-bottom: 1rem;
   font-weight: 500;
   line-height: 1.4;
 }
-#hvordan-virker-det .rte ul > li::before,
-#sundhedsmaessige-fordele .rte ul > li::before {
+
+#hvordan-virker-det .rte ul>li::before,
+#sundhedsmaessige-fordele .rte ul>li::before {
   content: '';
   position: absolute;
   left: 0;
@@ -684,13 +692,16 @@ html {
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
+
 .icon-box__content .rte p,
 .icon-box__content .rte {
   font-size: 1.3rem !important;
 }
+
 .icon-box__content {
   gap: 0.5rem;
 }
+
 .icon-box {
   margin-bottom: 2.5rem;
 }
