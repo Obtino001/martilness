@@ -50,52 +50,108 @@
   <div class="footer__bottom page-width">
     {%- if section.settings.show_footer_bar -%}
       <div class="footer__bar">
-        <div class="footer__bar-col">
-          <span class="footer__bar-label h5">{{ section.settings.payment_label | default: 'Betalingsmuligheder' }}</span>
-          <div class="footer__bar-icons">
-            {%- assign footer_payment_methods = 'dankort,visa,master,apple_pay,mobilepay,google_pay' | split: ',' -%}
-            {%- for method in footer_payment_methods -%}
-              {%- render 'martilness-payment-icon', type: method -%}
-            {%- endfor -%}
-          </div>
-        </div>
-        <div class="footer__bar-col">
-          <span class="footer__bar-label h5">{{ section.settings.shipping_label | default: 'Fragtpartner' }}</span>
-          {%- if section.settings.shipping_image != blank -%}
-            <img
-              class="footer__bar-shipping"
-              src="{{ section.settings.shipping_image | image_url: width: 160 }}"
-              alt="{{ section.settings.shipping_label | default: 'Fragtpartner' }} — GLS"
-              loading="lazy"
-              width="{{ section.settings.shipping_image.width }}"
-              height="{{ section.settings.shipping_image.height }}"
-            >
-          {%- else -%}
-            <img
-              class="footer__bar-shipping"
-              src="{{ 'gls-logo.svg' | asset_url }}"
-              alt="GLS"
-              loading="lazy"
-              width="140"
-              height="49"
-            >
-          {%- endif -%}
-        </div>
-        {%- assign reviews_url = section.settings.reviews_url | default: 'https://dk.trustpilot.com/review/martilness.dk' -%}
-        <a
-          href="{{ reviews_url }}"
-          class="footer__bar-col footer__bar-col--link text-decoration-none color-current"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="{{ section.settings.reviews_label | default: 'Anmeldelser' }} - Trustpilot"
+        <accordion-component
+          class="footer__bar-col accordion"
+          data-section-id="{{ section.id }}"
         >
-          <span class="footer__bar-label h5">{{ section.settings.reviews_label | default: 'Anmeldelser' }}</span>
-          <div class="footer__bar-stars">
-            {%- for i in (1..5) -%}
-              <span class="footer__bar-star"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
-            {%- endfor -%}
-          </div>
-        </a>
+          <details
+            class="footer__bar-details accordion__details is-open"
+            is="footer-details"
+            ref="item"
+            data-collapse-at="mobile"
+            open
+          >
+            <summary ref="summary" class="footer__bar-summary accordion__summary flex" on:click="/onSummaryClick">
+              <span class="footer__bar-label h5">{{ section.settings.payment_label | default: 'Betalingsmuligheder' }}</span>
+              {% render 'icon', icon: 'caret-down', class: 'footer__bar-caret flex accordion__summary-arrow icon--caret' %}
+            </summary>
+            <div class="footer__bar-content accordion__content" ref="content">
+              <div class="accordion__inner">
+                <div class="footer__bar-icons">
+                  {%- assign footer_payment_methods = 'dankort,visa,master,apple_pay,mobilepay,google_pay' | split: ',' -%}
+                  {%- for method in footer_payment_methods -%}
+                    {%- render 'martilness-payment-icon', type: method -%}
+                  {%- endfor -%}
+                </div>
+              </div>
+            </div>
+          </details>
+        </accordion-component>
+        <accordion-component
+          class="footer__bar-col accordion"
+          data-section-id="{{ section.id }}"
+        >
+          <details
+            class="footer__bar-details accordion__details is-open"
+            is="footer-details"
+            ref="item"
+            data-collapse-at="mobile"
+            open
+          >
+            <summary ref="summary" class="footer__bar-summary accordion__summary flex" on:click="/onSummaryClick">
+              <span class="footer__bar-label h5">{{ section.settings.shipping_label | default: 'Fragtpartner' }}</span>
+              {% render 'icon', icon: 'caret-down', class: 'footer__bar-caret flex accordion__summary-arrow icon--caret' %}
+            </summary>
+            <div class="footer__bar-content accordion__content" ref="content">
+              <div class="accordion__inner">
+                {%- if section.settings.shipping_image != blank -%}
+                  <img
+                    class="footer__bar-shipping"
+                    src="{{ section.settings.shipping_image | image_url: width: 160 }}"
+                    alt="{{ section.settings.shipping_label | default: 'Fragtpartner' }} — GLS"
+                    loading="lazy"
+                    width="{{ section.settings.shipping_image.width }}"
+                    height="{{ section.settings.shipping_image.height }}"
+                  >
+                {%- else -%}
+                  <img
+                    class="footer__bar-shipping"
+                    src="{{ 'gls-logo.svg' | asset_url }}"
+                    alt="GLS"
+                    loading="lazy"
+                    width="140"
+                    height="49"
+                  >
+                {%- endif -%}
+              </div>
+            </div>
+          </details>
+        </accordion-component>
+        {%- assign reviews_url = section.settings.reviews_url | default: 'https://dk.trustpilot.com/review/martilness.dk' -%}
+        <accordion-component
+          class="footer__bar-col accordion"
+          data-section-id="{{ section.id }}"
+        >
+          <details
+            class="footer__bar-details accordion__details is-open"
+            is="footer-details"
+            ref="item"
+            data-collapse-at="mobile"
+            open
+          >
+            <summary ref="summary" class="footer__bar-summary accordion__summary flex" on:click="/onSummaryClick">
+              <span class="footer__bar-label h5">{{ section.settings.reviews_label | default: 'Anmeldelser' }}</span>
+              {% render 'icon', icon: 'caret-down', class: 'footer__bar-caret flex accordion__summary-arrow icon--caret' %}
+            </summary>
+            <div class="footer__bar-content accordion__content" ref="content">
+              <div class="accordion__inner">
+                <a
+                  href="{{ reviews_url }}"
+                  class="footer__bar-review-link text-decoration-none color-current"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="{{ section.settings.reviews_label | default: 'Anmeldelser' }} - Trustpilot"
+                >
+                  <span class="footer__bar-stars">
+                    {%- for i in (1..5) -%}
+                      <span class="footer__bar-star"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+                    {%- endfor -%}
+                  </span>
+                </a>
+              </div>
+            </div>
+          </details>
+        </accordion-component>
       </div>
     {%- endif -%}
     {%- if section.settings.menu != blank -%}
@@ -167,13 +223,31 @@
   gap: 1rem;
   text-align: center;
 }
-a.footer__bar-col {
+.footer__bar-details {
+  width: 100%;
+}
+.footer__bar-summary {
+  justify-content: center;
+  padding: 0;
+  cursor: default;
+}
+.footer__bar-content .accordion__inner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem 0 0;
+}
+.footer__bar-caret {
+  display: none;
+}
+.footer__bar-review-link {
+  display: block;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
   transition: opacity var(--animation-duration--fast) var(--animation-easing);
 }
-a.footer__bar-col:hover {
+.footer__bar-review-link:hover {
   opacity: 0.82;
 }
 .footer__bar-col:not(:last-child) {
@@ -226,14 +300,6 @@ a.footer__bar-col:hover {
   border-radius: 0.8rem;
 }
 
-/* ---- Ikke-collapsible kolonne (nyhedsbrev): indhold synligt, header ikke klikbar ---- */
-.footer div.footer__details .accordion__content {
-  max-height: none;
-}
-.footer div.footer__details .accordion__summary {
-  pointer-events: none;
-}
-
 /* ---- Bund-omraade: strammere afstande ---- */
 .footer .footer__bottom {
   padding-top: 1.6rem;
@@ -264,9 +330,10 @@ a.footer__bar-col:hover {
     border-block-start: none;
   }
   .footer__bar-col {
+    display: block;
     align-items: flex-start;
     text-align: left;
-    padding-block: 1.6rem;
+    padding-block: 0;
   }
   .footer__bar-col:not(:last-child) {
     border-inline-end: none;
@@ -276,11 +343,27 @@ a.footer__bar-col:hover {
   .footer__bar-stars {
     justify-content: flex-start;
   }
+  .footer__bar-summary {
+    justify-content: space-between;
+    width: 100%;
+    padding-block: 1.6rem;
+    cursor: pointer;
+  }
+  .footer__bar-caret {
+    display: flex;
+  }
+  .footer__bar-content .accordion__inner {
+    align-items: flex-start;
+    padding-block: 0 1.6rem;
+  }
   /* Stram gab op til baren */
   .footer .footer__bottom {
     padding-top: 0;
   }
   .footer .footer__bar-col:first-child {
+    padding-block-start: 0;
+  }
+  .footer .footer__bar-col:first-child .footer__bar-summary {
     padding-block-start: 0.4rem;
   }
   /* Copyright + social: venstrestillet, stablet, divider over */

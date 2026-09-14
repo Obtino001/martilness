@@ -319,7 +319,7 @@
             "width": 25,
             "heading": "Kontaktoplysninger",
             "heading_size": "h5",
-            "open_default": true,
+            "open_default": false,
             "disable_collapse": false,
             "enable_divider": true
           },
@@ -699,9 +699,9 @@
             "width": 25,
             "heading": "Tilmeld dig & få 10% ✌🏼",
             "heading_size": "h5",
-            "open_default": true,
-            "disable_collapse": true,
-            "enable_divider": false
+            "open_default": false,
+            "disable_collapse": false,
+            "enable_divider": true
           },
           "blocks": {
             "newsletter_w3Vn9D": {

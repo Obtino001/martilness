@@ -101,19 +101,7 @@
         </div>
       {% endif %}
 
-      <div class="products-count-wrapper text-right color-subtext">
-        <span title="{{ 'content.product_count' | t }}">
-          {% if total_products_count > products_count %}
-            {{- 'content.filtered_products_count' | t: count: products_count, total: total_products_count -}}
-          {% else %}
-            {% if template.name == 'search' %}
-              {{- 'content.item_count' | t: count: products_count -}}
-            {% else %}
-              {{- 'content.products_count' | t: count: products_count -}}
-            {% endif %}
-          {% endif %}
-        </span>
-      </div>
+
     </div>
   </div>
   <div class="{{ toolbar_right_class }}">

@@ -6368,7 +6368,11 @@ if (!customElements.get("footer-details")) {
       connectedCallback() {
         this.openDefault = this.dataset.openDefault === "true";
 
-        const mqlTablet = window.matchMedia("screen and (max-width: 1023px)");
+        const collapseAtMobile = this.dataset.collapseAt === "mobile";
+        const mediaQuery = collapseAtMobile
+          ? "screen and (max-width: 767.98px)"
+          : "screen and (max-width: 1023px)";
+        const mqlTablet = window.matchMedia(mediaQuery);
         const updateOpen = (isTablet) => {
           const shouldOpen = isTablet ? this.openDefault : true;
 
