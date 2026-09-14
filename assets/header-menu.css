@@ -176,6 +176,12 @@
   width: 100%;
 }
 
+@media (max-width: 767.98px) {
+  .menu-drawer__mega .image-card--content-outside .image-card__content {
+    display: none !important;
+  }
+}
+
 .mega-menu__promotions .image-card--content-outside .image-card__heading,
 .menu-drawer__mega .image-card--content-outside .image-card__heading {
   display: -webkit-box;
