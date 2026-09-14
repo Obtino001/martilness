@@ -170,8 +170,8 @@
               "settings": {
                 "field_type": "textarea",
                 "heading": "Beskrivelse af reklamationen og hvad fejlen er",
-                "placeholder": "Beskrivelse af reklamationen og hvad fejlen er",
-                "required": false,
+                "placeholder": "Beskrivelse af reklamationen og hvad fejlen er *",
+                "required": true,
                 "full_width": true,
                 "checkbox_checked_value": "Yes",
                 "checkbox_uncheck_value": "No",
@@ -201,8 +201,8 @@
               "settings": {
                 "field_type": "select",
                 "heading": "Ønskes nyt produkt?",
-                "placeholder": "Ønskes nyt produkt?",
-                "required": false,
+                "placeholder": "Ønskes nyt produkt? *",
+                "required": true,
                 "full_width": true,
                 "checkbox_checked_value": "Yes",
                 "checkbox_uncheck_value": "No",

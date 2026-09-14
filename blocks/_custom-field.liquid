@@ -132,7 +132,7 @@
         placeholder="{{ textarea_placeholder }}"
       {% endif %}
       {% if block.settings.required %}
-        aria-invalid="true"
+        aria-required="true"
         required
       {% endif %}
     >{%- if form[field_name] -%}{{- form[field_name] -}}{%- endif -%}</textarea>
@@ -160,13 +160,13 @@
         name="contact[{{- field_name -}}]"
         class="form-control w-full form-control--select"
         {% if block.settings.required %}
-          aria-invalid="true"
+          aria-required="true"
           required
         {% endif %}
       >
         {% assign select_placeholder = block.settings.placeholder | default: block.settings.heading %}
         {%- if select_placeholder != blank -%}
-          <option value="">{{ select_placeholder }}</option>
+          <option value=""{% if block.settings.required %} disabled selected{% endif %}>{{ select_placeholder }}</option>
         {%- endif -%}
         {%- for option in options -%}
           <option value="{{ option }}" label="{{ option }}">{{ option }}</option>

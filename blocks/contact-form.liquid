@@ -9,16 +9,38 @@
   {% comment %} Contact Form {% endcomment %}
   {%- form 'contact', id: form_id, class: 'w-full' -%}
     {%- if form.posted_successfully? -%}
-      <div class="form-status-list" role="status">
+      <div
+        id="{{ form_id }}-success"
+        class="form-status-list"
+        role="status"
+        tabindex="-1"
+      >
         <h3
           class="form-message alert alert--success h6 flex gap-2"
-          tabindex="-1"
-          autofocus
         >
           {% render 'icon', icon: 'check', size: 'small', class: 'shrink-0' %}
           {{- 'blocks.contact_form.post_success' | t -}}
         </h3>
       </div>
+      <script>
+        (() => {
+          const successId = {{ form_id | append: '-success' | json }};
+
+          const showSuccessMessage = () => {
+            const successMessage = document.getElementById(successId);
+            if (!successMessage) return;
+
+            successMessage.focus({ preventScroll: true });
+            successMessage.scrollIntoView({ behavior: 'auto', block: 'center' });
+          };
+
+          if (document.readyState === 'complete') {
+            requestAnimationFrame(showSuccessMessage);
+          } else {
+            window.addEventListener('load', () => requestAnimationFrame(showSuccessMessage), { once: true });
+          }
+        })();
+      </script>
     {%- elsif form.errors -%}
       <div class="form-error alert alert--error">
         <h3
