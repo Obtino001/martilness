@@ -230,6 +230,7 @@
         "collection_bNgtXX",
         "collection_EVXTqd"
       ],
+      "disabled": true,
       "name": "t:names.product_tab_grid",
       "settings": {
         "container": "fixed",
@@ -505,7 +506,6 @@
           "blocks": {}
         }
       },
-      "disabled": true,
       "settings": {
         "container": "fixed",
         "products_per_page": 48,
