@@ -2459,10 +2459,9 @@
       "blocks": {
         "faq_8bJWbH": {
           "type": "faq",
-          "repeater": "{{ product.metafields.custom.faqs.value }}",
           "settings": {
-            "question": "{{ block.repeater.question.value }}",
-            "answer": "{{ block.repeater.answer | metafield_tag }}"
+            "question": "Hvad sker der i kroppen under et isbad?",
+            "answer": "<p>Når du sænker kroppen ned i iskoldt vand, sker der næsten øjeblikkeligt flere fysiologiske reaktioner:</p><ul><li>Vasokonstriktion: Blodkarrene trækker sig sammen, hvilket reducerer blodgennemstrømning til huden.</li><li>Hjerte og vejrtrækning: Hjerterytmen stiger, og vejrtrækningen bliver hurtigere og mere overfladisk.</li><li>Sympatisk aktivering: Kroppen opfatter kulden som stress, hvilket udløser adrenalin og aktiverer det sympatiske nervesystem. Resultatet er øget årvågenhed og mental klarhed.</li></ul><p><br/>Når du stiger op af vandet, udvider blodkarrene sig igen (vasodilatation), og blodet strømmer tilbage til overfladen. Dette giver en varmende og energigivende følelse, og mange beskriver en følelse af eufori eller lettelse.</p><p>Ved regelmæssige isbade tilpasser kroppen sig over tid, hvilket reducerer kuldechok, giver lettere kontrol over vejrtrækningen og hjælper med bedre stressregulering.</p><p>Kort sagt: Et isbad sætter gang i hele dit system og udfordrer både krop og sind.</p>"
           }
         }
       },
@@ -2472,7 +2471,6 @@
       "name": "Image with FAQs",
       "settings": {
         "require_metafield_key": "faqs",
-        "image": "{{ product.metafields.custom.faq_with_image.value }}",
         "image_position": "left",
         "image_radius": 20,
         "title": "Spørgsmål & svar",
