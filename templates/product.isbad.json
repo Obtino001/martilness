@@ -2470,11 +2470,35 @@
             "question": "Hvad er fordelene ved isbadning?",
             "answer": "<ol><li>Reducerer inflammation og smerter: Kulden mindsker hævelser og muskelømhed, og opvarmning øger blodgennemstrømningen.</li><li>Forbedrer restitution: Hjælper med at fjerne affaldsstoffer som mælkesyre fra musklerne.</li><li>Øger mentalt fokus og reducerer stress: Aktiverer dopamin og norepinefrin.</li><li>Øger kalorieforbrænding: Kulden aktiverer brunt fedt og booster stofskiftet.</li><li>Styrker immunsystemet: Øger produktionen af hvide blodlegemer og kroppens forsvar.</li></ol>"
           }
+        },
+        "faq_3nQCBq": {
+          "type": "faq",
+          "settings": {
+            "question": "Hvornår er det nok?",
+            "answer": "<p>Stop ved ubehag, ukontrollerbare rystelser eller følelsesløshed.<br/><br/></p>"
+          }
+        },
+        "faq_piYUwT": {
+          "type": "faq",
+          "settings": {
+            "question": "Hvor længe bør jeg være i vandet?",
+            "answer": "<ul><li>Begyndere: 10–30 sekunder til 1–2 minutter.</li><li>Øvede: 3–5 minutter.</li><li>Erfarne: 5–10 minutter</li></ul>"
+          }
+        },
+        "faq_9jzcb4": {
+          "type": "faq",
+          "settings": {
+            "question": "Hvor koldt skal vandet være?",
+            "answer": "<p>Alt under 15 grader kan have effekt, men et isbad er typisk mellem 0–10 grader.<br/><br/></p>"
+          }
         }
       },
       "block_order": [
         "faq_8bJWbH",
-        "faq_MAVcTy"
+        "faq_MAVcTy",
+        "faq_3nQCBq",
+        "faq_piYUwT",
+        "faq_9jzcb4"
       ],
       "name": "Image with FAQs",
       "settings": {
