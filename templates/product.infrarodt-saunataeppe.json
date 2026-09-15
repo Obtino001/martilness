@@ -484,6 +484,7 @@
             "product_recommendations_CQcChJ": {
               "type": "_product-recommendations",
               "name": "t:names.product_recommendations",
+              "disabled": true,
               "settings": {
                 "recommendations_type": "complementary",
                 "heading": "Andre købte også...",
@@ -646,6 +647,7 @@
                 },
                 "pdp_tab_how": {
                   "type": "_accordion-row",
+                  "disabled": true,
                   "settings": {
                     "text": "Hvordan virker det?",
                     "open_row_by_default": false,
