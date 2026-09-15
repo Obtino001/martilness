@@ -72,7 +72,7 @@
       </div>
 
       <div class="mt-contact__form-wrap">
-        {%- form 'contact', id: form_id, class: 'mt-contact__form' -%}
+        {%- form 'contact', id: form_id, class: 'mt-contact__form', novalidate: 'novalidate' -%}
           {%- if form.posted_successfully? -%}
             <div class="form-status-list" role="status">
               <p class="form-message alert alert--success h6 flex gap-2">
@@ -167,23 +167,31 @@
             function resetCustom() {
               this.setCustomValidity('');
             }
+
+            function showValidationWithoutJump(input, message) {
+              var scrollTop = window.scrollY;
+              input.setCustomValidity(message);
+              input.focus({ preventScroll: true });
+              input.reportValidity();
+
+              requestAnimationFrame(function() {
+                window.scrollTo({ top: scrollTop, left: window.scrollX, behavior: 'auto' });
+              });
+            }
+
             if (nameInput) nameInput.addEventListener('input', resetCustom);
             if (emailInput) emailInput.addEventListener('input', resetCustom);
 
             form.addEventListener('submit', function(e) {
               if (nameInput && !nameInput.value.trim()) {
                 e.preventDefault();
-                nameInput.setCustomValidity('Udfyld venligst dette felt');
-                nameInput.reportValidity();
-                nameInput.focus();
+                showValidationWithoutJump(nameInput, 'Udfyld venligst dette felt');
                 return false;
               }
 
-              if (emailInput && !emailInput.value.trim()) {
+              if (emailInput && (!emailInput.value.trim() || !emailInput.validity.valid)) {
                 e.preventDefault();
-                emailInput.setCustomValidity('Udfyld venligst en gyldig e-mailadresse');
-                emailInput.reportValidity();
-                emailInput.focus();
+                showValidationWithoutJump(emailInput, 'Udfyld venligst en gyldig e-mailadresse');
                 return false;
               }
             });
