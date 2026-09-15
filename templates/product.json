@@ -965,6 +965,7 @@
                 },
                 "pdp_tab_how": {
                   "type": "_accordion-row",
+                  "disabled": true,
                   "settings": {
                     "text": "Hvordan virker det?",
                     "open_row_by_default": false,
@@ -2398,6 +2399,7 @@
       "block_order": [
         "text_tBYp4z"
       ],
+      "disabled": true,
       "name": "t:names.product_recommendations",
       "settings": {
         "recommendations_type": "related",
