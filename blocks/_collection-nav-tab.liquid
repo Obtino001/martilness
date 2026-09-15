@@ -1,25 +1,15 @@
 {%- liquid
   assign tab_text = block.settings.text
   assign tab_link = block.settings.link
-  assign current = closest.collection | default: collection
-  assign is_active = false
-
-  if tab_link != blank and current.handle != blank
-    assign collection_path = '/collections/' | append: current.handle
-    assign shopify_path = 'shopify://collections/' | append: current.handle
-    if tab_link == current.url or tab_link == collection_path or tab_link == shopify_path
-      assign is_active = true
-    endif
-  endif
+  assign tab_handle = tab_link | split: '/collections/' | last | split: '?' | first
 -%}
-{%- if tab_text != blank -%}
+{%- if tab_text != blank and tab_link != blank -%}
   <a
-    href="{{ tab_link | default: '#' }}"
+    href="{{ routes.all_products_collection_url }}?mt_collection={{ tab_handle | url_encode }}"
     class="tabs__button inline-flex items-center justify-center relative rounded"
-    {% if is_active %}
-      aria-selected="true"
-      aria-current="page"
-    {% endif %}
+    data-collection-tab="{{ tab_handle | escape }}"
+    data-collection-source="{{ tab_link | escape }}"
+    aria-selected="false"
     {{ block.shopify_attributes }}
   >
     <span class="tabs__button-text relative text-ellipsis">{{ tab_text }}</span>

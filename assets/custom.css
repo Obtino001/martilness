@@ -21,6 +21,13 @@
 
 .collection-category-tabs .tabs__button[aria-selected='true'] {
   border-color: #09412d;
+  background: #09412d;
+  color: #fff;
+}
+
+.collection-category-tabs[aria-busy='true'] {
+  opacity: 0.65;
+  pointer-events: none;
 }
 
 .template-collection .divider,

@@ -90,7 +90,6 @@
             "collection_nav_tabs_9XBciK": {
               "type": "_collection-nav-tabs",
               "name": "Collection tabs",
-              "disabled": true,
               "settings": {},
               "blocks": {
                 "collection_nav_tab_HhqPfa": {
@@ -98,7 +97,7 @@
                   "name": "Tab",
                   "settings": {
                     "text": "Saunatæppe",
-                    "link": "shopify://products/infrarodt-saunataeppe"
+                    "link": "shopify://collections/saunataeppe"
                   },
                   "blocks": {}
                 },
@@ -107,7 +106,7 @@
                   "name": "Tab",
                   "settings": {
                     "text": "Infrarød LED maske",
-                    "link": "shopify://products/infrarod-led-maske"
+                    "link": "shopify://collections/infrarod-led-maske"
                   },
                   "blocks": {}
                 },

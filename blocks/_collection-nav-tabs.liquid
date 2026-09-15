@@ -1,12 +1,98 @@
-<nav
-  class="collection-category-tabs tabs"
-  aria-label="Kategorier"
-  {{ block.shopify_attributes }}
->
-  <div class="collection-category-tabs__list flex flex-wrap justify-start">
-    {% content_for 'blocks' %}
-  </div>
-</nav>
+{%- assign current_collection = closest.collection | default: collection -%}
+{%- if current_collection.handle == 'all' -%}
+  <nav
+    id="CollectionTabs-{{ block.id }}"
+    class="collection-category-tabs tabs"
+    aria-label="Kategorier"
+    {{ block.shopify_attributes }}
+  >
+    <div class="collection-category-tabs__list flex flex-wrap justify-start">
+      <a
+        href="{{ routes.all_products_collection_url }}"
+        class="tabs__button inline-flex items-center justify-center relative rounded"
+        data-collection-tab="all"
+        data-collection-source="{{ routes.all_products_collection_url }}"
+        aria-selected="true"
+      >
+        <span class="tabs__button-text relative text-ellipsis">Alle produkter</span>
+      </a>
+      {% content_for 'blocks' %}
+    </div>
+  </nav>
+
+  <script>
+    (() => {
+      const tabs = document.getElementById('CollectionTabs-{{ block.id }}');
+      if (!tabs || tabs.dataset.bound === 'true') return;
+      tabs.dataset.bound = 'true';
+
+      const buttons = Array.from(tabs.querySelectorAll('[data-collection-tab]'));
+      const resultsSelector = 'results-list.main-collection';
+      let requestController;
+
+      const setActiveTab = (handle) => {
+        buttons.forEach((button) => {
+          const active = button.dataset.collectionTab === handle;
+          button.toggleAttribute('aria-current', active);
+          button.setAttribute('aria-selected', String(active));
+        });
+      };
+
+      const loadCollection = async (button, updateHistory) => {
+        const sourceUrl = button.dataset.collectionSource;
+        const handle = button.dataset.collectionTab;
+        const currentResults = document.querySelector(resultsSelector);
+        if (!sourceUrl || !handle || !currentResults) return;
+
+        requestController?.abort();
+        requestController = new AbortController();
+        tabs.setAttribute('aria-busy', 'true');
+
+        try {
+          const response = await fetch(sourceUrl, { signal: requestController.signal });
+          if (!response.ok) throw new Error('Collection could not be loaded');
+
+          const html = await response.text();
+          const page = new DOMParser().parseFromString(html, 'text/html');
+          const nextResults = page.querySelector(resultsSelector);
+          if (!nextResults) throw new Error('Collection results were not found');
+
+          currentResults.replaceWith(nextResults);
+          setActiveTab(handle);
+
+          if (updateHistory) {
+            const nextUrl = new URL(window.location.href);
+            if (handle === 'all') nextUrl.searchParams.delete('mt_collection');
+            else nextUrl.searchParams.set('mt_collection', handle);
+            history.pushState({ mtCollection: handle }, '', nextUrl);
+          }
+        } catch (error) {
+          if (error.name !== 'AbortError') console.error(error);
+        } finally {
+          tabs.removeAttribute('aria-busy');
+        }
+      };
+
+      tabs.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-collection-tab]');
+        if (!button) return;
+        event.preventDefault();
+        loadCollection(button, true);
+      });
+
+      const initialHandle = new URL(window.location.href).searchParams.get('mt_collection') || 'all';
+      const initialButton = buttons.find((button) => button.dataset.collectionTab === initialHandle);
+      if (initialButton && initialHandle !== 'all') loadCollection(initialButton, false);
+      else setActiveTab('all');
+
+      window.addEventListener('popstate', () => {
+        const handle = new URL(window.location.href).searchParams.get('mt_collection') || 'all';
+        const button = buttons.find((item) => item.dataset.collectionTab === handle);
+        if (button) loadCollection(button, false);
+      });
+    })();
+  </script>
+{%- endif -%}
 {% schema %}
 {
   "name": "Collection tabs",
