@@ -158,9 +158,7 @@
                   "blocks": {}
                 }
               },
-              "block_order": [
-                "text_Wxqa3N"
-              ]
+              "block_order": ["text_Wxqa3N"]
             },
             "accordion_row_jch773": {
               "type": "_accordion-row",
@@ -206,9 +204,7 @@
                   "blocks": {}
                 }
               },
-              "block_order": [
-                "text_7GApNd"
-              ]
+              "block_order": ["text_7GApNd"]
             },
             "accordion_row_x7AyyP": {
               "type": "_accordion-row",
@@ -254,22 +250,13 @@
                   "blocks": {}
                 }
               },
-              "block_order": [
-                "text_M4zfU3"
-              ]
+              "block_order": ["text_M4zfU3"]
             }
           },
-          "block_order": [
-            "accordion_row_4iWxFf",
-            "accordion_row_jch773",
-            "accordion_row_x7AyyP"
-          ]
+          "block_order": ["accordion_row_4iWxFf", "accordion_row_jch773", "accordion_row_x7AyyP"]
         }
       },
-      "block_order": [
-        "group_D6HF6J",
-        "accordion_AYkUzi"
-      ],
+      "block_order": ["group_D6HF6J", "accordion_AYkUzi"],
       "name": "t:names.faqs_preset_texts",
       "settings": {
         "require_metafield_key": "",
@@ -301,10 +288,5 @@
       }
     }
   },
-  "order": [
-    "breadcrumbs",
-    "mt_page_hero",
-    "mt_page_body",
-    "custom_section_jcaGbJ"
-  ]
+  "order": ["breadcrumbs", "mt_page_hero", "mt_page_body", "custom_section_jcaGbJ"]
 }
