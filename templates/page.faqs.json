@@ -591,7 +591,7 @@
                   "type": "_accordion-row",
                   "settings": {
                     "text": "Hvor hurtigt leverer I?",
-                    "open_row_by_default": true,
+                    "open_row_by_default": false,
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -901,7 +901,7 @@
                   "type": "_accordion-row",
                   "settings": {
                     "text": "Hvordan kan jeg betale?",
-                    "open_row_by_default": true,
+                    "open_row_by_default": false,
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,
@@ -1211,7 +1211,7 @@
                   "type": "_accordion-row",
                   "settings": {
                     "text": "Er jeres produkter certificerede?",
-                    "open_row_by_default": true,
+                    "open_row_by_default": false,
                     "icon": "none",
                     "icon_size": "extra-large",
                     "width": 24,

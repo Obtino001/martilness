@@ -163,6 +163,30 @@
 
             var nameInput = document.getElementById('{{ form_id }}-name');
             var emailInput = document.getElementById('{{ form_id }}-email');
+            var scrollStorageKey = 'martilness-contact-scroll-{{ section.id }}';
+            var postedSuccessfully = Boolean(form.querySelector('.form-status-list'));
+
+            if (postedSuccessfully) {
+              var savedScrollValue = sessionStorage.getItem(scrollStorageKey);
+              var savedScrollTop = Number(savedScrollValue);
+              sessionStorage.removeItem(scrollStorageKey);
+
+              if (window.location.hash === '#{{ form_id }}') {
+                history.scrollRestoration = 'manual';
+                history.replaceState(null, '', window.location.pathname + window.location.search);
+              }
+
+              if (savedScrollValue !== null && Number.isFinite(savedScrollTop)) {
+                var restoreScrollPosition = function() {
+                  window.scrollTo({ top: savedScrollTop, left: 0, behavior: 'auto' });
+                };
+
+                requestAnimationFrame(function() {
+                  requestAnimationFrame(restoreScrollPosition);
+                });
+                window.addEventListener('load', restoreScrollPosition, { once: true });
+              }
+            }
 
             function resetCustom() {
               this.setCustomValidity('');
@@ -194,6 +218,8 @@
                 showValidationWithoutJump(emailInput, 'Udfyld venligst en gyldig e-mailadresse');
                 return false;
               }
+
+              sessionStorage.setItem(scrollStorageKey, String(window.scrollY));
             });
           })();
         </script>
