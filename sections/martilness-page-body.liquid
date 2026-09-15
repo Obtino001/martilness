@@ -226,13 +226,12 @@
     accordion.className = 'mt-page-faq accordion accordion--standard';
     accordion.setAttribute('data-single-open', 'true');
 
-    items.forEach((item, i) => {
+    items.forEach((item) => {
       const row = document.createElement('div');
       row.className = 'mt-page-faq__row accordion__row';
 
       const details = document.createElement('details');
       details.className = 'mt-page-faq__details accordion__details';
-      if (i === 0) details.open = true;
 
       const summary = document.createElement('summary');
       summary.className = 'mt-page-faq__summary accordion__summary';
