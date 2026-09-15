@@ -120,6 +120,27 @@
   </div>
 </div>
 
+<script>
+  (() => {
+    const faqSection = document.getElementById('section-{{ section.id }}');
+    if (!faqSection) return;
+
+    const closeAllFaqItems = () => {
+      faqSection.querySelectorAll('.accordion__details').forEach((item) => {
+        item.open = false;
+        item.classList.remove('is-open');
+        item.querySelector('summary')?.setAttribute('aria-expanded', 'false');
+
+        const content = item.querySelector('.accordion__content');
+        if (content) content.removeAttribute('style');
+      });
+    };
+
+    closeAllFaqItems();
+    window.addEventListener('pageshow', closeAllFaqItems, { once: true });
+  })();
+</script>
+
 <style>
   #section-{{ section.id }}.mt-split-faq {
     padding-block: var(--mt-split-faq-pad-top) var(--mt-split-faq-pad-bottom);
