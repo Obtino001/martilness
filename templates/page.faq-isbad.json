@@ -33,23 +33,755 @@
         "padding_bottom": 48
       }
     },
-    "mt_page_body": {
-      "type": "martilness-page-body",
-      "name": "Martilness page body",
+    "custom_section_jcaGbJ": {
+      "type": "custom-section",
+      "blocks": {
+        "group_D6HF6J": {
+          "type": "group",
+          "name": "t:names.section_header_vertical",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "column_gap": 0,
+            "row_gap": 0,
+            "enable_sticky_desktop": true,
+            "width": "fit-content",
+            "custom_width": 30,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "enable_swipe_on_mobile": false,
+            "swipe_custom_width_column": false,
+            "swipe_column_width": 76,
+            "columns_mobile": 2,
+            "column_gap_mobile": 0,
+            "row_gap_mobile": 0,
+            "device": "mobile",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "padding-block-start-mobile": 0,
+            "padding-block-end-mobile": 0,
+            "padding-inline-start-mobile": 0,
+            "padding-inline-end-mobile": 0
+          },
+          "blocks": {}
+        },
+        "accordion_AYkUzi": {
+          "type": "accordion",
+          "name": "t:names.accordion",
+          "settings": {
+            "open_behavior": "single",
+            "type_preset": "h4",
+            "style": "standard",
+            "card_color_scheme": "scheme-1",
+            "icon_arrow": "caret",
+            "icon_style": "solid",
+            "width": "custom",
+            "custom_width": 70,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "accordion_row_YOrOqW": {
+              "type": "_accordion-row",
+              "settings": {
+                "text": "Hvad sker der i kroppen under et isbad?",
+                "open_row_by_default": false,
+                "scroll_target": "",
+                "icon": "none",
+                "icon_size": "custom-size",
+                "width": 32,
+                "width_mobile": 24
+              },
+              "blocks": {
+                "text_AVSHmT": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Når du sænker kroppen ned i iskoldt vand, sker der næsten øjeblikkeligt flere fysiologiske reaktioner:</p><ul><li>Vasokonstriktion: Blodkarrene trækker sig sammen, hvilket reducerer blodgennemstrømning til huden.</li><li>Hjerte og vejrtrækning: Hjerterytmen stiger, og vejrtrækningen bliver hurtigere og mere overfladisk.</li><li>Sympatisk aktivering: Kroppen opfatter kulden som stress, hvilket udløser adrenalin og aktiverer det sympatiske nervesystem. Resultatet er øget årvågenhed og mental klarhed.</li></ul><p><br>Når du stiger op af vandet, udvider blodkarrene sig igen (vasodilatation), og blodet strømmer tilbage til overfladen. Dette giver en varmende og energigivende følelse, og mange beskriver en følelse af eufori eller lettelse.</p><p>Ved regelmæssige isbade tilpasser kroppen sig over tid, hvilket reducerer kuldechok, giver lettere kontrol over vejrtrækningen og hjælper med bedre stressregulering.</p><p>Kort sagt: Et isbad sætter gang i hele dit system og udfordrer både krop og sind.</p>",
+                    "highlight_style": "none",
+                    "highlight_font_style": "italic",
+                    "highlight_shape_color": "",
+                    "highlight_text_color": "",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_weight": "",
+                    "font_size": 15,
+                    "font_size_mobile": 15,
+                    "line_height": "normal",
+                    "text_color": "subtext",
+                    "text_color_gradient": "",
+                    "disable_line_break_mobile": false,
+                    "width": "100%",
+                    "text_alignment": "left",
+                    "width_mobile": "100%",
+                    "text_alignment_mobile": "left",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "mobile-padding-scale": 80,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_AVSHmT"
+              ]
+            },
+            "accordion_row_KgfXKs": {
+              "type": "_accordion-row",
+              "settings": {
+                "text": "Hvad er fordelene ved isbadning?",
+                "open_row_by_default": false,
+                "scroll_target": "",
+                "icon": "none",
+                "icon_size": "custom-size",
+                "width": 32,
+                "width_mobile": 24
+              },
+              "blocks": {
+                "text_l0JVw9": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<ol><li>Reducerer inflammation og smerter: Kulden mindsker hævelser og muskelømhed, og opvarmning øger blodgennemstrømningen.</li><li>Forbedrer restitution: Hjælper med at fjerne affaldsstoffer som mælkesyre fra musklerne.</li><li>Øger mentalt fokus og reducerer stress: Aktiverer dopamin og norepinefrin.</li><li>Øger kalorieforbrænding: Kulden aktiverer brunt fedt og booster stofskiftet.</li><li>Styrker immunsystemet: Øger produktionen af hvide blodlegemer og kroppens forsvar.</li></ol>",
+                    "highlight_style": "none",
+                    "highlight_font_style": "italic",
+                    "highlight_shape_color": "",
+                    "highlight_text_color": "",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_weight": "",
+                    "font_size": 15,
+                    "font_size_mobile": 15,
+                    "line_height": "normal",
+                    "text_color": "subtext",
+                    "text_color_gradient": "",
+                    "disable_line_break_mobile": false,
+                    "width": "100%",
+                    "text_alignment": "left",
+                    "width_mobile": "100%",
+                    "text_alignment_mobile": "left",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "mobile-padding-scale": 80,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_l0JVw9"
+              ]
+            },
+            "accordion_row_kS07sf": {
+              "type": "_accordion-row",
+              "settings": {
+                "text": "Hvor koldt skal vandet være?",
+                "open_row_by_default": false,
+                "scroll_target": "",
+                "icon": "none",
+                "icon_size": "custom-size",
+                "width": 32,
+                "width_mobile": 24
+              },
+              "blocks": {
+                "text_1XfbJW": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Alt under 15 grader kan have effekt, men et isbad er typisk mellem 0–10 grader.</p>",
+                    "highlight_style": "none",
+                    "highlight_font_style": "italic",
+                    "highlight_shape_color": "",
+                    "highlight_text_color": "",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_weight": "",
+                    "font_size": 15,
+                    "font_size_mobile": 15,
+                    "line_height": "normal",
+                    "text_color": "subtext",
+                    "text_color_gradient": "",
+                    "disable_line_break_mobile": false,
+                    "width": "100%",
+                    "text_alignment": "left",
+                    "width_mobile": "100%",
+                    "text_alignment_mobile": "left",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "mobile-padding-scale": 80,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_1XfbJW"
+              ]
+            },
+            "accordion_row_MNTqOF": {
+              "type": "_accordion-row",
+              "settings": {
+                "text": "Hvor længe bør jeg være i vandet?",
+                "open_row_by_default": false,
+                "scroll_target": "",
+                "icon": "none",
+                "icon_size": "custom-size",
+                "width": 32,
+                "width_mobile": 24
+              },
+              "blocks": {
+                "text_29nrKJ": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<ul><li>Begyndere: 10–30 sekunder til 1–2 minutter.</li><li>Øvede: 3–5 minutter.</li><li>Erfarne: 5–10 minutter</li></ul>",
+                    "highlight_style": "none",
+                    "highlight_font_style": "italic",
+                    "highlight_shape_color": "",
+                    "highlight_text_color": "",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_weight": "",
+                    "font_size": 15,
+                    "font_size_mobile": 15,
+                    "line_height": "normal",
+                    "text_color": "subtext",
+                    "text_color_gradient": "",
+                    "disable_line_break_mobile": false,
+                    "width": "100%",
+                    "text_alignment": "left",
+                    "width_mobile": "100%",
+                    "text_alignment_mobile": "left",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "mobile-padding-scale": 80,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_29nrKJ"
+              ]
+            },
+            "accordion_row_OgBYvk": {
+              "type": "_accordion-row",
+              "settings": {
+                "text": "Hvornår er det nok?",
+                "open_row_by_default": false,
+                "scroll_target": "",
+                "icon": "none",
+                "icon_size": "custom-size",
+                "width": 32,
+                "width_mobile": 24
+              },
+              "blocks": {
+                "text_SGWFXg": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Stop ved ubehag, ukontrollerbare rystelser eller følelsesløshed.</p>",
+                    "highlight_style": "none",
+                    "highlight_font_style": "italic",
+                    "highlight_shape_color": "",
+                    "highlight_text_color": "",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_weight": "",
+                    "font_size": 15,
+                    "font_size_mobile": 15,
+                    "line_height": "normal",
+                    "text_color": "subtext",
+                    "text_color_gradient": "",
+                    "disable_line_break_mobile": false,
+                    "width": "100%",
+                    "text_alignment": "left",
+                    "width_mobile": "100%",
+                    "text_alignment_mobile": "left",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "mobile-padding-scale": 80,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_SGWFXg"
+              ]
+            },
+            "accordion_row_r71D79": {
+              "type": "_accordion-row",
+              "settings": {
+                "text": "Hvornår er det bedst at tage et isbad?",
+                "open_row_by_default": false,
+                "scroll_target": "",
+                "icon": "none",
+                "icon_size": "custom-size",
+                "width": 32,
+                "width_mobile": 24
+              },
+              "blocks": {
+                "text_tMRxwM": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<ul><li>Morgen eller tidlig eftermiddag: Øger energi, fokus og restitution.</li><li>Undgå sent på dagen: Badet kan hæve årvågenhed og forstyrre søvn. Vent med varmt bad 20–30 minutter.</li></ul>",
+                    "highlight_style": "none",
+                    "highlight_font_style": "italic",
+                    "highlight_shape_color": "",
+                    "highlight_text_color": "",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_weight": "",
+                    "font_size": 15,
+                    "font_size_mobile": 15,
+                    "line_height": "normal",
+                    "text_color": "subtext",
+                    "text_color_gradient": "",
+                    "disable_line_break_mobile": false,
+                    "width": "100%",
+                    "text_alignment": "left",
+                    "width_mobile": "100%",
+                    "text_alignment_mobile": "left",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "mobile-padding-scale": 80,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_tMRxwM"
+              ]
+            },
+            "accordion_row_NK31U6": {
+              "type": "_accordion-row",
+              "settings": {
+                "text": "Er det farligt at isbade?",
+                "open_row_by_default": false,
+                "scroll_target": "",
+                "icon": "none",
+                "icon_size": "custom-size",
+                "width": 32,
+                "width_mobile": 24
+              },
+              "blocks": {
+                "text_hwOFj8": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Ikke ved korrekt brug. Bad aldrig alene, og gå langsomt frem. Konsultér læge ved helbredsproblemer.</p><p>&nbsp;</p>",
+                    "highlight_style": "none",
+                    "highlight_font_style": "italic",
+                    "highlight_shape_color": "",
+                    "highlight_text_color": "",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_weight": "",
+                    "font_size": 15,
+                    "font_size_mobile": 15,
+                    "line_height": "normal",
+                    "text_color": "subtext",
+                    "text_color_gradient": "",
+                    "disable_line_break_mobile": false,
+                    "width": "100%",
+                    "text_alignment": "left",
+                    "width_mobile": "100%",
+                    "text_alignment_mobile": "left",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "mobile-padding-scale": 80,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_hwOFj8"
+              ]
+            },
+            "accordion_row_fgmPmi": {
+              "type": "_accordion-row",
+              "settings": {
+                "text": "Hvor ofte kan man tage isbad?",
+                "open_row_by_default": false,
+                "scroll_target": "",
+                "icon": "none",
+                "icon_size": "custom-size",
+                "width": 32,
+                "width_mobile": 24
+              },
+              "blocks": {
+                "text_f7STju": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Dagligt eller 2–3 gange om ugen – regelmæssighed er vigtigst.</p>",
+                    "highlight_style": "none",
+                    "highlight_font_style": "italic",
+                    "highlight_shape_color": "",
+                    "highlight_text_color": "",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_weight": "",
+                    "font_size": 15,
+                    "font_size_mobile": 15,
+                    "line_height": "normal",
+                    "text_color": "subtext",
+                    "text_color_gradient": "",
+                    "disable_line_break_mobile": false,
+                    "width": "100%",
+                    "text_alignment": "left",
+                    "width_mobile": "100%",
+                    "text_alignment_mobile": "left",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "mobile-padding-scale": 80,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_f7STju"
+              ]
+            },
+            "accordion_row_fVui6v": {
+              "type": "_accordion-row",
+              "settings": {
+                "text": "Kan man få forfrysninger?",
+                "open_row_by_default": false,
+                "scroll_target": "",
+                "icon": "none",
+                "icon_size": "custom-size",
+                "width": 32,
+                "width_mobile": 24
+              },
+              "blocks": {
+                "text_WkHDuk": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Sjældent ved korte isbade, men muligt ved langvarige bade uden opvarmning bagefter.</p>",
+                    "highlight_style": "none",
+                    "highlight_font_style": "italic",
+                    "highlight_shape_color": "",
+                    "highlight_text_color": "",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_weight": "",
+                    "font_size": 15,
+                    "font_size_mobile": 15,
+                    "line_height": "normal",
+                    "text_color": "subtext",
+                    "text_color_gradient": "",
+                    "disable_line_break_mobile": false,
+                    "width": "100%",
+                    "text_alignment": "left",
+                    "width_mobile": "100%",
+                    "text_alignment_mobile": "left",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "mobile-padding-scale": 80,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_WkHDuk"
+              ]
+            },
+            "accordion_row_nBhcg4": {
+              "type": "_accordion-row",
+              "settings": {
+                "text": "Skal man tage varmt bad bagefter?",
+                "open_row_by_default": false,
+                "scroll_target": "",
+                "icon": "none",
+                "icon_size": "custom-size",
+                "width": 32,
+                "width_mobile": 24
+              },
+              "blocks": {
+                "text_lXOEAl": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Nej, lad kroppen varme sig op selv først.</p>",
+                    "highlight_style": "none",
+                    "highlight_font_style": "italic",
+                    "highlight_shape_color": "",
+                    "highlight_text_color": "",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_weight": "",
+                    "font_size": 15,
+                    "font_size_mobile": 15,
+                    "line_height": "normal",
+                    "text_color": "subtext",
+                    "text_color_gradient": "",
+                    "disable_line_break_mobile": false,
+                    "width": "100%",
+                    "text_alignment": "left",
+                    "width_mobile": "100%",
+                    "text_alignment_mobile": "left",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "mobile-padding-scale": 80,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_lXOEAl"
+              ]
+            },
+            "accordion_row_xlWZXt": {
+              "type": "_accordion-row",
+              "settings": {
+                "text": "Kan man bruge Epsom salt i isbadet?",
+                "open_row_by_default": false,
+                "scroll_target": "",
+                "icon": "none",
+                "icon_size": "custom-size",
+                "width": 32,
+                "width_mobile": 24
+              },
+              "blocks": {
+                "text_5s9sgI": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Ja, det er sikkert og indeholder magnesium, som kan være gavnligt. Bordsalt og vejsalt bør ikke bruges.</p>",
+                    "highlight_style": "none",
+                    "highlight_font_style": "italic",
+                    "highlight_shape_color": "",
+                    "highlight_text_color": "",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_weight": "",
+                    "font_size": 15,
+                    "font_size_mobile": 15,
+                    "line_height": "normal",
+                    "text_color": "subtext",
+                    "text_color_gradient": "",
+                    "disable_line_break_mobile": false,
+                    "width": "100%",
+                    "text_alignment": "left",
+                    "width_mobile": "100%",
+                    "text_alignment_mobile": "left",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "mobile-padding-scale": 80,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_5s9sgI"
+              ]
+            },
+            "accordion_row_agYTcQ": {
+              "type": "_accordion-row",
+              "settings": {
+                "text": "Hvordan vedligeholder jeg vandet?",
+                "open_row_by_default": false,
+                "scroll_target": "",
+                "icon": "none",
+                "icon_size": "custom-size",
+                "width": 32,
+                "width_mobile": 24
+              },
+              "blocks": {
+                "text_IzlWPl": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Hvor ofte skal vandet skiftes?</p><ul><li>Vand under 10 grader kræver normalt ikke desinfektion.</li><li>Skift vandet efter behov (1–4 gange/måned), oftere om forår/sommer.</li></ul><p><br>Klor:</p><ul><li>Ved temperaturer over 10 grader anbefales klortabletter for at forhindre alge- og bakterievækst.</li><li>Vandets klorindhold kan måles med teststrips.</li></ul><p><br>Rensning ved tømning:</p><ul><li>Desinficér badet med kloropløsning efter tømming.</li></ul>",
+                    "highlight_style": "none",
+                    "highlight_font_style": "italic",
+                    "highlight_shape_color": "",
+                    "highlight_text_color": "",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_weight": "",
+                    "font_size": 15,
+                    "font_size_mobile": 15,
+                    "line_height": "normal",
+                    "text_color": "subtext",
+                    "text_color_gradient": "",
+                    "disable_line_break_mobile": false,
+                    "width": "100%",
+                    "text_alignment": "left",
+                    "width_mobile": "100%",
+                    "text_alignment_mobile": "left",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "mobile-padding-scale": 80,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_IzlWPl"
+              ]
+            },
+            "accordion_row_0cAmbs": {
+              "type": "_accordion-row",
+              "settings": {
+                "text": "Kan isbadet stå på en altan?",
+                "open_row_by_default": false,
+                "scroll_target": "",
+                "icon": "none",
+                "icon_size": "custom-size",
+                "width": 32,
+                "width_mobile": 24
+              },
+              "blocks": {
+                "text_OlmDwS": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Isbadet kan stå og anvendes på en altan, hvis altanen kan bære ca. 400 kg, og du kan fylde og tømme badet sikkert.</p>",
+                    "highlight_style": "none",
+                    "highlight_font_style": "italic",
+                    "highlight_shape_color": "",
+                    "highlight_text_color": "",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_weight": "",
+                    "font_size": 15,
+                    "font_size_mobile": 15,
+                    "line_height": "normal",
+                    "text_color": "subtext",
+                    "text_color_gradient": "",
+                    "disable_line_break_mobile": false,
+                    "width": "100%",
+                    "text_alignment": "left",
+                    "width_mobile": "100%",
+                    "text_alignment_mobile": "left",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "mobile-padding-scale": 80,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_OlmDwS"
+              ]
+            }
+          },
+          "block_order": [
+            "accordion_row_YOrOqW",
+            "accordion_row_KgfXKs",
+            "accordion_row_kS07sf",
+            "accordion_row_MNTqOF",
+            "accordion_row_OgBYvk",
+            "accordion_row_r71D79",
+            "accordion_row_NK31U6",
+            "accordion_row_fgmPmi",
+            "accordion_row_fVui6v",
+            "accordion_row_nBhcg4",
+            "accordion_row_xlWZXt",
+            "accordion_row_agYTcQ",
+            "accordion_row_0cAmbs"
+          ]
+        }
+      },
+      "block_order": [
+        "group_D6HF6J",
+        "accordion_AYkUzi"
+      ],
+      "name": "t:names.faqs_preset_texts",
       "settings": {
-        "layout": "faq",
-        "show_page_title": false,
-        "accent_color": "#09412d",
-        "cta_label": "Kontakt os",
-        "cta_link": "shopify://pages/kontakt",
-        "padding_top": 40,
-        "padding_bottom": 64
+        "require_metafield_key": "",
+        "container": "page-width",
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "flex-start",
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "column_gap": 60,
+        "row_gap": 0,
+        "column_gap_mobile": 30,
+        "row_gap_mobile": 24,
+        "use_color_scheme_in_container": false,
+        "color_scheme": "scheme-1",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "device": "desktop",
+        "padding-block-start": 80,
+        "padding-block-end": 80,
+        "padding-inline-start": 50,
+        "padding-inline-end": 50,
+        "padding-block-start-mobile": 48,
+        "padding-block-end-mobile": 48,
+        "padding-inline-start-mobile": 20,
+        "padding-inline-end-mobile": 20
       }
     }
   },
   "order": [
     "breadcrumbs",
     "mt_page_hero",
-    "mt_page_body"
+    "custom_section_jcaGbJ"
   ]
 }
