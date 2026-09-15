@@ -33,18 +33,6 @@
         "padding_bottom": 48
       }
     },
-    "mt_page_body": {
-      "type": "martilness-page-body",
-      "name": "Martilness page body",
-      "settings": {
-        "layout": "faq",
-        "faq_max_width": 1000,
-        "show_page_title": false,
-        "accent_color": "#09412d",
-        "padding_top": 40,
-        "padding_bottom": 64
-      }
-    },
     "custom_section_jcaGbJ": {
       "type": "custom-section",
       "blocks": {
@@ -794,7 +782,6 @@
   "order": [
     "breadcrumbs",
     "mt_page_hero",
-    "mt_page_body",
     "custom_section_jcaGbJ"
   ]
 }
