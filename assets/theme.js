@@ -1906,6 +1906,20 @@ export class NewsletterForm extends Component {
     }
 
     if (isSubscribed || alert) {
+      if (this.closest(".footer")) {
+        const inlineMessage = alert || messageErrorSubscribed;
+        const form = this.querySelector("form");
+
+        if (inlineMessage && form) {
+          inlineMessage.classList.remove("hidden");
+          inlineMessage.classList.add("newsletter-form__inline-message");
+          inlineMessage.setAttribute("role", inlineMessage.classList.contains("alert--error") ? "alert" : "status");
+          form.appendChild(inlineMessage);
+        }
+
+        return;
+      }
+
       if (!window.isMessageDialogShow) {
         messageDialog && messageDialog.showDialog();
         window.isMessageDialogShow = true;
