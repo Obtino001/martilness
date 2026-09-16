@@ -154,6 +154,14 @@ class CartDiscount extends Component {
       }
 
       document.dispatchEvent(new DiscountUpdateEvent(data, this.dataset.sectionId));
+
+      // A successfully applied code is already reflected in the refreshed cart.
+      // Close the add-on dialog so the updated summary and checkout button are visible.
+      const discountDialog = this.closest("dialog-component");
+      if (discountDialog && typeof discountDialog.closeDialog === "function") {
+        await discountDialog.closeDialog();
+      }
+
       morphSection(this.dataset.sectionId, newHtml);
     } catch (error) {
     } finally {
