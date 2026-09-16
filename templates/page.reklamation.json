@@ -109,6 +109,7 @@
           "type": "contact-form",
           "name": "Contact form",
           "settings": {
+            "email_subject": "Reklamation fra Martilness.dk",
             "show_message_field": false,
             "width": "fill",
             "custom_width": 100,

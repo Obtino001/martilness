@@ -8,6 +8,9 @@
 >
   {% comment %} Contact Form {% endcomment %}
   {%- form 'contact', id: form_id, class: 'w-full' -%}
+    {%- if block.settings.email_subject != blank -%}
+      <input type="hidden" name="contact[subject]" value="{{ block.settings.email_subject | escape }}">
+    {%- endif -%}
     {%- if form.posted_successfully? -%}
       <div
         id="{{ form_id }}-success"
@@ -155,6 +158,12 @@
   "name": "t:names.contact_form",
   "tag": null,
   "settings": [
+    {
+      "type": "text",
+      "id": "email_subject",
+      "label": "Email subject",
+      "default": "Ny besked fra Martilness"
+    },
     {
       "type": "checkbox",
       "id": "show_message_field",
