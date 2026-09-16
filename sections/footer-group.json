@@ -699,7 +699,7 @@
             "width": 25,
             "heading": "Tilmeld dig & få 10% ✌🏼",
             "heading_size": "h5",
-            "open_default": false,
+            "open_default": true,
             "disable_collapse": false,
             "enable_divider": true
           },
