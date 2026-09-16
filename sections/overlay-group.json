@@ -191,6 +191,7 @@
     },
     "martilness_giveaway_GGkM7c": {
       "type": "martilness-giveaway",
+      "disabled": true,
       "name": "Martilness giveaway",
       "settings": {
         "tab_label": "Vind produkter til en værdi af kr. 3398,-",
