@@ -1897,9 +1897,12 @@ export class NewsletterForm extends Component {
     const messageDialogRefs = messageDialog?.refs ?? {};
     const { alert, messageErrorSubscribed } = messageDialogRefs;
 
-    const liveUrl = window.location.href;
-    const result = liveUrl.includes("form_type=customer");
-    const isSubscribed = result && input.value.length != 0;
+    const form = this.querySelector("form");
+    const liveUrl = new URL(window.location.href);
+    const isSuccessfulPost = liveUrl.searchParams.get("customer_posted") === "true";
+    const isTargetedForm = form && liveUrl.hash === `#${form.id}`;
+    const isLegacyResponse = liveUrl.searchParams.get("form_type") === "customer" && input.value.length !== 0;
+    const isSubscribed = (isSuccessfulPost && isTargetedForm) || isLegacyResponse;
 
     if (isSubscribed && messageErrorSubscribed && !alert) {
       messageErrorSubscribed.classList.remove("hidden");
@@ -1908,7 +1911,6 @@ export class NewsletterForm extends Component {
     if (isSubscribed || alert) {
       if (this.closest(".footer")) {
         const inlineMessage = alert || messageErrorSubscribed;
-        const form = this.querySelector("form");
 
         if (window.matchMedia("(max-width: 767.98px)").matches) {
           const footerDetails = this.closest("details.footer__details");
