@@ -1910,6 +1910,15 @@ export class NewsletterForm extends Component {
         const inlineMessage = alert || messageErrorSubscribed;
         const form = this.querySelector("form");
 
+        if (window.matchMedia("(max-width: 767.98px)").matches) {
+          const footerDetails = this.closest("details.footer__details");
+          if (footerDetails) {
+            footerDetails.open = true;
+            footerDetails.classList.add("is-open");
+            footerDetails.querySelector("summary")?.setAttribute("aria-expanded", "true");
+          }
+        }
+
         if (inlineMessage && form) {
           inlineMessage.classList.remove("hidden");
           inlineMessage.classList.add("newsletter-form__inline-message");
