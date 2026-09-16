@@ -1915,9 +1915,34 @@ export class NewsletterForm extends Component {
         if (window.matchMedia("(max-width: 767.98px)").matches) {
           const footerDetails = this.closest("details.footer__details");
           if (footerDetails) {
-            footerDetails.open = true;
-            footerDetails.classList.add("is-open");
-            footerDetails.querySelector("summary")?.setAttribute("aria-expanded", "true");
+            // Ensure footer-details also treats this as its initial mobile state.
+            footerDetails.dataset.openDefault = "true";
+
+            const openFooterDetails = () => {
+              const accordionEl = footerDetails.closest("accordion-component");
+              const summary = footerDetails.querySelector("summary");
+              const content = footerDetails.querySelector(".accordion__content");
+
+              if (typeof accordionEl?.toggleOpen === "function" && summary && content) {
+                accordionEl.toggleOpen({
+                  willOpen: true,
+                  item: footerDetails,
+                  summary,
+                  content,
+                });
+                return;
+              }
+
+              footerDetails.open = true;
+              footerDetails.classList.add("is-open");
+              summary?.setAttribute("aria-expanded", "true");
+            };
+
+            if (customElements.get("footer-details")) {
+              openFooterDetails();
+            } else {
+              customElements.whenDefined("footer-details").then(openFooterDetails);
+            }
           }
         }
 
