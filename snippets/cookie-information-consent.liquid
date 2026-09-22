@@ -1,0 +1,66 @@
+<script>
+const addCookieInformationConsentScript = () => {
+const consentScript = document.createElement('script');
+consentScript.setAttribute('src','https://policy.app.cookieinformation.com/uc.js');
+consentScript.setAttribute('data-culture', 'EN');
+consentScript.id = 'CookieConsent';
+document.head.appendChild(consentScript);
+};
+const setupListenerForConsentGathering = () => {
+   window.addEventListener("CookieInformationConsentGiven", () => {
+       let consentSignals = {};
+       let consentCookieReady = false;
+       let customerPrivacyAPIReady = false;
+       const checkAndSetTrackingConsent = () => {
+           if (consentCookieReady && customerPrivacyAPIReady && Object.keys(consentSignals).length > 0) {
+               window.Shopify.customerPrivacy.setTrackingConsent(
+                   {
+                       "analytics": consentSignals['cookie_cat_statistic'] || false,
+                       "marketing": consentSignals['cookie_cat_marketing'] || false,
+                       "preferences": consentSignals['cookie_cat_functional'] || false,
+                       "sale_of_data": consentSignals['cookie_cat_marketing'] || false,
+                   },
+                   () => console.log("Cookie Information: consent gathered")
+               );
+           }
+       };
+       if (window.CookieInformation) {
+           const consentCookie = window.CookieInformation._getCookieValue('CookieInformationConsent');
+           if (consentCookie) {
+               const consent = JSON.parse(consentCookie);
+               if (consent) {
+                   consentSignals = consent.consents_approved || [];
+                   consentSignals = consentSignals.reduce((acc, curr) => {
+                       acc[curr] = true;
+                       return acc;
+                   }, {});
+                   consentCookieReady = true;
+                   checkAndSetTrackingConsent();
+               }
+           }
+       }
+       const customerPrivacyAPIInterval = setInterval(() => {
+           if (window.Shopify.customerPrivacy) {
+               clearInterval(customerPrivacyAPIInterval);
+               customerPrivacyAPIReady = true;
+               checkAndSetTrackingConsent();
+           }
+       }, 100);
+   });
+};
+window.Shopify.loadFeatures(
+   [
+       {
+           name: 'consent-tracking-api',
+           version: '0.1',
+       },
+   ],
+   error => {
+       if (error) {
+           throw error;
+       }
+       setupListenerForConsentGathering();
+       addCookieInformationConsentScript();
+   }
+);
+</script>

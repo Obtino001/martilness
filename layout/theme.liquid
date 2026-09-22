@@ -54,6 +54,7 @@
     {%- endif -%}
 
     {{ content_for_header }}
+    {% render 'cookie-information-consent' %}
   </head>
   <body
     {% unless settings.animations_enabled %}
