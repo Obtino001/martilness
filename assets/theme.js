@@ -1887,6 +1887,109 @@ export class NewsletterForm extends Component {
     super.connectedCallback();
 
     this.init();
+    this.initKlaviyoSubscription();
+  }
+
+  initKlaviyoSubscription() {
+    const form = this.querySelector("form");
+    if (!form || form.dataset.klaviyoBound === "true") return;
+
+    form.dataset.klaviyoBound = "true";
+    form.addEventListener("submit", (event) => this.handleKlaviyoSubmit(event));
+  }
+
+  async handleKlaviyoSubmit(event) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const emailInput = this.querySelector('input[type="email"]');
+    const submitButton = this.querySelector('button[type="submit"]');
+    const errorMessage = this.querySelector("[data-klaviyo-newsletter-error]");
+    const successMessage = this.querySelector("[data-klaviyo-newsletter-success]");
+    const companyId = this.dataset.klaviyoCompanyId?.trim();
+    const listId = this.dataset.klaviyoListId?.trim();
+    const source = this.dataset.klaviyoSource?.trim() || "Martilness newsletter form";
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    errorMessage?.classList.add("hidden");
+    successMessage?.classList.add("hidden");
+
+    if (!companyId || !listId || !emailInput) {
+      errorMessage?.classList.remove("hidden");
+      return;
+    }
+
+    const email = emailInput.value.trim();
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.setAttribute("aria-busy", "true");
+    }
+
+    try {
+      const response = await fetch(
+        `https://a.klaviyo.com/client/subscriptions/?company_id=${encodeURIComponent(companyId)}`,
+        {
+          method: "POST",
+          headers: {
+            accept: "application/vnd.api+json",
+            "content-type": "application/vnd.api+json",
+            revision: "2026-07-15",
+          },
+          body: JSON.stringify({
+            data: {
+              type: "subscription",
+              attributes: {
+                custom_source: source,
+                profile: {
+                  data: {
+                    type: "profile",
+                    attributes: {
+                      email,
+                      subscriptions: {
+                        email: {
+                          marketing: {
+                            consent: "SUBSCRIBED",
+                          },
+                        },
+                      },
+                      properties: {
+                        "Martilness Signup Source": source,
+                        "Martilness Signup Page URL": window.location.href,
+                      },
+                    },
+                  },
+                },
+              },
+              relationships: {
+                list: {
+                  data: {
+                    type: "list",
+                    id: listId,
+                  },
+                },
+              },
+            },
+          }),
+        },
+      );
+
+      if (!response.ok) throw new Error(`Klaviyo newsletter subscription failed (${response.status})`);
+
+      form.reset();
+      successMessage?.classList.remove("hidden");
+    } catch (error) {
+      console.error("[Martilness newsletter]", error);
+      errorMessage?.classList.remove("hidden");
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.removeAttribute("aria-busy");
+      }
+    }
   }
 
   /**
