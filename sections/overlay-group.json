@@ -191,7 +191,6 @@
     },
     "martilness_giveaway_GGkM7c": {
       "type": "martilness-giveaway",
-      "disabled": true,
       "name": "Martilness giveaway",
       "settings": {
         "tab_label": "Vind produkter til en værdi af kr. 3398,-",
@@ -201,6 +200,12 @@
         "email_placeholder": "Email",
         "button_label": "Ja tak - jeg vil gerne vinde :-)",
         "success_message": "Tak! Du er nu med i konkurrencen.",
+        "error_message": "Der opstod en fejl. Prøv venligst igen.",
+        "configuration_error_message": "Formularen er ikke konfigureret endnu.",
+        "submitting_label": "Tilmelder...",
+        "klaviyo_public_api_key": "",
+        "klaviyo_list_id": "",
+        "klaviyo_source": "Martilness giveaway popup",
         "image": "shopify://shop_images/DSC00435-Edit-scaled.jpg",
         "panel_background": "#09412d",
         "accent_color": "#09412d",
