@@ -124,7 +124,8 @@
       "label": "Email",
       "placeholder": "Enter your email",
       "already_subscribed": "You have already subscribed!",
-      "success": "Thanks for subscribing!"
+      "success": "Thanks for subscribing!",
+      "error": "Something went wrong. Please try again."
     },
     "video_card": "Video card",
     "load_video": "Load video: {{ description }}"

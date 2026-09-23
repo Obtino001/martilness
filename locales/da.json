@@ -124,7 +124,8 @@
       "label": "E-mail",
       "placeholder": "Indtast din e-mail",
       "already_subscribed": "Du er allerede tilmeldt!",
-      "success": "Tak for din tilmelding!"
+      "success": "Tak for din tilmelding!",
+      "error": "Der opstod en fejl. Prøv igen."
     },
     "video_card": "Videokort",
     "load_video": "Indlæs video: {{ description }}"
