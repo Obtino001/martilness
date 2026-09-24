@@ -1886,7 +1886,6 @@ export class NewsletterForm extends Component {
   connectedCallback() {
     super.connectedCallback();
 
-    this.init();
     this.initKlaviyoSubscription();
   }
 
@@ -1896,6 +1895,14 @@ export class NewsletterForm extends Component {
 
     form.dataset.klaviyoBound = "true";
     form.addEventListener("submit", (event) => this.handleKlaviyoSubmit(event));
+    this.querySelector('input[type="email"]')?.addEventListener("input", () => this.clearKlaviyoMessages());
+  }
+
+  clearKlaviyoMessages() {
+    const input = this.querySelector('input[type="email"]');
+    this.querySelector("[data-klaviyo-newsletter-error]")?.classList.add("hidden");
+    this.querySelector("[data-klaviyo-newsletter-success]")?.classList.add("hidden");
+    input?.removeAttribute("aria-describedby");
   }
 
   async handleKlaviyoSubmit(event) {
@@ -1915,11 +1922,11 @@ export class NewsletterForm extends Component {
       return;
     }
 
-    errorMessage?.classList.add("hidden");
-    successMessage?.classList.add("hidden");
+    this.clearKlaviyoMessages();
 
     if (!companyId || !listId || !emailInput) {
       errorMessage?.classList.remove("hidden");
+      if (errorMessage && emailInput) emailInput.setAttribute("aria-describedby", errorMessage.id);
       return;
     }
 
@@ -1981,9 +1988,11 @@ export class NewsletterForm extends Component {
 
       form.reset();
       successMessage?.classList.remove("hidden");
+      if (successMessage) emailInput.setAttribute("aria-describedby", successMessage.id);
     } catch (error) {
       console.error("[Martilness newsletter]", error);
       errorMessage?.classList.remove("hidden");
+      if (errorMessage) emailInput.setAttribute("aria-describedby", errorMessage.id);
     } finally {
       if (submitButton) {
         submitButton.disabled = false;
@@ -1992,79 +2001,6 @@ export class NewsletterForm extends Component {
     }
   }
 
-  /**
-   * Show message when user re-subscribe with exists email.
-   */
-  init() {
-    const { input, messageDialog } = this.refs;
-    const messageDialogRefs = messageDialog?.refs ?? {};
-    const { alert, messageErrorSubscribed } = messageDialogRefs;
-
-    const form = this.querySelector("form");
-    const liveUrl = new URL(window.location.href);
-    const isSuccessfulPost = liveUrl.searchParams.get("customer_posted") === "true";
-    const isTargetedForm = form && liveUrl.hash === `#${form.id}`;
-    const isLegacyResponse = liveUrl.searchParams.get("form_type") === "customer" && input.value.length !== 0;
-    const isSubscribed = (isSuccessfulPost && isTargetedForm) || isLegacyResponse;
-
-    if (isSubscribed && messageErrorSubscribed && !alert) {
-      messageErrorSubscribed.classList.remove("hidden");
-    }
-
-    if (isSubscribed || alert) {
-      if (this.closest(".footer")) {
-        const inlineMessage = alert || messageErrorSubscribed;
-
-        if (window.matchMedia("(max-width: 767.98px)").matches) {
-          const footerDetails = this.closest("details.footer__details");
-          if (footerDetails) {
-            // Ensure footer-details also treats this as its initial mobile state.
-            footerDetails.dataset.openDefault = "true";
-
-            const openFooterDetails = () => {
-              const accordionEl = footerDetails.closest("accordion-component");
-              const summary = footerDetails.querySelector("summary");
-              const content = footerDetails.querySelector(".accordion__content");
-
-              if (typeof accordionEl?.toggleOpen === "function" && summary && content) {
-                accordionEl.toggleOpen({
-                  willOpen: true,
-                  item: footerDetails,
-                  summary,
-                  content,
-                });
-                return;
-              }
-
-              footerDetails.open = true;
-              footerDetails.classList.add("is-open");
-              summary?.setAttribute("aria-expanded", "true");
-            };
-
-            if (customElements.get("footer-details")) {
-              openFooterDetails();
-            } else {
-              customElements.whenDefined("footer-details").then(openFooterDetails);
-            }
-          }
-        }
-
-        if (inlineMessage && form) {
-          inlineMessage.classList.remove("hidden");
-          inlineMessage.classList.add("newsletter-form__inline-message");
-          inlineMessage.setAttribute("role", inlineMessage.classList.contains("alert--error") ? "alert" : "status");
-          form.appendChild(inlineMessage);
-        }
-
-        return;
-      }
-
-      if (!window.isMessageDialogShow) {
-        messageDialog && messageDialog.showDialog();
-        window.isMessageDialogShow = true;
-      }
-    }
-  }
 }
 
 if (!customElements.get("newsletter-form")) {

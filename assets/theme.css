@@ -7040,9 +7040,6 @@ more-payment-options-link a:hover {
   flex: 1 1 0px;
 }
 
-.newsletter-form .dialog__content {
-  padding: 5rem;
-}
 .newsletter-form--design-1 .form-control {
   padding-inline: 2rem 5.8rem;
 }
