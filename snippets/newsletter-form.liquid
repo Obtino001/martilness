@@ -25,12 +25,6 @@
       assign button_class = button_class | append: ' btn--icon-only btn--small'
   endcase
 
-  unless settings.dialog_color_scheme_inherit
-    assign dialog_color_scheme = settings.dialog_color_scheme
-  else
-    assign first_color_scheme = settings.color_schemes | first
-    assign dialog_color_scheme = first_color_scheme
-  endunless
 -%}
 
 <newsletter-form
@@ -39,8 +33,7 @@
   data-klaviyo-list-id="{{ klaviyo_list_id }}"
   data-klaviyo-source="Martilness newsletter form"
 >
-  {%- form 'customer', id: form_id, onsubmit: 'return false;' -%}
-    <input type="hidden" name="contact[tags]" value="newsletter">
+  <form id="{{ form_id }}" onsubmit="return false;">
     <div class="newsletter-form__field relative flex flex-col gap-4 md:gap-5">
       <label class="visually-hidden" for="{{ form_id }}__input">
         {{ default_label }}
@@ -49,21 +42,12 @@
         ref="input"
         id="{{ form_id }}__input"
         type="email"
-        pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
-        name="contact[email]"
+        name="email"
         class="form-control w-full newsletter-form__input"
-        value="{{ form.email }}"
         aria-required="true"
         autocorrect="off"
         autocapitalize="off"
         autocomplete="email"
-        {% if form.errors %}
-          autofocus
-          aria-invalid="true"
-          aria-describedby="{{ form_id }}__error"
-        {% elsif form.posted_successfully? %}
-          aria-describedby="{{ form_id }}__success"
-        {% endif %}
         placeholder="{{ 'blocks.email_signup.placeholder' | t }}"
         required
       >
@@ -84,6 +68,7 @@
     <p
       class="alert alert--error w-full flex items-center gap-2 newsletter-form__inline-message hidden"
       data-klaviyo-newsletter-error
+      id="{{ form_id }}__error"
       role="alert"
     >
       {% render 'icon', icon: 'warning' %}
@@ -92,62 +77,11 @@
     <p
       class="alert alert--success w-full flex items-center gap-2 newsletter-form__inline-message hidden"
       data-klaviyo-newsletter-success
+      id="{{ form_id }}__success"
       role="status"
     >
       {% render 'icon', icon: 'bell-ringing' %}
       <span>{{- 'blocks.email_signup.success' | t -}}</span>
     </p>
-    <dialog-component id="{{ form_id }}__dialog" ref="messageDialog">
-      <dialog
-        ref="dialog"
-        class="dialog dialog--modal color-{{ dialog_color_scheme }}"
-        scroll-lock
-      >
-        <button
-          class="dialog__close dialog__close--absolute"
-          on:click="#{{ form_id }}__dialog/closeDialog"
-          aria-label="{{ 'accessibility.close_dialog' | t }}"
-        >
-          {% render 'icon', icon: 'close', size: 'large' %}
-        </button>
-        <div class="dialog__content">
-          <p
-            ref="messageErrorSubscribed"
-            class="alert alert--error w-full flex items-center gap-2 hidden"
-            id="{{ form_id }}__error-subscribed"
-          >
-            {% render 'icon', icon: 'warning' %}
-            <span>
-              {{- 'blocks.email_signup.already_subscribed' | t -}}
-            </span>
-          </p>
-          {%- if form.errors -%}
-            <p
-              ref="alert"
-              class="alert alert--error w-full flex items-center gap-2"
-              id="{{ form_id }}__error"
-            >
-              {% render 'icon', icon: 'warning' %}
-              <span>
-                {{- form.errors.translated_fields.email | capitalize }}
-                {{ form.errors.messages.email -}}
-              </span>
-            </p>
-          {%- endif -%}
-          {%- if form.posted_successfully? -%}
-            <p
-              ref="alert"
-              class="alert alert--success w-full flex items-center gap-2"
-              id="{{ form_id }}__success"
-              tabindex="-1"
-              autofocus
-            >
-              {% render 'icon', icon: 'bell-ringing' %}
-              <span>{{- 'blocks.email_signup.success' | t }}</span>
-            </p>
-          {%- endif -%}
-        </div>
-      </dialog>
-    </dialog-component>
-  {%- endform -%}
+  </form>
 </newsletter-form>
